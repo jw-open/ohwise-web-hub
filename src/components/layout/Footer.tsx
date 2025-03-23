@@ -18,7 +18,7 @@ const Footer = () => {
                   <span className="font-bold text-lg">O</span>
                 </div>
               </div>
-              <span className="font-display font-bold text-xl">Ohwise</span>
+              <span className="font-display font-bold text-xl">OhWise</span>
             </Link>
             <p className="text-sm text-gray-600 dark:text-gray-400 mb-4">
               A multi-agent AI Ops system for modern enterprises
@@ -77,21 +77,16 @@ const Footer = () => {
                   Pricing
                 </Link>
               </li>
-              <li>
-                <Link
-                  to="#"
-                  className="text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
-                >
-                  Changelog
-                </Link>
+              {/* Placeholder links - not active yet */}
+              <li className="opacity-50 cursor-not-allowed">
+                <span className="text-gray-600 dark:text-gray-400">
+                  Changelog (Coming Soon)
+                </span>
               </li>
-              <li>
-                <Link
-                  to="#"
-                  className="text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
-                >
-                  Documentation
-                </Link>
+              <li className="opacity-50 cursor-not-allowed">
+                <span className="text-gray-600 dark:text-gray-400">
+                  Documentation (Coming Soon)
+                </span>
               </li>
             </ul>
           </div>
@@ -102,37 +97,26 @@ const Footer = () => {
               Company
             </h3>
             <ul className="space-y-2">
-              <li>
-                <Link
-                  to="#"
-                  className="text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
-                >
-                  About
-                </Link>
+              {/* Placeholder links - not active yet */}
+              <li className="opacity-50 cursor-not-allowed">
+                <span className="text-gray-600 dark:text-gray-400">
+                  About (Coming Soon)
+                </span>
               </li>
-              <li>
-                <Link
-                  to="#"
-                  className="text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
-                >
-                  Blog
-                </Link>
+              <li className="opacity-50 cursor-not-allowed">
+                <span className="text-gray-600 dark:text-gray-400">
+                  Blog (Coming Soon)
+                </span>
               </li>
-              <li>
-                <Link
-                  to="#"
-                  className="text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
-                >
-                  Careers
-                </Link>
+              <li className="opacity-50 cursor-not-allowed">
+                <span className="text-gray-600 dark:text-gray-400">
+                  Careers (Coming Soon)
+                </span>
               </li>
-              <li>
-                <Link
-                  to="/contact"
-                  className="text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
-                >
-                  Contact
-                </Link>
+              <li className="opacity-50 cursor-not-allowed">
+                <span className="text-gray-600 dark:text-gray-400">
+                  Contact (Coming Soon)
+                </span>
               </li>
             </ul>
           </div>
@@ -159,21 +143,16 @@ const Footer = () => {
                   Terms
                 </Link>
               </li>
-              <li>
-                <Link
-                  to="#"
-                  className="text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
-                >
-                  Security
-                </Link>
+              {/* Placeholder links - not active yet */}
+              <li className="opacity-50 cursor-not-allowed">
+                <span className="text-gray-600 dark:text-gray-400">
+                  Security (Coming Soon)
+                </span>
               </li>
-              <li>
-                <Link
-                  to="#"
-                  className="text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
-                >
-                  Cookies
-                </Link>
+              <li className="opacity-50 cursor-not-allowed">
+                <span className="text-gray-600 dark:text-gray-400">
+                  Cookies (Coming Soon)
+                </span>
               </li>
             </ul>
           </div>
@@ -181,7 +160,7 @@ const Footer = () => {
 
         <div className="mt-12 pt-8 border-t border-gray-200 dark:border-gray-800">
           <p className="text-sm text-center text-gray-500 dark:text-gray-400">
-            © {new Date().getFullYear()} Ohwise. All rights reserved.
+            © {new Date().getFullYear()} OhWise. All rights reserved.
           </p>
         </div>
       </div>

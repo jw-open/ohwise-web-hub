@@ -15,7 +15,7 @@ interface HeroProps {
 
 const Hero: React.FC<HeroProps> = ({
   title = "Revolutionize Your Operations with Multi-Agent AI",
-  subtitle = "Ohwise is the ultimate AI Ops system that seamlessly integrates text-to-SQL, customer support automation, knowledge graphs, and multi-agent collaboration.",
+  subtitle = "OhWise is the ultimate AI Ops system that seamlessly integrates text-to-SQL, customer support automation, knowledge graphs, and multi-agent collaboration.",
   primaryButtonText = "Get Started",
   primaryButtonLink = "#",
   secondaryButtonText = "Watch Demo",
@@ -81,53 +81,47 @@ const Hero: React.FC<HeroProps> = ({
           </div>
         </div>
 
-        {/* Hero Illustration */}
+        {/* Simplified Feature Visual */}
         <div className="mt-16 md:mt-20 max-w-5xl mx-auto animate-fade-in" style={{ animationDelay: "0.3s" }}>
           <div className="glass-card rounded-xl overflow-hidden subtle-shadow">
-            <div className="w-full h-72 md:h-96 bg-gray-100 dark:bg-gray-800 relative">
-              {/* Abstract UI Representation */}
-              <div className="absolute inset-0 grid grid-cols-3 gap-4 p-4">
-                <div className="col-span-1 flex flex-col gap-4">
-                  <div className="h-20 rounded-lg bg-white/80 dark:bg-gray-700/80 shadow-sm flex items-center justify-center text-center p-2">
-                    <span className="text-sm font-medium">Text-to-SQL Processing</span>
+            <div className="w-full h-auto md:h-96 bg-white dark:bg-gray-800 relative p-8">
+              {/* Simplified and more intuitive visual representation */}
+              <div className="flex flex-col items-center mb-8">
+                <h3 className="text-xl font-semibold mb-2 text-center">How OhWise Works</h3>
+                <p className="text-gray-600 dark:text-gray-300 text-center max-w-2xl">
+                  Your business data flows through our AI system to deliver powerful insights and automation
+                </p>
+              </div>
+              
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div className="flex flex-col items-center text-center">
+                  <div className="w-20 h-20 bg-blue-100 dark:bg-blue-900/30 rounded-full flex items-center justify-center mb-4">
+                    <svg xmlns="http://www.w3.org/2000/svg" className="h-10 w-10 text-blue-600 dark:text-blue-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
+                    </svg>
                   </div>
-                  <div className="h-36 rounded-lg bg-white/80 dark:bg-gray-700/80 shadow-sm flex items-center justify-center text-center p-2">
-                    <span className="text-sm font-medium">Customer Support Module</span>
-                  </div>
-                  <div className="h-20 rounded-lg bg-white/80 dark:bg-gray-700/80 shadow-sm flex items-center justify-center text-center p-2">
-                    <span className="text-sm font-medium">API Integration</span>
-                  </div>
-                </div>
-                <div className="col-span-1 flex flex-col gap-4">
-                  <div className="h-48 rounded-lg bg-blue-600/80 text-white shadow-sm flex items-center justify-center text-center p-2">
-                    <span className="text-sm font-medium">Ohwise Core Engine</span>
-                  </div>
-                  <div className="h-36 rounded-lg bg-white/80 dark:bg-gray-700/80 shadow-sm flex items-center justify-center text-center p-2">
-                    <span className="text-sm font-medium">Knowledge Graph Builder</span>
-                  </div>
-                </div>
-                <div className="col-span-1 flex flex-col gap-4">
-                  <div className="h-32 rounded-lg bg-white/80 dark:bg-gray-700/80 shadow-sm flex items-center justify-center text-center p-2">
-                    <span className="text-sm font-medium">Multi-Agent Collaboration</span>
-                  </div>
-                  <div className="h-24 rounded-lg bg-white/80 dark:bg-gray-700/80 shadow-sm flex items-center justify-center text-center p-2">
-                    <span className="text-sm font-medium">Analytics Dashboard</span>
-                  </div>
-                  <div className="h-20 rounded-lg bg-white/80 dark:bg-gray-700/80 shadow-sm flex items-center justify-center text-center p-2">
-                    <span className="text-sm font-medium">Secure Data Exchange</span>
-                  </div>
+                  <h4 className="text-lg font-medium mb-2">Connect Your Data</h4>
+                  <p className="text-gray-600 dark:text-gray-300">Easily connect your business data from any source without technical complexity</p>
                 </div>
                 
-                {/* Animated Connection Lines */}
-                <div className="absolute inset-0 pointer-events-none">
-                  <svg width="100%" height="100%" stroke="currentColor" className="text-blue-500/20 dark:text-blue-400/20">
-                    <line x1="33%" y1="30%" x2="50%" y2="25%" strokeWidth="2" />
-                    <line x1="33%" y1="50%" x2="50%" y2="40%" strokeWidth="2" />
-                    <line x1="33%" y1="70%" x2="50%" y2="70%" strokeWidth="2" />
-                    <line x1="66%" y1="20%" x2="50%" y2="25%" strokeWidth="2" />
-                    <line x1="66%" y1="45%" x2="50%" y2="40%" strokeWidth="2" />
-                    <line x1="66%" y1="70%" x2="50%" y2="70%" strokeWidth="2" />
-                  </svg>
+                <div className="flex flex-col items-center text-center">
+                  <div className="w-20 h-20 bg-indigo-100 dark:bg-indigo-900/30 rounded-full flex items-center justify-center mb-4">
+                    <svg xmlns="http://www.w3.org/2000/svg" className="h-10 w-10 text-indigo-600 dark:text-indigo-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+                    </svg>
+                  </div>
+                  <h4 className="text-lg font-medium mb-2">AI-Powered Analysis</h4>
+                  <p className="text-gray-600 dark:text-gray-300">Our AI agents work together to understand and process your data intelligently</p>
+                </div>
+                
+                <div className="flex flex-col items-center text-center">
+                  <div className="w-20 h-20 bg-purple-100 dark:bg-purple-900/30 rounded-full flex items-center justify-center mb-4">
+                    <svg xmlns="http://www.w3.org/2000/svg" className="h-10 w-10 text-purple-600 dark:text-purple-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+                    </svg>
+                  </div>
+                  <h4 className="text-lg font-medium mb-2">Actionable Results</h4>
+                  <p className="text-gray-600 dark:text-gray-300">Get automated insights, support responses, and business intelligence you can act on</p>
                 </div>
               </div>
             </div>
