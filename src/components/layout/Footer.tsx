@@ -77,15 +77,17 @@ const Footer = () => {
                   Pricing
                 </Link>
               </li>
-              {/* Placeholder links - not active yet */}
-              <li className="opacity-50 cursor-not-allowed">
-                <span className="text-gray-600 dark:text-gray-400">
-                  Changelog (Coming Soon)
-                </span>
+              <li>
+                <Link
+                  to="/documentation"
+                  className="text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+                >
+                  Documentation
+                </Link>
               </li>
               <li className="opacity-50 cursor-not-allowed">
                 <span className="text-gray-600 dark:text-gray-400">
-                  Documentation (Coming Soon)
+                  Changelog (Coming Soon)
                 </span>
               </li>
             </ul>
@@ -97,11 +99,13 @@ const Footer = () => {
               Company
             </h3>
             <ul className="space-y-2">
-              {/* Placeholder links - not active yet */}
-              <li className="opacity-50 cursor-not-allowed">
-                <span className="text-gray-600 dark:text-gray-400">
-                  About (Coming Soon)
-                </span>
+              <li>
+                <Link
+                  to="/about"
+                  className="text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+                >
+                  About
+                </Link>
               </li>
               <li className="opacity-50 cursor-not-allowed">
                 <span className="text-gray-600 dark:text-gray-400">
@@ -113,10 +117,13 @@ const Footer = () => {
                   Careers (Coming Soon)
                 </span>
               </li>
-              <li className="opacity-50 cursor-not-allowed">
-                <span className="text-gray-600 dark:text-gray-400">
-                  Contact (Coming Soon)
-                </span>
+              <li>
+                <Link
+                  to="/contact"
+                  className="text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+                >
+                  Contact
+                </Link>
               </li>
             </ul>
           </div>
@@ -143,16 +150,21 @@ const Footer = () => {
                   Terms
                 </Link>
               </li>
-              {/* Placeholder links - not active yet */}
-              <li className="opacity-50 cursor-not-allowed">
-                <span className="text-gray-600 dark:text-gray-400">
-                  Security (Coming Soon)
-                </span>
+              <li>
+                <Link
+                  to="/security"
+                  className="text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+                >
+                  Security
+                </Link>
               </li>
-              <li className="opacity-50 cursor-not-allowed">
-                <span className="text-gray-600 dark:text-gray-400">
-                  Cookies (Coming Soon)
-                </span>
+              <li>
+                <Link
+                  to="/cookies"
+                  className="text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+                >
+                  Cookies
+                </Link>
               </li>
             </ul>
           </div>

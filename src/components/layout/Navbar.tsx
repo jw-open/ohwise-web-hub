@@ -50,7 +50,7 @@ const Navbar = () => {
                 <span className="font-bold text-lg">O</span>
               </div>
             </div>
-            <span className="font-display font-bold text-xl">Ohwise</span>
+            <span className="font-display font-bold text-xl">OhWise</span>
           </Link>
 
           {/* Desktop Navigation */}
@@ -76,6 +76,17 @@ const Navbar = () => {
               )}
             >
               Pricing
+            </Link>
+            <Link 
+              to="/documentation" 
+              className={cn(
+                "px-3 py-2 rounded-md text-sm font-medium transition-colors",
+                isActive("/documentation") 
+                  ? "text-blue-600 dark:text-blue-400" 
+                  : "text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400"
+              )}
+            >
+              Documentation
             </Link>
           </div>
 
@@ -134,6 +145,17 @@ const Navbar = () => {
           )}
         >
           Pricing
+        </Link>
+        <Link 
+          to="/documentation" 
+          className={cn(
+            "py-3 px-4 rounded-md font-medium border-b border-gray-100 dark:border-gray-800",
+            isActive("/documentation") 
+              ? "text-blue-600 dark:text-blue-400" 
+              : "text-gray-700 dark:text-gray-300"
+          )}
+        >
+          Documentation
         </Link>
         <div className="mt-4 flex flex-col space-y-3 px-4">
           <Link 
