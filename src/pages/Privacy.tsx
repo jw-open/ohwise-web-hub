@@ -1,4 +1,3 @@
-
 import React, { useEffect } from "react";
 import Navbar from "../components/layout/Navbar";
 import Footer from "../components/layout/Footer";
@@ -29,7 +28,7 @@ const Privacy = () => {
                 1. Introduction
               </h2>
               <p className="mb-4">
-                Ohwise ("we," "our," or "us") is committed to protecting your privacy. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you use our multi-agent AI Ops system, website, and related services (collectively, the "Services").
+                OhWise ("we," "our," or "us") is committed to protecting your privacy. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you use our multi-agent AI Ops system, website, and related services (collectively, the "Services").
               </p>
               <p className="mb-4">
                 Please read this Privacy Policy carefully. By accessing or using our Services, you acknowledge that you have read, understood, and agree to be bound by all the terms of this Privacy Policy.

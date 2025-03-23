@@ -1,4 +1,3 @@
-
 import React, { useEffect, useRef } from "react";
 import { ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
@@ -42,7 +41,6 @@ const Hero: React.FC<HeroProps> = ({
 
   return (
     <div className="relative overflow-hidden bg-gradient-to-b from-blue-50 to-white dark:from-gray-900 dark:to-gray-800 pt-20">
-      {/* Background Elements */}
       <div className="absolute inset-0 overflow-hidden">
         <div className="absolute top-1/4 -left-4 w-72 h-72 bg-blue-400/10 rounded-full filter blur-3xl"></div>
         <div className="absolute top-1/3 right-1/4 w-96 h-96 bg-indigo-400/10 rounded-full filter blur-3xl"></div>
@@ -81,11 +79,9 @@ const Hero: React.FC<HeroProps> = ({
           </div>
         </div>
 
-        {/* Simplified Feature Visual */}
         <div className="mt-16 md:mt-20 max-w-5xl mx-auto animate-fade-in" style={{ animationDelay: "0.3s" }}>
           <div className="glass-card rounded-xl overflow-hidden subtle-shadow">
             <div className="w-full h-auto md:h-96 bg-white dark:bg-gray-800 relative p-8">
-              {/* Simplified and more intuitive visual representation */}
               <div className="flex flex-col items-center mb-8">
                 <h3 className="text-xl font-semibold mb-2 text-center">How OhWise Works</h3>
                 <p className="text-gray-600 dark:text-gray-300 text-center max-w-2xl">
@@ -129,7 +125,6 @@ const Hero: React.FC<HeroProps> = ({
         </div>
       </div>
       
-      {/* Wave Shape Divider */}
       <div className="absolute bottom-0 left-0 right-0">
         <svg
           className="w-full h-auto"
