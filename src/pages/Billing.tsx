@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from "react";
 import Navbar from "../components/layout/Navbar";
 import Footer from "../components/layout/Footer";
-import Button from "../components/ui/Button";
+import { Button } from "../components/ui/button";
 import { CreditCard, Calendar, User, Check, Shield, AlertCircle } from "lucide-react";
 
 // Define types for plans

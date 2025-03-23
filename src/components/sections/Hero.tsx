@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from "react";
 import { ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
-import Button from "../ui/Button";
+import { Button } from "../ui/button";
 
 interface HeroProps {
   title?: string;
