@@ -1,9 +1,8 @@
-
 import React, { useState, useEffect } from "react";
 import Navbar from "../components/layout/Navbar";
 import Footer from "../components/layout/Footer";
-import { Button } from "../components/ui/button";
 import { CreditCard, Calendar, User, Check, Shield, AlertCircle } from "lucide-react";
+import ExtendedButton from "../components/ui/ExtendedButton";
 
 // Define types for plans
 interface BasePlan {
@@ -508,14 +507,14 @@ const Billing = () => {
                     </div>
                     
                     {/* Submit Button */}
-                    <Button
+                    <ExtendedButton
                       type="submit"
                       size="lg"
                       isLoading={isProcessing}
                       fullWidth
                     >
                       {isProcessing ? "Processing..." : "Complete Payment"}
-                    </Button>
+                    </ExtendedButton>
                   </form>
                 </div>
               </div>
@@ -649,3 +648,4 @@ const Billing = () => {
 };
 
 export default Billing;
+

@@ -1,3 +1,4 @@
+
 import React, { useEffect, useRef } from "react";
 import { ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
@@ -63,10 +64,10 @@ const Hero: React.FC<HeroProps> = ({
             <Link to={primaryButtonLink}>
               <Button 
                 size="lg" 
-                variant="primary"
-                rightIcon={<ArrowRight size={16} />}
+                className="bg-blue-600 text-white hover:bg-blue-700 flex items-center gap-2"
               >
                 {primaryButtonText}
+                <ArrowRight size={16} />
               </Button>
             </Link>
             <Link to={secondaryButtonLink}>

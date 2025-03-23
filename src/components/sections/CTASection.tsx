@@ -1,3 +1,4 @@
+
 import React from "react";
 import { ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
@@ -41,10 +42,10 @@ const CTASection: React.FC<CTASectionProps> = ({
               <Link to={primaryButtonLink}>
                 <Button 
                   size="lg" 
-                  className="bg-white text-blue-600 hover:bg-blue-50"
-                  rightIcon={<ArrowRight size={16} />}
+                  className="bg-white text-blue-600 hover:bg-blue-50 flex items-center gap-2"
                 >
                   {primaryButtonText}
+                  <ArrowRight size={16} />
                 </Button>
               </Link>
               <Link to={secondaryButtonLink}>

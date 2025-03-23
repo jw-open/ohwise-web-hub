@@ -3,8 +3,8 @@ import React, { useState, useEffect } from "react";
 import Navbar from "../components/layout/Navbar";
 import Footer from "../components/layout/Footer";
 import { Check, X, HelpCircle } from "lucide-react";
-import { Button } from "../components/ui/button";
 import { Link } from "react-router-dom";
+import ExtendedButton from "../components/ui/ExtendedButton";
 
 const PricingToggle = ({ 
   monthly, 
@@ -196,9 +196,9 @@ const Pricing = () => {
                     <span className="text-gray-500 dark:text-gray-400 ml-1">/month{monthly ? '' : ' (billed annually)'}</span>
                   </div>
                   <Link to="/billing">
-                    <Button variant="outline" size="lg" fullWidth>
+                    <ExtendedButton variant="outline" size="lg" fullWidth>
                       Get Started
-                    </Button>
+                    </ExtendedButton>
                   </Link>
                 </div>
                 <div className="px-6 pb-6">
@@ -255,9 +255,9 @@ const Pricing = () => {
                     <span className="text-gray-500 dark:text-gray-400 ml-1">/month{monthly ? '' : ' (billed annually)'}</span>
                   </div>
                   <Link to="/billing">
-                    <Button size="lg" fullWidth>
+                    <ExtendedButton size="lg" fullWidth>
                       Get Started
-                    </Button>
+                    </ExtendedButton>
                   </Link>
                 </div>
                 <div className="px-6 pb-6">
@@ -307,9 +307,9 @@ const Pricing = () => {
                   <div className="mb-6">
                     <span className="text-4xl font-bold text-gray-900 dark:text-white">Custom</span>
                   </div>
-                  <Button variant="outline" size="lg" fullWidth>
+                  <ExtendedButton variant="outline" size="lg" fullWidth>
                     Contact Sales
-                  </Button>
+                  </ExtendedButton>
                 </div>
                 <div className="px-6 pb-6">
                   <div className="py-4 border-t border-gray-100 dark:border-gray-700">
@@ -406,12 +406,12 @@ const Pricing = () => {
                 Our team is here to help you find the perfect plan for your needs.
               </p>
               <div className="flex flex-col sm:flex-row justify-center gap-4">
-                <Button variant="outline" size="lg">
+                <ExtendedButton variant="outline" size="lg">
                   Contact Sales
-                </Button>
-                <Button size="lg">
+                </ExtendedButton>
+                <ExtendedButton size="lg">
                   Book a Demo
-                </Button>
+                </ExtendedButton>
               </div>
             </div>
           </div>

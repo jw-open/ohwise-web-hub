@@ -110,7 +110,10 @@ const Contact = () => {
                   ></textarea>
                 </div>
                 
-                <Button variant="primary" size="lg" className="w-full md:w-auto">
+                <Button 
+                  className="bg-blue-600 text-white hover:bg-blue-700" 
+                  size="lg"
+                >
                   Send Message
                 </Button>
               </form>
