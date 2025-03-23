@@ -1,10 +1,11 @@
 
 import React from "react";
-import { Button as ShadcnButton } from "./button";
-import { ButtonProps as ShadcnButtonProps } from "@radix-ui/react-button";
+import { Button as ShadcnButton, buttonVariants } from "./button";
 import { cn } from "@/lib/utils";
+import { VariantProps } from "class-variance-authority";
 
-export interface ExtendedButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+export interface ExtendedButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement>, 
+  Omit<VariantProps<typeof buttonVariants>, "variant"> {
   children: React.ReactNode;
   variant?: "default" | "destructive" | "outline" | "secondary" | "ghost" | "link" | "primary";
   size?: "default" | "sm" | "lg" | "icon";
@@ -27,7 +28,7 @@ const ExtendedButton = React.forwardRef<HTMLButtonElement, ExtendedButtonProps>(
     ...props 
   }, ref) => {
     // Map custom variant to shadcn variants
-    let shadcnVariant: ShadcnButtonProps["variant"] = variant as any;
+    let shadcnVariant: string | undefined = variant;
     
     // Handle custom 'primary' variant
     if (variant === "primary") {
@@ -44,7 +45,7 @@ const ExtendedButton = React.forwardRef<HTMLButtonElement, ExtendedButtonProps>(
     return (
       <ShadcnButton
         ref={ref}
-        variant={shadcnVariant}
+        variant={shadcnVariant as any}
         size={size}
         className={combinedClassName}
         disabled={isLoading || props.disabled}
