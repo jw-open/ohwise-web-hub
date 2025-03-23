@@ -5,6 +5,33 @@ import Footer from "../components/layout/Footer";
 import Button from "../components/ui/Button";
 import { CreditCard, Calendar, User, Check, Shield, AlertCircle } from "lucide-react";
 
+// Define types for plans
+interface BasePlan {
+  name: string;
+  features: string[];
+}
+
+interface PricedPlan extends BasePlan {
+  monthly: number;
+  annual: number;
+}
+
+interface CustomPlan extends BasePlan {
+  isCustom: boolean;
+}
+
+type Plan = PricedPlan | CustomPlan;
+
+// Type guard to check if plan has custom pricing
+const isCustomPricingPlan = (plan: Plan): plan is CustomPlan => {
+  return 'isCustom' in plan;
+};
+
+// Type guard to check if plan has standard pricing
+const isStandardPricingPlan = (plan: Plan): plan is PricedPlan => {
+  return 'monthly' in plan && 'annual' in plan;
+};
+
 const Billing = () => {
   const [selectedPlan, setSelectedPlan] = useState("professional");
   const [billingCycle, setBillingCycle] = useState("annual");
@@ -136,7 +163,7 @@ const Billing = () => {
   };
 
   // Plan details
-  const plans = {
+  const plans: Record<string, Plan> = {
     starter: {
       name: "Starter",
       monthly: 49,
@@ -157,7 +184,7 @@ const Billing = () => {
   };
 
   // Current selected plan
-  const currentPlan = plans[selectedPlan as keyof typeof plans];
+  const currentPlan = plans[selectedPlan];
   
   return (
     <div className="flex flex-col min-h-screen">
@@ -578,7 +605,7 @@ const Billing = () => {
                     <div className="border-t border-gray-200 dark:border-gray-700 pt-4 mt-6">
                       <div className="flex justify-between mb-2">
                         <span className="text-sm text-gray-600 dark:text-gray-400">Subtotal</span>
-                        {currentPlan.isCustom ? (
+                        {isCustomPricingPlan(currentPlan) ? (
                           <span className="text-sm font-medium text-gray-900 dark:text-white">Custom Pricing</span>
                         ) : (
                           <span className="text-sm font-medium text-gray-900 dark:text-white">
@@ -587,7 +614,7 @@ const Billing = () => {
                         )}
                       </div>
                       
-                      {billingCycle === 'annual' && !currentPlan.isCustom && (
+                      {billingCycle === 'annual' && isStandardPricingPlan(currentPlan) && (
                         <div className="flex justify-between mb-2 text-green-600 dark:text-green-400">
                           <span className="text-sm">Annual discount</span>
                           <span className="text-sm font-medium">-$({currentPlan.monthly * 12 - currentPlan.annual})</span>
@@ -596,7 +623,7 @@ const Billing = () => {
                       
                       <div className="flex justify-between font-medium text-lg mt-4 pt-4 border-t border-gray-200 dark:border-gray-700">
                         <span className="text-gray-900 dark:text-white">Total</span>
-                        {currentPlan.isCustom ? (
+                        {isCustomPricingPlan(currentPlan) ? (
                           <span className="text-gray-900 dark:text-white">Contact Sales</span>
                         ) : (
                           <span className="text-gray-900 dark:text-white">
