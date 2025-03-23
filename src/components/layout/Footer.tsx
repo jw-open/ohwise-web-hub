@@ -1,4 +1,3 @@
-
 import React from "react";
 import { Link } from "react-router-dom";
 import { Facebook, Twitter, Linkedin, Github } from "lucide-react";
@@ -85,11 +84,6 @@ const Footer = () => {
                   Documentation
                 </Link>
               </li>
-              <li className="opacity-50 cursor-not-allowed">
-                <span className="text-gray-600 dark:text-gray-400">
-                  Changelog (Coming Soon)
-                </span>
-              </li>
             </ul>
           </div>
 
@@ -106,16 +100,6 @@ const Footer = () => {
                 >
                   About
                 </Link>
-              </li>
-              <li className="opacity-50 cursor-not-allowed">
-                <span className="text-gray-600 dark:text-gray-400">
-                  Blog (Coming Soon)
-                </span>
-              </li>
-              <li className="opacity-50 cursor-not-allowed">
-                <span className="text-gray-600 dark:text-gray-400">
-                  Careers (Coming Soon)
-                </span>
               </li>
               <li>
                 <Link
