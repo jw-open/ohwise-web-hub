@@ -18,7 +18,7 @@ const Footer = () => {
                   <span className="font-bold text-lg">O</span>
                 </div>
               </div>
-              <span className="font-display font-bold text-xl">OhWise</span>
+              <span className="font-display font-bold text-xl">Ohwise</span>
             </Link>
             <p className="text-sm text-gray-600 dark:text-gray-400 mb-4">
               A multi-agent AI Ops system for modern enterprises
@@ -157,7 +157,7 @@ const Footer = () => {
 
         <div className="mt-12 pt-8 border-t border-gray-200 dark:border-gray-800">
           <p className="text-sm text-center text-gray-500 dark:text-gray-400">
-            © {new Date().getFullYear()} OhWise. All rights reserved.
+            © {new Date().getFullYear()} Ohwise. All rights reserved.
           </p>
         </div>
       </div>

@@ -15,7 +15,7 @@ interface CTASectionProps {
 
 const CTASection: React.FC<CTASectionProps> = ({
   title = "Ready to transform your operations with AI?",
-  subtitle = "Join innovative companies already using OhWise to revolutionize their workflows.",
+  subtitle = "Join innovative companies already using Ohwise to revolutionize their workflows.",
   primaryButtonText = "Get Started",
   primaryButtonLink = "#",
   secondaryButtonText = "Contact Sales",

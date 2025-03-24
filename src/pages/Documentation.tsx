@@ -13,7 +13,7 @@ const Documentation = () => {
       title: "Getting Started",
       icon: <Book className="text-blue-600" size={24} />,
       articles: [
-        { title: "Introduction to OhWise", slug: "#introduction" },
+        { title: "Introduction to Ohwise", slug: "#introduction" },
         { title: "Quick Start Guide", slug: "#quick-start" },
         { title: "Core Concepts", slug: "#core-concepts" },
         { title: "System Requirements", slug: "#system-requirements" },
@@ -64,7 +64,7 @@ const Documentation = () => {
                 Documentation
               </h1>
               <p className="text-xl text-gray-600 dark:text-gray-300 mb-8">
-                Everything you need to know about using OhWise effectively
+                Everything you need to know about using Ohwise effectively
               </p>
               <div className="relative mx-auto max-w-md">
                 <input
@@ -212,7 +212,7 @@ const Documentation = () => {
                 <Lightbulb className="text-blue-600 mb-4" size={32} />
                 <h3 className="text-lg font-bold mb-2">Use Cases</h3>
                 <p className="text-gray-600 dark:text-gray-400 mb-4">
-                  Real-world examples of OhWise in action.
+                  Real-world examples of Ohwise in action.
                 </p>
                 <a href="#use-cases" className="text-blue-600 dark:text-blue-400 hover:underline font-medium mt-auto flex items-center">
                   Explore cases <ExternalLink size={14} className="ml-1" />

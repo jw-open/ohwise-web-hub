@@ -28,7 +28,7 @@ const Privacy = () => {
                 1. Introduction
               </h2>
               <p className="mb-4">
-                OhWise ("we," "our," or "us") is committed to protecting your privacy. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you use our multi-agent AI Ops system, website, and related services (collectively, the "Services").
+                Ohwise ("we," "our," or "us") is committed to protecting your privacy. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you use our multi-agent AI Ops system, website, and related services (collectively, the "Services").
               </p>
               <p className="mb-4">
                 Please read this Privacy Policy carefully. By accessing or using our Services, you acknowledge that you have read, understood, and agree to be bound by all the terms of this Privacy Policy.
@@ -130,7 +130,7 @@ const Privacy = () => {
                 <li className="mb-2">The right to withdraw consent</li>
               </ul>
               <p className="mb-4">
-                To exercise these rights, please contact us at privacy@ohwise.com.
+                To exercise these rights, please contact us at privacy@Ohwise.com.
               </p>
               
               <h2 className="text-xl font-semibold mt-8 mb-4 text-gray-900 dark:text-white">
@@ -154,7 +154,7 @@ const Privacy = () => {
                 If you have any questions about this Privacy Policy, please contact us at:
               </p>
               <p className="mb-4">
-                Email: privacy@ohwise.com<br />
+                Email: privacy@Ohwise.com<br />
                 Address: 123 AI Boulevard, Tech City, CA 94103<br />
                 Phone: (555) 123-4567
               </p>

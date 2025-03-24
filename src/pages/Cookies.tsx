@@ -20,7 +20,7 @@ const Cookies = () => {
                 Cookie Policy
               </h1>
               <p className="text-xl text-gray-600 dark:text-gray-300 mb-8">
-                How we use cookies and similar technologies on OhWise
+                How we use cookies and similar technologies on Ohwise
               </p>
               <div className="inline-block">
                 <div className="py-1 px-3 bg-blue-100 dark:bg-blue-900/30 text-blue-800 dark:text-blue-200 text-sm rounded-full">
@@ -45,7 +45,7 @@ const Cookies = () => {
 
                 <h2>How We Use Cookies</h2>
                 <p>
-                  OhWise uses cookies for a variety of purposes, including:
+                  Ohwise uses cookies for a variety of purposes, including:
                 </p>
                 <ul>
                   <li>
@@ -165,7 +165,7 @@ const Cookies = () => {
                   If you have any questions about our Cookie Policy, please contact us at:
                 </p>
                 <ul>
-                  <li>Email: <a href="mailto:privacy@ohwise.com" className="text-blue-600 dark:text-blue-400 hover:underline">privacy@ohwise.com</a></li>
+                  <li>Email: <a href="mailto:privacy@Ohwise.com" className="text-blue-600 dark:text-blue-400 hover:underline">privacy@Ohwise.com</a></li>
                 </ul>
               </div>
             </div>

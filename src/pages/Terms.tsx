@@ -29,14 +29,14 @@ const Terms = () => {
                 1. Acceptance of Terms
               </h2>
               <p className="mb-4">
-                By accessing or using the OhWise multi-agent AI Ops system, website, and related services (collectively, the "Services"), you agree to be bound by these Terms of Service and all applicable laws and regulations. If you do not agree with any of these terms, you are prohibited from using or accessing the Services.
+                By accessing or using the Ohwise multi-agent AI Ops system, website, and related services (collectively, the "Services"), you agree to be bound by these Terms of Service and all applicable laws and regulations. If you do not agree with any of these terms, you are prohibited from using or accessing the Services.
               </p>
               
               <h2 className="text-xl font-semibold mt-8 mb-4 text-gray-900 dark:text-white">
                 2. Description of Services
               </h2>
               <p className="mb-4">
-                OhWise provides a multi-agent AI Ops system that integrates text-to-SQL capabilities, customer support automation, knowledge graph functionality, and multi-agent collaboration tools designed to streamline operations and enhance productivity for businesses and organizations.
+                Ohwise provides a multi-agent AI Ops system that integrates text-to-SQL capabilities, customer support automation, knowledge graph functionality, and multi-agent collaboration tools designed to streamline operations and enhance productivity for businesses and organizations.
               </p>
               
               <h2 className="text-xl font-semibold mt-8 mb-4 text-gray-900 dark:text-white">
@@ -82,7 +82,7 @@ const Terms = () => {
                 <li className="mb-2">Use any robot, spider, crawler, scraper, or other automated means to access the Services</li>
                 <li className="mb-2">Decompile, reverse engineer, disassemble, or otherwise attempt to derive the source code for any part of the Services</li>
                 <li className="mb-2">Collect or store personal data about other users without their express consent</li>
-                <li className="mb-2">Impersonate or attempt to impersonate OhWise, an OhWise employee, another user, or any other person or entity</li>
+                <li className="mb-2">Impersonate or attempt to impersonate Ohwise, an Ohwise employee, another user, or any other person or entity</li>
                 <li className="mb-2">Use the Services in a manner that could disable, overburden, damage, or impair the Services or interfere with any other party's use of the Services</li>
               </ul>
               
@@ -90,34 +90,34 @@ const Terms = () => {
                 7. Intellectual Property Rights
               </h2>
               <p className="mb-4">
-                The Services and their entire content, features, and functionality (including but not limited to all information, software, text, displays, images, video, and audio, and the design, selection, and arrangement thereof) are owned by OhWise, its licensors, or other providers and are protected by copyright, trademark, patent, trade secret, and other intellectual property or proprietary rights laws.
+                The Services and their entire content, features, and functionality (including but not limited to all information, software, text, displays, images, video, and audio, and the design, selection, and arrangement thereof) are owned by Ohwise, its licensors, or other providers and are protected by copyright, trademark, patent, trade secret, and other intellectual property or proprietary rights laws.
               </p>
               <p className="mb-4">
-                These Terms do not grant you any rights to use the OhWise name, logo, or other trademarks, unless otherwise stated.
+                These Terms do not grant you any rights to use the Ohwise name, logo, or other trademarks, unless otherwise stated.
               </p>
               
               <h2 className="text-xl font-semibold mt-8 mb-4 text-gray-900 dark:text-white">
                 8. Limitation of Liability
               </h2>
               <p className="mb-4">
-                In no event shall OhWise, its directors, employees, partners, agents, suppliers, or affiliates be liable for any indirect, incidental, special, consequential, or punitive damages, including without limitation, loss of profits, data, use, goodwill, or other intangible losses, resulting from your access to or use of or inability to access or use the Services.
+                In no event shall Ohwise, its directors, employees, partners, agents, suppliers, or affiliates be liable for any indirect, incidental, special, consequential, or punitive damages, including without limitation, loss of profits, data, use, goodwill, or other intangible losses, resulting from your access to or use of or inability to access or use the Services.
               </p>
               
               <h2 className="text-xl font-semibold mt-8 mb-4 text-gray-900 dark:text-white">
                 9. Disclaimer of Warranties
               </h2>
               <p className="mb-4">
-                The Services are provided on an "as is" and "as available" basis without any warranties of any kind, either express or implied. OhWise disclaims all warranties, including but not limited to the implied warranties of merchantability, fitness for a particular purpose, and non-infringement.
+                The Services are provided on an "as is" and "as available" basis without any warranties of any kind, either express or implied. Ohwise disclaims all warranties, including but not limited to the implied warranties of merchantability, fitness for a particular purpose, and non-infringement.
               </p>
               <p className="mb-4">
-                OhWise does not warrant that the Services will be uninterrupted or error-free, that defects will be corrected, or that the Services or the servers that make them available are free of viruses or other harmful components.
+                Ohwise does not warrant that the Services will be uninterrupted or error-free, that defects will be corrected, or that the Services or the servers that make them available are free of viruses or other harmful components.
               </p>
               
               <h2 className="text-xl font-semibold mt-8 mb-4 text-gray-900 dark:text-white">
                 10. Indemnification
               </h2>
               <p className="mb-4">
-                You agree to defend, indemnify, and hold harmless OhWise, its affiliates, licensors, and service providers, and its and their respective officers, directors, employees, contractors, agents, licensors, suppliers, successors, and assigns from and against any claims, liabilities, damages, judgments, awards, losses, costs, expenses, or fees (including reasonable attorneys' fees) arising out of or relating to your violation of these Terms or your use of the Services.
+                You agree to defend, indemnify, and hold harmless Ohwise, its affiliates, licensors, and service providers, and its and their respective officers, directors, employees, contractors, agents, licensors, suppliers, successors, and assigns from and against any claims, liabilities, damages, judgments, awards, losses, costs, expenses, or fees (including reasonable attorneys' fees) arising out of or relating to your violation of these Terms or your use of the Services.
               </p>
               
               <h2 className="text-xl font-semibold mt-8 mb-4 text-gray-900 dark:text-white">
@@ -157,7 +157,7 @@ const Terms = () => {
                 If you have any questions about these Terms, please contact us at:
               </p>
               <p className="mb-4">
-                Email: legal@ohwise.com<br />
+                Email: legal@Ohwise.com<br />
                 Address: 123 AI Boulevard, Tech City, CA 94103<br />
                 Phone: (555) 123-4567
               </p>
@@ -166,7 +166,7 @@ const Terms = () => {
                 15. Entire Agreement
               </h2>
               <p className="mb-4">
-                These Terms, together with our <Link to="/privacy" className="text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-300">Privacy Policy</Link>, constitute the entire agreement between you and OhWise regarding the Services and supersede all prior and contemporaneous understandings, agreements, representations, and warranties, both written and oral, regarding the Services.
+                These Terms, together with our <Link to="/privacy" className="text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-300">Privacy Policy</Link>, constitute the entire agreement between you and Ohwise regarding the Services and supersede all prior and contemporaneous understandings, agreements, representations, and warranties, both written and oral, regarding the Services.
               </p>
             </div>
           </div>

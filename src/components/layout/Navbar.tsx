@@ -50,7 +50,7 @@ const Navbar = () => {
                 <span className="font-bold text-lg">O</span>
               </div>
             </div>
-            <span className="font-display font-bold text-xl">OhWise</span>
+            <span className="font-display font-bold text-xl">Ohwise</span>
           </Link>
 
           {/* Desktop Navigation */}

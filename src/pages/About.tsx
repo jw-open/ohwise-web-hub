@@ -16,7 +16,7 @@ const About = () => {
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
             <div className="max-w-3xl mx-auto text-center">
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-display font-bold mb-6">
-                About <span className="text-blue-600">OhWise</span>
+                About <span className="text-blue-600">Ohwise</span>
               </h1>
               <p className="text-xl md:text-2xl text-gray-600 dark:text-gray-300 mb-8">
                 We're building the future of AI operations for innovative enterprises
@@ -32,7 +32,7 @@ const About = () => {
               <h2 className="text-3xl font-bold text-center mb-12">Our Mission</h2>
               <div className="prose dark:prose-invert prose-lg mx-auto">
                 <p>
-                  At OhWise, we believe that artificial intelligence should empower organizations to work smarter, not harder. 
+                  At Ohwise, we believe that artificial intelligence should empower organizations to work smarter, not harder. 
                   Our mission is to create intelligent operational systems that transform how businesses handle complex workflows,
                   making AI accessible, ethical, and genuinely useful.
                 </p>

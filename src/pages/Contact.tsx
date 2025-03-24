@@ -15,7 +15,7 @@ const Contact = () => {
           <div className="max-w-3xl mx-auto">
             <h1 className="text-4xl font-bold text-center mb-8">Contact Us</h1>
             <p className="text-lg text-gray-600 dark:text-gray-300 text-center mb-12">
-              Have questions about OhWise? Our team is here to help.
+              Have questions about Ohwise? Our team is here to help.
             </p>
             
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
@@ -25,8 +25,8 @@ const Contact = () => {
                 </div>
                 <h3 className="text-lg font-medium mb-2">Email Us</h3>
                 <p className="text-gray-600 dark:text-gray-300 mb-3">Our friendly team is here to help.</p>
-                <a href="mailto:hello@ohwise.com" className="text-blue-600 dark:text-blue-400 font-medium">
-                  hello@ohwise.com
+                <a href="mailto:hello@Ohwise.com" className="text-blue-600 dark:text-blue-400 font-medium">
+                  jw@Ohwise.com
                 </a>
               </div>
               

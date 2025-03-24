@@ -14,7 +14,7 @@ interface HeroProps {
 
 const Hero: React.FC<HeroProps> = ({
   title = "Revolutionize Your Operations with Multi-Agent AI",
-  subtitle = "OhWise is the ultimate AI Ops system that seamlessly integrates text-to-SQL, customer support automation, knowledge graphs, and multi-agent collaboration.",
+  subtitle = "Ohwise is the ultimate AI Ops system that seamlessly integrates text-to-SQL, customer support automation, knowledge graphs, and multi-agent collaboration.",
   primaryButtonText = "Get Started",
   primaryButtonLink = "#",
   secondaryButtonText = "Watch Demo",
@@ -83,7 +83,7 @@ const Hero: React.FC<HeroProps> = ({
           <div className="glass-card rounded-xl overflow-hidden subtle-shadow">
             <div className="w-full h-auto md:h-96 bg-white dark:bg-gray-800 relative p-8">
               <div className="flex flex-col items-center mb-8">
-                <h3 className="text-xl font-semibold mb-2 text-center">How OhWise Works</h3>
+                <h3 className="text-xl font-semibold mb-2 text-center">How Ohwise Works</h3>
                 <p className="text-gray-600 dark:text-gray-300 text-center max-w-2xl">
                   Your business data flows through our AI system to deliver powerful insights and automation
                 </p>

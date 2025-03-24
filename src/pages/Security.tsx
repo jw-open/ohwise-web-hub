@@ -16,7 +16,7 @@ const Security = () => {
             <div className="max-w-3xl mx-auto text-center">
               <Shield className="mx-auto h-16 w-16 text-blue-600 mb-6" />
               <h1 className="text-4xl md:text-5xl font-display font-bold mb-6">
-                Security at OhWise
+                Security at Ohwise
               </h1>
               <p className="text-xl text-gray-600 dark:text-gray-300 mb-8">
                 How we protect your data and ensure the security of our AI operations platform
@@ -32,7 +32,7 @@ const Security = () => {
               <h2 className="text-3xl font-bold mb-8 text-center">Our Security Approach</h2>
               <div className="prose dark:prose-invert prose-lg mx-auto">
                 <p>
-                  At OhWise, security isn't just a feature—it's a foundational principle that guides everything we do. 
+                  At Ohwise, security isn't just a feature—it's a foundational principle that guides everything we do. 
                   We understand that our enterprise customers trust us with sensitive operational data and workflows, 
                   which is why we've built a comprehensive security program that incorporates industry best practices 
                   and rigorous standards.
@@ -195,9 +195,9 @@ const Security = () => {
               </div>
               
               <div className="bg-white dark:bg-gray-800 rounded-lg shadow-sm p-6">
-                <h3 className="text-xl font-bold mb-3">Is OhWise compliant with industry regulations?</h3>
+                <h3 className="text-xl font-bold mb-3">Is Ohwise compliant with industry regulations?</h3>
                 <p className="text-gray-600 dark:text-gray-400">
-                  Yes, OhWise maintains compliance with relevant industry standards and regulations, including 
+                  Yes, Ohwise maintains compliance with relevant industry standards and regulations, including 
                   GDPR, CCPA, and SOC 2. We regularly review and update our security practices to ensure continued compliance.
                 </p>
               </div>
