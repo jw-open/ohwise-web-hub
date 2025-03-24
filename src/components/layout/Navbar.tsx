@@ -93,13 +93,13 @@ const Navbar = () => {
           {/* Authentication Buttons */}
           <div className="hidden md:flex items-center space-x-4">
             <Link 
-              to="#" 
+              to="https://cloud.ohwise.com" 
               className="text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
             >
               Sign in
             </Link>
             <Link 
-              to="#" 
+              to="https://cloud.ohwise.com" 
               className="px-4 py-2 rounded-md bg-blue-600 text-white text-sm font-medium transition-all hover:bg-blue-700 active:bg-blue-800 shadow-sm hover:shadow"
             >
               Sign up
