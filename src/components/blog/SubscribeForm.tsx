@@ -6,7 +6,6 @@ import { CheckCircle2, AlertCircle } from "lucide-react";
 
 const SubscribeForm = () => {
   const [email, setEmail] = useState('');
-  const [name, setName] = useState('');
   const [submitting, setSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -32,7 +31,7 @@ const SubscribeForm = () => {
     // Simulate API call
     setTimeout(() => {
       // In a real implementation, this would call an API endpoint
-      console.log('Subscribing:', { email, name });
+      console.log('Subscribing:', { email });
       setSubmitting(false);
       setSubmitted(true);
       
@@ -40,7 +39,6 @@ const SubscribeForm = () => {
       setTimeout(() => {
         setSubmitted(false);
         setEmail('');
-        setName('');
       }, 3000);
     }, 1000);
   };
@@ -66,33 +64,23 @@ const SubscribeForm = () => {
             </div>
           )}
           
-          <div className="grid grid-cols-1 gap-3">
+          <div className="flex space-x-2">
             <Input 
-              type="text"
-              placeholder="Your name (optional)"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
+              type="email"
+              placeholder="Your email address"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
               className="h-12"
             />
             
-            <div className="flex space-x-2">
-              <Input 
-                type="email"
-                placeholder="Your email address"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                required
-                className="h-12"
-              />
-              
-              <Button 
-                type="submit" 
-                disabled={submitting}
-                className="h-12 px-6"
-              >
-                {submitting ? 'Subscribing...' : 'Subscribe'}
-              </Button>
-            </div>
+            <Button 
+              type="submit" 
+              disabled={submitting}
+              className="h-12 px-6"
+            >
+              {submitting ? 'Subscribing...' : 'Subscribe'}
+            </Button>
           </div>
           
           <p className="text-xs text-gray-500 dark:text-gray-400 text-center">
