@@ -3,7 +3,6 @@ import React, { useState } from "react";
 import Navbar from "../components/layout/Navbar";
 import Footer from "../components/layout/Footer";
 import { Button } from "../components/ui/button";
-import { Mail, MapPin, Phone } from "lucide-react";
 import { useToast } from "@/components/ui/use-toast";
 
 const Contact = () => {
@@ -28,7 +27,7 @@ const Contact = () => {
     
     // Simulate form submission
     setTimeout(() => {
-      console.log("Message would be sent to js@ohwise.com:", formData);
+      console.log("Message would be sent to jw@ohwise.com:", formData);
       toast({
         title: "Message Sent",
         description: "Your message has been sent successfully. We'll get back to you soon.",
@@ -57,39 +56,6 @@ const Contact = () => {
             <p className="text-lg text-gray-600 dark:text-gray-300 text-center mb-12">
               Have questions about Ohwise? Our team is here to help.
             </p>
-            
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
-              <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-sm text-center">
-                <div className="w-12 h-12 bg-blue-100 dark:bg-blue-900/30 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <Mail className="text-blue-600 dark:text-blue-400" size={24} />
-                </div>
-                <h3 className="text-lg font-medium mb-2">Email Us</h3>
-                <p className="text-gray-600 dark:text-gray-300 mb-3">Our friendly team is here to help.</p>
-                <a href="mailto:js@ohwise.com" className="text-blue-600 dark:text-blue-400 font-medium">
-                  js@ohwise.com
-                </a>
-              </div>
-              
-              <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-sm text-center">
-                <div className="w-12 h-12 bg-blue-100 dark:bg-blue-900/30 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <MapPin className="text-blue-600 dark:text-blue-400" size={24} />
-                </div>
-                <h3 className="text-lg font-medium mb-2">Office</h3>
-                <p className="text-gray-600 dark:text-gray-300 mb-3">Visit our online headquarters.</p>
-                <p className="text-gray-800 dark:text-gray-200">Online Office<br />Available 24/7</p>
-              </div>
-              
-              <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-sm text-center">
-                <div className="w-12 h-12 bg-blue-100 dark:bg-blue-900/30 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <Phone className="text-blue-600 dark:text-blue-400" size={24} />
-                </div>
-                <h3 className="text-lg font-medium mb-2">Support</h3>
-                <p className="text-gray-600 dark:text-gray-300 mb-3">Mon-Fri from 8am to 5pm.</p>
-                <p className="text-blue-600 dark:text-blue-400 font-medium">
-                  Contact via Email
-                </p>
-              </div>
-            </div>
             
             <div className="bg-white dark:bg-gray-800 rounded-lg shadow-sm p-8">
               <h2 className="text-2xl font-bold mb-6">Send us a message</h2>
