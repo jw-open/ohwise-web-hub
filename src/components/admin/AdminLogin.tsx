@@ -47,6 +47,7 @@ const AdminLogin = ({ onLoginSuccess }: AdminLoginProps) => {
         onLoginSuccess();
       } else {
         setError("Invalid username or password");
+        localStorage.removeItem("ohwise_admin_auth"); // Clear any existing auth
       }
       setIsLoading(false);
     }, 800);

@@ -53,13 +53,15 @@ const AdminDocumentation = () => {
       
       saveContent('documentation', newDocument);
       loadDocuments();
-      setCurrentDocument({ id: "", title: "", category: "Basics", content: "", status: "Draft", date: "" });
       setIsCreateDialogOpen(false);
       
       toast({
         title: currentDocument.id ? "Document Updated" : "Document Created",
         description: `Successfully ${currentDocument.id ? "updated" : "created"} "${newDocument.title}"`,
       });
+      
+      // Reset form after successful submission
+      setCurrentDocument({ id: "", title: "", category: "Basics", content: "", status: "Draft", date: "" });
     } catch (error) {
       console.error("Error saving document:", error);
       toast({
@@ -71,7 +73,8 @@ const AdminDocumentation = () => {
   };
 
   const handleEditDocument = (document: DocumentContent) => {
-    setCurrentDocument(document);
+    // Important: Create a fresh copy of the document
+    setCurrentDocument({...document});
     setIsCreateDialogOpen(true);
   };
 
@@ -102,6 +105,15 @@ const AdminDocumentation = () => {
     doc.category.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
+  // This ensures the dialog properly resets when it's closed
+  const handleDialogOpenChange = (open: boolean) => {
+    setIsCreateDialogOpen(open);
+    if (!open) {
+      // Reset form when dialog is closed
+      setCurrentDocument({ id: "", title: "", category: "Basics", content: "", status: "Draft", date: "" });
+    }
+  };
+
   return (
     <Card>
       <CardHeader>
@@ -121,7 +133,7 @@ const AdminDocumentation = () => {
               />
             </div>
             
-            <Dialog open={isCreateDialogOpen} onOpenChange={setIsCreateDialogOpen}>
+            <Dialog open={isCreateDialogOpen} onOpenChange={handleDialogOpenChange}>
               <DialogTrigger asChild>
                 <Button>
                   <Plus className="mr-2 h-4 w-4" />
