@@ -3,7 +3,6 @@ import React from "react";
 import Navbar from "../components/layout/Navbar";
 import Footer from "../components/layout/Footer";
 import CTASection from "../components/sections/CTASection";
-import { Link } from "react-router-dom";
 import { Check } from "lucide-react";
 
 const About = () => {

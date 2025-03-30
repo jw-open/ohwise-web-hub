@@ -1,7 +1,7 @@
 
 import React, { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { Menu, X } from "lucide-react";
+import { Menu, X, Shield } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 const Navbar = () => {
@@ -99,6 +99,18 @@ const Navbar = () => {
             >
               Blog
             </Link>
+            <Link 
+              to="/admin" 
+              className={cn(
+                "px-3 py-2 rounded-md text-sm font-medium transition-colors flex items-center",
+                isActive("/admin") 
+                  ? "text-blue-600 dark:text-blue-400" 
+                  : "text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400"
+              )}
+            >
+              <Shield size={16} className="mr-1" />
+              Admin
+            </Link>
           </div>
 
           {/* Authentication Buttons */}
@@ -178,6 +190,17 @@ const Navbar = () => {
           )}
         >
           Blog
+        </Link>
+        <Link 
+          to="/admin" 
+          className={cn(
+            "py-3 px-4 rounded-md font-medium border-b border-gray-100 dark:border-gray-800 flex items-center",
+            isActive("/admin") 
+              ? "text-blue-600 dark:text-blue-400" 
+              : "text-gray-700 dark:text-gray-300"
+          )}
+        >
+          <Shield size={16} className="mr-2" /> Admin
         </Link>
         <div className="mt-4 flex flex-col space-y-3 px-4">
           <Link 
