@@ -1,69 +1,103 @@
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Search, Plus, Mail, Trash, CheckCircle } from "lucide-react";
-
-// Mock data for demonstration
-const MOCK_SUBSCRIBERS = [
-  { id: 1, email: "john.doe@example.com", name: "John Doe", status: "Active", date: "2023-08-10", subscriptions: ["Blog", "Documentation"] },
-  { id: 2, email: "jane.smith@example.com", name: "Jane Smith", status: "Active", date: "2023-08-15", subscriptions: ["Blog"] },
-  { id: 3, email: "mark.wilson@example.com", name: "Mark Wilson", status: "Inactive", date: "2023-08-20", subscriptions: ["Documentation", "Videos"] },
-];
+import { Search, Plus, Mail, Trash } from "lucide-react";
+import { useToast } from "@/components/ui/use-toast";
+import {
+  getAllContent,
+  saveContent,
+  deleteContent,
+  generateId,
+  SubscriberContent
+} from "@/utils/fileSystem";
 
 const AdminSubscribers = () => {
-  const [subscribers, setSubscribers] = useState(MOCK_SUBSCRIBERS);
+  const [subscribers, setSubscribers] = useState<SubscriberContent[]>([]);
   const [isCreateDialogOpen, setIsCreateDialogOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
-  const [currentSubscriber, setCurrentSubscriber] = useState<{
-    id?: number;
-    email: string;
-    name: string;
-    status: string;
-    subscriptions: string[];
-  }>({ email: "", name: "", status: "Active", subscriptions: ["Blog"] });
+  const [currentSubscriber, setCurrentSubscriber] = useState<SubscriberContent>({
+    id: "",
+    email: "",
+    name: "",
+    status: "Active",
+    date: ""
+  });
+  
+  const { toast } = useToast();
+
+  // Load subscribers on component mount
+  useEffect(() => {
+    loadSubscribers();
+  }, []);
+
+  const loadSubscribers = () => {
+    const subscriberContent = getAllContent<SubscriberContent>('subscriber');
+    setSubscribers(subscriberContent);
+  };
 
   const handleCreateSubscriber = () => {
-    const newSubscriber = {
-      ...currentSubscriber,
-      id: subscribers.length + 1,
-      date: new Date().toISOString().split('T')[0],
-    };
-    
-    setSubscribers([...subscribers, newSubscriber]);
-    setCurrentSubscriber({ email: "", name: "", status: "Active", subscriptions: ["Blog"] });
-    setIsCreateDialogOpen(false);
+    try {
+      const newSubscriber = {
+        ...currentSubscriber,
+        id: currentSubscriber.id || generateId(),
+        date: currentSubscriber.date || new Date().toISOString().split('T')[0],
+      };
+      
+      saveContent('subscriber', newSubscriber);
+      loadSubscribers();
+      setCurrentSubscriber({
+        id: "",
+        email: "",
+        name: "",
+        status: "Active",
+        date: ""
+      });
+      setIsCreateDialogOpen(false);
+      
+      toast({
+        title: currentSubscriber.id ? "Subscriber Updated" : "Subscriber Added",
+        description: `Successfully ${currentSubscriber.id ? "updated" : "added"} "${newSubscriber.email}"`,
+      });
+    } catch (error) {
+      console.error("Error saving subscriber:", error);
+      toast({
+        title: "Error",
+        description: "Failed to save subscriber. Please try again.",
+        variant: "destructive",
+      });
+    }
   };
 
-  const handleDeleteSubscriber = (id: number) => {
-    setSubscribers(subscribers.filter(subscriber => subscriber.id !== id));
+  const handleEditSubscriber = (subscriber: SubscriberContent) => {
+    setCurrentSubscriber(subscriber);
+    setIsCreateDialogOpen(true);
   };
 
-  const handleToggleSubscription = (subscriberId: number, subscription: string) => {
-    setSubscribers(subscribers.map(subscriber => {
-      if (subscriber.id === subscriberId) {
-        if (subscriber.subscriptions.includes(subscription)) {
-          return {
-            ...subscriber,
-            subscriptions: subscriber.subscriptions.filter(s => s !== subscription)
-          };
-        } else {
-          return {
-            ...subscriber,
-            subscriptions: [...subscriber.subscriptions, subscription]
-          };
-        }
-      }
-      return subscriber;
-    }));
+  const handleDeleteSubscriber = (id: string) => {
+    try {
+      deleteContent('subscriber', id);
+      loadSubscribers();
+      toast({
+        title: "Subscriber Deleted",
+        description: "Subscriber has been successfully deleted",
+      });
+    } catch (error) {
+      console.error("Error deleting subscriber:", error);
+      toast({
+        title: "Error",
+        description: "Failed to delete subscriber. Please try again.",
+        variant: "destructive",
+      });
+    }
   };
 
   const filteredSubscribers = subscribers.filter(subscriber => 
-    subscriber.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+    (subscriber.name?.toLowerCase() || "").includes(searchQuery.toLowerCase()) ||
     subscriber.email.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
@@ -120,7 +154,7 @@ const AdminSubscribers = () => {
                     <Input
                       id="name"
                       className="col-span-3"
-                      value={currentSubscriber.name}
+                      value={currentSubscriber.name || ""}
                       onChange={(e) => setCurrentSubscriber({ ...currentSubscriber, name: e.target.value })}
                     />
                   </div>
@@ -130,7 +164,7 @@ const AdminSubscribers = () => {
                     </label>
                     <Select
                       value={currentSubscriber.status}
-                      onValueChange={(value) => setCurrentSubscriber({ ...currentSubscriber, status: value })}
+                      onValueChange={(value: "Active" | "Inactive") => setCurrentSubscriber({ ...currentSubscriber, status: value })}
                     >
                       <SelectTrigger className="col-span-3">
                         <SelectValue placeholder="Select status" />
@@ -141,92 +175,13 @@ const AdminSubscribers = () => {
                       </SelectContent>
                     </Select>
                   </div>
-                  <div className="grid grid-cols-4 items-start gap-4">
-                    <label className="text-right text-sm font-medium pt-2">
-                      Subscriptions
-                    </label>
-                    <div className="col-span-3 flex flex-col space-y-2">
-                      <div className="flex items-center space-x-2">
-                        <input
-                          type="checkbox"
-                          id="blog-subscription"
-                          checked={currentSubscriber.subscriptions.includes("Blog")}
-                          onChange={() => {
-                            if (currentSubscriber.subscriptions.includes("Blog")) {
-                              setCurrentSubscriber({
-                                ...currentSubscriber,
-                                subscriptions: currentSubscriber.subscriptions.filter(s => s !== "Blog")
-                              });
-                            } else {
-                              setCurrentSubscriber({
-                                ...currentSubscriber,
-                                subscriptions: [...currentSubscriber.subscriptions, "Blog"]
-                              });
-                            }
-                          }}
-                          className="h-4 w-4 rounded border-gray-300 text-blue-600 focus:ring-blue-500"
-                        />
-                        <label htmlFor="blog-subscription" className="text-sm text-gray-700 dark:text-gray-200">
-                          Blog Updates
-                        </label>
-                      </div>
-                      <div className="flex items-center space-x-2">
-                        <input
-                          type="checkbox"
-                          id="docs-subscription"
-                          checked={currentSubscriber.subscriptions.includes("Documentation")}
-                          onChange={() => {
-                            if (currentSubscriber.subscriptions.includes("Documentation")) {
-                              setCurrentSubscriber({
-                                ...currentSubscriber,
-                                subscriptions: currentSubscriber.subscriptions.filter(s => s !== "Documentation")
-                              });
-                            } else {
-                              setCurrentSubscriber({
-                                ...currentSubscriber,
-                                subscriptions: [...currentSubscriber.subscriptions, "Documentation"]
-                              });
-                            }
-                          }}
-                          className="h-4 w-4 rounded border-gray-300 text-blue-600 focus:ring-blue-500"
-                        />
-                        <label htmlFor="docs-subscription" className="text-sm text-gray-700 dark:text-gray-200">
-                          Documentation Updates
-                        </label>
-                      </div>
-                      <div className="flex items-center space-x-2">
-                        <input
-                          type="checkbox"
-                          id="video-subscription"
-                          checked={currentSubscriber.subscriptions.includes("Videos")}
-                          onChange={() => {
-                            if (currentSubscriber.subscriptions.includes("Videos")) {
-                              setCurrentSubscriber({
-                                ...currentSubscriber,
-                                subscriptions: currentSubscriber.subscriptions.filter(s => s !== "Videos")
-                              });
-                            } else {
-                              setCurrentSubscriber({
-                                ...currentSubscriber,
-                                subscriptions: [...currentSubscriber.subscriptions, "Videos"]
-                              });
-                            }
-                          }}
-                          className="h-4 w-4 rounded border-gray-300 text-blue-600 focus:ring-blue-500"
-                        />
-                        <label htmlFor="video-subscription" className="text-sm text-gray-700 dark:text-gray-200">
-                          Video Content
-                        </label>
-                      </div>
-                    </div>
-                  </div>
                 </div>
                 <DialogFooter>
                   <Button variant="outline" onClick={() => setIsCreateDialogOpen(false)}>
                     Cancel
                   </Button>
                   <Button type="submit" onClick={handleCreateSubscriber}>
-                    Add Subscriber
+                    {currentSubscriber.id ? "Update" : "Add"} Subscriber
                   </Button>
                 </DialogFooter>
               </DialogContent>
@@ -237,10 +192,9 @@ const AdminSubscribers = () => {
             <Table>
               <TableHeader>
                 <TableRow>
-                  <TableHead>Name</TableHead>
                   <TableHead>Email</TableHead>
+                  <TableHead>Name</TableHead>
                   <TableHead>Status</TableHead>
-                  <TableHead>Subscriptions</TableHead>
                   <TableHead>Date</TableHead>
                   <TableHead className="text-right">Actions</TableHead>
                 </TableRow>
@@ -249,8 +203,8 @@ const AdminSubscribers = () => {
                 {filteredSubscribers.length > 0 ? (
                   filteredSubscribers.map((subscriber) => (
                     <TableRow key={subscriber.id}>
-                      <TableCell className="font-medium">{subscriber.name}</TableCell>
                       <TableCell>{subscriber.email}</TableCell>
+                      <TableCell className="font-medium">{subscriber.name || "-"}</TableCell>
                       <TableCell>
                         <span className={`px-2 py-1 text-xs rounded-full ${
                           subscriber.status === "Active" ? "bg-green-100 text-green-800" : "bg-gray-100 text-gray-800"
@@ -258,19 +212,10 @@ const AdminSubscribers = () => {
                           {subscriber.status}
                         </span>
                       </TableCell>
-                      <TableCell>
-                        <div className="flex flex-wrap gap-1">
-                          {subscriber.subscriptions.map((subscription, i) => (
-                            <span key={i} className="px-2 py-1 text-xs rounded-full bg-blue-100 text-blue-800">
-                              {subscription}
-                            </span>
-                          ))}
-                        </div>
-                      </TableCell>
                       <TableCell>{subscriber.date}</TableCell>
                       <TableCell className="text-right">
                         <div className="flex justify-end gap-2">
-                          <Button variant="ghost" size="icon" onClick={() => console.log("Email", subscriber.id)}>
+                          <Button variant="ghost" size="icon" onClick={() => handleEditSubscriber(subscriber)}>
                             <Mail className="h-4 w-4" />
                           </Button>
                           <Button variant="ghost" size="icon" onClick={() => handleDeleteSubscriber(subscriber.id)}>
@@ -282,7 +227,7 @@ const AdminSubscribers = () => {
                   ))
                 ) : (
                   <TableRow>
-                    <TableCell colSpan={6} className="text-center py-4 text-muted-foreground">
+                    <TableCell colSpan={5} className="text-center py-4 text-muted-foreground">
                       No subscribers found
                     </TableCell>
                   </TableRow>
