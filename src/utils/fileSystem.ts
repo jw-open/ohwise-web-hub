@@ -88,7 +88,7 @@ export const saveContent = <T extends { id: string }>(contentType: ContentType, 
   const allContent = getAllContent<T>(contentType);
   const existingIndex = allContent.findIndex(item => item.id === content.id);
   
-  if (existingIndex >= 0) {
+  if (existingIndex !== -1) {
     // Update existing content
     allContent[existingIndex] = content;
   } else {
@@ -96,130 +96,140 @@ export const saveContent = <T extends { id: string }>(contentType: ContentType, 
     allContent.push(content);
   }
   
-  localStorage.setItem(getStorageKey(contentType), JSON.stringify(allContent));
+  // Save back to storage
+  const storageKey = getStorageKey(contentType);
+  localStorage.setItem(storageKey, JSON.stringify(allContent));
 };
 
 // Delete content
-export const deleteContent = (contentType: ContentType, id: string): void => {
-  const allContent = getAllContent<{ id: string }>(contentType);
+export const deleteContent = <T extends { id: string }>(contentType: ContentType, id: string): void => {
+  const allContent = getAllContent<T>(contentType);
   const filteredContent = allContent.filter(item => item.id !== id);
-  localStorage.setItem(getStorageKey(contentType), JSON.stringify(filteredContent));
+  
+  if (allContent.length === filteredContent.length) {
+    return; // Nothing changed, item not found
+  }
+  
+  // Save back to storage
+  const storageKey = getStorageKey(contentType);
+  localStorage.setItem(storageKey, JSON.stringify(filteredContent));
 };
 
-// Initialize content with sample data if empty
+// Search content
+export const searchContent = <T extends BaseContent>(contentType: ContentType, query: string): T[] => {
+  if (!query) {
+    return getAllContent<T>(contentType);
+  }
+  
+  const allContent = getAllContent<T>(contentType);
+  const lowerQuery = query.toLowerCase();
+  
+  return allContent.filter(item => 
+    item.title.toLowerCase().includes(lowerQuery)
+  );
+};
+
+// Initialize with sample content if empty
 export const initializeContent = (): void => {
-  // Sample documentation
+  // Add sample documentation
   if (getAllContent<DocumentContent>('documentation').length === 0) {
     const sampleDocs: DocumentContent[] = [
       {
-        id: 'doc-1',
-        title: 'Getting Started',
+        id: generateId(),
+        title: 'Getting Started with OhWise',
         category: 'Basics',
-        status: 'Published',
-        date: '2023-05-10',
-        content: '# Getting Started\n\nWelcome to OhWise! This guide will help you get started with our platform.'
+        content: '# Getting Started\n\nWelcome to OhWise! This guide will help you get up and running quickly.',
+        date: new Date().toISOString(),
+        status: 'Published'
       },
       {
-        id: 'doc-2',
-        title: 'API Reference',
-        category: 'Technical',
-        status: 'Published',
-        date: '2023-05-15',
-        content: '# API Reference\n\nThis documentation covers all the API endpoints available in OhWise.'
-      },
-      {
-        id: 'doc-3',
-        title: 'Advanced Configurations',
+        id: generateId(),
+        title: 'Advanced Configuration',
         category: 'Advanced',
-        status: 'Draft',
-        date: '2023-05-20',
-        content: '# Advanced Configurations\n\nLearn how to configure OhWise for advanced use cases.'
+        content: '# Advanced Configuration\n\nLearn how to configure OhWise for complex use cases.',
+        date: new Date().toISOString(),
+        status: 'Published'
       }
     ];
     
-    localStorage.setItem(getStorageKey('documentation'), JSON.stringify(sampleDocs));
+    sampleDocs.forEach(doc => saveContent('documentation', doc));
   }
   
-  // Sample blog posts
+  // Add sample blog posts
   if (getAllContent<BlogContent>('blog').length === 0) {
     const sampleBlogs: BlogContent[] = [
       {
-        id: 'blog-1',
+        id: generateId(),
         title: 'Introducing OhWise 2.0',
-        author: 'John Doe',
-        category: 'Announcements',
-        status: 'Published',
-        date: '2023-06-10',
-        excerpt: 'Today, we're thrilled to announce the release of OhWise 2.0, our most significant platform update yet.',
-        content: '# Introducing OhWise 2.0\n\nToday, we're thrilled to announce the release of OhWise 2.0, our most significant platform update yet. This new version brings enhanced multi-agent capabilities, improved knowledge graph integration, and a completely redesigned user interface.',
-        image: 'https://images.unsplash.com/photo-1620712943543-bcc4688e7485?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3'
+        author: 'Jane Doe',
+        category: 'Product',
+        content: '# Introducing OhWise 2.0\n\nWe are excited to announce the release of OhWise 2.0!',
+        excerpt: 'Announcing our latest major version with new features and improvements.',
+        date: new Date().toISOString(),
+        status: 'Published'
       },
       {
-        id: 'blog-2',
-        title: 'Best Practices for AI Integration',
-        author: 'Jane Smith',
-        category: 'Tutorials',
-        status: 'Published',
-        date: '2023-06-15',
-        excerpt: 'The integration of AI into DevOps processes is no longer a future trend—it's happening now.',
-        content: '# Best Practices for AI Integration\n\nThe integration of AI into DevOps processes is no longer a future trend—it's happening now. In this post, we explore how organizations are using OhWise to automate complex workflows, reduce incident response time, and create more reliable systems.',
-        image: 'https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3'
+        id: generateId(),
+        title: 'AI Best Practices',
+        author: 'John Smith',
+        category: 'Technical',
+        content: '# AI Best Practices\n\nLearn how to get the most out of your AI agents.',
+        excerpt: 'Tips and tricks for optimizing your AI workflow.',
+        date: new Date().toISOString(),
+        status: 'Published'
       }
     ];
     
-    localStorage.setItem(getStorageKey('blog'), JSON.stringify(sampleBlogs));
+    sampleBlogs.forEach(blog => saveContent('blog', blog));
   }
   
-  // Sample videos
+  // Add sample videos
   if (getAllContent<VideoContent>('video').length === 0) {
     const sampleVideos: VideoContent[] = [
       {
-        id: 'video-1',
-        title: 'Getting Started with OhWise',
-        duration: '10:25',
-        category: 'Tutorials',
-        status: 'Published',
-        date: '2023-07-10',
-        description: 'A quick tutorial to help you get started with the OhWise platform.',
-        url: 'https://www.youtube.com/watch?v=example1'
+        id: generateId(),
+        title: 'OhWise Demo',
+        url: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ',
+        duration: '3:45',
+        category: 'Demo',
+        description: 'A quick demonstration of OhWise features.',
+        date: new Date().toISOString(),
+        status: 'Published'
       },
       {
-        id: 'video-2',
-        title: 'Advanced AI Features Walkthrough',
-        duration: '15:32',
-        category: 'Technical',
-        status: 'Published',
-        date: '2023-07-15',
-        description: 'Learn about the advanced AI features available in OhWise.',
-        url: 'https://www.youtube.com/watch?v=example2'
+        id: generateId(),
+        title: 'AI Agent Tutorial',
+        url: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ',
+        duration: '12:30',
+        category: 'Tutorial',
+        description: 'Learn how to create and train your own AI agents.',
+        date: new Date().toISOString(),
+        status: 'Published'
       }
     ];
     
-    localStorage.setItem(getStorageKey('video'), JSON.stringify(sampleVideos));
+    sampleVideos.forEach(video => saveContent('video', video));
   }
   
-  // Sample subscribers
+  // Add sample subscribers
   if (getAllContent<SubscriberContent>('subscriber').length === 0) {
     const sampleSubscribers: SubscriberContent[] = [
       {
-        id: 'sub-1',
+        id: generateId(),
         email: 'john@example.com',
         name: 'John Doe',
-        date: '2023-08-10',
+        date: new Date().toISOString(),
         status: 'Active'
       },
       {
-        id: 'sub-2',
+        id: generateId(),
         email: 'jane@example.com',
         name: 'Jane Smith',
-        date: '2023-08-15',
+        date: new Date().toISOString(),
         status: 'Active'
       }
     ];
     
-    localStorage.setItem(getStorageKey('subscriber'), JSON.stringify(sampleSubscribers));
+    sampleSubscribers.forEach(subscriber => saveContent('subscriber', subscriber));
   }
 };
-
-// Export content type interfaces for reuse
-export type { BaseContent, DocumentContent, BlogContent, VideoContent, SubscriberContent };

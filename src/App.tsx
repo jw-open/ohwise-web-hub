@@ -3,13 +3,12 @@ import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { useEffect } from "react";
 
 // Pages
 import Index from "./pages/Index";
 import Product from "./pages/Product";
-import Pricing from "./pages/Pricing";
 import Privacy from "./pages/Privacy";
 import Terms from "./pages/Terms";
 import Billing from "./pages/Billing";
@@ -62,7 +61,6 @@ const App = () => {
           <Routes>
             <Route path="/" element={<Index />} />
             <Route path="/product" element={<Product />} />
-            <Route path="/pricing" element={<Pricing />} />
             <Route path="/privacy" element={<Privacy />} />
             <Route path="/terms" element={<Terms />} />
             <Route path="/billing" element={<Billing />} />
@@ -76,6 +74,8 @@ const App = () => {
             <Route path="/blog/:id" element={<BlogPost />} />
             <Route path="/blog/post/:id" element={<BlogContent />} />
             <Route path="/admin" element={<Admin />} />
+            {/* Redirect pricing to 404 */}
+            <Route path="/pricing" element={<NotFound />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>

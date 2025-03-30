@@ -67,17 +67,6 @@ const Navbar = () => {
               Product
             </Link>
             <Link 
-              to="/pricing" 
-              className={cn(
-                "px-3 py-2 rounded-md text-sm font-medium transition-colors",
-                isActive("/pricing") 
-                  ? "text-blue-600 dark:text-blue-400" 
-                  : "text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400"
-              )}
-            >
-              Pricing
-            </Link>
-            <Link 
               to="/documentation" 
               className={cn(
                 "px-3 py-2 rounded-md text-sm font-medium transition-colors",
@@ -145,17 +134,6 @@ const Navbar = () => {
           )}
         >
           Product
-        </Link>
-        <Link 
-          to="/pricing" 
-          className={cn(
-            "py-3 px-4 rounded-md font-medium border-b border-gray-100 dark:border-gray-800",
-            isActive("/pricing") 
-              ? "text-blue-600 dark:text-blue-400" 
-              : "text-gray-700 dark:text-gray-300"
-          )}
-        >
-          Pricing
         </Link>
         <Link 
           to="/documentation" 

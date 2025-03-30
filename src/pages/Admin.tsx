@@ -1,6 +1,5 @@
 
 import React, { useState, useEffect } from "react";
-import Navbar from "../components/layout/Navbar";
 import Footer from "../components/layout/Footer";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { BookOpen, FileText, Video, Rss } from "lucide-react";
@@ -19,6 +18,11 @@ const Admin = () => {
   
   // Check authentication on component mount
   useEffect(() => {
+    // Clear any existing auth on initial load to force login
+    if (window.location.pathname === "/admin" && !document.referrer.includes("/admin")) {
+      localStorage.removeItem("ohwise_admin_auth");
+    }
+    
     const authStatus = localStorage.getItem("ohwise_admin_auth") === "true";
     setIsAuthenticated(authStatus);
     
