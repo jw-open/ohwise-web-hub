@@ -35,7 +35,7 @@ const Navbar = () => {
       className={cn(
         "fixed top-0 left-0 w-full z-50 transition-all duration-300",
         isScrolled 
-          ? "bg-white/80 dark:bg-gray-900/80 backdrop-blur-md py-3 shadow-sm" 
+          ? "bg-white/90 dark:bg-gray-900/90 backdrop-blur-md py-3 shadow-sm" 
           : "bg-transparent py-5"
       )}
     >
@@ -50,7 +50,7 @@ const Navbar = () => {
                 <span className="font-bold text-lg">O</span>
               </div>
             </div>
-            <span className="font-display font-bold text-xl">Ohwise</span>
+            <span className="font-display font-bold text-xl">OhWise</span>
           </Link>
 
           {/* Desktop Navigation */}
@@ -87,6 +87,17 @@ const Navbar = () => {
               )}
             >
               Documentation
+            </Link>
+            <Link 
+              to="/blog" 
+              className={cn(
+                "px-3 py-2 rounded-md text-sm font-medium transition-colors",
+                isActive("/blog") 
+                  ? "text-blue-600 dark:text-blue-400" 
+                  : "text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400"
+              )}
+            >
+              Blog
             </Link>
           </div>
 
@@ -156,6 +167,17 @@ const Navbar = () => {
           )}
         >
           Documentation
+        </Link>
+        <Link 
+          to="/blog" 
+          className={cn(
+            "py-3 px-4 rounded-md font-medium border-b border-gray-100 dark:border-gray-800",
+            isActive("/blog") 
+              ? "text-blue-600 dark:text-blue-400" 
+              : "text-gray-700 dark:text-gray-300"
+          )}
+        >
+          Blog
         </Link>
         <div className="mt-4 flex flex-col space-y-3 px-4">
           <Link 
