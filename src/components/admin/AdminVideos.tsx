@@ -1,5 +1,5 @@
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -8,47 +8,98 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@
 import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Search, Plus, Edit, Trash, PlayCircle } from "lucide-react";
-
-// Mock data for demonstration
-const MOCK_VIDEOS = [
-  { id: 1, title: "Getting Started with OhWise", duration: "10:25", category: "Tutorials", status: "Published", date: "2023-07-10", url: "https://www.youtube.com/watch?v=example1" },
-  { id: 2, title: "Advanced AI Features Walkthrough", duration: "15:32", category: "Technical", status: "Published", date: "2023-07-15", url: "https://www.youtube.com/watch?v=example2" },
-  { id: 3, title: "OhWise Platform Overview", duration: "8:45", category: "Overview", status: "Draft", date: "2023-07-20", url: "https://www.youtube.com/watch?v=example3" },
-];
+import { useToast } from "@/components/ui/use-toast";
+import {
+  getAllContent,
+  saveContent,
+  deleteContent,
+  generateId,
+  VideoContent
+} from "@/utils/fileSystem";
 
 const AdminVideos = () => {
-  const [videos, setVideos] = useState(MOCK_VIDEOS);
+  const [videos, setVideos] = useState<VideoContent[]>([]);
   const [isCreateDialogOpen, setIsCreateDialogOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
-  const [currentVideo, setCurrentVideo] = useState<{
-    id?: number;
-    title: string;
-    duration: string;
-    category: string;
-    description?: string;
-    status: string;
-    url: string;
-  }>({ title: "", duration: "", category: "Tutorials", description: "", status: "Draft", url: "" });
+  const [currentVideo, setCurrentVideo] = useState<VideoContent>({
+    id: "",
+    title: "",
+    duration: "",
+    category: "Tutorials",
+    description: "",
+    status: "Draft",
+    date: "",
+    url: ""
+  });
+  const { toast } = useToast();
 
-  const handleCreateVideo = () => {
-    const newVideo = {
-      ...currentVideo,
-      id: videos.length + 1,
-      date: new Date().toISOString().split('T')[0],
-    };
-    
-    setVideos([...videos, newVideo]);
-    setCurrentVideo({ title: "", duration: "", category: "Tutorials", description: "", status: "Draft", url: "" });
-    setIsCreateDialogOpen(false);
+  // Load videos on component mount
+  useEffect(() => {
+    loadVideos();
+  }, []);
+
+  const loadVideos = () => {
+    const videoContent = getAllContent<VideoContent>('video');
+    setVideos(videoContent);
   };
 
-  const handleEditVideo = (video: any) => {
+  const handleCreateVideo = () => {
+    try {
+      const newVideo = {
+        ...currentVideo,
+        id: currentVideo.id || generateId(),
+        date: currentVideo.date || new Date().toISOString().split('T')[0],
+      };
+      
+      saveContent('video', newVideo);
+      loadVideos();
+      setCurrentVideo({
+        id: "",
+        title: "",
+        duration: "",
+        category: "Tutorials",
+        description: "",
+        status: "Draft",
+        date: "",
+        url: ""
+      });
+      setIsCreateDialogOpen(false);
+      
+      toast({
+        title: currentVideo.id ? "Video Updated" : "Video Added",
+        description: `Successfully ${currentVideo.id ? "updated" : "added"} "${newVideo.title}"`,
+      });
+    } catch (error) {
+      console.error("Error saving video:", error);
+      toast({
+        title: "Error",
+        description: "Failed to save video. Please try again.",
+        variant: "destructive",
+      });
+    }
+  };
+
+  const handleEditVideo = (video: VideoContent) => {
     setCurrentVideo(video);
     setIsCreateDialogOpen(true);
   };
 
-  const handleDeleteVideo = (id: number) => {
-    setVideos(videos.filter(video => video.id !== id));
+  const handleDeleteVideo = (id: string) => {
+    try {
+      deleteContent('video', id);
+      loadVideos();
+      toast({
+        title: "Video Deleted",
+        description: "Video has been successfully deleted",
+      });
+    } catch (error) {
+      console.error("Error deleting video:", error);
+      toast({
+        title: "Error",
+        description: "Failed to delete video. Please try again.",
+        variant: "destructive",
+      });
+    }
   };
 
   const filteredVideos = videos.filter(video => 
@@ -150,7 +201,8 @@ const AdminVideos = () => {
                     </label>
                     <Select
                       value={currentVideo.status}
-                      onValueChange={(value) => setCurrentVideo({ ...currentVideo, status: value })}
+                      onValueChange={(value: "Draft" | "Published") => 
+                        setCurrentVideo({ ...currentVideo, status: value })}
                     >
                       <SelectTrigger className="col-span-3">
                         <SelectValue placeholder="Select status" />

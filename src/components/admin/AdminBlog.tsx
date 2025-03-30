@@ -1,5 +1,5 @@
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -8,46 +8,106 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@
 import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Search, Plus, Edit, Trash, Eye } from "lucide-react";
-
-// Mock data for demonstration
-const MOCK_POSTS = [
-  { id: 1, title: "Introducing OhWise 2.0", author: "John Doe", category: "Announcements", status: "Published", date: "2023-06-10" },
-  { id: 2, title: "Best Practices for AI Integration", author: "Jane Smith", category: "Tutorials", status: "Published", date: "2023-06-15" },
-  { id: 3, title: "Upcoming Features in Q3", author: "Mark Wilson", category: "Roadmap", status: "Draft", date: "2023-06-20" },
-];
+import { useToast } from "@/components/ui/use-toast";
+import {
+  getAllContent,
+  saveContent,
+  deleteContent,
+  generateId,
+  BlogContent
+} from "@/utils/fileSystem";
+import { useNavigate } from "react-router-dom";
 
 const AdminBlog = () => {
-  const [posts, setPosts] = useState(MOCK_POSTS);
+  const [posts, setPosts] = useState<BlogContent[]>([]);
   const [isCreateDialogOpen, setIsCreateDialogOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
-  const [currentPost, setCurrentPost] = useState<{
-    id?: number;
-    title: string;
-    author: string;
-    category: string;
-    content?: string;
-    status: string;
-  }>({ title: "", author: "", category: "Announcements", content: "", status: "Draft" });
+  const [currentPost, setCurrentPost] = useState<BlogContent>({
+    id: "",
+    title: "",
+    author: "",
+    category: "Announcements",
+    content: "",
+    excerpt: "",
+    status: "Draft",
+    date: "",
+  });
+  const { toast } = useToast();
+  const navigate = useNavigate();
 
-  const handleCreatePost = () => {
-    const newPost = {
-      ...currentPost,
-      id: posts.length + 1,
-      date: new Date().toISOString().split('T')[0],
-    };
-    
-    setPosts([...posts, newPost]);
-    setCurrentPost({ title: "", author: "", category: "Announcements", content: "", status: "Draft" });
-    setIsCreateDialogOpen(false);
+  // Load posts on component mount
+  useEffect(() => {
+    loadPosts();
+  }, []);
+
+  const loadPosts = () => {
+    const blogPosts = getAllContent<BlogContent>('blog');
+    setPosts(blogPosts);
   };
 
-  const handleEditPost = (post: any) => {
+  const handleCreatePost = () => {
+    try {
+      const newPost = {
+        ...currentPost,
+        id: currentPost.id || generateId(),
+        date: currentPost.date || new Date().toISOString().split('T')[0],
+        // Generate excerpt from content if not provided
+        excerpt: currentPost.excerpt || currentPost.content.substring(0, 150) + '...'
+      };
+      
+      saveContent('blog', newPost);
+      loadPosts();
+      setCurrentPost({ 
+        id: "", 
+        title: "", 
+        author: "", 
+        category: "Announcements", 
+        content: "", 
+        excerpt: "", 
+        status: "Draft", 
+        date: "" 
+      });
+      setIsCreateDialogOpen(false);
+      
+      toast({
+        title: currentPost.id ? "Blog Post Updated" : "Blog Post Created",
+        description: `Successfully ${currentPost.id ? "updated" : "created"} "${newPost.title}"`,
+      });
+    } catch (error) {
+      console.error("Error saving blog post:", error);
+      toast({
+        title: "Error",
+        description: "Failed to save blog post. Please try again.",
+        variant: "destructive",
+      });
+    }
+  };
+
+  const handleEditPost = (post: BlogContent) => {
     setCurrentPost(post);
     setIsCreateDialogOpen(true);
   };
 
-  const handleDeletePost = (id: number) => {
-    setPosts(posts.filter(post => post.id !== id));
+  const handleDeletePost = (id: string) => {
+    try {
+      deleteContent('blog', id);
+      loadPosts();
+      toast({
+        title: "Blog Post Deleted",
+        description: "Blog post has been successfully deleted",
+      });
+    } catch (error) {
+      console.error("Error deleting blog post:", error);
+      toast({
+        title: "Error",
+        description: "Failed to delete blog post. Please try again.",
+        variant: "destructive",
+      });
+    }
+  };
+
+  const handleViewPost = (id: string) => {
+    navigate(`/blog/${id}`);
   };
 
   const filteredPosts = posts.filter(post => 
@@ -113,6 +173,18 @@ const AdminBlog = () => {
                     />
                   </div>
                   <div className="grid grid-cols-4 items-center gap-4">
+                    <label htmlFor="image" className="text-right text-sm font-medium">
+                      Image URL
+                    </label>
+                    <Input
+                      id="image"
+                      className="col-span-3"
+                      value={currentPost.image || ""}
+                      onChange={(e) => setCurrentPost({ ...currentPost, image: e.target.value })}
+                      placeholder="https://example.com/image.jpg"
+                    />
+                  </div>
+                  <div className="grid grid-cols-4 items-center gap-4">
                     <label htmlFor="category" className="text-right text-sm font-medium">
                       Category
                     </label>
@@ -128,6 +200,8 @@ const AdminBlog = () => {
                         <SelectItem value="Tutorials">Tutorials</SelectItem>
                         <SelectItem value="Roadmap">Roadmap</SelectItem>
                         <SelectItem value="Case Studies">Case Studies</SelectItem>
+                        <SelectItem value="Best Practices">Best Practices</SelectItem>
+                        <SelectItem value="Technical">Technical</SelectItem>
                       </SelectContent>
                     </Select>
                   </div>
@@ -137,7 +211,8 @@ const AdminBlog = () => {
                     </label>
                     <Select
                       value={currentPost.status}
-                      onValueChange={(value) => setCurrentPost({ ...currentPost, status: value })}
+                      onValueChange={(value: "Draft" | "Published") => 
+                        setCurrentPost({ ...currentPost, status: value })}
                     >
                       <SelectTrigger className="col-span-3">
                         <SelectValue placeholder="Select status" />
@@ -147,6 +222,19 @@ const AdminBlog = () => {
                         <SelectItem value="Published">Published</SelectItem>
                       </SelectContent>
                     </Select>
+                  </div>
+                  <div className="grid grid-cols-4 items-start gap-4">
+                    <label htmlFor="excerpt" className="text-right text-sm font-medium pt-2">
+                      Excerpt
+                    </label>
+                    <Textarea
+                      id="excerpt"
+                      className="col-span-3"
+                      rows={3}
+                      placeholder="Brief summary of the blog post..."
+                      value={currentPost.excerpt}
+                      onChange={(e) => setCurrentPost({ ...currentPost, excerpt: e.target.value })}
+                    />
                   </div>
                   <div className="grid grid-cols-4 items-start gap-4">
                     <label htmlFor="content" className="text-right text-sm font-medium pt-2">
@@ -203,7 +291,7 @@ const AdminBlog = () => {
                       <TableCell>{post.date}</TableCell>
                       <TableCell className="text-right">
                         <div className="flex justify-end gap-2">
-                          <Button variant="ghost" size="icon" onClick={() => console.log("View", post.id)}>
+                          <Button variant="ghost" size="icon" onClick={() => handleViewPost(post.id)}>
                             <Eye className="h-4 w-4" />
                           </Button>
                           <Button variant="ghost" size="icon" onClick={() => handleEditPost(post)}>

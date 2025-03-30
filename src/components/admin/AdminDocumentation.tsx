@@ -1,5 +1,5 @@
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -8,45 +8,93 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@
 import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Search, Plus, Edit, Trash, Eye } from "lucide-react";
-
-// Mock data for demonstration
-const MOCK_DOCS = [
-  { id: 1, title: "Getting Started", category: "Basics", status: "Published", date: "2023-05-10" },
-  { id: 2, title: "API Reference", category: "Technical", status: "Published", date: "2023-05-15" },
-  { id: 3, title: "Advanced Configurations", category: "Advanced", status: "Draft", date: "2023-05-20" },
-];
+import { useToast } from "@/components/ui/use-toast";
+import { 
+  getAllContent, 
+  saveContent, 
+  deleteContent, 
+  generateId, 
+  DocumentContent 
+} from "@/utils/fileSystem";
+import { useNavigate } from "react-router-dom";
 
 const AdminDocumentation = () => {
-  const [documents, setDocuments] = useState(MOCK_DOCS);
+  const [documents, setDocuments] = useState<DocumentContent[]>([]);
   const [isCreateDialogOpen, setIsCreateDialogOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
-  const [currentDocument, setCurrentDocument] = useState<{
-    id?: number;
-    title: string;
-    category: string;
-    content?: string;
-    status: string;
-  }>({ title: "", category: "Basics", content: "", status: "Draft" });
+  const [currentDocument, setCurrentDocument] = useState<DocumentContent>({
+    id: "",
+    title: "",
+    category: "Basics",
+    content: "",
+    status: "Draft",
+    date: "",
+  });
+  const { toast } = useToast();
+  const navigate = useNavigate();
 
-  const handleCreateDocument = () => {
-    const newDocument = {
-      ...currentDocument,
-      id: documents.length + 1,
-      date: new Date().toISOString().split('T')[0],
-    };
-    
-    setDocuments([...documents, newDocument]);
-    setCurrentDocument({ title: "", category: "Basics", content: "", status: "Draft" });
-    setIsCreateDialogOpen(false);
+  // Load documents on component mount
+  useEffect(() => {
+    loadDocuments();
+  }, []);
+
+  const loadDocuments = () => {
+    const docs = getAllContent<DocumentContent>('documentation');
+    setDocuments(docs);
   };
 
-  const handleEditDocument = (document: any) => {
+  const handleCreateDocument = () => {
+    try {
+      const newDocument = {
+        ...currentDocument,
+        id: currentDocument.id || generateId(),
+        date: currentDocument.date || new Date().toISOString().split('T')[0],
+      };
+      
+      saveContent('documentation', newDocument);
+      loadDocuments();
+      setCurrentDocument({ id: "", title: "", category: "Basics", content: "", status: "Draft", date: "" });
+      setIsCreateDialogOpen(false);
+      
+      toast({
+        title: currentDocument.id ? "Document Updated" : "Document Created",
+        description: `Successfully ${currentDocument.id ? "updated" : "created"} "${newDocument.title}"`,
+      });
+    } catch (error) {
+      console.error("Error saving document:", error);
+      toast({
+        title: "Error",
+        description: "Failed to save document. Please try again.",
+        variant: "destructive",
+      });
+    }
+  };
+
+  const handleEditDocument = (document: DocumentContent) => {
     setCurrentDocument(document);
     setIsCreateDialogOpen(true);
   };
 
-  const handleDeleteDocument = (id: number) => {
-    setDocuments(documents.filter(doc => doc.id !== id));
+  const handleDeleteDocument = (id: string) => {
+    try {
+      deleteContent('documentation', id);
+      loadDocuments();
+      toast({
+        title: "Document Deleted",
+        description: "Document has been successfully deleted",
+      });
+    } catch (error) {
+      console.error("Error deleting document:", error);
+      toast({
+        title: "Error",
+        description: "Failed to delete document. Please try again.",
+        variant: "destructive",
+      });
+    }
+  };
+
+  const handleViewDocument = (id: string) => {
+    navigate(`/documentation/${id}`);
   };
 
   const filteredDocuments = documents.filter(doc => 
@@ -123,7 +171,8 @@ const AdminDocumentation = () => {
                     </label>
                     <Select
                       value={currentDocument.status}
-                      onValueChange={(value) => setCurrentDocument({ ...currentDocument, status: value })}
+                      onValueChange={(value: "Draft" | "Published") => 
+                        setCurrentDocument({ ...currentDocument, status: value })}
                     >
                       <SelectTrigger className="col-span-3">
                         <SelectValue placeholder="Select status" />
@@ -187,7 +236,7 @@ const AdminDocumentation = () => {
                       <TableCell>{doc.date}</TableCell>
                       <TableCell className="text-right">
                         <div className="flex justify-end gap-2">
-                          <Button variant="ghost" size="icon" onClick={() => console.log("View", doc.id)}>
+                          <Button variant="ghost" size="icon" onClick={() => handleViewDocument(doc.id)}>
                             <Eye className="h-4 w-4" />
                           </Button>
                           <Button variant="ghost" size="icon" onClick={() => handleEditDocument(doc)}>

@@ -1,17 +1,28 @@
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Navbar from "../components/layout/Navbar";
 import Footer from "../components/layout/Footer";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "@/components/ui/card";
 import { PlusCircle, FileText, Video, BookOpen, Rss } from "lucide-react";
 import AdminDocumentation from "../components/admin/AdminDocumentation";
 import AdminBlog from "../components/admin/AdminBlog";
 import AdminVideos from "../components/admin/AdminVideos";
 import AdminSubscribers from "../components/admin/AdminSubscribers";
+import { initializeContent } from "@/utils/fileSystem";
+import { useToast } from "@/components/ui/use-toast";
 
 const Admin = () => {
   const [selectedTab, setSelectedTab] = useState("documentation");
+  const { toast } = useToast();
+  
+  // Initialize content on component mount
+  useEffect(() => {
+    initializeContent();
+    toast({
+      title: "Admin Dashboard Ready",
+      description: "Content management system has been initialized",
+    });
+  }, []);
   
   return (
     <div className="flex flex-col min-h-screen">
@@ -22,7 +33,7 @@ const Admin = () => {
           <div className="mb-8">
             <h1 className="text-3xl font-bold mb-2">Admin Dashboard</h1>
             <p className="text-gray-600 dark:text-gray-400">
-              Manage your content and subscribers
+              Create, update, and manage your content
             </p>
           </div>
           
