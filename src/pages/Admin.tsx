@@ -18,11 +18,7 @@ const Admin = () => {
   
   // Check authentication on component mount
   useEffect(() => {
-    // Clear any existing auth on initial load to force login
-    if (window.location.pathname === "/admin" && !document.referrer.includes("/admin")) {
-      localStorage.removeItem("ohwise_admin_auth");
-    }
-    
+    // This ensures authentication is required each time the admin page is accessed directly
     const authStatus = localStorage.getItem("ohwise_admin_auth") === "true";
     setIsAuthenticated(authStatus);
     
@@ -47,6 +43,7 @@ const Admin = () => {
   
   const handleLoginSuccess = () => {
     setIsAuthenticated(true);
+    localStorage.setItem("ohwise_admin_auth", "true");
     initializeContent();
   };
   

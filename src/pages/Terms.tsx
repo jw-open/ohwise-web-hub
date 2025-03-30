@@ -1,3 +1,4 @@
+
 import React, { useEffect } from "react";
 import Navbar from "../components/layout/Navbar";
 import Footer from "../components/layout/Footer";
@@ -157,9 +158,8 @@ const Terms = () => {
                 If you have any questions about these Terms, please contact us at:
               </p>
               <p className="mb-4">
-                Email: legal@Ohwise.com<br />
-                Address: 123 AI Boulevard, Tech City, CA 94103<br />
-                Phone: (555) 123-4567
+                Email: js@ohwise.com<br />
+                Website: ohwise.com
               </p>
               
               <h2 className="text-xl font-semibold mt-8 mb-4 text-gray-900 dark:text-white">
