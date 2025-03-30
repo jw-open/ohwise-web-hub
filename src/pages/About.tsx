@@ -1,3 +1,4 @@
+
 import React from "react";
 import Navbar from "../components/layout/Navbar";
 import Footer from "../components/layout/Footer";
@@ -16,7 +17,7 @@ const About = () => {
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
             <div className="max-w-3xl mx-auto text-center">
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-display font-bold mb-6">
-                About <span className="text-blue-600">Ohwise</span>
+                About <span className="text-blue-600">OhWise</span>
               </h1>
               <p className="text-xl md:text-2xl text-gray-600 dark:text-gray-300 mb-8">
                 We're building the future of AI operations for innovative enterprises
@@ -32,7 +33,7 @@ const About = () => {
               <h2 className="text-3xl font-bold text-center mb-12">Our Mission</h2>
               <div className="prose dark:prose-invert prose-lg mx-auto">
                 <p>
-                  At Ohwise, we believe that artificial intelligence should empower organizations to work smarter, not harder. 
+                  At OhWise, we believe that artificial intelligence should empower organizations to work smarter, not harder. 
                   Our mission is to create intelligent operational systems that transform how businesses handle complex workflows,
                   making AI accessible, ethical, and genuinely useful.
                 </p>
@@ -45,50 +46,6 @@ const About = () => {
                   As AI continues to evolve at an unprecedented pace, we remain committed to our core values: transparency, 
                   security, and customer success. We build with these principles at the forefront, ensuring that our 
                   technology enhances human capabilities rather than replacing them.
-                </p>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Team Section */}
-        <section className="py-16">
-          <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 className="text-3xl font-bold text-center mb-12">Our Leadership</h2>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
-              {/* Team Member 1 */}
-              <div className="bg-white dark:bg-gray-800 rounded-lg shadow-sm p-6 text-center">
-                <div className="w-24 h-24 rounded-full bg-blue-100 dark:bg-blue-900/30 mx-auto mb-4 flex items-center justify-center">
-                  <span className="text-2xl font-bold text-blue-600">JD</span>
-                </div>
-                <h3 className="text-xl font-bold mb-1">Jane Doe</h3>
-                <p className="text-gray-600 dark:text-gray-400 mb-4">CEO & Co-Founder</p>
-                <p className="text-sm text-gray-600 dark:text-gray-400">
-                  Former AI Research Lead at TechCorp with 15+ years of experience in enterprise AI solutions.
-                </p>
-              </div>
-
-              {/* Team Member 2 */}
-              <div className="bg-white dark:bg-gray-800 rounded-lg shadow-sm p-6 text-center">
-                <div className="w-24 h-24 rounded-full bg-blue-100 dark:bg-blue-900/30 mx-auto mb-4 flex items-center justify-center">
-                  <span className="text-2xl font-bold text-blue-600">JS</span>
-                </div>
-                <h3 className="text-xl font-bold mb-1">John Smith</h3>
-                <p className="text-gray-600 dark:text-gray-400 mb-4">CTO & Co-Founder</p>
-                <p className="text-sm text-gray-600 dark:text-gray-400">
-                  Previously led engineering at AI Innovations, specializing in distributed systems and AI infrastructure.
-                </p>
-              </div>
-
-              {/* Team Member 3 */}
-              <div className="bg-white dark:bg-gray-800 rounded-lg shadow-sm p-6 text-center">
-                <div className="w-24 h-24 rounded-full bg-blue-100 dark:bg-blue-900/30 mx-auto mb-4 flex items-center justify-center">
-                  <span className="text-2xl font-bold text-blue-600">AR</span>
-                </div>
-                <h3 className="text-xl font-bold mb-1">Alex Rodriguez</h3>
-                <p className="text-gray-600 dark:text-gray-400 mb-4">Chief AI Officer</p>
-                <p className="text-sm text-gray-600 dark:text-gray-400">
-                  PhD in Machine Learning with extensive research in multi-agent systems and enterprise applications.
                 </p>
               </div>
             </div>
@@ -159,6 +116,47 @@ const About = () => {
                   We develop AI systems with strong ethical principles, focusing on fairness, accountability, and human benefit.
                 </p>
               </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Integration Section */}
+        <section className="py-16 bg-white dark:bg-gray-900">
+          <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="max-w-3xl mx-auto text-center mb-12">
+              <h2 className="text-3xl font-display font-bold text-gray-900 dark:text-white mb-6">
+                Seamless Integration
+              </h2>
+              <p className="text-gray-600 dark:text-gray-400">
+                OhWise connects with your existing tools and workflows
+              </p>
+            </div>
+            
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-6 max-w-5xl mx-auto">
+              {[
+                "PostgreSQL",
+                "MySQL",
+                "Google",
+                "X (Twitter)",
+                "Wikipedia",
+                "Sendgrid",
+                "Jira",
+                "GitHub",
+                "AWS",
+                "Slack"
+              ].map((integration, index) => (
+                <div 
+                  key={index} 
+                  className="animate-on-scroll p-4 rounded-lg border border-gray-200 dark:border-gray-700 text-center hover:border-blue-200 dark:hover:border-blue-800 hover:shadow-sm transition-all"
+                >
+                  <div className="w-12 h-12 mx-auto bg-gray-100 dark:bg-gray-800 rounded-full flex items-center justify-center mb-3">
+                    <span className="text-lg font-semibold text-blue-600">{integration.charAt(0)}</span>
+                  </div>
+                  <p className="text-sm font-medium text-gray-700 dark:text-gray-300">
+                    {integration}
+                  </p>
+                </div>
+              ))}
             </div>
           </div>
         </section>

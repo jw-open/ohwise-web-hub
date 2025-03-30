@@ -318,7 +318,7 @@ const Product = () => {
                 Seamless Integration
               </h2>
               <p className="text-gray-600 dark:text-gray-400">
-                Ohwise connects with your existing tools and workflows
+                OhWise connects with your existing tools and workflows
               </p>
             </div>
             
@@ -326,14 +326,14 @@ const Product = () => {
               {[
                 "PostgreSQL",
                 "MySQL",
-                "Slack",
-                "MS Teams",
-                "Salesforce",
-                "Zendesk",
+                "Google",
+                "X (Twitter)",
+                "Wikipedia",
+                "Sendgrid",
                 "Jira",
                 "GitHub",
                 "AWS",
-                "Azure"
+                "Slack"
               ].map((integration, index) => (
                 <div 
                   key={index} 
