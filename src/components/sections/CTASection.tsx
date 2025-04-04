@@ -9,17 +9,13 @@ interface CTASectionProps {
   subtitle?: string;
   primaryButtonText?: string;
   primaryButtonLink?: string;
-  secondaryButtonText?: string;
-  secondaryButtonLink?: string;
 }
 
 const CTASection: React.FC<CTASectionProps> = ({
   title = "Ready to transform your operations with AI?",
   subtitle = "Join innovative companies already using Ohwise to revolutionize their workflows.",
   primaryButtonText = "Get Started",
-  primaryButtonLink = "#",
-  secondaryButtonText = "Contact Sales",
-  secondaryButtonLink = "#",
+  primaryButtonLink = "https://cloud.ohwise.com/",
 }) => {
   return (
     <section className="py-20 bg-gradient-to-br from-blue-600 to-indigo-700 text-white">
@@ -39,7 +35,11 @@ const CTASection: React.FC<CTASectionProps> = ({
               {subtitle}
             </p>
             <div className="flex flex-col sm:flex-row justify-center gap-4">
-              <Link to={primaryButtonLink}>
+              <a 
+                href={primaryButtonLink}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 <Button 
                   size="lg" 
                   className="bg-white text-blue-600 hover:bg-blue-50 flex items-center gap-2"
@@ -47,16 +47,7 @@ const CTASection: React.FC<CTASectionProps> = ({
                   {primaryButtonText}
                   <ArrowRight size={16} />
                 </Button>
-              </Link>
-              <Link to={secondaryButtonLink}>
-                <Button 
-                  size="lg" 
-                  variant="outline"
-                  className="border-white text-white hover:bg-white/20"
-                >
-                  {secondaryButtonText}
-                </Button>
-              </Link>
+              </a>
             </div>
           </div>
         </div>

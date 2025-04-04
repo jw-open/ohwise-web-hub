@@ -69,7 +69,10 @@ const Index = () => {
         
         <Testimonials />
         <FAQ />
-        <CTASection />
+        <CTASection 
+          primaryButtonLink="https://cloud.ohwise.com/"
+          primaryButtonText="Get Started"
+        />
       </main>
       
       <Footer />

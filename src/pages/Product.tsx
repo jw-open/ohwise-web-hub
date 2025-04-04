@@ -355,9 +355,8 @@ const Product = () => {
         <CTASection 
           title="Experience the power of Ohwise"
           subtitle="Schedule a demo to see how Ohwise can transform your operations."
-          primaryButtonText="Request Demo"
-          secondaryButtonText="View Pricing"
-          secondaryButtonLink="/pricing"
+          primaryButtonText="Get Started"
+          primaryButtonLink="https://cloud.ohwise.com/"
         />
       </main>
       

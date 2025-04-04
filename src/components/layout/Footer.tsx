@@ -46,9 +46,11 @@ const Footer = () => {
                 <Facebook size={20} />
               </a>
               <a
-                href="#"
+                href="https://github.com/jw-open/"
                 className="text-gray-500 hover:text-blue-600 transition-colors"
                 aria-label="GitHub"
+                target="_blank"
+                rel="noopener noreferrer"
               >
                 <Github size={20} />
               </a>
@@ -67,14 +69,6 @@ const Footer = () => {
                   className="text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
                 >
                   Features
-                </Link>
-              </li>
-              <li>
-                <Link
-                  to="/pricing"
-                  className="text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
-                >
-                  Pricing
                 </Link>
               </li>
               <li>
