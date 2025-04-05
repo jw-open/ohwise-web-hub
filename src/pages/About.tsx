@@ -1,4 +1,3 @@
-
 import React from "react";
 import Navbar from "../components/layout/Navbar";
 import Footer from "../components/layout/Footer";
@@ -162,11 +161,10 @@ const About = () => {
 
         {/* CTA Section */}
         <CTASection 
-          title="Join us on our mission"
-          subtitle="Ready to transform your operations with ethical, powerful AI?"
+          title="Join us in our mission"
+          subtitle="Get started with Ohwise today and transform the way your business operates."
           primaryButtonText="Get Started"
-          secondaryButtonText="Contact Us"
-          secondaryButtonLink="/contact"
+          primaryButtonLink="https://cloud.ohwise.com/"
         />
       </main>
       

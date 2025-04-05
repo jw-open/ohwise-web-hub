@@ -1,4 +1,3 @@
-
 import React from "react";
 import Navbar from "../components/layout/Navbar";
 import Footer from "../components/layout/Footer";
@@ -248,12 +247,10 @@ const Cookies = () => {
 
         {/* CTA Section */}
         <CTASection 
-          title="Have questions about our data practices?"
-          subtitle="Our privacy team is here to help you understand how we protect your information."
-          primaryButtonText="Contact Privacy Team"
-          primaryButtonLink="/contact"
-          secondaryButtonText="View Privacy Policy"
-          secondaryButtonLink="/privacy"
+          title="Have questions about our cookies policy?"
+          subtitle="Our team is here to help you understand how we use cookies."
+          primaryButtonText="Get Started"
+          primaryButtonLink="https://cloud.ohwise.com/"
         />
       </main>
       

@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import Navbar from "../components/layout/Navbar";
 import Footer from "../components/layout/Footer";
@@ -256,12 +255,10 @@ const Documentation = () => {
 
         {/* CTA Section */}
         <CTASection 
-          title="Need help with implementation?"
-          subtitle="Our team of experts is ready to assist with your specific needs."
-          primaryButtonText="Contact Support"
-          primaryButtonLink="/contact"
-          secondaryButtonText="Join Community"
-          secondaryButtonLink="#"
+          title="Ready to get started with Ohwise?"
+          subtitle="Explore our platform and discover how it can transform your operations."
+          primaryButtonText="Get Started"
+          primaryButtonLink="https://cloud.ohwise.com/"
         />
       </main>
       
