@@ -48,17 +48,17 @@ jobs:
 
     - name: Trigger rollout via SSM
       run: |
-        set -euo pipefail
-
-        REMOTE="bash -lc ' \
-          echo BEFORE: $(kubectl -n $K8S_NAMESPACE get deploy/$K8S_DEPLOYMENT -o jsonpath='{.spec.template.spec.containers[?(@.name==\"'$K8S_CONTAINER'\")].image}') && \
-          kubectl -n $K8S_NAMESPACE set image deploy/$K8S_DEPLOYMENT $K8S_CONTAINER=$IMAGE_NAME:$TAG --record && \
-          kubectl -n $K8S_NAMESPACE rollout status deploy/$K8S_DEPLOYMENT --timeout=300s && \
-          echo AFTER:  $(kubectl  -n $K8S_NAMESPACE get deploy/$K8S_DEPLOYMENT -o jsonpath='{.spec.template.spec.containers[?(@.name==\"'$K8S_CONTAINER'\")].image}') \
-        '"
-
         aws ssm send-command \
           --instance-ids "${{ secrets.SSM_INSTANCE_ID }}" \
           --document-name "AWS-RunShellScript" \
-          --parameters "commands=[$REMOTE]" \
-          --output text > /dev/null
+          --parameters '{"commands":[
+            "set -euo pipefail",
+            "export HOME=/root",
+            "export KUBECONFIG=/root/.kube/config",
+            "export PATH=$PATH:/usr/local/bin:/usr/bin:/bin:/snap/bin",
+            "whoami && echo HOME=$HOME && echo KUBECONFIG=$KUBECONFIG && command -v kubectl",
+            "kubectl config current-context || true",
+            "kubectl -n '"$K8S_NAMESPACE"' set image deployment/'"$K8S_DEPLOYMENT"' '"$K8S_CONTAINER"'='"$IMAGE_NAME:$TAG"' --record",
+            "kubectl -n '"$K8S_NAMESPACE"' rollout status deployment/'"$K8S_DEPLOYMENT"' --timeout=300s"
+          ]}' \
+          --output text
