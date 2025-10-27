@@ -49,40 +49,9 @@ jobs:
 
     - name: Trigger rollout via SSM (script file)
       run: |
-        set -euo pipefail
-
-        # Create a small script the instance will run
-        cat > remote.sh <<'BASH'
-        set -euo pipefail
-        export HOME=/root
-        export KUBECONFIG=/root/.kube/config
-        export PATH=/usr/local/bin:/usr/bin:/bin:/snap/bin:$PATH
-
-        echo "whoami: $(whoami)"
-        kubectl config current-context || true
-        kubectl -n __NS__ get deploy __DEPLOY__ -o jsonpath='{.spec.template.spec.containers[?(@.name=="__CONTAINER__")].image}'; echo
-
-        kubectl -n __NS__ set image deployment/__DEPLOY__ __CONTAINER__="__IMAGE__:__TAG__" --record
-        kubectl -n __NS__ rollout status deployment/__DEPLOY__ --timeout=300s
-
-        kubectl -n __NS__ get deploy __DEPLOY__ -o jsonpath='{.spec.template.spec.containers[?(@.name=="__CONTAINER__")].image}'; echo
-        kubectl -n __NS__ get pods -l app=__DEPLOY__ -o=custom-columns=NAME:.metadata.name,IMAGE:.spec.containers[*].image --no-headers || true
-        BASH
-
-        # Substitute placeholders with your env values (safe literal replace)
-        sed -i "s#__NS__#${K8S_NAMESPACE}#g" remote.sh
-        sed -i "s#__DEPLOY__#${K8S_DEPLOYMENT}#g" remote.sh
-        sed -i "s#__CONTAINER__#${K8S_CONTAINER}#g" remote.sh
-        sed -i "s#__IMAGE__#${IMAGE_NAME}#g" remote.sh
-        sed -i "s#__TAG__#${TAG}#g" remote.sh
-
-        # Upload as the commands parameter (array with a single bash -lc invocation)
         aws ssm send-command \
           --instance-ids "${{ secrets.SSM_INSTANCE_ID }}" \
           --document-name "AWS-RunShellScript" \
-          --parameters commands="$(printf '%q' "bash -lc 'cat > /tmp/rollout.sh <<\"EOF\" && chmod +x /tmp/rollout.sh && /tmp/rollout.sh
-            $(cat remote.sh)
-            EOF
-            '")" \
-          --output text
-
+          --parameters '{"commands":[
+            "bash -c \"set -euxo pipefail; export HOME=/root; export KUBECONFIG=/root/.kube/config; export PATH=/usr/local/bin:/usr/bin:/bin:/snap/bin:$PATH; kubectl -n '"$K8S_NAMESPACE"' set image deployment/'"$K8S_DEPLOYMENT"' '"$K8S_CONTAINER"'='"$IMAGE_NAME:$TAG"' --record; kubectl -n '"$K8S_NAMESPACE"' rollout status deployment/'"$K8S_DEPLOYMENT"' --timeout=300s\""
+          ]}'
