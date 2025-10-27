@@ -49,9 +49,8 @@ jobs:
     - name: Trigger rollout via SSM
       run: |
           echo "Rolling out $IMAGE_NAME:$TAG ..."
-					aws ssm send-command \
-						--instance-ids "${{ secrets.SSM_INSTANCE_ID }}" \
-						--document-name "AWS-RunShellScript" \
-						--parameters commands="kubectl -n $K8S_NAMESPACE set image deployment/$K8S_DEPLOYMENT $K8S_CONTAINER=$IMAGE_NAME:$TAG --record && kubectl -n $K8S_NAMESPACE rollout status deployment/$K8S_DEPLOYMENT --timeout=300s" \
-						--output text > /dev/null
-
+          aws ssm send-command \
+            --instance-ids "${{ secrets.SSM_INSTANCE_ID }}" \
+            --document-name "AWS-RunShellScript" \
+            --parameters commands="kubectl -n $K8S_NAMESPACE set image deployment/$K8S_DEPLOYMENT $K8S_CONTAINER=$IMAGE_NAME:$TAG --record && kubectl -n $K8S_NAMESPACE rollout status deployment/$K8S_DEPLOYMENT --timeout=300s" \
+            --output text > /dev/null
