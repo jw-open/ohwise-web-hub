@@ -48,9 +48,18 @@ jobs:
 
     - name: Trigger rollout via SSM
       run: |
-          echo "Rolling out $IMAGE_NAME:$TAG ..."
-          aws ssm send-command \
-            --instance-ids "${{ secrets.SSM_INSTANCE_ID }}" \
-            --document-name "AWS-RunShellScript" \
-            --parameters commands="kubectl -n $K8S_NAMESPACE set image deployment/$K8S_DEPLOYMENT $K8S_CONTAINER=$IMAGE_NAME:$TAG --record && kubectl -n $K8S_NAMESPACE rollout status deployment/$K8S_DEPLOYMENT --timeout=300s" \
-            --output text > /dev/null
+        set -euo pipefail
+        KCFG="/home/ubuntu/.kube/config"
+
+        REMOTE="bash -lc ' \
+          echo BEFORE: $(kubectl --kubeconfig $KCFG -n $K8S_NAMESPACE get deploy/$K8S_DEPLOYMENT -o jsonpath='{.spec.template.spec.containers[?(@.name==\"'$K8S_CONTAINER'\")].image}') && \
+          kubectl --kubeconfig $KCFG -n $K8S_NAMESPACE set image deploy/$K8S_DEPLOYMENT $K8S_CONTAINER=$IMAGE_NAME:$TAG --record && \
+          kubectl --kubeconfig $KCFG -n $K8S_NAMESPACE rollout status deploy/$K8S_DEPLOYMENT --timeout=300s && \
+          echo AFTER:  $(kubectl --kubeconfig $KCFG -n $K8S_NAMESPACE get deploy/$K8S_DEPLOYMENT -o jsonpath='{.spec.template.spec.containers[?(@.name==\"'$K8S_CONTAINER'\")].image}') \
+        '"
+
+        aws ssm send-command \
+          --instance-ids "${{ secrets.SSM_INSTANCE_ID }}" \
+          --document-name "AWS-RunShellScript" \
+          --parameters "commands=[$REMOTE]" \
+          --output text > /dev/null

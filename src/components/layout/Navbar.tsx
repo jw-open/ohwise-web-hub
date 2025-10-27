@@ -44,10 +44,22 @@ const Navbar = () => {
           {/* Logo */}
           <Link to="/" className="flex items-center">
             <div className="relative h-8 w-8 mr-3">
-              <div className="absolute top-0 left-0 h-full w-full bg-blue-600 rounded-lg transform rotate-3 animate-pulse"></div>
-              <div className="absolute top-0 left-0 h-full w-full bg-indigo-600 rounded-lg -rotate-3 animate-pulse" style={{ animationDelay: "0.2s" }}></div>
-              <div className="absolute top-0 left-0 h-full w-full bg-white dark:bg-gray-900 rounded-lg flex items-center justify-center">
-                <span className="font-bold text-lg">O</span>
+              {/* Gradient circle matching favicon */}
+              <div className="absolute top-0 left-0 h-full w-full rounded-full bg-gradient-to-br from-indigo-600 to-purple-600"></div>
+              {/* Inner O shape with nodes */}
+              <div className="absolute top-0 left-0 h-full w-full flex items-center justify-center">
+                {/* Outer O circle */}
+                <div className="h-6 w-6 rounded-full border-2 border-white"></div>
+                {/* Central node */}
+                <div className="absolute h-2 w-2 rounded-full bg-white"></div>
+                {/* Top node */}
+                <div className="absolute h-1.5 w-1.5 rounded-full bg-white -top-0.5 left-1/2 transform -translate-x-1/2"></div>
+                {/* Right node */}
+                <div className="absolute h-1.5 w-1.5 rounded-full bg-white right-0 top-1/2 transform -translate-y-1/2"></div>
+                {/* Bottom node */}
+                <div className="absolute h-1.5 w-1.5 rounded-full bg-white -bottom-0.5 left-1/2 transform -translate-x-1/2"></div>
+                {/* Left node */}
+                <div className="absolute h-1.5 w-1.5 rounded-full bg-white left-0 top-1/2 transform -translate-y-1/2"></div>
               </div>
             </div>
             <span className="font-display font-bold text-xl">OhWise</span>
@@ -93,13 +105,17 @@ const Navbar = () => {
           {/* Authentication Buttons */}
           <div className="hidden md:flex items-center space-x-4">
             <a 
-              herf="https://cloud.ohwise.com" 
+              href="https://cloud.ohwise.com" 
+              target="_blank"
+              rel="noopener noreferrer"
               className="text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
             >
               Sign in
             </a>
             <a 
-              herf="https://cloud.ohwise.com" 
+              href="https://cloud.ohwise.com" 
+              target="_blank"
+              rel="noopener noreferrer"
               className="px-4 py-2 rounded-md bg-blue-600 text-white text-sm font-medium transition-all hover:bg-blue-700 active:bg-blue-800 shadow-sm hover:shadow"
             >
               Sign up
@@ -158,18 +174,22 @@ const Navbar = () => {
           Blog
         </Link>
         <div className="mt-4 flex flex-col space-y-3 px-4">
-          <Link 
-            to="#" 
+          <a 
+            href="https://cloud.ohwise.com" 
+            target="_blank"
+            rel="noopener noreferrer"
             className="w-full py-3 text-center rounded-md border border-gray-200 dark:border-gray-700 text-gray-700 dark:text-gray-300 font-medium"
           >
             Sign in
-          </Link>
-          <Link 
-            to="#" 
+          </a>
+          <a 
+            href="https://cloud.ohwise.com" 
+            target="_blank"
+            rel="noopener noreferrer"
             className="w-full py-3 text-center rounded-md bg-blue-600 text-white font-medium"
           >
             Sign up
-          </Link>
+          </a>
         </div>
       </div>
     </header>
