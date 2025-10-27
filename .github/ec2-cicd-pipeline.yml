@@ -1,0 +1,55 @@
+name: Build Docker Image and Deploy to EC2
+
+on:
+  push:
+    branches: [ "main" ]
+
+permissions:
+  contents: write
+  id-token: write
+
+env:
+  IMAGE_NAME: liveget/ohwise-web-hub
+  K8S_NAMESPACE: ohwise
+  K8S_DEPLOYMENT: ohwise-web-hub
+  K8S_CONTAINER: liveget/ohwise-web-hub
+  AWS_REGION: us-east-1
+
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Build the Docker image
+      id: build
+      run: |
+          TAG=$(date +%s)
+          echo "TAG=$TAG" >> $GITHUB_ENV
+          docker build -t liveget/ohwise-web-hub:$TAG .
+          docker tag my-dockerhub-username/my-image:$TAG my-dockerhub-username/my-image:latest
+
+    - name: Login to Docker Hub
+      run: echo "${{ secrets.DOCKERHUB_TOKEN }}" | docker login -u "${{ secrets.DOCKERHUB_USERNAME }}" --password-stdin
+
+    - name: Push Docker image
+      run: |
+          docker push my-dockerhub-username/my-image:$TAG
+          docker push my-dockerhub-username/my-image:latest
+
+    # optional: Redeploy via AWS SSM
+    - name: Configure AWS credentials
+      uses: aws-actions/configure-aws-credentials@v4
+      with:
+        role-to-assume: ${{ secrets.AWS_ROLE_ARN }}
+        aws-region: us-east-1
+
+    - name: Trigger rollout via SSM
+      run: |
+          aws ssm send-command \
+            --instance-ids "${{ secrets.SSM_INSTANCE_ID }}" \
+            --document-name "AWS-RunShellScript" \
+            --parameters commands="kubectl -n your-namespace set image deployment/your-deployment your-container=my-dockerhub-username/my-image:$TAG --record && kubectl -n your-namespace rollout status deployment/your-deployment"
