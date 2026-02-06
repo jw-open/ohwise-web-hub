@@ -24,8 +24,8 @@ The frontend calls these endpoints:
 | Content (blog) | contents (list, by slug, featured) | None |
 | Contact | contacts (POST) | None |
 | Newsletter | newsletter-subscribers (status, subscribe, resubscribe, unsubscribe) | None |
-| Comments | content-comments (GET list, POST create) | GET: none, POST: JWT optional |
-| OAuth | connect/:provider, auth/:provider/callback | None (callback returns JWT) |
+
+**Out of scope for now:** Content comments and OAuth (GitHub/Google sign-in) are not in scope for this phase. If needed later, the project owner will implement them.
 
 **Ohwise backend domain:** Use **https://strapi.ohwise.com** for production. Set `NEXT_PUBLIC_STRAPI_API_URL` to that (or `http://localhost:1337` for local). All paths below are under `/api`.
 
@@ -119,7 +119,7 @@ Each **content item** (suggested fields; feel free to add/remove/rename):
 | Field | Type | Notes |
 |-------|------|--------|
 | id | string/number | |
-| documentId | string | Optional; frontend uses for comments and stable IDs. |
+| documentId | string | Optional; frontend uses for stable IDs. |
 | title | string | |
 | description | string | |
 | type | string | Use **`post`** for all blog posts. No other types (no thoughts, product, etc.). |
@@ -197,50 +197,7 @@ Implement these in Strapi as custom API routes and controllers that find/update/
 
 ---
 
-### 2.7 Content comments
-
-- **GET** `/content-comments?filters[content][documentId][$eq]=<contentId>&filters[comment_status][$eq]=approved&populate[user][fields]=username,email,provider&populate[content][fields]=id,documentId&populate[parentComment][fields]=id,documentId`
-
-**Response:** `data` = array of comments. Each comment (suggested shape):
-
-| Field | Type | Notes |
-|-------|------|--------|
-| id or documentId | string | Frontend uses as comment id. |
-| comment | string | Body. |
-| createdAt | string (ISO) | |
-| user | object (optional) | `{ username, email, provider }` — populated from Strapi User. |
-| content | object (optional) | `{ id }` or `{ documentId }` for reference. |
-| parentComment | object (optional) | Same; for replies. |
-
-- **POST** `/content-comments`  
-  **Body:**  
-  `{ "data": { "content": "<content documentId or id>", "comment": "...", "parentComment"?: "<id>", "user"?: "<user documentId>" } }`  
-  **Auth:** Optional JWT (for associating comment with logged-in user).  
-  **Response:** Standard Strapi create response.
-
-Comment status: use a field like `comment_status` (e.g. `pending`, `approved`). Only return `approved` in the GET so the frontend shows only approved comments.
-
----
-
-### 2.8 OAuth (GitHub / Google)
-
-The frontend redirects users to your backend; the backend redirects to the provider and then handles the callback.
-
-- **GET** `/connect/:provider?redirect_uri=...`  
-  **provider:** `github` or `google`.  
-  **redirect_uri:** Frontend passes the current page URL. Your backend should redirect the user to the provider's OAuth authorization URL with this as the redirect_uri (or a backend callback that then redirects here).
-
-- **GET** `/auth/:provider/callback?access_token=...`  
-  **provider:** `github` or `google`.  
-  **access_token:** The frontend obtains this (e.g. from URL fragment after provider redirect) and calls this endpoint.  
-  **Response (JSON):**  
-  `{ "jwt": "<Strapi JWT>", "user": { "id", "documentId?", "username", "email", "provider", "avatar?" } }`
-
-Implement this with Strapi's grant config or a custom auth flow that creates/finds a User and returns a Strapi JWT. The frontend stores the JWT (e.g. in a cookie) and sends it when submitting comments.
-
----
-
-### 2.9 Video tutorials (for landing page, optional)
+### 2.7 Video tutorials (for landing page, optional)
 
 Video tutorials can be uploaded in the CMS and shown on the **landing page**. Add an optional collection (e.g. **video-tutorial** or **tutorial**) that the frontend fetches for the home page.
 
@@ -274,7 +231,6 @@ Create these in the Strapi admin (or via schema files). **This is a suggested ch
 | content | Collection | title, description, type (enum), slug (UID), publishedAt, tags (relation or JSON), image (media), featured (boolean), content (richtext), seo (JSON), externalUrl |
 | contact | Collection | name, email, subject, message |
 | newsletter-subscriber | Collection | email, subscription_status (enum), subscribedAt, unsubscribedAt, unsubscribe_token |
-| content-comment | Collection | content (relation to content), user (relation to user), parentComment (relation to content-comment), comment (text), comment_status (enum) |
 | video-tutorial (optional) | Collection | title, description, videoUrl, thumbnail (media), order, publishedAt — for landing-page video tutorials section |
 
 Use Strapi's media library; for production you can use a provider like `aws-s3` so image URLs are absolute. The frontend supports both local and S3 URLs.
@@ -284,12 +240,8 @@ Use Strapi's media library; for production you can use a provider like `aws-s3` 
 ## 4. Permissions (Strapi admin)
 
 - **Public:**  
-  - Allow `find` and `findOne` for: site-setting, navigation-items, about, contents, content-comments, and (if you add it) video-tutorials.  
-  - Allow `create` for: contacts, newsletter-subscribers (and your custom newsletter routes).  
-  - Allow `get` for connect and auth callback routes (no auth).
-
-- **Authenticated:**  
-  - Allow `create` for content-comments when you want to attach the current user.
+  - Allow `find` and `findOne` for: site-setting, navigation-items, about, contents, and (if you add it) video-tutorials.  
+  - Allow `create` for: contacts, newsletter-subscribers (and your custom newsletter routes).
 
 Restrict admin panel to authenticated admin users only.
 
@@ -335,7 +287,7 @@ AWS_BUCKET=ohwise
 AWS_BUCKET_BASE_URL=https://ohwise.s3.amazonaws.com
 ```
 
-For local dev: set `DATABASE_HOST=localhost` (and your local `DATABASE_PORT`, `DATABASE_NAME`, `DATABASE_USERNAME`, `DATABASE_PASSWORD`). OAuth: add provider client ID/secret for GitHub/Google if you implement login.
+For local dev: set `DATABASE_HOST=localhost` (and your local `DATABASE_PORT`, `DATABASE_NAME`, `DATABASE_USERNAME`, `DATABASE_PASSWORD`).
 
 - **Run:**  
   `npm run develop` (dev) or `npm run build` + `npm run start` (prod).

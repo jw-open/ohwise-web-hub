@@ -100,7 +100,7 @@ On Windows you may need a cross-platform clean (e.g. `rimraf .next out` or a sma
 ### 2.3 Data layer and Strapi client
 
 - Copy **`src/lib/get-static-data.ts`** from heunify-frontend into ohwise-web-hub — used by layout and home page to fetch site settings, nav, hero, about, featured content at build time. Point it to **https://strapi.ohwise.com** (same API as in 02-BACKEND-BUILD-GUIDE).
-- Copy **`src/services/strapi.tsx`** — all API calls (contents, about, site-setting, navigation, contact, newsletter, comments, OAuth). Set the default `STRAPI_API_URL` to **https://strapi.ohwise.com** so it works even if env is missing in dev.
+- Copy **`src/services/strapi.tsx`** — API calls (contents, about, site-setting, navigation, contact, newsletter). Set the default `STRAPI_API_URL` to **https://strapi.ohwise.com** so it works even if env is missing in dev. (Comments and OAuth are out of scope for now; you can omit or stub those in the service.)
 - Copy **`src/types/index.tsx`** (or the types you need): `ContentItem`, `SiteSettings`, `NavigationItem`, `AboutData`, `ContentComment`, etc. Trim any types you don't use.
 
 Ensure every place that uses Strapi reads `process.env.NEXT_PUBLIC_STRAPI_API_URL` (and optionally `NEXT_PUBLIC_STRAPI_TOKEN` for build).
@@ -174,8 +174,8 @@ These are the only parts that run in the browser and call your backend:
 
 - **Contact form:** Form submits to Strapi `POST /contacts` (see `strapi.tsx` → `submitContactForm`). Show a success/error message after submit.
 - **Newsletter:** Subscribe / resubscribe / unsubscribe — use the endpoints from 02-BACKEND-BUILD-GUIDE. Call them from the client (e.g. in a footer or modal). Unsubscribe link in emails should point to your site with `?token=...` and a page that calls `GET .../newsletter-subscribers/unsubscribe?token=...`.
-- **Comments (optional):** If you enable comments, list is fetched client-side by content id; submit comment with optional JWT (see 02). You can copy heunify's comment components.
-- **OAuth (optional):** If you want "Sign in with Google/GitHub" for comments, the frontend redirects to your Strapi `/api/connect/:provider` and then handles callback with access_token and stores JWT (e.g. in a cookie). Implement as in heunify-frontend.
+
+**Out of scope for now:** Content comments and OAuth (Google/GitHub sign-in) are not in scope; the project owner will add them if needed. Do not implement comment UI or OAuth flows.
 
 All other pages (home, blog list, blog post, about, contact page shell) are static HTML from the CDN.
 
@@ -215,6 +215,6 @@ For reference only: the frontend deploy will typically be checkout → `npm ci` 
 2. In **ohwise-web-hub**: add Next.js config with `output: 'export'`, copy data layer and Strapi service from heunify-frontend, then layout + home + about + contact.
 3. Add blog list and blog post pages; wire navigation and Strapi content type.
 4. Add and adapt the sitemap script; run it after `next build` and confirm `out/sitemap.xml` and blog HTML files.
-5. Add contact form and newsletter (and optionally comments/OAuth) and test against your Strapi. Ensure `npm run build` completes and produces `out/` — CI/CD will be added by the project owner afterward.
+5. Add contact form and newsletter and test against your Strapi. Ensure `npm run build` completes and produces `out/` — CI/CD will be added by the project owner afterward.
 
 If you hit API mismatches, compare with **02-BACKEND-BUILD-GUIDE** and with `src/services/strapi.tsx` and `src/types/index.tsx` in heunify-frontend (reference only; do not change heunify-frontend).
