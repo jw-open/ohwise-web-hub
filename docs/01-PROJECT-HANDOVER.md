@@ -166,6 +166,6 @@ The goal is a backbone that stays easy to maintain and extend — not one that b
 ## What to Do Next
 
 1. **Read 02-BACKEND-BUILD-GUIDE.md** — Build the CMS in **ohwise-cms** (copy heunify-backend/Strapi v5 or use another CMS). Use local MySQL for dev; production DB (MySQL on EC2) is already set up.
-2. **Read 03-FRONTEND-IMPLEMENTATION-GUIDE.md** — Implement the site in **ohwise-web-hub**: blog first, then static pages. Ensure the project builds and produces `out/`. **The project owner will add GitHub Actions to deploy both repos** once the backbone is done.
+2. **Read 03-FRONTEND-IMPLEMENTATION-GUIDE.md** — Implement the site in **ohwise-web-hub**: blog first, then static pages. Ensure the project builds and produces `out/`. **The project owner will add GitHub Actions to deploy both repos** once the backbone is done. Section **7** in that guide explains how the static-site deploy works (build → S3 → CloudFront) and what your build must produce so the pipeline works.
 
 Start with **01** (this doc) for context, then **02** for the backend, then **03** for the frontend.
