@@ -7,7 +7,8 @@ This document gets you oriented so you can take over the **ohwise-web-hub** and 
 ## What You're Building
 
 - **ohwise-web-hub**: The public marketing/blog site for Ohwise. Right now it's a simple static site; the goal is to turn it into a **production-ready static site** with:
-  - **Blog**: Single level only — `/blog` (list) and `/blog/[slug]` (post). No extra hierarchy (no thoughts, product, or content-by-type).
+  - **Flat URL hierarchy (important):** Unlike heunify-frontend, which uses a **two-level** structure (first level `content`, second level types like `thought`, `tutorial`, `product` — e.g. `/content/thought/[slug]`), **ohwise uses a flat hierarchy**: blog is one level only (`/blog`, `/blog/[slug]`), and if you add documentation later, that is one level only (`/docs`, `/docs/[slug]`). Do not copy heunify’s `content/[type]/...` routes.
+  - **Blog**: Single level only — `/blog` (list) and `/blog/[slug]` (post). No `/content/...` and no content-by-type routes.
   - **Static pages**: Home, About, Contact, Privacy, Terms. Keep these. Pricing can be added later.
   - **Social links**: Show site social links (e.g. Twitter, GitHub, LinkedIn, YouTube from site-setting or about) in the footer (or header) so visitors can follow Ohwise.
   - **Video tutorials (optional)**: Video tutorials can be uploaded in the CMS and displayed in a section on the **landing page**; see doc 02 (§2.9) and doc 03 (Landing page: Video tutorials section).
@@ -138,8 +139,8 @@ Use this as a map when you **copy** logic from heunify-frontend **into** ohwise-
 |-------------------------|----------------------------------|
 | App layout, global UI   | `src/app/layout.tsx` |
 | Static pages            | `src/app/*/page.tsx` (e.g. `about`, `contact`, `page.tsx` for home) |
-| Blog list (adapt to /blog) | `src/app/content/[type]/page.tsx` — copy and simplify to `/blog` only |
-| Blog detail (adapt to /blog/[slug]) | `src/app/content/[type]/[slug]/page.tsx` — copy and simplify to `/blog/[slug]` |
+| Blog list (adapt to /blog) | `src/app/content/[type]/page.tsx` — **do not use** `/content/[type]`. Build `/blog` only (`src/app/blog/page.tsx`). |
+| Blog detail (adapt to /blog/[slug]) | `src/app/content/[type]/[slug]/page.tsx` — **do not use** `/content/[type]/[slug]`. Build `/blog/[slug]` only (`src/app/blog/[slug]/page.tsx`). |
 | Build-time data (home, nav, settings) | `src/lib/get-static-data.ts` |
 | All Strapi API calls    | `src/services/strapi.tsx` |
 | Types (content, settings, nav, etc.) | `src/types/index.tsx` |

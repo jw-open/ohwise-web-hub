@@ -31,6 +31,23 @@ The frontend calls these endpoints:
 
 ---
 
+## 1.1 Naming conventions
+
+Use these names and paths consistently.
+
+| Context | Use these |
+|--------|------------|
+| **Public URL paths** | `/`, `/blog`, `/blog/[slug]`, `/docs`, `/docs/[slug]`, `/about`, `/contact`, `/privacy`, `/terms`. No `/blogs`, `/posts`, or `/content/...`. |
+| **API — collection endpoints** | `/api/contents`, `/api/navigation-items`, `/api/contacts`, `/api/newsletter-subscribers`. |
+| **API — single-type endpoints** | `/api/site-setting`, `/api/about`. |
+| **Strapi content-type API path** | Collections: `contents`, `navigation-items`, `contacts`, `newsletter-subscribers`. Single types: `site-setting`, `about`. |
+| **Next.js app directory** | `app/blog/`, `app/docs/`, `app/about/`, `app/contact/`, `app/privacy/`, `app/terms/`. Dynamic route: `[slug]`. |
+| **Navigation path values in CMS** | `/`, `/blog`, `/about`, `/contact`, `/privacy`, `/terms`. No trailing slash. |
+
+Use **lowercase** and **hyphens** for multi-word segments (e.g. `site-setting`, `navigation-items`, `newsletter-subscribers`).
+
+---
+
 ## 2. Endpoints and Data Shapes
 
 ### 2.1 Site setting (single type)
@@ -100,7 +117,7 @@ The frontend calls these endpoints:
 
 ### 2.4 Contents (blog posts only)
 
-Collection name must be **contents** (plural). Each document is one **blog post**. Use a single content type with `type = 'post'` (or a fixed value). **Do not** use multiple content types or nav items like thoughts, product, or content-by-type — only **blog** at `/blog` and `/blog/[slug]`.
+Collection name must be **contents** (plural). Each document is one **blog post**. Use a single content type with `type = 'post'` (or a fixed value). **Do not** use multiple content types or nav items like thoughts, product, or content-by-type — only **blog** at `/blog` and `/blog/[slug]`. (Heunify uses a two-level model — content → type [thought, tutorial, product]; ohwise is flat: blog is one level, and docs if added later are one level.)
 
 - **GET** `/contents?pagination[page]=1&pagination[pageSize]=10&populate=*&filters[publishedAt][$notNull]=true`
 - For blog, always filter by type: `filters[type][$eq]=post`
