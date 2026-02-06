@@ -49,7 +49,7 @@ The frontend calls these endpoints:
 | theme | object | `{ primaryColor, secondaryColor, fontFamily }` |
 | hero | object | `{ title, description, ctaPrimary: { text, link }, ctaSecondary: { text, link } }` |
 | seo | object | `{ defaultTitle, defaultDescription, defaultKeywords: string[] }` |
-| social | object | `{ twitter?, github?, linkedin?, youtube? }` |
+| social | object | `{ twitter?, github?, linkedin?, youtube? }` — **use for social links section** in footer/header/landing so visitors can follow Ohwise. |
 | contact | object | `{ email?, phone?, address? }` |
 | features | object | `{ enableComments, enableNewsletter, enableRSS, enableDarkMode }` (booleans) |
 | quickLinks | array | `[{ id, title, path, type: 'internal'|'external', externalUrl? }]` |
@@ -240,6 +240,28 @@ Implement this with Strapi's grant config or a custom auth flow that creates/fin
 
 ---
 
+### 2.9 Video tutorials (for landing page, optional)
+
+Video tutorials can be uploaded in the CMS and shown on the **landing page**. Add an optional collection (e.g. **video-tutorial** or **tutorial**) that the frontend fetches for the home page.
+
+- **GET** `/video-tutorials?populate=*` (or `/tutorials`) — list published items, e.g. ordered by `order` or `publishedAt`.
+
+**Suggested item shape:**
+
+| Field | Type | Notes |
+|-------|------|--------|
+| id | string/number | |
+| title | string | |
+| description | string | Optional short blurb. |
+| videoUrl | string | URL to the video (YouTube, Vimeo, or direct). Frontend can embed or link. |
+| thumbnail | media | Optional image for the card. |
+| order | number | For ordering on the landing page. |
+| publishedAt | datetime | Only published items are shown. |
+
+You can use a different name or add fields (e.g. duration, category). The frontend will render these in a "Video tutorials" or "Tutorials" section on the landing page. If you prefer to reuse **contents** with a type like `video` and a `videoUrl` field, that works too — just document the endpoint/filters for the frontend.
+
+---
+
 ## 3. Strapi Content Types Checklist (Suggested)
 
 Create these in the Strapi admin (or via schema files). **This is a suggested checklist, not a fixed spec** — add, remove, or rename fields and types if it makes sense. Just keep the API contract (endpoints and response shapes the frontend uses) intact.
@@ -253,6 +275,7 @@ Create these in the Strapi admin (or via schema files). **This is a suggested ch
 | contact | Collection | name, email, subject, message |
 | newsletter-subscriber | Collection | email, subscription_status (enum), subscribedAt, unsubscribedAt, unsubscribe_token |
 | content-comment | Collection | content (relation to content), user (relation to user), parentComment (relation to content-comment), comment (text), comment_status (enum) |
+| video-tutorial (optional) | Collection | title, description, videoUrl, thumbnail (media), order, publishedAt — for landing-page video tutorials section |
 
 Use Strapi's media library; for production you can use a provider like `aws-s3` so image URLs are absolute. The frontend supports both local and S3 URLs.
 
@@ -261,7 +284,7 @@ Use Strapi's media library; for production you can use a provider like `aws-s3` 
 ## 4. Permissions (Strapi admin)
 
 - **Public:**  
-  - Allow `find` and `findOne` for: site-setting, navigation-items, about, contents, content-comments (you can restrict approved-only in controller or by policy).  
+  - Allow `find` and `findOne` for: site-setting, navigation-items, about, contents, content-comments, and (if you add it) video-tutorials.  
   - Allow `create` for: contacts, newsletter-subscribers (and your custom newsletter routes).  
   - Allow `get` for connect and auth callback routes (no auth).
 
