@@ -17,6 +17,8 @@ This guide walks you through turning **ohwise-web-hub** into a production-ready 
 - `NEXT_PUBLIC_STRAPI_API_URL` — **Required.** Use **https://strapi.ohwise.com** for production (or `http://localhost:1337` for local).
 - `NEXT_PUBLIC_STRAPI_TOKEN` — Optional. Use only if you need to fetch draft content at build (e.g. for preview). For production, build only from published content.
 
+**Naming:** Public URLs: `/blog`, `/docs`, `/about`, `/contact`, `/privacy`, `/terms`; app dir: `app/blog/`, `app/about/`, etc. API: `contents`, `navigation-items`, `contacts`, `newsletter-subscribers`; single types: `site-setting`, `about`. Full list in **02-BACKEND-BUILD-GUIDE.md** §1.1.
+
 ---
 
 ## 2. Design direction
@@ -121,17 +123,36 @@ Video tutorials can be uploaded in the CMS and published on the landing page. If
 
 ---
 
-## 3. Blog: Routes and Static Generation (single level only)
+## 3. URL and content hierarchy: Ohwise is flat (do not copy heunify’s 2-level structure)
 
-Use **only** `/blog` (list) and `/blog/[slug]` (post). No extra hierarchy (no `/content/thought`, `/content/product`, or other content-by-type routes).
+**Important:** **heunify-frontend** uses a **two-level** content hierarchy:
+
+- **First level:** `content` (a segment in the URL).
+- **Second level:** content types such as `thought`, `tutorial`, `product`, etc.
+
+So in heunify you get routes like `/content/thought`, `/content/thought/[slug]`, `/content/tutorial`, `/content/product`, and so on. The app has `src/app/content/[type]/page.tsx` and `src/app/content/[type]/[slug]/page.tsx` — the `[type]` is the second level.
+
+**Ohwise-web-hub must not follow that.** We want a **flat** hierarchy:
+
+- **Blog** is its own single level: `/blog` (list) and `/blog/[slug]` (post). No `/content/...` and no type segment in the URL.
+- **Documentation** (if you add it later) is its own single level: e.g. `/docs` and `/docs/[slug]`. Again, no parent “content” and no type subfolder.
+- Other sections (about, contact, privacy, terms) are already single-level pages.
+
+When you copy from heunify-frontend, **do not** copy the `content/[type]/...` route structure. Use **only** `/blog` and `/blog/[slug]` for blog; if you add docs, use `/docs` and `/docs/[slug]` only. In Strapi, use a single content type (**contents**) with **`type = 'post'`** for all blog posts — no separate “thought”, “tutorial”, or “product” types for the frontend.
+
+---
+
+## 4. Blog: Routes and Static Generation
+
+Use **only** `/blog` (list) and `/blog/[slug]` (post). No `/content/...` and no content-by-type routes (see above).
 
 ### 4.1 URL design
 
 - **List:** `src/app/blog/page.tsx` → `/blog`
 - **Post:** `src/app/blog/[slug]/page.tsx` → `/blog/[slug]`
-- In Strapi, use a single content type: **contents** with **`type = 'post'`** for all blog posts. Do not use thoughts, product, or other types for navigation.
+- In Strapi: single content type **contents** with **`type = 'post'`** for all blog posts. No thoughts, product, or other types for nav or routes.
 
-### 3.2 Blog list page — `src/app/blog/page.tsx`
+### 4.2 Blog list page — `src/app/blog/page.tsx`
 
 - In the page (server component), call your Strapi service to get the list of posts:  
   `getContentItems('post', 1, 50)`.
@@ -148,7 +169,7 @@ Use **only** `/blog` (list) and `/blog/[slug]` (post). No extra hierarchy (no `/
 - **Page component:**  
   Fetch the same post again (or pass from metadata if you prefer) and render title, date, body (markdown/richtext). Use a markdown renderer (e.g. `react-markdown`) if your Strapi stores markdown.
 
-### 3.4 Navigation
+### 4.4 Navigation
 
 In Strapi, create **navigation-items** for: **Home** (`/`), **Blog** (`/blog`), **About** (`/about`), **Contact** (`/contact`), **Privacy** (`/privacy`), **Terms** (`/terms`). Do **not** add thoughts, product, or content-by-type items. **Pricing** (`/pricing`) can be added later. Your layout reads navigation from Strapi, so these will appear in the header/footer once configured.
 
