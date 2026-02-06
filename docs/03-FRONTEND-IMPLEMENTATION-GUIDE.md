@@ -181,11 +181,25 @@ All other pages (home, blog list, blog post, about, contact page shell) are stat
 
 ---
 
-## 7. CI/CD (Not Your Responsibility)
+## 7. CI/CD — How deploy works (and what you need to get right)
 
-**CI/CD will be built by the project owner** for both **ohwise-cms** and **ohwise-web-hub**. Your job is to ensure **ohwise-web-hub** **builds successfully** and produces the `out/` folder (static export + sitemap). You do not need to add or configure any deploy workflow.
+The project owner will add the GitHub Actions workflow for **ohwise-web-hub**. You don’t add or configure the workflow yourself. Your part is to make sure the **build output** is correct so the pipeline works when it’s wired up.
 
-For reference only: the frontend deploy will typically be checkout → `npm ci` + `npm run build` (with `NEXT_PUBLIC_STRAPI_API_URL` set) → sync `out/` to S3 → CloudFront invalidation. The workflow in heunify-frontend (`.github/workflows/deploy.yml`) is the kind of pattern the owner will adapt for ohwise-web-hub.
+**What the pipeline does (for your context):**
+
+1. **Trigger:** On push to `main`, manual “Run workflow”, or `repository_dispatch` (e.g. webhook from Strapi when content changes).
+2. **Build:** Checkout repo → `npm ci` → `npm run build`. The workflow will pass `NEXT_PUBLIC_STRAPI_API_URL` (and optionally `NEXT_PUBLIC_STRAPI_TOKEN`) so the build can reach the CMS. Everything that’s built ends up in the **`out/`** folder (HTML, JS, CSS, `sitemap.xml`, etc.).
+3. **Upload:** Dry-run `aws s3 sync ./out` to see what changed, then upload new/changed files to the S3 bucket and delete removed files. So **only the contents of `out/`** are deployed — no server, just static files.
+4. **Refresh CDN:** CloudFront invalidation is run for the changed paths so visitors get the new version without waiting for cache to expire.
+
+**What you need to ensure:**
+
+- **`npm run build`** runs without errors and produces the **`out/`** directory.
+- The build script does: clean → `next build` (static export) → run the sitemap script so **`out/sitemap.xml`** exists. The pipeline will upload whatever is in `out/`, so the sitemap must be written there after `next build`.
+- The app works when **Strapi is reachable at build time** (the workflow will set `NEXT_PUBLIC_STRAPI_API_URL`). If the CMS is down or the URL is wrong during the GitHub Action run, the build can fail or generate empty pages — so the owner will configure the secret; you just rely on it being set.
+- **Don’t rely on local-only paths or machine-specific setup.** The workflow runs on a clean Ubuntu runner; only `npm ci` and `npm run build` (plus env vars) are used.
+
+**Reference:** The workflow pattern is in **heunify-frontend** at `.github/workflows/deploy.yml` (build → S3 sync with dry-run → per-file upload/delete → CloudFront invalidation). The owner will adapt that for ohwise-web-hub and set the repo secrets (e.g. `AWS_ACCESS_KEY_ID`, `AWS_SECRET_ACCESS_KEY`, `AWS_REGION`, `S3_BUCKET`, `CLOUDFRONT_DIST_ID`, `NEXT_PUBLIC_STRAPI_API_URL`).
 
 ---
 
