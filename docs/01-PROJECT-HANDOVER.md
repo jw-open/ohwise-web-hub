@@ -9,6 +9,8 @@ This document gets you oriented so you can take over the **ohwise-web-hub** and 
 - **ohwise-web-hub**: The public marketing/blog site for Ohwise. Right now it's a simple static site; your job is to turn it into a **production-ready static site** with:
   - **Blog**: Single level only — `/blog` (list) and `/blog/[slug]` (post). No extra hierarchy (no thoughts, product, or content-by-type).
   - **Static pages**: Home, About, Contact, Privacy, Terms. Keep these. Pricing can be added later.
+  - **Social links**: Show site social links (e.g. Twitter, GitHub, LinkedIn, YouTube from site-setting or about) in the footer (or header) so visitors can follow Ohwise.
+  - **Video tutorials (optional)**: Video tutorials can be uploaded in the CMS and displayed in a section on the **landing page**; see doc 02 (§2.9) and doc 03 (Landing page: Video tutorials section).
   - **Later (optional)**: Documentation, pricing — same pattern if needed.
 - **Backend**: A **lightweight CMS** at **strapi.ohwise.com**, hosted in the **ohwise-cms** repo. You can build it by copying **heunify-backend** (Strapi v5, open-source) into ohwise-cms, or use another CMS you're familiar with — as long as it exposes the API described in doc 02. The frontend only talks to it at build time (and for contact form, newsletter, comments, OAuth).
 

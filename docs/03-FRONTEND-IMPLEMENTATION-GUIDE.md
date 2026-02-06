@@ -38,7 +38,13 @@ Aim for **simple, official, industrial, Apple-style** frontend design. The site 
 - **Components:** Minimal borders and shadows. Flat or very subtle depth. Forms: clean inputs, clear labels, one primary button style.
 - **Navigation:** Simple top nav or header. Clear, few items. Footer: structured but light (links in columns or a single row).
 
-Reference Apple’s marketing and product pages, Linear, or Vercel for tone and layout — then adapt for Ohwise branding. When copying from heunify-frontend, strip any busy or off-brand styling and apply this direction so the site feels cohesive and professional.
+Reference Apple’s marketing and product pages, **Design references — study these for landing page and overall UI:**
+
+- **[Claude Code](https://claude.com/product/claude-code)** — Clean product page: hero with one strong value prop, "Use Claude Code where you work" (Terminal / IDE / Web / Slack), clear feature blocks, pricing, FAQ. Good for sectioning, CTAs, and a calm, professional tone.
+- **[Manus](https://manus.im/)** — "What can I do for you?" style landing: card-based options, minimal chrome, focus on capabilities. Useful for presenting product capabilities or video tutorials in a scannable, card-driven way.
+- **[OpenAI](https://openai.com/)** — **Most Apple-like:** very restrained, lots of whitespace, subtle typography and one-accent color. Hero-led, minimal nav, content-first. Best reference for the official, industrial, Apple-style look — calm, premium, trustworthy.
+
+Study these for landing page structure, hero treatment, section rhythm, and component restraint. Also reference Apple marketing, Linear, or Vercel for tone and layout. When copying from heunify-frontend, strip any busy or off-brand styling and apply this direction so the site feels cohesive and professional.
 
 ---
 
@@ -102,12 +108,16 @@ Ensure every place that uses Strapi reads `process.env.NEXT_PUBLIC_STRAPI_API_UR
 ### 3.4 Layout and static pages
 
 - **Root layout** (`src/app/layout.tsx`): Fetch navbar and site settings in the layout (using `get-static-data` or the Strapi service) and render Navbar + Footer. Use `generateMetadata()` with site settings for default title/description.
-- **Home** (`src/app/page.tsx`): Fetch hero and featured content at build time; render static content.
-- **About** (`src/app/about/page.tsx`): Fetch about data at build; render static page.
+- **Social links section:** Use **site-setting.social** (and optionally **about.social**) to show Ohwise’s social links (Twitter, GitHub, LinkedIn, YouTube) in the **footer** (or header). Render them as icon + link; only show keys that have a URL. This gives visitors a clear way to follow the brand.
+- **Home** (`src/app/page.tsx`): Fetch hero and featured content at build time; render static content. Optionally add a **Video tutorials** section (see below).
+- **About** (`src/app/about/page.tsx`): Fetch about data at build; render static page. You can also show social links here from `about.social`.
 - **Contact** (`src/app/contact/page.tsx`): Static form; **on submit** call Strapi `POST /contacts` from the client (this is one of the few client-side API calls).
 - **Privacy** (`src/app/privacy/page.tsx`) and **Terms** (`src/app/terms/page.tsx`): Static pages (or from Strapi later). Include in nav and sitemap. **Pricing** (`/pricing`) can be added later.
 
 Copy the corresponding components (Navbar, Footer, etc.) from heunify-frontend and adapt styling/branding for Ohwise.
+
+**Landing page: Video tutorials section (optional)**  
+Video tutorials can be uploaded in the CMS and published on the landing page. If the backend exposes video tutorials (e.g. **GET** `/video-tutorials` or `/tutorials` — see 02-BACKEND-BUILD-GUIDE §2.9), fetch them at build time on the home page and render a “Video tutorials” or “Tutorials” section: title, optional thumbnail, description, and link (or embed) to the video URL. Keep the design consistent with the rest of the site (simple, official, Apple-style).
 
 ---
 
