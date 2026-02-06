@@ -1,4 +1,4 @@
-# Contractor documentation — Ohwise Web Hub & CMS
+# Documentation — Ohwise Web Hub & CMS
 
 This folder contains the handover and implementation docs. **Your work is in two GitHub repos:** **ohwise-cms** (backend) and **ohwise-web-hub** (frontend). You have read-only access to **heunify-frontend** and **heunify-backend** as references.
 
