@@ -2,8 +2,7 @@
 const axios = require("axios");
 
 const API = "http://localhost:1337/api";
-const TOKEN =
-  "12820ca8bd797e3534ab594df9586aa7dfd55b5ae73ac5caa64957607c9948280ddc95220d6929b0c3edb21faddda68ab7a2cdfa31bc4ca7c723cb5044013c9246b4ddba57a05b2d2b47b66b4ffcefd12b5d73a81902f0a9cc6484eefb40cb1b215cec0c230a73b4e094061616bacb20afd66ecddc1d207870d7025e34fd5d36";
+const TOKEN = "<TOKEN_GENERATED_FROM_STRAPI_DASHBOARD>";
 
 const client = axios.create({
   baseURL: API,
