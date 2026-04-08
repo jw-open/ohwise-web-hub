@@ -1,33 +1,54 @@
-# Welcome to Ohwise Official Web App
+# ohwise-web-hub
 
-## How can I edit this code?
+Official website for [OhWise](https://ohwise.com) — landing page, docs, and open-source showcase.
 
-There are several ways of editing your application.
+**Stack:** Vite + React + TypeScript + Tailwind CSS + shadcn/ui
 
+---
 
-Follow these steps:
+## Local development
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
-
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
-
-# Step 3: Install the necessary dependencies.
-npm i
-
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run start
+```bash
+npm install
+npm run dev
 ```
 
+## Build
 
-## What technologies are used for this project?
+```bash
+npm run build
+```
 
-This project is built with .
+## Deploy
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+Deployed via Docker through `local-container-orchestration`:
+
+```bash
+cd /path/to/local-container-orchestration
+docker compose up -d ohwise-hub
+```
+
+The container builds from source — no remote image needed.
+
+---
+
+## Pages
+
+| Route | Description |
+|---|---|
+| `/` | Landing page |
+| `/open-source` | graph2sql + doc2graph showcase |
+
+---
+
+## Project structure
+
+```
+src/
+├── pages/          # Route-level components (Home, OpenSource, ...)
+├── components/
+│   ├── layout/     # Navbar, Footer
+│   └── ui/         # shadcn/ui primitives
+├── App.tsx         # Routes
+└── main.tsx        # Entry point
+```
