@@ -1,7 +1,7 @@
 
 import React, { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { Menu, X } from "lucide-react";
+import { Menu, X, Github } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 const Navbar = () => {
@@ -89,36 +89,56 @@ const Navbar = () => {
             >
               Documentation
             </Link>
-            <Link 
-              to="/blog" 
+            <Link
+              to="/blog"
               className={cn(
                 "px-3 py-2 rounded-md text-sm font-medium transition-colors",
-                isActive("/blog") 
-                  ? "text-blue-600 dark:text-blue-400" 
+                isActive("/blog")
+                  ? "text-blue-600 dark:text-blue-400"
                   : "text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400"
               )}
             >
               Blog
             </Link>
+            <Link
+              to="/open-source"
+              className={cn(
+                "px-3 py-2 rounded-md text-sm font-medium transition-colors",
+                isActive("/open-source")
+                  ? "text-indigo-600 dark:text-indigo-400"
+                  : "text-gray-700 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400"
+              )}
+            >
+              Open Source
+            </Link>
           </div>
 
-          {/* Authentication Buttons */}
-          <div className="hidden md:flex items-center space-x-4">
-            <a 
-              href="https://cloud.ohwise.com" 
+          {/* Right side actions */}
+          <div className="hidden md:flex items-center space-x-3">
+            <a
+              href="https://github.com/jw-open/graph2sql"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+              className="p-2 rounded-md text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors"
+              aria-label="GitHub"
+            >
+              <Github size={18} />
+            </a>
+            <a
+              href="https://cloud.ohwise.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors"
             >
               Sign in
             </a>
-            <a 
-              href="https://cloud.ohwise.com" 
+            <a
+              href="https://cloud.ohwise.com"
               target="_blank"
               rel="noopener noreferrer"
-              className="px-4 py-2 rounded-md bg-blue-600 text-white text-sm font-medium transition-all hover:bg-blue-700 active:bg-blue-800 shadow-sm hover:shadow"
+              className="px-4 py-2 rounded-md bg-gray-900 dark:bg-white text-white dark:text-gray-900 text-sm font-medium transition-all hover:bg-gray-700 dark:hover:bg-gray-100"
             >
-              Sign up
+              Get started
             </a>
           </div>
 
@@ -162,16 +182,27 @@ const Navbar = () => {
         >
           Documentation
         </Link>
-        <Link 
-          to="/blog" 
+        <Link
+          to="/blog"
           className={cn(
             "py-3 px-4 rounded-md font-medium border-b border-gray-100 dark:border-gray-800",
-            isActive("/blog") 
-              ? "text-blue-600 dark:text-blue-400" 
+            isActive("/blog")
+              ? "text-blue-600 dark:text-blue-400"
               : "text-gray-700 dark:text-gray-300"
           )}
         >
           Blog
+        </Link>
+        <Link
+          to="/open-source"
+          className={cn(
+            "py-3 px-4 rounded-md font-medium border-b border-gray-100 dark:border-gray-800",
+            isActive("/open-source")
+              ? "text-indigo-600 dark:text-indigo-400"
+              : "text-gray-700 dark:text-gray-300"
+          )}
+        >
+          Open Source
         </Link>
         <div className="mt-4 flex flex-col space-y-3 px-4">
           <a 

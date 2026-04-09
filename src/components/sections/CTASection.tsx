@@ -1,7 +1,5 @@
-
 import React from "react";
-import { ArrowRight } from "lucide-react";
-import { Link } from "react-router-dom";
+import { ArrowRight, Github } from "lucide-react";
 import { Button } from "../ui/button";
 
 interface CTASectionProps {
@@ -12,43 +10,49 @@ interface CTASectionProps {
 }
 
 const CTASection: React.FC<CTASectionProps> = ({
-  title = "Ready to transform your operations with AI?",
-  subtitle = "Join innovative companies already using Ohwise to revolutionize their workflows.",
-  primaryButtonText = "Get Started",
+  title = "Start building on your own infrastructure.",
+  subtitle = "Open source core. Bring your own LLM. No data leaves your server.",
+  primaryButtonText = "Get started",
   primaryButtonLink = "https://cloud.ohwise.com/",
 }) => {
   return (
-    <section className="py-20 bg-gradient-to-br from-blue-600 to-indigo-700 text-white">
+    <section className="py-24 bg-white dark:bg-gray-900 border-t border-gray-100 dark:border-gray-800">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="max-w-4xl mx-auto text-center relative overflow-hidden rounded-2xl p-8 md:p-12 glass-effect bg-blue-600/20 border-blue-400/20">
-          {/* Background Elements */}
-          <div className="absolute inset-0 overflow-hidden">
-            <div className="absolute top-0 -right-4 w-32 h-32 bg-white/10 rounded-full filter blur-2xl"></div>
-            <div className="absolute bottom-0 -left-4 w-32 h-32 bg-white/10 rounded-full filter blur-2xl"></div>
-          </div>
-          
-          <div className="relative z-10">
-            <h2 className="text-3xl md:text-4xl font-display font-bold mb-4">
-              {title}
-            </h2>
-            <p className="text-xl md:text-2xl mb-8 text-blue-100">
-              {subtitle}
-            </p>
-            <div className="flex flex-col sm:flex-row justify-center gap-4">
-              <a 
-                href={primaryButtonLink}
-                target="_blank"
-                rel="noopener noreferrer"
+        <div className="max-w-2xl mx-auto text-center">
+          <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-4 tracking-tight">
+            {title}
+          </h2>
+          <p className="text-lg text-gray-500 dark:text-gray-400 mb-10">
+            {subtitle}
+          </p>
+          <div className="flex flex-col sm:flex-row justify-center gap-3">
+            <a
+              href={primaryButtonLink}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <Button
+                size="lg"
+                className="bg-gray-900 hover:bg-gray-800 dark:bg-white dark:text-gray-900 dark:hover:bg-gray-100 text-white flex items-center gap-2 w-full sm:w-auto"
               >
-                <Button 
-                  size="lg" 
-                  className="bg-white text-blue-600 hover:bg-blue-50 flex items-center gap-2"
-                >
-                  {primaryButtonText}
-                  <ArrowRight size={16} />
-                </Button>
-              </a>
-            </div>
+                {primaryButtonText}
+                <ArrowRight size={16} />
+              </Button>
+            </a>
+            <a
+              href="https://github.com/jw-open/graph2sql"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <Button
+                size="lg"
+                variant="outline"
+                className="flex items-center gap-2 w-full sm:w-auto"
+              >
+                <Github size={16} />
+                GitHub
+              </Button>
+            </a>
           </div>
         </div>
       </div>
