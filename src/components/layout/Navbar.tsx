@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Menu, X, Github } from "lucide-react";
 import { cn } from "@/lib/utils";
+import Logo from "./Logo";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -42,26 +43,8 @@ const Navbar = () => {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <nav className="flex items-center justify-between">
           {/* Logo */}
-          <Link to="/" className="flex items-center">
-            <div className="relative h-8 w-8 mr-3">
-              {/* Gradient circle matching favicon */}
-              <div className="absolute top-0 left-0 h-full w-full rounded-full bg-gradient-to-br from-indigo-600 to-purple-600"></div>
-              {/* Inner O shape with nodes */}
-              <div className="absolute top-0 left-0 h-full w-full flex items-center justify-center">
-                {/* Outer O circle */}
-                <div className="h-6 w-6 rounded-full border-2 border-white"></div>
-                {/* Central node */}
-                <div className="absolute h-2 w-2 rounded-full bg-white"></div>
-                {/* Top node */}
-                <div className="absolute h-1.5 w-1.5 rounded-full bg-white -top-0.5 left-1/2 transform -translate-x-1/2"></div>
-                {/* Right node */}
-                <div className="absolute h-1.5 w-1.5 rounded-full bg-white right-0 top-1/2 transform -translate-y-1/2"></div>
-                {/* Bottom node */}
-                <div className="absolute h-1.5 w-1.5 rounded-full bg-white -bottom-0.5 left-1/2 transform -translate-x-1/2"></div>
-                {/* Left node */}
-                <div className="absolute h-1.5 w-1.5 rounded-full bg-white left-0 top-1/2 transform -translate-y-1/2"></div>
-              </div>
-            </div>
+          <Link to="/" className="flex items-center gap-2.5">
+            <Logo size={32} />
             <span className="font-display font-bold text-xl">OhWise</span>
           </Link>
 
