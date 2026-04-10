@@ -1,5 +1,5 @@
 import React from "react";
-import { ArrowRight, Github } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { Button } from "../ui/button";
 
 interface CTASectionProps {
@@ -10,8 +10,8 @@ interface CTASectionProps {
 }
 
 const CTASection: React.FC<CTASectionProps> = ({
-  title = "Start building on your own infrastructure.",
-  subtitle = "Open source core. Bring your own LLM. No data leaves your server.",
+  title = "Ready to put your data to work?",
+  subtitle = "Let OhWise's agents handle the complexity. You focus on the decisions.",
   primaryButtonText = "Get started",
   primaryButtonLink = "https://cloud.ohwise.com/",
 }) => {
@@ -25,35 +25,20 @@ const CTASection: React.FC<CTASectionProps> = ({
           <p className="text-lg text-gray-500 dark:text-gray-400 mb-10">
             {subtitle}
           </p>
-          <div className="flex flex-col sm:flex-row justify-center gap-3">
-            <a
-              href={primaryButtonLink}
-              target="_blank"
-              rel="noopener noreferrer"
+          <a
+            href={primaryButtonLink}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-block"
+          >
+            <Button
+              size="lg"
+              className="bg-gray-900 hover:bg-gray-800 dark:bg-white dark:text-gray-900 dark:hover:bg-gray-100 text-white flex items-center gap-2"
             >
-              <Button
-                size="lg"
-                className="bg-gray-900 hover:bg-gray-800 dark:bg-white dark:text-gray-900 dark:hover:bg-gray-100 text-white flex items-center gap-2 w-full sm:w-auto"
-              >
-                {primaryButtonText}
-                <ArrowRight size={16} />
-              </Button>
-            </a>
-            <a
-              href="https://github.com/jw-open/graph2sql"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <Button
-                size="lg"
-                variant="outline"
-                className="flex items-center gap-2 w-full sm:w-auto"
-              >
-                <Github size={16} />
-                GitHub
-              </Button>
-            </a>
-          </div>
+              {primaryButtonText}
+              <ArrowRight size={16} />
+            </Button>
+          </a>
         </div>
       </div>
     </section>

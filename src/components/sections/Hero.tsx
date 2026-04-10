@@ -1,12 +1,11 @@
 import React from "react";
-import { ArrowRight, Github } from "lucide-react";
-import { Link } from "react-router-dom";
+import { ArrowRight, Sparkles, GitBranch, Zap } from "lucide-react";
 import { Button } from "../ui/button";
 
 const Hero: React.FC = () => {
   return (
     <div className="relative overflow-hidden bg-gray-950 text-white">
-      {/* Subtle grid background */}
+      {/* Subtle grid */}
       <div
         className="absolute inset-0 opacity-[0.04]"
         style={{
@@ -15,8 +14,6 @@ const Hero: React.FC = () => {
           backgroundSize: "48px 48px",
         }}
       />
-
-      {/* Glow accents */}
       <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-indigo-600/10 rounded-full filter blur-3xl pointer-events-none" />
       <div className="absolute bottom-1/3 right-1/4 w-80 h-80 bg-purple-600/10 rounded-full filter blur-3xl pointer-events-none" />
 
@@ -25,26 +22,26 @@ const Hero: React.FC = () => {
           {/* Eyebrow */}
           <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-white/10 bg-white/5 text-sm text-gray-400 mb-8">
             <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-            Open source · Self-hosted · Bring your own LLM
+            Multi-agent AI platform
           </div>
 
           {/* Headline */}
           <h1 className="font-bold text-4xl sm:text-5xl md:text-6xl leading-[1.1] tracking-tight mb-6">
-            Your AI platform.
+            AI agents that work
             <br />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-purple-400">
-              Your infrastructure.
+              together for your business.
             </span>
           </h1>
 
           {/* Subheadline */}
           <p className="text-lg md:text-xl text-gray-400 mb-10 max-w-2xl mx-auto leading-relaxed">
-            OhWise orchestrates AI agents as DAGs — coordinate specialized
-            agents, connect your databases and documents, and run everything
-            on your own server. No data leaves your infrastructure.
+            OhWise coordinates specialized AI agents across your data, documents,
+            and workflows — so you get answers, automation, and intelligence
+            without stitching together a dozen tools.
           </p>
 
-          {/* CTA buttons */}
+          {/* CTAs */}
           <div className="flex flex-col sm:flex-row justify-center gap-3">
             <a
               href="https://cloud.ohwise.com"
@@ -61,9 +58,7 @@ const Hero: React.FC = () => {
               </Button>
             </a>
             <a
-              href="https://github.com/jw-open/graph2sql"
-              target="_blank"
-              rel="noopener noreferrer"
+              href="/product"
               className="w-full sm:w-auto"
             >
               <Button
@@ -71,78 +66,59 @@ const Hero: React.FC = () => {
                 variant="outline"
                 className="border-white/20 text-gray-300 hover:bg-white/5 flex items-center justify-center gap-2 w-full"
               >
-                <Github size={16} />
-                View on GitHub
+                See how it works
               </Button>
             </a>
           </div>
         </div>
 
-        {/* Code snippet preview */}
-        <div className="mt-16 md:mt-20 max-w-2xl mx-auto">
-          <div className="rounded-xl border border-white/10 bg-gray-900 overflow-hidden">
-            {/* Terminal bar */}
-            <div className="flex items-center gap-1.5 px-4 py-3 border-b border-white/10 bg-gray-950/60">
-              <div className="w-3 h-3 rounded-full bg-red-500/60" />
-              <div className="w-3 h-3 rounded-full bg-yellow-500/60" />
-              <div className="w-3 h-3 rounded-full bg-green-500/60" />
-              <span className="ml-2 text-xs text-gray-500 font-mono">graph2sql · schema context</span>
+        {/* Agent flow visual */}
+        <div className="mt-16 md:mt-20 max-w-3xl mx-auto">
+          <div className="rounded-xl border border-white/10 bg-gray-900/60 backdrop-blur p-8">
+            <p className="text-xs text-gray-500 uppercase tracking-widest text-center mb-8">
+              How OhWise works
+            </p>
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 text-center">
+              <div className="flex flex-col items-center gap-3">
+                <div className="w-12 h-12 rounded-xl bg-indigo-600/20 border border-indigo-500/30 flex items-center justify-center">
+                  <Sparkles className="w-5 h-5 text-indigo-400" />
+                </div>
+                <div>
+                  <p className="text-sm font-semibold text-white mb-1">Your question</p>
+                  <p className="text-xs text-gray-500 leading-relaxed">
+                    Ask in plain language — no SQL, no code required
+                  </p>
+                </div>
+              </div>
+
+              <div className="flex flex-col items-center gap-3">
+                <div className="w-12 h-12 rounded-xl bg-purple-600/20 border border-purple-500/30 flex items-center justify-center">
+                  <GitBranch className="w-5 h-5 text-purple-400" />
+                </div>
+                <div>
+                  <p className="text-sm font-semibold text-white mb-1">Agents coordinate</p>
+                  <p className="text-xs text-gray-500 leading-relaxed">
+                    Specialized agents run in parallel across your data sources
+                  </p>
+                </div>
+              </div>
+
+              <div className="flex flex-col items-center gap-3">
+                <div className="w-12 h-12 rounded-xl bg-emerald-600/20 border border-emerald-500/30 flex items-center justify-center">
+                  <Zap className="w-5 h-5 text-emerald-400" />
+                </div>
+                <div>
+                  <p className="text-sm font-semibold text-white mb-1">Results delivered</p>
+                  <p className="text-xs text-gray-500 leading-relaxed">
+                    Answers, reports, and actions — ready to use
+                  </p>
+                </div>
+              </div>
             </div>
-            <pre className="p-5 text-sm font-mono leading-relaxed overflow-x-auto">
-              <code>
-                <span className="text-gray-500"># Build a schema graph — no LLM needed</span>{"\n"}
-                <span className="text-indigo-400">from</span>{" "}
-                <span className="text-white">graph2sql</span>{" "}
-                <span className="text-indigo-400">import</span>{" "}
-                <span className="text-white">SchemaGraph</span>{"\n\n"}
-                <span className="text-white">graph</span>{" "}
-                <span className="text-gray-400">=</span>{" "}
-                <span className="text-emerald-400">SchemaGraph</span>
-                <span className="text-gray-400">()</span>{"\n"}
-                <span className="text-white">graph</span>
-                <span className="text-gray-400">.</span>
-                <span className="text-yellow-300">add_node</span>
-                <span className="text-gray-400">(</span>
-                <span className="text-orange-300">"orders"</span>
-                <span className="text-gray-400">,</span>{" "}
-                <span className="text-orange-300">"orders"</span>
-                <span className="text-gray-400">,</span>{" "}
-                <span className="text-white">content</span>
-                <span className="text-gray-400">=</span>
-                <span className="text-orange-300">"id, customer_id, total"</span>
-                <span className="text-gray-400">)</span>{"\n"}
-                <span className="text-white">graph</span>
-                <span className="text-gray-400">.</span>
-                <span className="text-yellow-300">add_node</span>
-                <span className="text-gray-400">(</span>
-                <span className="text-orange-300">"customers"</span>
-                <span className="text-gray-400">,</span>{" "}
-                <span className="text-orange-300">"customers"</span>
-                <span className="text-gray-400">,</span>{" "}
-                <span className="text-white">content</span>
-                <span className="text-gray-400">=</span>
-                <span className="text-orange-300">"id, name, email"</span>
-                <span className="text-gray-400">)</span>{"\n\n"}
-                <span className="text-gray-500"># Rank relevant tables for this query</span>{"\n"}
-                <span className="text-white">context</span>{" "}
-                <span className="text-gray-400">=</span>{" "}
-                <span className="text-white">graph</span>
-                <span className="text-gray-400">.</span>
-                <span className="text-yellow-300">rank</span>
-                <span className="text-gray-400">(</span>
-                <span className="text-orange-300">"total revenue by customer"</span>
-                <span className="text-gray-400">, </span>
-                <span className="text-white">k</span>
-                <span className="text-gray-400">=</span>
-                <span className="text-purple-300">3</span>
-                <span className="text-gray-400">)</span>
-              </code>
-            </pre>
           </div>
         </div>
       </div>
 
-      {/* Fade to white transition */}
       <div className="h-24 bg-gradient-to-b from-gray-950 to-white dark:to-gray-900" />
     </div>
   );
