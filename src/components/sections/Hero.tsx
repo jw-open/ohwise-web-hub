@@ -50,10 +50,11 @@ const Hero: React.FC = () => {
               href="https://cloud.ohwise.com"
               target="_blank"
               rel="noopener noreferrer"
+              className="w-full sm:w-auto"
             >
               <Button
                 size="lg"
-                className="bg-indigo-600 hover:bg-indigo-500 text-white flex items-center gap-2 w-full sm:w-auto"
+                className="bg-indigo-600 hover:bg-indigo-500 text-white flex items-center justify-center gap-2 w-full"
               >
                 Get started
                 <ArrowRight size={16} />
@@ -63,11 +64,12 @@ const Hero: React.FC = () => {
               href="https://github.com/jw-open/graph2sql"
               target="_blank"
               rel="noopener noreferrer"
+              className="w-full sm:w-auto"
             >
               <Button
                 size="lg"
                 variant="outline"
-                className="border-white/20 text-gray-300 hover:bg-white/5 flex items-center gap-2 w-full sm:w-auto"
+                className="border-white/20 text-gray-300 hover:bg-white/5 flex items-center justify-center gap-2 w-full"
               >
                 <Github size={16} />
                 View on GitHub
