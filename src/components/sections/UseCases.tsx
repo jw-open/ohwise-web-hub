@@ -1,11 +1,11 @@
 import React, { useState } from "react";
-import { TrendingUp, Headphones, Megaphone, Heart, ArrowRight } from "lucide-react";
+import { TrendingUp, Headphones, Megaphone, Heart, FlaskConical, ArrowRight } from "lucide-react";
 
 const useCases = [
   {
     id: "sales",
     icon: <TrendingUp className="w-5 h-5" />,
-    industry: "Sales Operations",
+    industry: "Sales Copilot",
     problem: "Accounts slip through renewal without warning.",
     description:
       "OhWise monitors contract dates, usage signals, and support history across your CRM — surfacing at-risk accounts before renewal day, so your team can act before it's too late.",
@@ -25,7 +25,7 @@ const useCases = [
   {
     id: "marketing",
     icon: <Megaphone className="w-5 h-5" />,
-    industry: "Marketing Operations",
+    industry: "Marketing Copilot",
     problem: "Customer data sits in silos. Campaigns go to the wrong people.",
     description:
       "OhWise agents cross-reference purchase history, engagement data, and firmographics to build precise segments — triggering personalized outreach without anyone writing a query.",
@@ -41,6 +41,16 @@ const useCases = [
       "Agents extract policy terms from documents, cross-check claim details against coverage rules, and flag exceptions — reducing processing time and catching discrepancies before they cost you.",
     outcomes: ["Policy terms extracted from PDFs", "Claim validation automated", "Exception reports generated instantly"],
     color: "rose",
+  },
+  {
+    id: "research",
+    icon: <FlaskConical className="w-5 h-5" />,
+    industry: "Research",
+    problem: "Keeping up with the literature takes longer than the actual research.",
+    description:
+      "OhWise builds a knowledge graph from your papers, reports, and datasets — connecting findings, methodologies, and citations across your entire corpus. Ask questions in plain language and get synthesized answers with source attribution.",
+    outcomes: ["Hundreds of papers synthesized automatically", "Cross-paper connections surfaced", "Hypotheses grounded in cited evidence"],
+    color: "sky",
   },
 ];
 
@@ -72,6 +82,13 @@ const colorMap: Record<string, { bg: string; border: string; icon: string; badge
     icon: "bg-rose-100 dark:bg-rose-900/40 text-rose-600 dark:text-rose-400",
     badge: "bg-rose-100 text-rose-700 dark:bg-rose-900/40 dark:text-rose-300",
     dot: "bg-rose-500",
+  },
+  sky: {
+    bg: "bg-sky-50 dark:bg-sky-950/20",
+    border: "border-sky-200 dark:border-sky-800",
+    icon: "bg-sky-100 dark:bg-sky-900/40 text-sky-600 dark:text-sky-400",
+    badge: "bg-sky-100 text-sky-700 dark:bg-sky-900/40 dark:text-sky-300",
+    dot: "bg-sky-500",
   },
 };
 
