@@ -1,8 +1,23 @@
 # ohwise-web-hub
 
-Official website for [OhWise](https://ohwise.com) — landing page, docs, and open-source showcase.
+Official website for [OhWise](https://ohwise.com) — the multi-agent AI platform.
 
-**Stack:** Vite + React + TypeScript + Tailwind CSS + shadcn/ui
+Landing page, documentation, blog, and open-source showcase.
+
+**Stack:** Vite · React · TypeScript · Tailwind CSS · shadcn/ui
+
+---
+
+## What OhWise is
+
+OhWise coordinates specialized AI agents across your data, documents, and workflows. Instead of stitching together a dozen tools, you ask a question and agents handle the analysis — in parallel, across your databases and knowledge bases.
+
+**Use cases featured on the landing page:**
+- Sales Copilot — churn risk, renewal prioritization
+- Marketing Copilot — segmentation, lead scoring, campaign automation
+- Customer Support — ticket resolution from knowledge base
+- Healthcare & Insurance — claims intake and policy validation
+- Research — knowledge graph synthesis across papers and reports
 
 ---
 
@@ -21,14 +36,14 @@ npm run build
 
 ## Deploy
 
-Deployed via Docker through `local-container-orchestration`:
+Rebuilt and deployed via Docker from `local-container-orchestration`:
 
 ```bash
-cd /path/to/local-container-orchestration
-docker compose up -d ohwise-hub
+cd local-container-orchestration
+docker compose up -d --build ohwise-hub
 ```
 
-The container builds from source — no remote image needed.
+No remote image — container builds from local source on every deploy.
 
 ---
 
@@ -36,8 +51,16 @@ The container builds from source — no remote image needed.
 
 | Route | Description |
 |---|---|
-| `/` | Landing page |
+| `/` | Landing page — hero, use cases, features, CTA |
+| `/product` | Product detail |
+| `/documentation` | Docs (with nested `/documentation/:id`) |
+| `/blog` | Blog (with nested `/blog/:id`, `/blog/post/:id`) |
 | `/open-source` | graph2sql + doc2graph showcase |
+| `/about` | About |
+| `/contact` | Contact |
+| `/security` | Security policy |
+| `/privacy` | Privacy policy |
+| `/terms` | Terms of service |
 
 ---
 
@@ -45,10 +68,29 @@ The container builds from source — no remote image needed.
 
 ```
 src/
-├── pages/          # Route-level components (Home, OpenSource, ...)
+├── pages/               # Route-level components
 ├── components/
-│   ├── layout/     # Navbar, Footer
-│   └── ui/         # shadcn/ui primitives
-├── App.tsx         # Routes
-└── main.tsx        # Entry point
+│   ├── layout/
+│   │   ├── Navbar.tsx   # Navigation + unified logo
+│   │   ├── Footer.tsx
+│   │   └── Logo.tsx     # SVG logo — matches favicon exactly
+│   ├── sections/        # Landing page sections
+│   │   ├── Hero.tsx
+│   │   ├── UseCases.tsx # Interactive industry tabs
+│   │   ├── Features.tsx
+│   │   ├── FAQ.tsx
+│   │   └── CTASection.tsx
+│   └── ui/              # shadcn/ui primitives
+├── App.tsx              # Routes
+└── main.tsx             # Entry point
 ```
+
+---
+
+## Related repos
+
+| Repo | Description |
+|---|---|
+| [ohwise_backend](https://github.com/jw-open) | FastAPI backend — DAG execution, multi-agent orchestration |
+| [graph2sql](https://github.com/jw-open/graph2sql) | Open source — schema graph + PPR for text-to-SQL |
+| [doc2graph](https://github.com/jw-open/doc2graph) | Open source — knowledge graph extraction from documents |
