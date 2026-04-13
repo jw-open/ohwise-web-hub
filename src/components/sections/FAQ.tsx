@@ -11,33 +11,33 @@ interface FAQItem {
 const faqItems: FAQItem[] = [
   {
     id: 1,
-    question: "What is Ohwise?",
-    answer: "Ohwise is a multi-agent AI Ops system that integrates several cutting-edge AI technologies including text-to-SQL capabilities, customer support automation, knowledge graph (GraphRAG) functionality, and multi-agent collaboration. It's designed to streamline operations and enhance productivity across your organization."
+    question: "What is OhWise?",
+    answer: "OhWise is a multi-agent AI Ops system that integrates several cutting-edge AI technologies including text-to-SQL capabilities, customer support automation, knowledge graph (GraphRAG) functionality, and multi-agent collaboration. It's designed to streamline operations and enhance productivity across your organization."
   },
   {
     id: 2,
     question: "How does the text-to-SQL feature work?",
-    answer: "Ohwise's text-to-SQL feature uses natural language processing to interpret everyday language queries and convert them into SQL code. This allows non-technical team members to access database insights without needing to know SQL, while ensuring accuracy and security in the queries generated."
+    answer: "OhWise's text-to-SQL feature uses natural language processing to interpret everyday language queries and convert them into SQL code. This allows non-technical team members to access database insights without needing to know SQL, while ensuring accuracy and security in the queries generated."
   },
   {
     id: 3,
-    question: "What types of businesses can benefit from Ohwise?",
-    answer: "Ohwise is versatile and beneficial for a wide range of businesses, from startups to enterprise-level organizations. It's particularly valuable for companies with complex data operations, customer support needs, or those looking to leverage AI for operational efficiency. Industries such as finance, healthcare, e-commerce, and technology services have seen significant benefits."
+    question: "What types of businesses can benefit from OhWise?",
+    answer: "OhWise is versatile and beneficial for a wide range of businesses, from startups to enterprise-level organizations. It's particularly valuable for companies with complex data operations, customer support needs, or those looking to leverage AI for operational efficiency. Industries such as finance, healthcare, e-commerce, and technology services have seen significant benefits."
   },
   {
     id: 4,
-    question: "How secure is Ohwise with our sensitive data?",
-    answer: "Security is a top priority at Ohwise. We implement enterprise-grade security measures including end-to-end encryption, role-based access controls, and compliance with industry standards. Your data never leaves your secure environment unless explicitly configured to do so, and all processing follows strict security protocols."
+    question: "How secure is OhWise with our sensitive data?",
+    answer: "Security is a top priority at OhWise. We implement enterprise-grade security measures including end-to-end encryption, role-based access controls, and compliance with industry standards. Your data never leaves your secure environment unless explicitly configured to do so, and all processing follows strict security protocols."
   },
   {
     id: 5,
-    question: "Can Ohwise integrate with our existing systems?",
-    answer: "Yes, Ohwise is designed for seamless integration with your existing tech stack. We provide comprehensive APIs and pre-built connectors for popular platforms and databases. Our team can also work with you to develop custom integrations for specialized systems if needed."
+    question: "Can OhWise integrate with our existing systems?",
+    answer: "Yes, OhWise is designed for seamless integration with your existing tech stack. We provide comprehensive APIs and pre-built connectors for popular platforms and databases. Our team can also work with you to develop custom integrations for specialized systems if needed."
   },
   {
     id: 6,
-    question: "How is Ohwise priced?",
-    answer: "Ohwise offers flexible pricing tiers based on your organization's needs. We have plans suitable for small teams, growing businesses, and enterprise organizations. Each plan includes different levels of features, usage limits, and support. For detailed pricing information, please visit our pricing page or contact our sales team for a custom quote."
+    question: "How is OhWise priced?",
+    answer: "OhWise offers flexible pricing tiers based on your organization's needs. We have plans suitable for small teams, growing businesses, and enterprise organizations. Each plan includes different levels of features, usage limits, and support. For detailed pricing information, please visit our pricing page or contact our sales team for a custom quote."
   }
 ];
 

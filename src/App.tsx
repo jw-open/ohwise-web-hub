@@ -23,6 +23,7 @@ import Blog from "./pages/Blog";
 import BlogPost from "./pages/BlogPost";
 import BlogContent from "./pages/BlogContent";
 import Admin from "./pages/Admin";
+import OpenSource from "./pages/OpenSource";
 
 const queryClient = new QueryClient();
 
@@ -74,6 +75,7 @@ const App = () => {
             <Route path="/blog/:id" element={<BlogPost />} />
             <Route path="/blog/post/:id" element={<BlogContent />} />
             <Route path="/admin" element={<Admin />} />
+            <Route path="/open-source" element={<OpenSource />} />
             {/* Redirect pricing to 404 */}
             <Route path="/pricing" element={<NotFound />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}

@@ -162,7 +162,7 @@ const About = () => {
         {/* CTA Section */}
         <CTASection 
           title="Join us in our mission"
-          subtitle="Get started with Ohwise today and transform the way your business operates."
+          subtitle="Get started with OhWise today and transform the way your business operates."
           primaryButtonText="Get Started"
           primaryButtonLink="https://cloud.ohwise.com/"
         />

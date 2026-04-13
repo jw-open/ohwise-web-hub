@@ -1,0 +1,170 @@
+import React, { useEffect } from "react";
+import { Link } from "react-router-dom";
+import Navbar from "../components/layout/Navbar";
+import Footer from "../components/layout/Footer";
+import { GitBranch, ExternalLink, Terminal, Star, Package } from "lucide-react";
+
+const projects = [
+  {
+    name: "graph2sql",
+    tagline: "Graph-based schema ranking for text-to-SQL. Bring your own LLM.",
+    description:
+      "Build a schema graph from your database (tables and columns as nodes, relationships as edges), then rank relevant nodes for any natural language question using Personalized PageRank. Feed the ranked subgraph as context to any LLM for accurate SQL generation.",
+    status: "active",
+    language: "Python",
+    install: "pip install graph2sql",
+    github: "https://github.com/jw-open/graph2sql",
+    features: [
+      "No LLM dependency — pure Python + numpy",
+      "Personalized PageRank for schema-aware ranking",
+      "Alias matching via node attributes",
+      "Pip installable, fully typed",
+    ],
+    snippet: `from graph2sql import SchemaGraph
+
+graph = SchemaGraph()
+graph.add_node("orders",    "orders",    content="id, customer_id, total")
+graph.add_node("customers", "customers", content="id, name, email")
+graph.add_edge("orders", "customers", "belongs_to")
+
+context = graph.rank("total revenue by customer", k=3)
+# pass context to your LLM → SQL`,
+  },
+  {
+    name: "doc2graph",
+    tagline: "Document to knowledge graph extraction. Coming soon.",
+    description:
+      "Extract structured knowledge graphs from long documents and files. Build entity-relationship graphs from unstructured text for downstream retrieval and question answering.",
+    status: "coming-soon",
+    language: "Python",
+    install: null,
+    github: "https://github.com/jw-open/doc2graph",
+    features: [
+      "File and document ingestion",
+      "Entity and relationship extraction",
+      "Graph-based question answering",
+      "No LLM dependency for graph construction",
+    ],
+    snippet: null,
+  },
+];
+
+const OpenSource = () => {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
+  return (
+    <div className="flex flex-col min-h-screen">
+      <Navbar />
+
+      <main className="flex-grow pt-16">
+        {/* Hero */}
+        <section className="py-20 bg-gradient-to-b from-indigo-50 to-white dark:from-gray-900 dark:to-gray-800">
+          <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="max-w-3xl mx-auto text-center">
+              <div className="inline-flex items-center gap-2 bg-indigo-100 dark:bg-indigo-900/30 text-indigo-700 dark:text-indigo-300 rounded-full px-4 py-1.5 text-sm font-medium mb-6">
+                <GitBranch size={14} />
+                Open Source
+              </div>
+              <h1 className="font-display font-bold text-4xl sm:text-5xl text-gray-900 dark:text-white mb-6 leading-tight">
+                Built in public
+              </h1>
+              <p className="text-lg text-gray-600 dark:text-gray-300">
+                Standalone Python libraries extracted from the OhWise platform.
+                No LLM dependencies. No infra required. Bring your own model.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        {/* Projects */}
+        <section className="py-16 bg-white dark:bg-gray-900">
+          <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-4xl">
+            <div className="space-y-12">
+              {projects.map((project) => (
+                <div
+                  key={project.name}
+                  className={`rounded-2xl border ${
+                    project.status === "coming-soon"
+                      ? "border-gray-200 dark:border-gray-700 opacity-70"
+                      : "border-indigo-100 dark:border-indigo-900/50"
+                  } bg-white dark:bg-gray-800 p-8 shadow-sm`}
+                >
+                  {/* Header */}
+                  <div className="flex items-start justify-between flex-wrap gap-4 mb-4">
+                    <div className="flex items-center gap-3">
+                      <div className="p-2 bg-indigo-100 dark:bg-indigo-900/30 rounded-lg">
+                        <Package className="w-5 h-5 text-indigo-600 dark:text-indigo-400" />
+                      </div>
+                      <div>
+                        <h2 className="text-xl font-display font-bold text-gray-900 dark:text-white">
+                          {project.name}
+                        </h2>
+                        <span
+                          className={`text-xs font-medium px-2 py-0.5 rounded-full ${
+                            project.status === "active"
+                              ? "bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400"
+                              : "bg-gray-100 text-gray-500 dark:bg-gray-700 dark:text-gray-400"
+                          }`}
+                        >
+                          {project.status === "active" ? "v0.1.0 · active" : "coming soon"}
+                        </span>
+                      </div>
+                    </div>
+                    <a
+                      href={project.github}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center gap-1.5 text-sm text-gray-600 dark:text-gray-400 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors"
+                    >
+                      <Star size={14} />
+                      GitHub
+                      <ExternalLink size={12} />
+                    </a>
+                  </div>
+
+                  <p className="text-gray-500 dark:text-gray-400 text-sm mb-1 font-medium">
+                    {project.tagline}
+                  </p>
+                  <p className="text-gray-600 dark:text-gray-300 mb-6">
+                    {project.description}
+                  </p>
+
+                  {/* Features */}
+                  <ul className="grid sm:grid-cols-2 gap-2 mb-6">
+                    {project.features.map((f) => (
+                      <li key={f} className="flex items-start gap-2 text-sm text-gray-600 dark:text-gray-300">
+                        <span className="text-indigo-500 mt-0.5">✓</span>
+                        {f}
+                      </li>
+                    ))}
+                  </ul>
+
+                  {/* Install + snippet */}
+                  {project.install && (
+                    <div className="space-y-3">
+                      <div className="flex items-center gap-2 bg-gray-900 dark:bg-gray-950 text-gray-100 rounded-lg px-4 py-2.5 text-sm font-mono">
+                        <Terminal size={14} className="text-gray-500 flex-shrink-0" />
+                        {project.install}
+                      </div>
+                      {project.snippet && (
+                        <pre className="bg-gray-900 dark:bg-gray-950 text-gray-100 rounded-lg p-4 text-xs font-mono overflow-x-auto leading-relaxed">
+                          {project.snippet}
+                        </pre>
+                      )}
+                    </div>
+                  )}
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      </main>
+
+      <Footer />
+    </div>
+  );
+};
+
+export default OpenSource;

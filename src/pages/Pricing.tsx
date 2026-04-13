@@ -171,7 +171,7 @@ const Pricing = () => {
               </h1>
               <p className="text-lg md:text-xl text-gray-700 dark:text-gray-300 mb-8 animate-slide-in">
                 Choose the plan that best fits your organization's needs.
-                All plans include core Ohwise functionality.
+                All plans include core OhWise functionality.
               </p>
               
               {/* Pricing Toggle */}

@@ -91,7 +91,7 @@ const Security = () => {
         
         <CTASection 
           title="Ready to experience enterprise-grade security?"
-          subtitle="Start using Ohwise today with confidence in our robust security practices."
+          subtitle="Start using OhWise today with confidence in our robust security practices."
           primaryButtonText="Get Started"
           primaryButtonLink="https://cloud.ohwise.com/"
         />

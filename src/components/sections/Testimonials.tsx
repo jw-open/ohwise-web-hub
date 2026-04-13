@@ -14,7 +14,7 @@ interface Testimonial {
 const testimonials: Testimonial[] = [
   {
     id: 1,
-    content: "Ohwise has transformed how our data scientists interact with our databases. The text-to-SQL feature alone has saved us countless hours of work.",
+    content: "OhWise has transformed how our data scientists interact with our databases. The text-to-SQL feature alone has saved us countless hours of work.",
     author: "Sarah Johnson",
     role: "CTO",
     company: "TechNova Inc.",
@@ -30,7 +30,7 @@ const testimonials: Testimonial[] = [
   },
   {
     id: 3,
-    content: "Our customer support team is now able to handle 3x the volume of requests with the same headcount, thanks to Ohwise's automation capabilities.",
+    content: "Our customer support team is now able to handle 3x the volume of requests with the same headcount, thanks to OhWise's automation capabilities.",
     author: "Priya Patel",
     role: "Head of Customer Success",
     company: "GlobalServe",
@@ -100,7 +100,7 @@ const Testimonials = () => {
             Trusted by Innovative Companies
           </h2>
           <p className="text-xl text-gray-600 dark:text-gray-400">
-            See how Ohwise is helping organizations transform their operations
+            See how OhWise is helping organizations transform their operations
           </p>
         </div>
 

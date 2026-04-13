@@ -42,7 +42,7 @@ const Product = () => {
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
             <div className="max-w-3xl mx-auto text-center">
               <h1 className="font-display font-bold text-4xl sm:text-5xl md:text-6xl text-gray-900 dark:text-white mb-6 leading-tight animate-fade-in">
-                Meet Ohwise
+                Meet OhWise
               </h1>
               <p className="text-lg md:text-xl text-gray-700 dark:text-gray-300 mb-8 animate-slide-in">
                 The complete multi-agent AI Ops system that streamlines your operations
@@ -305,7 +305,7 @@ const Product = () => {
             </div>
             
             <p className="text-gray-700 dark:text-gray-300 max-w-3xl mx-auto">
-              Ohwise's multi-agent system enables complex workflow automation where each specialized agent contributes its expertise to solve problems that would be difficult for a single system.
+              OhWise's multi-agent system enables complex workflow automation where each specialized agent contributes its expertise to solve problems that would be difficult for a single system.
             </p>
           </div>
         </section>
@@ -353,8 +353,8 @@ const Product = () => {
 
         {/* CTA Section */}
         <CTASection 
-          title="Experience the power of Ohwise"
-          subtitle="Schedule a demo to see how Ohwise can transform your operations."
+          title="Experience the power of OhWise"
+          subtitle="Schedule a demo to see how OhWise can transform your operations."
           primaryButtonText="Get Started"
           primaryButtonLink="https://cloud.ohwise.com/"
         />

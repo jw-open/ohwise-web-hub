@@ -255,7 +255,7 @@ const Documentation = () => {
 
         {/* CTA Section */}
         <CTASection 
-          title="Ready to get started with Ohwise?"
+          title="Ready to get started with OhWise?"
           subtitle="Explore our platform and discover how it can transform your operations."
           primaryButtonText="Get Started"
           primaryButtonLink="https://cloud.ohwise.com/"

@@ -54,7 +54,7 @@ const Contact = () => {
           <div className="max-w-3xl mx-auto">
             <h1 className="text-4xl font-bold text-center mb-8">Contact Us</h1>
             <p className="text-lg text-gray-600 dark:text-gray-300 text-center mb-12">
-              Have questions about Ohwise? Our team is here to help.
+              Have questions about OhWise? Our team is here to help.
             </p>
             
             <div className="bg-white dark:bg-gray-800 rounded-lg shadow-sm p-8">
