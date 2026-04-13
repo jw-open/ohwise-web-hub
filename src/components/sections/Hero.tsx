@@ -64,7 +64,7 @@ const Hero: React.FC = () => {
               <Button
                 size="lg"
                 variant="outline"
-                className="border-white/20 text-gray-300 hover:bg-white/5 flex items-center justify-center gap-2 w-full"
+                className="border-white/60 text-white hover:bg-white/10 hover:border-white flex items-center justify-center gap-2 w-full"
               >
                 See how it works
               </Button>
