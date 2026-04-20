@@ -62,6 +62,110 @@ const BLOG_POSTS = [
     tags: ["Product Update", "AI Operations", "Multi-agent Systems"],
     image: "https://images.unsplash.com/photo-1620712943543-bcc4688e7485?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3"
   },
+  {
+    id: 7,
+    title: "Beyond Harness Engineering: How OhWise Automates the Scaffolding at Scale",
+    content: `
+      <p class="lead">Every serious AI team eventually hits the same wall. You start with a prompt. Then you need retry logic. Then routing to different models. Then context injection. Then evals. Then tool-use scaffolding. Then multi-step chains. Before long, you have thousands of lines of bespoke "harness" code that has nothing to do with your actual product — and it's fragile, hard to test, and impossible to hand off.</p>
+
+      <p>This is harness engineering: the invisible tax every team pays to make LLMs production-ready. OhWise was built to eliminate it.</p>
+
+      <h2>What Is Harness Engineering?</h2>
+
+      <p>Harness engineering is the practice of building the scaffolding around an LLM to make it useful in a real system. It includes:</p>
+
+      <ul>
+        <li><strong>Prompt chaining</strong> — sequencing multiple LLM calls where each output feeds the next input</li>
+        <li><strong>Context management</strong> — deciding what information to include, truncate, summarize, or retrieve</li>
+        <li><strong>Retry and fallback logic</strong> — handling rate limits, timeouts, hallucinations, and partial failures</li>
+        <li><strong>Tool use scaffolding</strong> — routing the model to APIs, databases, or other services and parsing the results</li>
+        <li><strong>Evaluation and guardrails</strong> — detecting when an output is wrong, toxic, or off-policy before it reaches a user</li>
+        <li><strong>State management</strong> — persisting intermediate results across a multi-step workflow</li>
+      </ul>
+
+      <p>Each of these is a solved problem in isolation. The trouble is that they compound. A six-step agent workflow with fallbacks, evals, and tool use at each step doesn't have six problems — it has combinatorial ones. Teams end up building custom state machines, writing bespoke orchestration code, and reinventing patterns that every other AI team is also reinventing in parallel.</p>
+
+      <h2>Why Harness Engineering Doesn't Scale</h2>
+
+      <p>The deeper problem isn't the complexity — it's the ownership model. Harness code is typically written by the same engineers building the product feature. That means:</p>
+
+      <ul>
+        <li>Every new agent or workflow requires a new harness from scratch</li>
+        <li>Changes to one agent's logic can silently break another's</li>
+        <li>There is no standard interface — each harness is idiosyncratic</li>
+        <li>Deploying the same agent for a second customer or team means duplicating or carefully parameterizing the entire harness</li>
+        <li>Observability is an afterthought; you have to instrument each harness individually</li>
+      </ul>
+
+      <p>At one agent, this is manageable. At ten agents across five teams in a multi-tenant SaaS product, it becomes the primary source of engineering debt.</p>
+
+      <h2>OhWise: The Harness Becomes the Platform</h2>
+
+      <p>OhWise inverts the model. Instead of each team building its own harness, the harness is the platform — declared once, executed consistently, and extended through configuration rather than code.</p>
+
+      <h3>DAG-Based Execution</h3>
+
+      <p>In OhWise, a multi-step agent workflow is modeled as a directed acyclic graph (DAG). Each node is a task with a defined input/output contract. The platform handles execution order, parallelism where possible, and dependency resolution automatically. Engineers define <em>what</em> needs to happen and in what order — the platform handles <em>how</em>.</p>
+
+      <p>This means adding a new step to a workflow is a configuration change, not a code change. The retry logic, timeout handling, and state persistence are inherited, not written again.</p>
+
+      <h3>State Machine Coordination</h3>
+
+      <p>Long-running agent workflows — ones that span multiple user turns, wait for external events, or require human approval — are managed by OhWise's state machine layer. When a workflow suspends (waiting for user input, an API response, or a scheduled trigger), its state is serialized and stored. When the trigger fires, execution resumes exactly where it left off, with full context restored.</p>
+
+      <p>This is the piece that most hand-rolled harnesses never properly implement. Teams either block a thread, poll a database, or lose state on restart. OhWise treats resumable execution as a primitive.</p>
+
+      <h3>Knowledge Graph Context Injection</h3>
+
+      <p>Rather than manually constructing prompts with relevant context at each step, OhWise agents draw from a structured knowledge graph. The platform traverses relationships, ranks relevance, and injects the right context at the right step — without the developer writing context-retrieval code for every node.</p>
+
+      <p>This is what separates intelligent retrieval from naive RAG. The knowledge graph knows that a customer's billing history is relevant to a refund agent but not a technical support agent, and applies that distinction automatically based on the agent's declared scope.</p>
+
+      <h2>Automated Harness Engineering at Multi-Tenant Scale</h2>
+
+      <p>The single-tenant version of this is already valuable. The multi-tenant version is where OhWise's architectural choices pay the largest dividend.</p>
+
+      <p>In a multi-tenant deployment, every customer organization needs:</p>
+      <ul>
+        <li>Isolated agent configurations (their agents, their prompts, their tools)</li>
+        <li>Isolated execution contexts (their data, their conversation history, their knowledge graph)</li>
+        <li>Shared infrastructure (the DAG runner, the state machine, the Redis pub/sub layer, the Lambda execution environment)</li>
+        <li>Per-tenant observability (logs and traces scoped to their organization)</li>
+      </ul>
+
+      <p>In a traditional harness-engineering world, multi-tenancy means either running one harness instance per tenant (expensive and operationally heavy) or carefully threading tenant IDs through every piece of custom logic (fragile and hard to audit).</p>
+
+      <p>OhWise handles this at the platform level. The group_id and tenant identity flow through every layer — from the WebSocket connection through Redis pub/sub to Lambda execution — without the application developer touching it. A new tenant getting their own isolated agent workspace is not a deployment event; it's a data event.</p>
+
+      <h3>Configuration, Not Code</h3>
+
+      <p>When a new agent is created in OhWise, the developer specifies the DAG topology, the task definitions, the model and tool bindings, and the knowledge sources. The platform generates the harness. There is no orchestration code to write, no retry logic to implement, no state serialization to design.</p>
+
+      <p>This means a team that would previously spend two engineering weeks building the scaffolding for a new agent can instead spend two hours on the agent's actual logic. The harness is infrastructure — it should be boring and reliable, not novel and hand-crafted every time.</p>
+
+      <h2>Observability Across All Agents</h2>
+
+      <p>Because every agent runs through the same platform, observability is uniform. Every task execution, every LLM call, every tool invocation, and every state transition is captured in the same format. Debugging an agent failure doesn't require reading bespoke harness code to understand what happened — the execution trace is in the platform, structured the same way for every agent across every tenant.</p>
+
+      <p>This also makes evals tractable at scale. When the underlying execution model is consistent, you can run automated quality checks across your entire agent fleet, not just the one you happened to instrument this sprint.</p>
+
+      <h2>The Trajectory</h2>
+
+      <p>Harness engineering is what every AI-first team has to do today. It's the necessary friction between raw LLM capabilities and production-grade systems. But friction that is universal is friction that should be abstracted.</p>
+
+      <p>The teams that will move fastest in the next two years are not the ones that build the best harnesses. They are the ones that stop building harnesses at all — because they have a platform that builds them automatically, consistently, and at any scale.</p>
+
+      <p>That is what OhWise is for.</p>
+    `,
+    author: "OhWise Engineering",
+    authorTitle: "Platform Engineering Team",
+    authorAvatar: "https://images.unsplash.com/photo-1677442135703-1787eea5ce01?w=150&h=150&fit=crop&crop=faces",
+    date: "April 20, 2026",
+    readTime: "9 min read",
+    category: "Technical",
+    tags: ["Harness Engineering", "Multi-agent", "Platform", "Multi-tenant", "LLM Infrastructure"],
+    image: "https://images.unsplash.com/photo-1518432031352-d6fc5c10da5a?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3"
+  },
 ];
 
 // Mock related posts

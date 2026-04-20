@@ -72,6 +72,16 @@ const BLOG_POSTS = [
     category: "Announcements",
     image: "https://images.unsplash.com/photo-1504639725590-34d0984388bd?q=80&w=2774&auto=format&fit=crop&ixlib=rb-4.0.3"
   },
+  {
+    id: 7,
+    title: "Beyond Harness Engineering: How OhWise Automates the Scaffolding at Scale",
+    excerpt: "Every serious AI team eventually hits the same wall: the harness — prompt chains, retries, routing logic, evals, context injection — grows faster than the product. OhWise doesn't just reduce that burden, it eliminates it by making harness engineering itself a first-class automated concern, deployable across thousands of tenants.",
+    author: "OhWise Engineering",
+    date: "April 20, 2026",
+    readTime: "9 min read",
+    category: "Technical",
+    image: "https://images.unsplash.com/photo-1518432031352-d6fc5c10da5a?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3"
+  },
 ];
 
 const CATEGORIES = [
