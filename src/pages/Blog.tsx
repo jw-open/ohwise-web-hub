@@ -2,318 +2,258 @@
 import React, { useState, useEffect } from "react";
 import Navbar from "../components/layout/Navbar";
 import Footer from "../components/layout/Footer";
-import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Search, Calendar, Clock, User, Tag, ArrowRight } from "lucide-react";
+import { Search, Clock, ArrowUpRight } from "lucide-react";
 import { Link } from "react-router-dom";
 import SubscribeForm from "../components/blog/SubscribeForm";
 
-// Mock data for the blog
 const BLOG_POSTS = [
   {
     id: 1,
     title: "Introducing OhWise 2.0: The Next Generation of AI Operations",
-    excerpt: "Today, we're thrilled to announce the release of OhWise 2.0, our most significant platform update yet. This new version brings enhanced multi-agent capabilities, improved knowledge graph integration, and a completely redesigned user interface.",
+    excerpt: "Today, we're thrilled to announce the release of OhWise 2.0 — enhanced multi-agent capabilities, improved knowledge graph integration, and a completely redesigned user interface.",
     author: "Sarah Johnson",
     date: "August 15, 2023",
-    readTime: "5 min read",
+    readTime: "5 min",
     category: "Announcements",
     image: "https://images.unsplash.com/photo-1620712943543-bcc4688e7485?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3"
   },
   {
     id: 2,
     title: "How AI is Transforming DevOps: The OhWise Approach",
-    excerpt: "The integration of AI into DevOps processes is no longer a future trend—it's happening now. In this post, we explore how organizations are using OhWise to automate complex workflows, reduce incident response time, and create more reliable systems.",
+    excerpt: "The integration of AI into DevOps processes is no longer a future trend — it's happening now. Here's how organizations are using OhWise to automate complex workflows.",
     author: "Michael Chen",
     date: "August 10, 2023",
-    readTime: "7 min read",
+    readTime: "7 min",
     category: "Technical",
     image: "https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3"
   },
   {
     id: 3,
     title: "Building Responsible AI Systems with OhWise",
-    excerpt: "As AI systems become more prevalent, ensuring they operate ethically and responsibly is paramount. This post explains how OhWise's governance features help organizations implement AI in ways that are transparent, fair, and accountable.",
+    excerpt: "As AI systems become more prevalent, ensuring they operate ethically and responsibly is paramount. OhWise's governance features help organizations implement AI transparently.",
     author: "Elena Patel",
     date: "August 5, 2023",
-    readTime: "6 min read",
+    readTime: "6 min",
     category: "Best Practices",
     image: "https://images.unsplash.com/photo-1531297484001-80022131f5a1?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3"
   },
   {
     id: 4,
     title: "Case Study: How FinTech Leader Reduced Incident Response Time by 75%",
-    excerpt: "A leading financial technology company was struggling with lengthy incident resolution times and customer satisfaction issues. Learn how implementing OhWise's multi-agent system transformed their operations and dramatically improved response metrics.",
+    excerpt: "A leading financial technology company was struggling with lengthy incident resolution times. Learn how OhWise's multi-agent system transformed their operations.",
     author: "James Wilson",
     date: "July 28, 2023",
-    readTime: "8 min read",
+    readTime: "8 min",
     category: "Case Studies",
     image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3"
   },
   {
     id: 5,
     title: "Understanding Knowledge Graphs: The Foundation of Intelligent Operations",
-    excerpt: "Knowledge graphs are at the heart of OhWise's intelligent decision-making capabilities. This technical deep dive explains how our platform builds, maintains, and leverages knowledge graphs to create contextually aware automation.",
+    excerpt: "Knowledge graphs are at the heart of OhWise's intelligent decision-making capabilities. A technical deep dive into how the platform builds and leverages them.",
     author: "Rebecca Lee",
     date: "July 20, 2023",
-    readTime: "10 min read",
+    readTime: "10 min",
     category: "Technical",
     image: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3"
   },
   {
     id: 6,
     title: "OhWise Product Roadmap: What's Coming in Q4 2023",
-    excerpt: "Our product team has been hard at work planning exciting new features for the OhWise platform. In this post, we share our vision for the upcoming quarter, including enhanced ML capabilities, new integration options, and expanded analytics.",
+    excerpt: "Our product team shares the vision for the upcoming quarter: enhanced ML capabilities, new integration options, and expanded analytics.",
     author: "David Thompson",
     date: "July 15, 2023",
-    readTime: "4 min read",
+    readTime: "4 min",
     category: "Announcements",
     image: "https://images.unsplash.com/photo-1504639725590-34d0984388bd?q=80&w=2774&auto=format&fit=crop&ixlib=rb-4.0.3"
   },
   {
     id: 7,
     title: "Beyond Harness Engineering: How OhWise Automates the Scaffolding at Scale",
-    excerpt: "Every serious AI team eventually hits the same wall: the harness — prompt chains, retries, routing logic, evals, context injection — grows faster than the product. OhWise doesn't just reduce that burden, it eliminates it by making harness engineering itself a first-class automated concern, deployable across thousands of tenants.",
+    excerpt: "Every serious AI team eventually hits the same wall: the harness grows faster than the product. OhWise eliminates it by making harness engineering a first-class automated concern, deployable across thousands of tenants.",
     author: "OhWise Engineering",
     date: "April 20, 2026",
-    readTime: "9 min read",
+    readTime: "9 min",
     category: "Technical",
     image: "https://images.unsplash.com/photo-1518432031352-d6fc5c10da5a?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3"
   },
 ];
 
-const CATEGORIES = [
-  "All",
-  "Announcements",
-  "Technical",
-  "Best Practices",
-  "Case Studies",
-  "Tutorials"
-];
+const CATEGORIES = ["All", "Announcements", "Technical", "Best Practices", "Case Studies"];
 
 const Blog = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [activeCategory, setActiveCategory] = useState("All");
   const [filteredPosts, setFilteredPosts] = useState(BLOG_POSTS);
-  
-  // Filter posts based on search query and category
+
   useEffect(() => {
     let result = BLOG_POSTS;
-    
-    if (searchQuery.trim() !== "") {
-      result = result.filter(post => 
-        post.title.toLowerCase().includes(searchQuery.toLowerCase()) || 
-        post.excerpt.toLowerCase().includes(searchQuery.toLowerCase())
+    if (searchQuery.trim()) {
+      const q = searchQuery.toLowerCase();
+      result = result.filter(p =>
+        p.title.toLowerCase().includes(q) || p.excerpt.toLowerCase().includes(q)
       );
     }
-    
     if (activeCategory !== "All") {
-      result = result.filter(post => post.category === activeCategory);
+      result = result.filter(p => p.category === activeCategory);
     }
-    
     setFilteredPosts(result);
   }, [searchQuery, activeCategory]);
-  
-  // Scroll to top on page load
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
-  
+
+  useEffect(() => { window.scrollTo(0, 0); }, []);
+
+  const featured = BLOG_POSTS[BLOG_POSTS.length - 1]; // newest article as hero
+
   return (
-    <div className="flex flex-col min-h-screen">
+    <div className="flex flex-col min-h-screen bg-white dark:bg-gray-950">
       <Navbar />
-      
+
       <main className="flex-grow pt-20">
-        {/* Header */}
-        <section className="py-16 bg-gradient-to-b from-blue-50 to-white dark:from-gray-900 dark:to-gray-800">
-          <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="max-w-3xl mx-auto text-center">
-              <h1 className="font-display font-bold text-4xl sm:text-5xl text-gray-900 dark:text-white mb-6 leading-tight">
-                OhWise Blog
-              </h1>
-              <p className="text-lg text-gray-700 dark:text-gray-300 mb-8">
-                Insights, news, and best practices from the OhWise team
-              </p>
-              
-              {/* Search */}
-              <div className="relative mx-auto max-w-md">
-                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" size={18} />
-                <Input 
-                  type="text"
-                  placeholder="Search articles..."
-                  className="pl-10 py-6"
-                  value={searchQuery}
-                  onChange={(e) => setSearchQuery(e.target.value)}
-                />
-              </div>
+
+        {/* ── Hero ──────────────────────────────────────────────────────── */}
+        <section className="py-24 px-4 sm:px-6 lg:px-8">
+          <div className="max-w-4xl mx-auto text-center">
+            <p className="text-sm font-semibold tracking-widest text-blue-600 dark:text-blue-400 uppercase mb-4">
+              OhWise Blog
+            </p>
+            <h1 className="text-5xl sm:text-6xl font-bold text-gray-900 dark:text-white leading-tight tracking-tight mb-6">
+              Ideas worth building on.
+            </h1>
+            <p className="text-xl text-gray-500 dark:text-gray-400 max-w-2xl mx-auto mb-10">
+              Engineering insights, product thinking, and research from the team building the future of multi-agent AI.
+            </p>
+            <div className="relative max-w-sm mx-auto">
+              <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400" size={16} />
+              <Input
+                type="text"
+                placeholder="Search articles…"
+                className="pl-10 h-12 rounded-full border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-900 focus:ring-2 focus:ring-blue-500"
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+              />
             </div>
           </div>
         </section>
 
-        {/* Category Tabs */}
-        <section className="py-8 border-b border-gray-200 dark:border-gray-700">
-          <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-            <Tabs value={activeCategory} onValueChange={setActiveCategory} className="w-full">
-              <TabsList className="mx-auto flex flex-wrap justify-center gap-2 h-auto bg-transparent">
-                {CATEGORIES.map(category => (
-                  <TabsTrigger 
-                    key={category} 
-                    value={category}
-                    className="data-[state=active]:bg-blue-100 data-[state=active]:text-blue-900 dark:data-[state=active]:bg-blue-900/30 dark:data-[state=active]:text-blue-100"
-                  >
-                    {category}
-                  </TabsTrigger>
-                ))}
-              </TabsList>
-            </Tabs>
-          </div>
-        </section>
-
-        {/* Blog Posts */}
-        <section className="py-16">
-          <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-            {filteredPosts.length > 0 ? (
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                {filteredPosts.map(post => (
-                  <Link to={`/blog/${post.id}`} key={post.id} className="group hover:no-underline">
-                    <Card className="h-full overflow-hidden transition-all duration-300 hover:shadow-md group-hover:border-blue-300">
-                      <div className="h-48 overflow-hidden">
-                        <img 
-                          src={post.image} 
-                          alt={post.title} 
-                          className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                        />
-                      </div>
-                      <CardHeader>
-                        <div className="flex items-center justify-between mb-2 text-sm text-gray-500 dark:text-gray-400">
-                          <span className="inline-flex items-center">
-                            <Tag size={14} className="mr-1" />
-                            {post.category}
-                          </span>
-                          <span className="inline-flex items-center">
-                            <Clock size={14} className="mr-1" />
-                            {post.readTime}
-                          </span>
-                        </div>
-                        <CardTitle className="text-xl group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
-                          {post.title}
-                        </CardTitle>
-                      </CardHeader>
-                      <CardContent>
-                        <p className="text-gray-600 dark:text-gray-300 line-clamp-3">
-                          {post.excerpt}
-                        </p>
-                      </CardContent>
-                      <CardFooter className="flex justify-between items-center text-sm text-gray-500 dark:text-gray-400 pt-0">
-                        <div className="flex items-center">
-                          <User size={14} className="mr-1" />
-                          <span>{post.author}</span>
-                        </div>
-                        <div className="flex items-center">
-                          <Calendar size={14} className="mr-1" />
-                          <span>{post.date}</span>
-                        </div>
-                      </CardFooter>
-                    </Card>
-                  </Link>
-                ))}
-              </div>
-            ) : (
-              <div className="text-center py-16">
-                <h3 className="text-xl font-medium mb-2">No articles found</h3>
-                <p className="text-gray-500 dark:text-gray-400 mb-4">
-                  Try adjusting your search or filter to find what you're looking for.
+        {/* ── Featured post ─────────────────────────────────────────────── */}
+        <section className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pb-16">
+          <Link to={`/blog/${featured.id}`} className="group block">
+            <div className="relative rounded-3xl overflow-hidden bg-gray-900 aspect-[21/9]">
+              <img
+                src={featured.image}
+                alt={featured.title}
+                className="absolute inset-0 w-full h-full object-cover opacity-60 transition-transform duration-700 group-hover:scale-105"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent" />
+              <div className="absolute bottom-0 left-0 right-0 p-8 md:p-12">
+                <span className="inline-block px-3 py-1 rounded-full text-xs font-semibold bg-blue-600 text-white mb-4">
+                  {featured.category}
+                </span>
+                <h2 className="text-2xl md:text-4xl font-bold text-white leading-tight mb-3 max-w-3xl">
+                  {featured.title}
+                </h2>
+                <p className="text-gray-300 text-sm md:text-base max-w-2xl line-clamp-2 mb-4">
+                  {featured.excerpt}
                 </p>
-                <Button variant="outline" onClick={() => {
-                  setSearchQuery("");
-                  setActiveCategory("All");
-                }}>
-                  Reset filters
-                </Button>
+                <div className="flex items-center gap-4 text-gray-400 text-sm">
+                  <span>{featured.author}</span>
+                  <span>·</span>
+                  <span>{featured.date}</span>
+                  <span>·</span>
+                  <span className="flex items-center gap-1"><Clock size={13} />{featured.readTime}</span>
+                </div>
               </div>
-            )}
-            
-            {/* Load More Button */}
-            {filteredPosts.length > 0 && (
-              <div className="mt-12 text-center">
-                <Button variant="outline" size="lg" className="px-8">
-                  Load More Articles
-                </Button>
+              <div className="absolute top-6 right-6 w-10 h-10 rounded-full bg-white/10 backdrop-blur flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+                <ArrowUpRight size={18} className="text-white" />
               </div>
-            )}
+            </div>
+          </Link>
+        </section>
+
+        {/* ── Category pills ────────────────────────────────────────────── */}
+        <section className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pb-10">
+          <div className="flex flex-wrap gap-2">
+            {CATEGORIES.map(cat => (
+              <button
+                key={cat}
+                onClick={() => setActiveCategory(cat)}
+                className={`px-4 py-2 rounded-full text-sm font-medium transition-all ${
+                  activeCategory === cat
+                    ? "bg-gray-900 text-white dark:bg-white dark:text-gray-900"
+                    : "bg-gray-100 text-gray-600 hover:bg-gray-200 dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-gray-700"
+                }`}
+              >
+                {cat}
+              </button>
+            ))}
           </div>
         </section>
 
-        {/* Featured Content */}
-        <section className="py-16 bg-gray-50 dark:bg-gray-800/50">
-          <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="max-w-6xl mx-auto">
-              <h2 className="text-3xl font-bold mb-12 text-center">Featured Content</h2>
-              
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-                <Card className="bg-blue-600 text-white overflow-hidden">
-                  <CardContent className="p-8">
-                    <h3 className="text-2xl font-bold mb-4">Master OhWise in 30 Days</h3>
-                    <p className="mb-6">
-                      A complete learning path to become an OhWise expert. From basic setup to advanced multi-agent workflows.
-                    </p>
-                    <Button variant="secondary" className="group">
-                      Start Learning
-                      <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
-                    </Button>
-                  </CardContent>
-                </Card>
-                
-                <Card className="overflow-hidden">
-                  <CardContent className="p-8">
-                    <h3 className="text-2xl font-bold mb-4">Latest Video Tutorials</h3>
-                    <div className="space-y-4">
-                      {[1, 2, 3].map(i => (
-                        <div key={i} className="flex items-center gap-3 group">
-                          <div className="w-16 h-9 bg-gray-200 dark:bg-gray-700 rounded flex-shrink-0 flex items-center justify-center">
-                            <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 text-gray-500 dark:text-gray-400" viewBox="0 0 20 20" fill="currentColor">
-                              <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clipRule="evenodd" />
-                            </svg>
-                          </div>
-                          <div>
-                            <h4 className="font-medium group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
-                              {["Setting Up Your First Agent", "Building Complex Workflows", "Advanced Integration Techniques"][i-1]}
-                            </h4>
-                            <p className="text-sm text-gray-500 dark:text-gray-400">
-                              {["5:23", "8:47", "12:05"][i-1]}
-                            </p>
-                          </div>
-                        </div>
-                      ))}
-                    </div>
-                    <div className="mt-4">
-                      <Button variant="link" className="p-0 h-auto">
-                        View all tutorials
-                      </Button>
-                    </div>
-                  </CardContent>
-                </Card>
-              </div>
+        {/* ── Article grid ──────────────────────────────────────────────── */}
+        <section className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pb-24">
+          {filteredPosts.length > 0 ? (
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {filteredPosts.map(post => (
+                <Link to={`/blog/${post.id}`} key={post.id} className="group flex flex-col">
+                  {/* Thumbnail */}
+                  <div className="rounded-2xl overflow-hidden aspect-[16/9] mb-5 bg-gray-100 dark:bg-gray-800">
+                    <img
+                      src={post.image}
+                      alt={post.title}
+                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                    />
+                  </div>
+                  {/* Meta */}
+                  <div className="flex items-center gap-2 text-xs text-gray-400 dark:text-gray-500 mb-3">
+                    <span className="text-blue-600 dark:text-blue-400 font-medium">{post.category}</span>
+                    <span>·</span>
+                    <span className="flex items-center gap-1"><Clock size={11} />{post.readTime}</span>
+                  </div>
+                  {/* Title */}
+                  <h3 className="text-lg font-semibold text-gray-900 dark:text-white leading-snug mb-2 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
+                    {post.title}
+                  </h3>
+                  {/* Excerpt */}
+                  <p className="text-sm text-gray-500 dark:text-gray-400 line-clamp-2 mb-4 flex-grow">
+                    {post.excerpt}
+                  </p>
+                  {/* Author / date */}
+                  <div className="flex items-center justify-between text-xs text-gray-400 dark:text-gray-500 mt-auto pt-4 border-t border-gray-100 dark:border-gray-800">
+                    <span>{post.author}</span>
+                    <span>{post.date}</span>
+                  </div>
+                </Link>
+              ))}
             </div>
+          ) : (
+            <div className="text-center py-24">
+              <p className="text-gray-400 dark:text-gray-500 mb-4">No articles match your search.</p>
+              <button
+                onClick={() => { setSearchQuery(""); setActiveCategory("All"); }}
+                className="text-blue-600 dark:text-blue-400 text-sm font-medium hover:underline"
+              >
+                Clear filters
+              </button>
+            </div>
+          )}
+        </section>
+
+        {/* ── Subscribe ─────────────────────────────────────────────────── */}
+        <section className="bg-gray-50 dark:bg-gray-900 py-24 px-4 sm:px-6 lg:px-8">
+          <div className="max-w-xl mx-auto text-center">
+            <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-3">
+              Stay in the loop.
+            </h2>
+            <p className="text-gray-500 dark:text-gray-400 mb-8">
+              Get new articles in your inbox. No spam, unsubscribe any time.
+            </p>
+            <SubscribeForm />
           </div>
         </section>
 
-        {/* Subscribe Section */}
-        <section className="py-16 bg-white dark:bg-gray-900">
-          <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="max-w-3xl mx-auto text-center">
-              <h2 className="text-3xl font-bold mb-4">Stay Updated</h2>
-              <p className="text-lg text-gray-600 dark:text-gray-400 mb-8">
-                Subscribe to our newsletter to receive the latest updates, articles, and resources.
-              </p>
-              <SubscribeForm />
-            </div>
-          </div>
-        </section>
       </main>
-      
+
       <Footer />
     </div>
   );

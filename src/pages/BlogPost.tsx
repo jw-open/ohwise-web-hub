@@ -3,9 +3,7 @@ import React, { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import Navbar from "../components/layout/Navbar";
 import Footer from "../components/layout/Footer";
-import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
-import { User, Calendar, Clock, ChevronLeft, Share2, Bookmark, ThumbsUp, MessageSquare, Tag } from "lucide-react";
+import { Clock, ChevronLeft, ArrowUpRight } from "lucide-react";
 import SubscribeForm from "../components/blog/SubscribeForm";
 
 // Mock blog post data
@@ -197,37 +195,27 @@ const BlogPost = () => {
   const { id } = useParams<{ id: string }>();
   const [post, setPost] = useState<typeof BLOG_POSTS[0] | null>(null);
   const [loading, setLoading] = useState(true);
-  
+
   useEffect(() => {
-    // Simulate API fetch
     setLoading(true);
-    setTimeout(() => {
-      const foundPost = BLOG_POSTS.find(p => p.id === Number(id));
-      setPost(foundPost || null);
-      setLoading(false);
-    }, 500);
-    
-    // Scroll to top
+    const found = BLOG_POSTS.find(p => p.id === Number(id));
+    setPost(found || null);
+    setLoading(false);
     window.scrollTo(0, 0);
   }, [id]);
-  
+
   if (loading) {
     return (
-      <div className="flex flex-col min-h-screen">
+      <div className="flex flex-col min-h-screen bg-white dark:bg-gray-950">
         <Navbar />
         <main className="flex-grow pt-20">
-          <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-16">
-            <div className="max-w-3xl mx-auto">
-              <div className="animate-pulse">
-                <div className="h-10 bg-gray-200 dark:bg-gray-700 rounded-md mb-4 w-3/4"></div>
-                <div className="h-6 bg-gray-200 dark:bg-gray-700 rounded-md mb-8 w-1/2"></div>
-                <div className="h-96 bg-gray-200 dark:bg-gray-700 rounded-md mb-8"></div>
-                <div className="space-y-3">
-                  <div className="h-4 bg-gray-200 dark:bg-gray-700 rounded-md w-full"></div>
-                  <div className="h-4 bg-gray-200 dark:bg-gray-700 rounded-md w-full"></div>
-                  <div className="h-4 bg-gray-200 dark:bg-gray-700 rounded-md w-3/4"></div>
-                </div>
-              </div>
+          <div className="max-w-2xl mx-auto px-4 py-24 animate-pulse space-y-6">
+            <div className="h-6 bg-gray-100 dark:bg-gray-800 rounded-full w-24" />
+            <div className="h-10 bg-gray-100 dark:bg-gray-800 rounded-xl w-3/4" />
+            <div className="h-5 bg-gray-100 dark:bg-gray-800 rounded-xl w-1/2" />
+            <div className="h-64 bg-gray-100 dark:bg-gray-800 rounded-2xl" />
+            <div className="space-y-3">
+              {[1,2,3,4].map(i => <div key={i} className="h-4 bg-gray-100 dark:bg-gray-800 rounded" />)}
             </div>
           </div>
         </main>
@@ -235,25 +223,19 @@ const BlogPost = () => {
       </div>
     );
   }
-  
+
   if (!post) {
     return (
-      <div className="flex flex-col min-h-screen">
+      <div className="flex flex-col min-h-screen bg-white dark:bg-gray-950">
         <Navbar />
-        <main className="flex-grow pt-20">
-          <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-16">
-            <div className="max-w-3xl mx-auto text-center">
-              <h1 className="text-3xl font-bold mb-4">Blog Post Not Found</h1>
-              <p className="text-gray-600 dark:text-gray-400 mb-8">
-                The blog post you're looking for doesn't exist or has been removed.
-              </p>
-              <Link to="/blog">
-                <Button>
-                  <ChevronLeft className="mr-2 h-4 w-4" />
-                  Back to Blog
-                </Button>
-              </Link>
-            </div>
+        <main className="flex-grow pt-20 flex items-center justify-center">
+          <div className="text-center px-4">
+            <p className="text-6xl mb-6">📄</p>
+            <h1 className="text-2xl font-bold text-gray-900 dark:text-white mb-3">Article not found</h1>
+            <p className="text-gray-500 dark:text-gray-400 mb-8">This post may have moved or been removed.</p>
+            <Link to="/blog" className="inline-flex items-center gap-2 text-blue-600 dark:text-blue-400 font-medium hover:underline">
+              <ChevronLeft size={16} /> Back to Blog
+            </Link>
           </div>
         </main>
         <Footer />
@@ -262,190 +244,110 @@ const BlogPost = () => {
   }
   
   return (
-    <div className="flex flex-col min-h-screen">
+    <div className="flex flex-col min-h-screen bg-white dark:bg-gray-950">
       <Navbar />
-      
+
       <main className="flex-grow pt-20">
-        <article className="pb-16">
-          {/* Hero */}
-          <div className="h-96 relative overflow-hidden">
-            <div className="absolute inset-0 bg-gradient-to-b from-black/50 to-black/20 z-10"></div>
-            <img 
-              src={post.image} 
-              alt={post.title} 
-              className="w-full h-full object-cover"
+        <article>
+          {/* ── Hero image ──────────────────────────────────────────────── */}
+          <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 pt-12 pb-8">
+            {/* Back link */}
+            <Link to="/blog" className="inline-flex items-center gap-1 text-sm text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 transition-colors mb-8">
+              <ChevronLeft size={15} /> All articles
+            </Link>
+
+            {/* Category + title */}
+            <span className="text-xs font-semibold tracking-widest text-blue-600 dark:text-blue-400 uppercase">
+              {post.category}
+            </span>
+            <h1 className="text-4xl sm:text-5xl font-bold text-gray-900 dark:text-white leading-tight tracking-tight mt-3 mb-5 max-w-3xl">
+              {post.title}
+            </h1>
+
+            {/* Meta row */}
+            <div className="flex flex-wrap items-center gap-4 text-sm text-gray-400 dark:text-gray-500 mb-10">
+              <span className="font-medium text-gray-700 dark:text-gray-300">{post.author}</span>
+              <span>·</span>
+              <span>{post.date}</span>
+              <span>·</span>
+              <span className="flex items-center gap-1"><Clock size={13} />{post.readTime}</span>
+            </div>
+
+            {/* Hero image */}
+            <div className="rounded-3xl overflow-hidden aspect-[21/9] mb-14">
+              <img src={post.image} alt={post.title} className="w-full h-full object-cover" />
+            </div>
+          </div>
+
+          {/* ── Body ────────────────────────────────────────────────────── */}
+          <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 pb-16">
+            <div
+              className="prose prose-lg prose-gray dark:prose-invert max-w-none
+                prose-headings:font-semibold prose-headings:tracking-tight
+                prose-h2:text-2xl prose-h2:mt-12 prose-h2:mb-4
+                prose-h3:text-xl prose-h3:mt-8 prose-h3:mb-3
+                prose-p:leading-relaxed prose-p:text-gray-700 dark:prose-p:text-gray-300
+                prose-li:text-gray-700 dark:prose-li:text-gray-300
+                prose-strong:text-gray-900 dark:prose-strong:text-white
+                prose-blockquote:border-blue-500 prose-blockquote:text-gray-600 dark:prose-blockquote:text-gray-400
+                prose-code:text-blue-600 dark:prose-code:text-blue-400 prose-code:bg-gray-50 dark:prose-code:bg-gray-900 prose-code:rounded prose-code:px-1"
+              dangerouslySetInnerHTML={{ __html: post.content }}
             />
-            <div className="absolute inset-0 z-20 flex items-center justify-center">
-              <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-                <div className="max-w-3xl mx-auto text-center text-white">
-                  <div className="mb-4">
-                    <span className="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-blue-600 text-white">
-                      {post.category}
-                    </span>
-                  </div>
-                  <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 leading-tight">
-                    {post.title}
-                  </h1>
-                  <div className="flex flex-wrap justify-center gap-4 text-sm">
-                    <div className="flex items-center">
-                      <User className="h-4 w-4 mr-1" />
-                      {post.author}
-                    </div>
-                    <div className="flex items-center">
-                      <Calendar className="h-4 w-4 mr-1" />
-                      {post.date}
-                    </div>
-                    <div className="flex items-center">
-                      <Clock className="h-4 w-4 mr-1" />
-                      {post.readTime}
-                    </div>
-                  </div>
-                </div>
+
+            {/* Tags */}
+            <div className="flex flex-wrap gap-2 mt-12 pt-8 border-t border-gray-100 dark:border-gray-800">
+              {post.tags.map((tag, i) => (
+                <span key={i} className="px-3 py-1 rounded-full text-xs font-medium bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400">
+                  {tag}
+                </span>
+              ))}
+            </div>
+
+            {/* Author card */}
+            <div className="mt-10 flex items-center gap-4 p-6 rounded-2xl bg-gray-50 dark:bg-gray-900">
+              <img
+                src={post.authorAvatar}
+                alt={post.author}
+                className="w-14 h-14 rounded-full object-cover flex-shrink-0"
+              />
+              <div>
+                <p className="font-semibold text-gray-900 dark:text-white">{post.author}</p>
+                <p className="text-sm text-gray-500 dark:text-gray-400">{post.authorTitle}</p>
               </div>
             </div>
           </div>
-          
-          {/* Content */}
-          <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
-            <div className="flex flex-col lg:flex-row gap-8 max-w-6xl mx-auto">
-              {/* Main Content */}
-              <div className="lg:w-2/3">
-                <div className="prose prose-lg dark:prose-invert max-w-none mb-8" 
-                  dangerouslySetInnerHTML={{ __html: post.content }} 
-                />
-                
-                {/* Tags */}
-                <div className="mb-8">
-                  <div className="flex items-center flex-wrap gap-2">
-                    <Tag className="h-4 w-4 text-gray-500" />
-                    {post.tags.map((tag, index) => (
-                      <Link 
-                        key={index} 
-                        to={`/blog?tag=${tag}`}
-                        className="px-3 py-1 bg-gray-100 hover:bg-gray-200 dark:bg-gray-800 dark:hover:bg-gray-700 rounded-full text-sm text-gray-700 dark:text-gray-300 transition-colors"
-                      >
-                        {tag}
-                      </Link>
-                    ))}
-                  </div>
-                </div>
-                
-                {/* Engagement */}
-                <div className="flex justify-between items-center border-t border-b py-4 mb-8 border-gray-200 dark:border-gray-700">
-                  <div className="flex gap-4">
-                    <button className="flex items-center text-gray-500 hover:text-blue-600 dark:hover:text-blue-400">
-                      <ThumbsUp className="h-5 w-5 mr-1" />
-                      <span>Like</span>
-                    </button>
-                    <button className="flex items-center text-gray-500 hover:text-blue-600 dark:hover:text-blue-400">
-                      <MessageSquare className="h-5 w-5 mr-1" />
-                      <span>Comment</span>
-                    </button>
-                  </div>
-                  <div className="flex gap-3">
-                    <button className="text-gray-500 hover:text-blue-600 dark:hover:text-blue-400">
-                      <Bookmark className="h-5 w-5" />
-                    </button>
-                    <button className="text-gray-500 hover:text-blue-600 dark:hover:text-blue-400">
-                      <Share2 className="h-5 w-5" />
-                    </button>
-                  </div>
-                </div>
-                
-                {/* Author */}
-                <div className="bg-gray-50 dark:bg-gray-800 rounded-lg p-6 mb-8">
-                  <div className="flex items-start sm:items-center flex-col sm:flex-row gap-4">
-                    <img 
-                      src={post.authorAvatar} 
-                      alt={post.author} 
-                      className="w-16 h-16 rounded-full object-cover"
-                    />
-                    <div>
-                      <h3 className="text-lg font-semibold">{post.author}</h3>
-                      <p className="text-gray-500 dark:text-gray-400 mb-2">{post.authorTitle}</p>
-                      <p className="text-sm text-gray-600 dark:text-gray-300">
-                        Passionate about building tools that make AI operations more accessible and efficient for organizations of all sizes.
-                      </p>
+
+          {/* ── Related articles ────────────────────────────────────────── */}
+          <div className="border-t border-gray-100 dark:border-gray-800 py-16 px-4 sm:px-6 lg:px-8">
+            <div className="max-w-5xl mx-auto">
+              <h2 className="text-xl font-semibold text-gray-900 dark:text-white mb-8">More articles</h2>
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
+                {RELATED_POSTS.map(rel => (
+                  <Link key={rel.id} to={`/blog/${rel.id}`} className="group flex flex-col gap-3">
+                    <div className="rounded-xl overflow-hidden aspect-[16/9] bg-gray-100 dark:bg-gray-800">
+                      <img src={rel.image} alt={rel.title} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
                     </div>
-                  </div>
-                </div>
-                
-                {/* Navigation */}
-                <div className="flex justify-between items-center">
-                  <Link to="/blog">
-                    <Button variant="outline">
-                      <ChevronLeft className="mr-2 h-4 w-4" />
-                      Back to Blog
-                    </Button>
+                    <h3 className="text-sm font-medium text-gray-900 dark:text-white leading-snug group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors line-clamp-2">
+                      {rel.title}
+                    </h3>
+                    <span className="text-xs text-gray-400">{rel.date}</span>
                   </Link>
-                  <div className="flex gap-2">
-                    {/* Previous/Next post navigation could go here */}
-                  </div>
-                </div>
+                ))}
               </div>
-              
-              {/* Sidebar */}
-              <div className="lg:w-1/3 space-y-8">
-                {/* Related Posts */}
-                <div className="bg-gray-50 dark:bg-gray-800 rounded-lg p-6">
-                  <h3 className="text-xl font-bold mb-4">Related Articles</h3>
-                  <div className="space-y-4">
-                    {RELATED_POSTS.map(relatedPost => (
-                      <Link key={relatedPost.id} to={`/blog/${relatedPost.id}`} className="block group">
-                        <div className="flex gap-3">
-                          <img 
-                            src={relatedPost.image} 
-                            alt={relatedPost.title} 
-                            className="w-20 h-16 object-cover rounded"
-                          />
-                          <div>
-                            <h4 className="font-medium text-sm group-hover:text-blue-600 dark:group-hover:text-blue-400 line-clamp-2">
-                              {relatedPost.title}
-                            </h4>
-                            <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">
-                              {relatedPost.date}
-                            </p>
-                          </div>
-                        </div>
-                      </Link>
-                    ))}
-                  </div>
-                </div>
-                
-                {/* Categories */}
-                <Card>
-                  <CardContent className="p-6">
-                    <h3 className="text-xl font-bold mb-4">Categories</h3>
-                    <div className="space-y-2">
-                      {["Announcements", "Technical", "Best Practices", "Case Studies", "Tutorials"].map((category, index) => (
-                        <Link 
-                          key={index} 
-                          to={`/blog?category=${category}`} 
-                          className="block py-2 px-3 rounded hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
-                        >
-                          {category}
-                        </Link>
-                      ))}
-                    </div>
-                  </CardContent>
-                </Card>
-                
-                {/* Subscribe Card */}
-                <Card>
-                  <CardContent className="p-6">
-                    <h3 className="text-xl font-bold mb-2">Subscribe</h3>
-                    <p className="text-gray-600 dark:text-gray-400 mb-4">
-                      Get the latest posts delivered straight to your inbox.
-                    </p>
-                    <SubscribeForm />
-                  </CardContent>
-                </Card>
-              </div>
+            </div>
+          </div>
+
+          {/* ── Subscribe ───────────────────────────────────────────────── */}
+          <div className="bg-gray-50 dark:bg-gray-900 py-20 px-4 sm:px-6 lg:px-8">
+            <div className="max-w-md mx-auto text-center">
+              <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">Stay in the loop.</h2>
+              <p className="text-gray-500 dark:text-gray-400 mb-6 text-sm">New articles, direct to your inbox.</p>
+              <SubscribeForm />
             </div>
           </div>
         </article>
       </main>
-      
+
       <Footer />
     </div>
   );
