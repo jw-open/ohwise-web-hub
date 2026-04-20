@@ -2,6 +2,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { Facebook, Twitter, Linkedin, Github } from "lucide-react";
+import Logo from "./Logo";
 
 const Footer = () => {
   return (
@@ -10,14 +11,8 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           {/* Brand Column */}
           <div className="col-span-1 md:col-span-1">
-            <Link to="/" className="flex items-center mb-4">
-              <div className="relative h-8 w-8 mr-3">
-                <div className="absolute top-0 left-0 h-full w-full bg-blue-600 rounded-lg transform rotate-3"></div>
-                <div className="absolute top-0 left-0 h-full w-full bg-indigo-600 rounded-lg -rotate-3"></div>
-                <div className="absolute top-0 left-0 h-full w-full bg-white dark:bg-gray-900 rounded-lg flex items-center justify-center">
-                  <span className="font-bold text-lg">O</span>
-                </div>
-              </div>
+            <Link to="/" className="flex items-center gap-2.5 mb-4">
+              <Logo size={32} />
               <span className="font-display font-bold text-xl">OhWise</span>
             </Link>
             <p className="text-sm text-gray-600 dark:text-gray-400 mb-4">
@@ -151,7 +146,7 @@ const Footer = () => {
 
         <div className="mt-12 pt-8 border-t border-gray-200 dark:border-gray-800">
           <p className="text-sm text-center text-gray-500 dark:text-gray-400">
-            © {new Date().getFullYear()} OhWise. All rights reserved.
+            © 2026 OhWise. All rights reserved.
           </p>
         </div>
       </div>
