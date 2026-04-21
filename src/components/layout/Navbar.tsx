@@ -99,7 +99,7 @@ const Navbar = () => {
           {/* Right side actions */}
           <div className="hidden md:flex items-center space-x-3">
             <a
-              href="https://github.com/jw-open/graph2sql"
+              href="https://github.com/jw-open"
               target="_blank"
               rel="noopener noreferrer"
               className="p-2 rounded-md text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors"
