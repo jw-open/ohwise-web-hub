@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import Navbar from "../components/layout/Navbar";
 import Footer from "../components/layout/Footer";
-import { GitBranch, ExternalLink, Terminal, Star, Package } from "lucide-react";
+import { GitBranch, ExternalLink, Terminal, Star, Package, Box } from "lucide-react";
 
 const projects = [
   {
@@ -14,6 +14,7 @@ const projects = [
     language: "Python",
     install: "pip install graph2sql",
     github: "https://github.com/jw-open/graph2sql",
+    pypi: "https://pypi.org/project/graph2sql/",
     features: [
       "No LLM dependency — pure Python + numpy",
       "Personalized PageRank for schema-aware ranking",
@@ -39,10 +40,56 @@ context = graph.rank("total revenue by customer", k=3)
     language: "Python",
     install: null,
     github: "https://github.com/jw-open/doc2graph",
+    pypi: null,
     features: [
       "File and document ingestion",
       "Entity and relationship extraction",
       "Graph-based question answering",
+      "No LLM dependency for graph construction",
+    ],
+    snippet: null,
+  },
+  {
+    name: "ai-relay",
+    tagline: "WebSocket relay that bridges AI coding agent CLIs to any web interface.",
+    description:
+      "Run ai-relay as a sidecar next to Claude Code, Codex, Gemini CLI, or Snowflake Cortex. It captures stdin/stdout/stderr and streams structured events — reasoning steps, tool calls, file diffs, quota warnings, context limits — over WebSocket to any frontend in real time.",
+    status: "active",
+    language: "Python",
+    install: "pip install ai-relay",
+    github: "https://github.com/jw-open/ai-relay",
+    pypi: "https://pypi.org/project/ai-relay/",
+    features: [
+      "Claude Code, Codex, Gemini CLI, Cortex support",
+      "Structured events: reasoning, tool calls, file diffs",
+      "Quota & context window warnings surfaced to UI",
+      "Send /compact, /clear commands via WebSocket",
+    ],
+    snippet: `# Start the relay server
+agent-relay --port 8765
+
+# Connect from any WebSocket client and send:
+{"tool": "claude", "folder": "/path/to/project", "model": "sonnet"}
+
+# Receive structured events:
+{"type": "tool_call", "tool": "Edit", "text": "src/app.py"}
+{"type": "context_warning", "context_pct": 82, "text": "..."}
+{"type": "session_end", "exit_code": 0}`,
+  },
+  {
+    name: "code2graph",
+    tagline: "Code repository to knowledge graph extraction. Coming soon.",
+    description:
+      "Extract a structured knowledge graph from any code repository — modules, classes, functions, and dependencies become nodes and edges. Enables graph-based code search, impact analysis, and context retrieval for AI coding tools.",
+    status: "coming-soon",
+    language: "Python",
+    install: null,
+    github: "https://github.com/jw-open/code2graph",
+    pypi: null,
+    features: [
+      "Repository-level graph extraction",
+      "Module, class, and function nodes",
+      "Dependency and call-graph edges",
       "No LLM dependency for graph construction",
     ],
     snippet: null,
@@ -112,16 +159,30 @@ const OpenSource = () => {
                         </span>
                       </div>
                     </div>
-                    <a
-                      href={project.github}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex items-center gap-1.5 text-sm text-gray-600 dark:text-gray-400 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors"
-                    >
-                      <Star size={14} />
-                      GitHub
-                      <ExternalLink size={12} />
-                    </a>
+                    <div className="flex items-center gap-3">
+                      <a
+                        href={project.github}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex items-center gap-1.5 text-sm text-gray-600 dark:text-gray-400 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors"
+                      >
+                        <Star size={14} />
+                        GitHub
+                        <ExternalLink size={12} />
+                      </a>
+                      {project.pypi && (
+                        <a
+                          href={project.pypi}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="flex items-center gap-1.5 text-sm text-gray-600 dark:text-gray-400 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors"
+                        >
+                          <Box size={14} />
+                          PyPI
+                          <ExternalLink size={12} />
+                        </a>
+                      )}
+                    </div>
                   </div>
 
                   <p className="text-gray-500 dark:text-gray-400 text-sm mb-1 font-medium">
