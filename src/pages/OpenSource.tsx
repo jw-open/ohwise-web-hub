@@ -7,7 +7,7 @@ import { GitBranch, ExternalLink, Terminal, Star, Package, Box } from "lucide-re
 const projects = [
   {
     name: "graph2sql",
-    version: "0.1.0",
+    version: "0.2.0",
     tagline: "Graph-based schema ranking for text-to-SQL. Bring your own LLM.",
     description:
       "Build a schema graph from your database (tables and columns as nodes, relationships as edges), then rank relevant nodes for any natural language question using Personalized PageRank. Feed the ranked subgraph as context to any LLM for accurate SQL generation.",
