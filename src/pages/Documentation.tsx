@@ -93,7 +93,7 @@ const Documentation = () => {
       <div className="prose dark:prose-invert prose-lg max-w-none">
         <h1>ai-relay: WebSocket Relay Protocol</h1>
         <p>
-          <a href="https://pypi.org/project/ai-relay/" target="_blank" rel="noopener noreferrer"><strong>ai-relay</strong></a> (v0.1.3) is an open-source Python package that bridges AI coding agent CLIs to any WebSocket-capable frontend.
+          <a href="https://pypi.org/project/ai-relay/" target="_blank" rel="noopener noreferrer"><strong>ai-relay</strong></a> (v0.2.4) is an open-source Python package that bridges AI coding agent CLIs to any WebSocket-capable frontend.
         </p>
         <h2>Install</h2>
         <pre><code>pip install ai-relay</code></pre>

@@ -53,7 +53,7 @@ context = graph.rank("total revenue by customer", k=3)
   },
   {
     name: "ai-relay",
-    version: "0.1.3",
+    version: "0.2.4",
     tagline: "WebSocket relay that bridges AI coding agent CLIs to any web interface.",
     description:
       "Run ai-relay as a sidecar next to Claude Code, Codex, Gemini CLI, or Snowflake Cortex. It captures PTY output and streams structured events — reasoning steps, tool calls, file diffs, quota warnings, context limits — over WebSocket to any frontend in real time. Powers the Lab feature in OhWise.",
