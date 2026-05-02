@@ -7,6 +7,7 @@ import { GitBranch, ExternalLink, Terminal, Star, Package, Box } from "lucide-re
 const projects = [
   {
     name: "graph2sql",
+    version: "0.1.0",
     tagline: "Graph-based schema ranking for text-to-SQL. Bring your own LLM.",
     description:
       "Build a schema graph from your database (tables and columns as nodes, relationships as edges), then rank relevant nodes for any natural language question using Personalized PageRank. Feed the ranked subgraph as context to any LLM for accurate SQL generation.",
@@ -33,6 +34,7 @@ context = graph.rank("total revenue by customer", k=3)
   },
   {
     name: "doc2graph",
+    version: null,
     tagline: "Document to knowledge graph extraction. Coming soon.",
     description:
       "Extract structured knowledge graphs from long documents and files. Build entity-relationship graphs from unstructured text for downstream retrieval and question answering.",
@@ -51,9 +53,10 @@ context = graph.rank("total revenue by customer", k=3)
   },
   {
     name: "ai-relay",
+    version: "0.1.3",
     tagline: "WebSocket relay that bridges AI coding agent CLIs to any web interface.",
     description:
-      "Run ai-relay as a sidecar next to Claude Code, Codex, Gemini CLI, or Snowflake Cortex. It captures stdin/stdout/stderr and streams structured events — reasoning steps, tool calls, file diffs, quota warnings, context limits — over WebSocket to any frontend in real time.",
+      "Run ai-relay as a sidecar next to Claude Code, Codex, Gemini CLI, or Snowflake Cortex. It captures PTY output and streams structured events — reasoning steps, tool calls, file diffs, quota warnings, context limits — over WebSocket to any frontend in real time. Powers the Lab feature in OhWise.",
     status: "active",
     language: "Python",
     install: "pip install ai-relay",
@@ -61,15 +64,16 @@ context = graph.rank("total revenue by customer", k=3)
     pypi: "https://pypi.org/project/ai-relay/",
     features: [
       "Claude Code, Codex, Gemini CLI, Cortex support",
+      "PTY-based: CLIs run in full interactive mode",
       "Structured events: reasoning, tool calls, file diffs",
       "Quota & context window warnings surfaced to UI",
-      "Send /compact, /clear commands via WebSocket",
     ],
     snippet: `# Start the relay server
-agent-relay --port 8765
+ai-relay --port 8765
 
-# Connect from any WebSocket client and send:
-{"tool": "claude", "folder": "/path/to/project", "model": "sonnet"}
+# Connect from any WebSocket client
+# Send prompts as plain text:
+{"text": "refactor this module to use async/await"}
 
 # Receive structured events:
 {"type": "tool_call", "tool": "Edit", "text": "src/app.py"}
@@ -78,6 +82,7 @@ agent-relay --port 8765
   },
   {
     name: "code2graph",
+    version: null,
     tagline: "Code repository to knowledge graph extraction. Coming soon.",
     description:
       "Extract a structured knowledge graph from any code repository — modules, classes, functions, and dependencies become nodes and edges. Enables graph-based code search, impact analysis, and context retrieval for AI coding tools.",
@@ -155,7 +160,7 @@ const OpenSource = () => {
                               : "bg-gray-100 text-gray-500 dark:bg-gray-700 dark:text-gray-400"
                           }`}
                         >
-                          {project.status === "active" ? "v0.1.0 · active" : "coming soon"}
+                          {project.status === "active" ? `v${project.version} · active` : "coming soon"}
                         </span>
                       </div>
                     </div>

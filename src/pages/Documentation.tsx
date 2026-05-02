@@ -47,21 +47,145 @@ const Documentation = () => {
         { title: "Scaling Strategies", slug: "scaling" },
       ]
     },
+    {
+      title: "Lab & Open Source",
+      icon: <Code className="text-blue-600" size={24} />,
+      articles: [
+        { title: "Lab — AI Coding Agent Integration", slug: "lab-overview" },
+        { title: "ai-relay: WebSocket Relay Protocol", slug: "ai-relay-protocol" },
+        { title: "Connecting Claude Code to Lab", slug: "lab-claude-code" },
+        { title: "OAuth Authentication in Lab", slug: "lab-oauth" },
+      ]
+    },
   ];
+
+  const labArticles: Record<string, React.ReactNode> = {
+    "lab-overview": (
+      <div className="prose dark:prose-invert prose-lg max-w-none">
+        <h1>Lab — AI Coding Agent Integration</h1>
+        <p>
+          <strong>Lab</strong> is OhWise's built-in terminal for running AI coding agent CLIs (Claude Code, Codex, Gemini CLI) directly from your browser. Sessions run securely on OhWise servers inside an isolated per-user workspace.
+        </p>
+        <h2>How It Works</h2>
+        <ol>
+          <li>Navigate to <strong>/lab</strong> in the OhWise app.</li>
+          <li>Click <strong>+</strong> to create a new session — choose a name and tool (Claude Code, Codex, or Gemini CLI).</li>
+          <li>Click <strong>Connect</strong>. The server spawns the CLI inside a PTY (pseudo-terminal) in your isolated workspace.</li>
+          <li>If it's your first time, an <strong>OAuth link</strong> appears in the stream — click it, authenticate with your provider account, paste the code back.</li>
+          <li>Start typing prompts. Use <code>/compact</code> or <code>/clear</code> buttons to manage context.</li>
+        </ol>
+        <h2>Security Model</h2>
+        <ul>
+          <li>JWT authentication required for every WebSocket connection.</li>
+          <li>Each user gets an isolated workspace at <code>/var/ohwise-lab-workspaces/&#123;user_id&#125;/</code>.</li>
+          <li>CLIs run as a non-root <code>labuser</code> — no root access to the host.</li>
+          <li>Only whitelisted tools (claude, codex, gemini, cortex) can be spawned.</li>
+        </ul>
+        <h2>Supported Tools</h2>
+        <ul>
+          <li><strong>Claude Code</strong> — Anthropic's AI coding assistant</li>
+          <li><strong>Codex</strong> — OpenAI's coding CLI</li>
+          <li><strong>Gemini CLI</strong> — Google's Gemini coding assistant</li>
+        </ul>
+      </div>
+    ),
+    "ai-relay-protocol": (
+      <div className="prose dark:prose-invert prose-lg max-w-none">
+        <h1>ai-relay: WebSocket Relay Protocol</h1>
+        <p>
+          <a href="https://pypi.org/project/ai-relay/" target="_blank" rel="noopener noreferrer"><strong>ai-relay</strong></a> (v0.1.3) is an open-source Python package that bridges AI coding agent CLIs to any WebSocket-capable frontend.
+        </p>
+        <h2>Install</h2>
+        <pre><code>pip install ai-relay</code></pre>
+        <h2>Start the relay</h2>
+        <pre><code>ai-relay --port 8765</code></pre>
+        <h2>Event Types</h2>
+        <p>All events are JSON objects with <code>type</code>, <code>ts</code>, and <code>session_id</code> fields.</p>
+        <table>
+          <thead><tr><th>type</th><th>Description</th></tr></thead>
+          <tbody>
+            <tr><td><code>session_start</code></td><td>CLI process spawned</td></tr>
+            <tr><td><code>session_end</code></td><td>Process exited, includes <code>exit_code</code></td></tr>
+            <tr><td><code>stdout</code></td><td>Raw terminal output line</td></tr>
+            <tr><td><code>tool_call</code></td><td>Claude Code tool use detected</td></tr>
+            <tr><td><code>reasoning</code></td><td>Thinking / planning output</td></tr>
+            <tr><td><code>url</code></td><td>URL detected (e.g. OAuth link)</td></tr>
+            <tr><td><code>quota_warning</code></td><td>Rate limit / quota error</td></tr>
+            <tr><td><code>context_warning</code></td><td>Context window filling up</td></tr>
+            <tr><td><code>context_compacted</code></td><td>Context was compacted</td></tr>
+            <tr><td><code>error</code></td><td>Fatal error line</td></tr>
+            <tr><td><code>input_ack</code></td><td>Echoes user input back</td></tr>
+          </tbody>
+        </table>
+        <h2>Send input</h2>
+        <pre><code>{`// Send a prompt
+{"text": "refactor this function to use async/await"}
+
+// Send CLI commands
+{"text": "/compact"}
+{"text": "/clear"}`}</code></pre>
+        <p>GitHub: <a href="https://github.com/jw-open/ai-relay" target="_blank" rel="noopener noreferrer">github.com/jw-open/ai-relay</a></p>
+      </div>
+    ),
+    "lab-claude-code": (
+      <div className="prose dark:prose-invert prose-lg max-w-none">
+        <h1>Connecting Claude Code to Lab</h1>
+        <h2>On OhWise Cloud</h2>
+        <p>Claude Code is pre-installed on the OhWise server. Just select <strong>Claude Code</strong> when creating a session — no setup needed.</p>
+        <h2>First Connection</h2>
+        <ol>
+          <li>Create a session with Tool = <strong>Claude Code</strong>.</li>
+          <li>Click <strong>Connect</strong>.</li>
+          <li>Claude Code starts and the startup screen appears in the stream.</li>
+          <li>The theme wizard is auto-confirmed (dark mode selected).</li>
+          <li>An OAuth link appears — see <em>OAuth Authentication in Lab</em>.</li>
+        </ol>
+        <h2>Subsequent Sessions</h2>
+        <p>After the first OAuth login, credentials are saved in your workspace (<code>.claude/</code> directory). Subsequent sessions start immediately without re-authentication.</p>
+        <h2>Using /model</h2>
+        <p>Change the model mid-session by typing <code>/model sonnet</code> or <code>/model opus</code> in the Lab input.</p>
+      </div>
+    ),
+    "lab-oauth": (
+      <div className="prose dark:prose-invert prose-lg max-w-none">
+        <h1>OAuth Authentication in Lab</h1>
+        <p>
+          Lab uses your existing Claude Pro/Max subscription via browser OAuth — no API key or per-token cost needed.
+        </p>
+        <h2>First-Time Auth Flow</h2>
+        <ol>
+          <li>Connect a Claude Code session in Lab.</li>
+          <li>Claude Code outputs an authentication URL — it appears as a <strong>clickable blue link</strong> in the stream.</li>
+          <li>Click the link → your browser opens <code>claude.ai</code>.</li>
+          <li>Log in with your Anthropic account.</li>
+          <li>Copy the authorization code shown on the page.</li>
+          <li>Paste the code into the Lab input field → click <strong>Send</strong>.</li>
+          <li>Claude Code saves the credentials and starts responding.</li>
+        </ol>
+        <h2>Credential Persistence</h2>
+        <p>
+          Credentials are stored in your isolated workspace (<code>/var/ohwise-lab-workspaces/&#123;user_id&#125;/.claude/</code>) on a Docker named volume. They persist across container restarts — you only authenticate once.
+        </p>
+      </div>
+    ),
+  };
 
   // State to manage which article is currently being viewed
   const [selectedArticle, setSelectedArticle] = useState<null | { title: string; content: React.ReactNode }>(null);
 
   // Function to show article content
   const showArticle = (categoryTitle: string, article: { title: string; slug: string }) => {
+    const labContent = labArticles[article.slug];
     setSelectedArticle({
       title: article.title,
-      content: <div className="prose dark:prose-invert prose-lg max-w-none">
-        <h1>{article.title}</h1>
-        <p>This is sample content for the "{article.title}" article in the {categoryTitle} category.</p>
-        <p>In a production environment, this content would be loaded from a database or CMS system.</p>
-        <p>Visit the admin dashboard to manage documentation content.</p>
-      </div>
+      content: labContent ?? (
+        <div className="prose dark:prose-invert prose-lg max-w-none">
+          <h1>{article.title}</h1>
+          <p>This is sample content for the "{article.title}" article in the {categoryTitle} category.</p>
+          <p>In a production environment, this content would be loaded from a database or CMS system.</p>
+          <p>Visit the admin dashboard to manage documentation content.</p>
+        </div>
+      )
     });
   };
 
