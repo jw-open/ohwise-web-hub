@@ -53,7 +53,7 @@ context = graph.rank("total revenue by customer", k=3)
   },
   {
     name: "ai-relay",
-    version: "0.2.9",
+    version: "0.4.1",
     tagline: "WebSocket relay that bridges AI coding agent CLIs to any web interface.",
     description:
       "Run ai-relay as a sidecar next to Claude Code, Codex, Gemini CLI, or Snowflake Cortex. It spawns the CLI as a subprocess, speaks the native stream-json protocol, and streams structured events — reasoning steps, tool calls, file diffs, permission requests, quota warnings — over WebSocket to any frontend in real time. Powers the Lab feature in OhWise.",
@@ -64,16 +64,18 @@ context = graph.rank("total revenue by customer", k=3)
     pypi: "https://pypi.org/project/ai-relay/",
     features: [
       "Claude Code, Codex, Gemini CLI, Cortex support",
-      "Stream-json protocol: structured events, not PTY scraping",
-      "Structured events: reasoning, tool calls, file diffs",
-      "Quota & context window warnings surfaced to UI",
+      "Server mode: ai-relay serve — one connection per agent session",
+      "PerTurnRuntime: multi-turn conversations with --resume support",
+      "Structured events: reasoning, tool calls, file diffs, quota warnings",
     ],
-    snippet: `# Start the relay server
+    snippet: `# Local dev (one-shot)
 ai-relay --port 8765
 
-# Connect from any WebSocket client
-# Send prompts as plain text:
-{"text": "refactor this module to use async/await"}
+# Container / daemon mode (v0.4.1+)
+ai-relay serve --port 9000
+
+# Connect and send handshake:
+{"tool": "claude", "folder": "/path/to/project", "model": "claude-sonnet-4-6"}
 
 # Receive structured events:
 {"type": "tool_call", "tool": "Edit", "text": "src/app.py"}
