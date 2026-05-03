@@ -53,10 +53,10 @@ context = graph.rank("total revenue by customer", k=3)
   },
   {
     name: "ai-relay",
-    version: "0.2.4",
+    version: "0.2.9",
     tagline: "WebSocket relay that bridges AI coding agent CLIs to any web interface.",
     description:
-      "Run ai-relay as a sidecar next to Claude Code, Codex, Gemini CLI, or Snowflake Cortex. It captures PTY output and streams structured events — reasoning steps, tool calls, file diffs, quota warnings, context limits — over WebSocket to any frontend in real time. Powers the Lab feature in OhWise.",
+      "Run ai-relay as a sidecar next to Claude Code, Codex, Gemini CLI, or Snowflake Cortex. It spawns the CLI as a subprocess, speaks the native stream-json protocol, and streams structured events — reasoning steps, tool calls, file diffs, permission requests, quota warnings — over WebSocket to any frontend in real time. Powers the Lab feature in OhWise.",
     status: "active",
     language: "Python",
     install: "pip install ai-relay",
@@ -64,7 +64,7 @@ context = graph.rank("total revenue by customer", k=3)
     pypi: "https://pypi.org/project/ai-relay/",
     features: [
       "Claude Code, Codex, Gemini CLI, Cortex support",
-      "PTY-based: CLIs run in full interactive mode",
+      "Stream-json protocol: structured events, not PTY scraping",
       "Structured events: reasoning, tool calls, file diffs",
       "Quota & context window warnings surfaced to UI",
     ],
