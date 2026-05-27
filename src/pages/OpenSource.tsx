@@ -34,7 +34,7 @@ context = graph.rank("total revenue by customer", k=3)
   },
   {
     name: "docs2graph",
-    version: "0.3.1",
+    version: "0.3.2",
     tagline: "Turn documents into knowledge graphs. No LLM required.",
     description:
       "Extract structured knowledge graphs from PDFs, Word docs, Markdown, HTML, CSV, and more. Build entity-relationship graphs for downstream retrieval and question answering — then rank relevant nodes with Personalized PageRank before passing context to your LLM.",
