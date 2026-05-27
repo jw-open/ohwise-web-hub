@@ -1,47 +1,47 @@
 import React from "react";
-import { MessageSquare, Database, FileText, GitBranch, Plug, Shield } from "lucide-react";
+import { GitBranch, Network, Code2, FlaskConical, Plug, Shield } from "lucide-react";
 
 const features = [
   {
     id: 1,
-    title: "Ask questions across your data",
+    title: "DAG-based pipeline execution",
     description:
-      "Query databases, documents, and APIs in plain language. OhWise figures out which sources are relevant and assembles the answer — without you writing a single line of SQL.",
-    icon: <MessageSquare className="w-5 h-5" />,
-  },
-  {
-    id: 2,
-    title: "Multi-agent task execution",
-    description:
-      "Complex workflows are broken into parallel agent tasks — each agent specialized for a subtask, coordinated by a central orchestrator. Faster, more accurate than a single prompt.",
+      "Define ML workflows as directed acyclic graphs with typed state. Parallel branches execute concurrently, conditional edges route based on output, and every node is independently replayable.",
     icon: <GitBranch className="w-5 h-5" />,
   },
   {
-    id: 3,
-    title: "Database-aware SQL generation",
+    id: 2,
+    title: "Graph-native context retrieval",
     description:
-      "Agents understand your schema — not just table names, but relationships and cardinality. Generates accurate SQL even across large, complex databases.",
-    icon: <Database className="w-5 h-5" />,
+      "Code, schema, and document knowledge graphs replace flat file embeddings. Personalized PageRank ranks the most structurally relevant nodes for each agent — call graphs, entity graphs, foreign-key graphs.",
+    icon: <Network className="w-5 h-5" />,
+  },
+  {
+    id: 3,
+    title: "AI coding agent integration",
+    description:
+      "Lab streams Claude Code, Codex, and Gemini CLI sessions over WebSocket. Every reasoning step, tool call, and file diff is visible in real time — shareable, reviewable, and logged.",
+    icon: <Code2 className="w-5 h-5" />,
   },
   {
     id: 4,
-    title: "Document intelligence",
+    title: "Structured evaluation loops",
     description:
-      "Upload reports, contracts, or knowledge bases. Agents extract structure, build knowledge graphs, and answer questions with traceable citations — not hallucinations.",
-    icon: <FileText className="w-5 h-5" />,
+      "Run eval passes as DAG nodes with judge agents. Compare model versions, score per-sample traces, and aggregate metrics — without writing custom harness code for every experiment.",
+    icon: <FlaskConical className="w-5 h-5" />,
   },
   {
     id: 5,
-    title: "Connect your existing tools",
+    title: "Bring your own LLM",
     description:
-      "OhWise integrates with your databases, APIs, and internal systems. Bring your own LLM — GPT-4, Claude, Llama, or any API-compatible model.",
+      "OhWise is model-agnostic. Use GPT-4, Claude, Llama, Mistral, or any API-compatible model. Swap models per agent node — different tasks, different models, same pipeline.",
     icon: <Plug className="w-5 h-5" />,
   },
   {
     id: 6,
-    title: "Private and secure",
+    title: "Self-host, fully private",
     description:
-      "Self-host on your own infrastructure. All orchestration and context management runs locally. Only outbound call is to your chosen LLM — which you control.",
+      "Deploy on your own infrastructure. All orchestration, context management, and agent coordination runs locally. Only outbound traffic is to your chosen LLM endpoint.",
     icon: <Shield className="w-5 h-5" />,
   },
 ];
@@ -52,11 +52,10 @@ const Features = () => {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="max-w-2xl mx-auto text-center mb-16">
           <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-4 tracking-tight">
-            One platform. Many agents. Real results.
+            Infrastructure for agentic AI systems
           </h2>
           <p className="text-lg text-gray-500 dark:text-gray-400">
-            OhWise replaces the patchwork of AI tools with a single platform
-            where specialized agents collaborate on your behalf.
+            Every layer an AI/ML engineer needs — orchestration, context, observability, and evaluation — in one platform.
           </p>
         </div>
 

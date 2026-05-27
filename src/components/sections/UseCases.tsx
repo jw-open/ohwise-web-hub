@@ -1,55 +1,55 @@
 import React, { useState } from "react";
-import { TrendingUp, Headphones, Megaphone, Heart, FlaskConical, ArrowRight } from "lucide-react";
+import { GitBranch, BookOpen, Code2, FlaskConical, Database, ArrowRight } from "lucide-react";
 
 const useCases = [
   {
-    id: "sales",
-    icon: <TrendingUp className="w-5 h-5" />,
-    industry: "Sales Copilot",
-    problem: "Accounts slip through renewal without warning.",
+    id: "pipelines",
+    icon: <GitBranch className="w-5 h-5" />,
+    industry: "Pipeline Orchestration",
+    problem: "ML pipelines are brittle, unobservable, and hard to debug.",
     description:
-      "OhWise monitors contract dates, usage signals, and support history across your CRM — surfacing at-risk accounts before renewal day, so your team can act before it's too late.",
-    outcomes: ["Churn risk ranked daily", "Renewal pipeline auto-prioritized", "No manual report pulling"],
+      "OhWise executes ML workflows as typed DAGs — preprocessing, inference, evaluation, and post-processing run as coordinated agent nodes. Parallel branches execute concurrently. Every step is logged with inputs, outputs, latency, and token usage.",
+    outcomes: ["DAG-based execution with typed state", "Parallel branches run concurrently", "Full step-level observability and replay"],
     color: "indigo",
   },
   {
-    id: "support",
-    icon: <Headphones className="w-5 h-5" />,
-    industry: "Customer Support",
-    problem: "Tickets pile up while agents hunt for the right answer.",
+    id: "context",
+    icon: <BookOpen className="w-5 h-5" />,
+    industry: "Context Engineering",
+    problem: "LLMs get poor context — flat file chunks miss relationships.",
     description:
-      "Agents search your knowledge base, past cases, and product docs simultaneously — drafting accurate responses in seconds. Your team reviews and sends. Volume handled, quality maintained.",
-    outcomes: ["First response time cut dramatically", "Consistent answers across agents", "Escalations reserved for complex cases"],
+      "OhWise uses graph-structured retrieval via its open source layer (codebase2graph, docs2graph, graph2sql). Code, documents, and schemas become knowledge graphs. Personalized PageRank ranks the most relevant nodes for any query — so agents get precise, relationship-aware context.",
+    outcomes: ["Graph nodes ranked by Personalized PageRank", "Call graphs, entity graphs, schema graphs", "Context size reduced without losing signal"],
     color: "purple",
   },
   {
-    id: "marketing",
-    icon: <Megaphone className="w-5 h-5" />,
-    industry: "Marketing Copilot",
-    problem: "Customer data sits in silos. Campaigns go to the wrong people.",
+    id: "lab",
+    icon: <Code2 className="w-5 h-5" />,
+    industry: "AI Coding Agent Lab",
+    problem: "AI coding CLIs run in terminals, invisible to your team.",
     description:
-      "OhWise agents cross-reference purchase history, engagement data, and firmographics to build precise segments — triggering personalized outreach without anyone writing a query.",
-    outcomes: ["Segments built from natural language", "Lead scoring updated continuously", "Campaign performance tracked automatically"],
+      "Lab connects Claude Code, Codex, and Gemini CLI to a live web interface via ai-relay. Every reasoning step, tool call, file diff, and quota warning streams in real time. Run long coding sessions from any device, share agent outputs with your team, and inspect exactly what the agent did.",
+    outcomes: ["Claude Code, Codex, Gemini CLI supported", "Streaming reasoning + tool call trace", "File diff viewer and session history"],
     color: "emerald",
   },
   {
-    id: "healthcare",
-    icon: <Heart className="w-5 h-5" />,
-    industry: "Healthcare & Insurance",
-    problem: "Claims processing is slow, manual, and error-prone.",
+    id: "evaluation",
+    icon: <FlaskConical className="w-5 h-5" />,
+    industry: "Model Evaluation",
+    problem: "Eval loops are manual, inconsistent, and slow to iterate.",
     description:
-      "Agents extract policy terms from documents, cross-check claim details against coverage rules, and flag exceptions — reducing processing time and catching discrepancies before they cost you.",
-    outcomes: ["Policy terms extracted from PDFs", "Claim validation automated", "Exception reports generated instantly"],
+      "Define evaluation criteria as DAG nodes. OhWise runs structured eval loops across your dataset — each sample routed through your pipeline, scored by judge agents, and aggregated into metrics. Iterate on prompts and compare runs side by side.",
+    outcomes: ["Structured eval DAGs with judge agents", "Per-sample traces and failure analysis", "Run comparison and metric tracking"],
     color: "rose",
   },
   {
-    id: "research",
-    icon: <FlaskConical className="w-5 h-5" />,
-    industry: "Research",
-    problem: "Keeping up with the literature takes longer than the actual research.",
+    id: "sql",
+    icon: <Database className="w-5 h-5" />,
+    industry: "Graph-to-SQL",
+    problem: "Text-to-SQL fails on large, complex schemas.",
     description:
-      "OhWise builds a knowledge graph from your papers, reports, and datasets — connecting findings, methodologies, and citations across your entire corpus. Ask questions in plain language and get synthesized answers with source attribution.",
-    outcomes: ["Hundreds of papers synthesized automatically", "Cross-paper connections surfaced", "Hypotheses grounded in cited evidence"],
+      "OhWise uses graph2sql to build a schema graph from your database — tables and columns as nodes, foreign keys as edges. Personalized PageRank extracts a relevant subgraph for each query. The LLM sees only what it needs to generate accurate SQL — even across hundreds of tables.",
+    outcomes: ["Schema graph built from DDL or ORM models", "Relevant subgraph ranked per query", "Bring your own LLM — no lock-in"],
     color: "sky",
   },
 ];
@@ -93,7 +93,7 @@ const colorMap: Record<string, { bg: string; border: string; icon: string; badge
 };
 
 const UseCases = () => {
-  const [active, setActive] = useState("sales");
+  const [active, setActive] = useState("pipelines");
   const current = useCases.find((u) => u.id === active)!;
   const colors = colorMap[current.color];
 
@@ -102,10 +102,10 @@ const UseCases = () => {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="max-w-2xl mx-auto text-center mb-12">
           <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-4 tracking-tight">
-            Built for teams that run on data
+            Built for AI/ML engineers
           </h2>
           <p className="text-lg text-gray-500 dark:text-gray-400">
-            OhWise handles the analysis and automation. Your team handles the decisions.
+            OhWise handles orchestration, context, and observability — so you focus on the model.
           </p>
         </div>
 

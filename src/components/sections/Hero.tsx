@@ -1,5 +1,5 @@
 import React from "react";
-import { ArrowRight, Sparkles, GitBranch, Zap } from "lucide-react";
+import { ArrowRight, GitBranch, Layers, BarChart2 } from "lucide-react";
 import { Button } from "../ui/button";
 
 const Hero: React.FC = () => {
@@ -22,23 +22,23 @@ const Hero: React.FC = () => {
           {/* Eyebrow */}
           <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-white/10 bg-white/5 text-sm text-gray-400 mb-8">
             <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-            Multi-agent AI platform
+            AI/ML infrastructure platform
           </div>
 
           {/* Headline */}
           <h1 className="font-bold text-4xl sm:text-5xl md:text-6xl leading-[1.1] tracking-tight mb-6">
-            AI agents that work
+            Orchestrate AI pipelines
             <br />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-purple-400">
-              together for your business.
+              with graph-native context.
             </span>
           </h1>
 
           {/* Subheadline */}
           <p className="text-lg md:text-xl text-gray-400 mb-10 max-w-2xl mx-auto leading-relaxed">
-            OhWise coordinates specialized AI agents across your data, documents,
-            and workflows — so you get answers, automation, and intelligence
-            without stitching together a dozen tools.
+            OhWise is a DAG-based multi-agent execution engine — built for AI/ML engineers
+            who need structured pipelines, observable agent coordination, and graph-retrieved
+            context without stitching together a dozen tools.
           </p>
 
           {/* CTAs */}
@@ -66,13 +66,13 @@ const Hero: React.FC = () => {
                 variant="outline"
                 className="bg-transparent border-white/50 text-gray-200 hover:bg-white/10 hover:text-white hover:border-white/80 flex items-center justify-center gap-2 w-full"
               >
-                See how it works
+                See the architecture
               </Button>
             </a>
           </div>
         </div>
 
-        {/* Agent flow visual */}
+        {/* Platform visual */}
         <div className="mt-16 md:mt-20 max-w-3xl mx-auto">
           <div className="rounded-xl border border-white/10 bg-gray-900/60 backdrop-blur p-8">
             <p className="text-xs text-gray-500 uppercase tracking-widest text-center mb-8">
@@ -81,36 +81,36 @@ const Hero: React.FC = () => {
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 text-center">
               <div className="flex flex-col items-center gap-3">
                 <div className="w-12 h-12 rounded-xl bg-indigo-600/20 border border-indigo-500/30 flex items-center justify-center">
-                  <Sparkles className="w-5 h-5 text-indigo-400" />
+                  <GitBranch className="w-5 h-5 text-indigo-400" />
                 </div>
                 <div>
-                  <p className="text-sm font-semibold text-white mb-1">Your question</p>
+                  <p className="text-sm font-semibold text-white mb-1">DAG execution</p>
                   <p className="text-xs text-gray-500 leading-relaxed">
-                    Ask in plain language — no SQL, no code required
+                    Define pipelines as directed acyclic graphs — parallel branches, conditional edges, typed state
                   </p>
                 </div>
               </div>
 
               <div className="flex flex-col items-center gap-3">
                 <div className="w-12 h-12 rounded-xl bg-purple-600/20 border border-purple-500/30 flex items-center justify-center">
-                  <GitBranch className="w-5 h-5 text-purple-400" />
+                  <Layers className="w-5 h-5 text-purple-400" />
                 </div>
                 <div>
-                  <p className="text-sm font-semibold text-white mb-1">Agents coordinate</p>
+                  <p className="text-sm font-semibold text-white mb-1">Graph context</p>
                   <p className="text-xs text-gray-500 leading-relaxed">
-                    Specialized agents run in parallel across your data sources
+                    Code, schema, and document graphs feed agents with ranked, structured context — not raw chunks
                   </p>
                 </div>
               </div>
 
               <div className="flex flex-col items-center gap-3">
                 <div className="w-12 h-12 rounded-xl bg-emerald-600/20 border border-emerald-500/30 flex items-center justify-center">
-                  <Zap className="w-5 h-5 text-emerald-400" />
+                  <BarChart2 className="w-5 h-5 text-emerald-400" />
                 </div>
                 <div>
-                  <p className="text-sm font-semibold text-white mb-1">Results delivered</p>
+                  <p className="text-sm font-semibold text-white mb-1">Full observability</p>
                   <p className="text-xs text-gray-500 leading-relaxed">
-                    Answers, reports, and actions — ready to use
+                    Every agent step logged — reasoning traces, tool calls, token usage, latency per node
                   </p>
                 </div>
               </div>
