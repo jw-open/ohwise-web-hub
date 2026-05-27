@@ -33,23 +33,31 @@ context = graph.rank("total revenue by customer", k=3)
 # pass context to your LLM → SQL`,
   },
   {
-    name: "doc2graph",
-    version: null,
-    tagline: "Document to knowledge graph extraction. Coming soon.",
+    name: "docs2graph",
+    version: "0.3.0",
+    tagline: "Turn documents into knowledge graphs. No LLM required.",
     description:
-      "Extract structured knowledge graphs from long documents and files. Build entity-relationship graphs from unstructured text for downstream retrieval and question answering.",
-    status: "coming-soon",
+      "Extract structured knowledge graphs from PDFs, Word docs, Markdown, HTML, CSV, and more. Build entity-relationship graphs for downstream retrieval and question answering — then rank relevant nodes with Personalized PageRank before passing context to your LLM.",
+    status: "active",
     language: "Python",
-    install: null,
+    install: "pip install docs2graph",
     github: "https://github.com/jw-open/doc2graph",
-    pypi: null,
+    pypi: "https://pypi.org/project/docs2graph/",
     features: [
-      "File and document ingestion",
-      "Entity and relationship extraction",
-      "Graph-based question answering",
-      "No LLM dependency for graph construction",
+      "15+ file formats: PDF, DOCX, HTML, Markdown, CSV, JSON, PPTX",
+      "Personalized PageRank for relevance ranking",
+      "OCR support for scanned documents and images",
+      "No LLM dependency — bring your own model",
     ],
-    snippet: null,
+    snippet: `from docs2graph import build_graph
+
+graph = build_graph("report.pdf", graph_type="knowledge")
+# graph.nodes — entities, sections, concepts
+# graph.edges — relates_to, mentions, cites
+
+# Rank relevant nodes for a query
+from docs2graph import rank_nodes
+ranked = rank_nodes(graph, "quarterly revenue", k=5)`,
   },
   {
     name: "ai-relay",
@@ -83,23 +91,30 @@ ai-relay serve --port 9000
 {"type": "session_end", "exit_code": 0}`,
   },
   {
-    name: "code2graph",
-    version: null,
-    tagline: "Code repository to knowledge graph extraction. Coming soon.",
+    name: "codebase2graph",
+    version: "0.1.0",
+    tagline: "Turn a code repository into a queryable knowledge graph.",
     description:
-      "Extract a structured knowledge graph from any code repository — modules, classes, functions, and dependencies become nodes and edges. Enables graph-based code search, impact analysis, and context retrieval for AI coding tools.",
-    status: "coming-soon",
+      "Statically extract the full structure of any codebase — files, modules, functions, classes, call graphs, schemas, infrastructure, CI/CD pipelines — as a typed graph of nodes and edges. Rank the most relevant nodes for any query with Personalized PageRank and pass focused context to any LLM.",
+    status: "active",
     language: "Python",
-    install: null,
+    install: "pip install codebase2graph",
     github: "https://github.com/jw-open/code2graph",
-    pypi: null,
+    pypi: "https://pypi.org/project/codebase2graph/",
     features: [
-      "Repository-level graph extraction",
-      "Module, class, and function nodes",
-      "Dependency and call-graph edges",
-      "No LLM dependency for graph construction",
+      "10 graph types: call, entity, schema, infra, security, web, and more",
+      "Python AST + JS/TS call graph extraction",
+      "Personalized PageRank for code context retrieval",
+      "No LLM dependency — pure Python, standard library only",
     ],
-    snippet: null,
+    snippet: `from code2graph import build_graph
+
+graph = build_graph("/path/to/repo", graph_type="all")
+# graph.nodes — files, functions, classes, tables, routes
+# graph.edges — calls, imports, defines, depends_on
+
+# CLI: extract full graph to JSON
+# codebase2graph /repo --graph all --output repo.json`,
   },
 ];
 
