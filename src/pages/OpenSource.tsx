@@ -165,10 +165,6 @@ const OpenSource = () => {
         <section className="py-20 bg-gradient-to-b from-indigo-50 to-white dark:from-gray-900 dark:to-gray-800">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
             <div className="max-w-3xl mx-auto text-center">
-              <div className="inline-flex items-center gap-2 bg-indigo-100 dark:bg-indigo-900/30 text-indigo-700 dark:text-indigo-300 rounded-full px-4 py-1.5 text-sm font-medium mb-6">
-                <GitBranch size={14} />
-                Open Source
-              </div>
               <h1 className="font-display font-bold text-4xl sm:text-5xl text-gray-900 dark:text-white mb-6 leading-tight">
                 Open Source Libraries
               </h1>
