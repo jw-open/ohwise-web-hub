@@ -66,7 +66,7 @@ const BLOG_POSTS = [
     content: `
       <p class="lead">Every serious AI team eventually hits the same wall. You start with a prompt. Then you need retry logic. Then routing to different models. Then context injection. Then evals. Then tool-use scaffolding. Then multi-step chains. Before long, you have thousands of lines of bespoke "harness" code that has nothing to do with your actual product — and it's fragile, hard to test, and impossible to hand off.</p>
 
-      <p>This is harness engineering: the invisible tax every team pays to make LLMs production-ready. OhWise was built to eliminate it.</p>
+      <p>This is harness engineering: the invisible tax every team pays to make LLMs reliable in production. OhWise was built to eliminate it.</p>
 
       <h2>What Is Harness Engineering?</h2>
 
