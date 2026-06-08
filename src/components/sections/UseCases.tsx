@@ -4,8 +4,32 @@ import { ArrowRight } from "lucide-react";
 
 const USE_CASES = [
   {
+    emoji: "🤖",
+    title: "AI/ML Intelligence",
+    description:
+      "Pipeline orchestration, model monitoring, experiment management, and deployment automation built for AI-native teams.",
+    color: "border-rose-500/30 bg-rose-500/5",
+    badge: "text-rose-400",
+  },
+  {
+    emoji: "⚙️",
+    title: "DevOps & Observability",
+    description:
+      "Alert triage, incident response, root-cause analysis, and infrastructure automation for fewer pages and faster resolution.",
+    color: "border-sky-500/30 bg-sky-500/5",
+    badge: "text-sky-400",
+  },
+  {
+    emoji: "🔬",
+    title: "Research Assistant",
+    description:
+      "Literature review, paper editing, experiment tracking, and code-assisted research, from first search to final draft.",
+    color: "border-indigo-500/30 bg-indigo-500/5",
+    badge: "text-indigo-400",
+  },
+  {
     emoji: "💰",
-    title: "Sales Copilot",
+    title: "Sales Intelligence",
     description:
       "Compensation analysis, pipeline forecasting, revenue dashboards, and sales ops automation, all without a dedicated data team.",
     color: "border-emerald-500/30 bg-emerald-500/5",
@@ -13,7 +37,7 @@ const USE_CASES = [
   },
   {
     emoji: "📣",
-    title: "Marketing Copilot",
+    title: "Marketing Intelligence",
     description:
       "Email campaigns, social media management, funnel analytics, and lead generation workflows, orchestrated end-to-end.",
     color: "border-blue-500/30 bg-blue-500/5",
@@ -28,14 +52,6 @@ const USE_CASES = [
     badge: "text-purple-400",
   },
   {
-    emoji: "🔬",
-    title: "Research Assistant",
-    description:
-      "Literature review, paper editing, experiment tracking, and code-assisted research, from first search to final draft.",
-    color: "border-indigo-500/30 bg-indigo-500/5",
-    badge: "text-indigo-400",
-  },
-  {
     emoji: "✨",
     title: "Personal Assistant",
     description:
@@ -44,28 +60,12 @@ const USE_CASES = [
     badge: "text-yellow-400",
   },
   {
-    emoji: "🤖",
-    title: "AI/ML Ops",
-    description:
-      "Pipeline orchestration, model monitoring, experiment management, and deployment automation built for AI-native teams.",
-    color: "border-rose-500/30 bg-rose-500/5",
-    badge: "text-rose-400",
-  },
-  {
     emoji: "🏥",
     title: "Healthcare Ops",
     description:
       "Insurance processing, clinical workflow automation, and patient data analysis under strict data isolation and audit controls.",
     color: "border-teal-500/30 bg-teal-500/5",
     badge: "text-teal-400",
-  },
-  {
-    emoji: "⚙️",
-    title: "DevOps & Observability",
-    description:
-      "Alert triage, incident response, root-cause analysis, and infrastructure automation for fewer pages and faster resolution.",
-    color: "border-sky-500/30 bg-sky-500/5",
-    badge: "text-sky-400",
   },
   {
     emoji: "📈",
