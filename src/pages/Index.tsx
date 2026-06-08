@@ -4,6 +4,7 @@ import Footer from "../components/layout/Footer";
 import Hero from "../components/sections/Hero";
 import UseCases from "../components/sections/UseCases";
 import Features from "../components/sections/Features";
+import Enterprise from "../components/sections/Enterprise";
 import FAQ from "../components/sections/FAQ";
 import CTASection from "../components/sections/CTASection";
 
@@ -20,6 +21,7 @@ const Index = () => {
         <Hero />
         <UseCases />
         <Features />
+        <Enterprise />
         <FAQ />
         <CTASection
           primaryButtonLink="https://cloud.ohwise.com/"

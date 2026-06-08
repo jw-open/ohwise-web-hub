@@ -48,6 +48,21 @@ const faqItems: FAQItem[] = [
     id: 8,
     question: "Can I self-host OhWise?",
     answer: "Yes. OhWise is designed for self-hosting on bare-metal or cloud VMs. The full stack runs via Docker Compose. MongoDB and Redis are shared infrastructure. Only outbound traffic is to your chosen LLM endpoints — no agent reasoning or data leaves your infrastructure. The open-source PyPI packages (graph2sql, docs2graph, codebase2graph, ai-relay, ohwise-mcp) can also be used standalone without the OhWise platform."
+  },
+  {
+    id: 9,
+    question: "How does OhWise handle multi-tenancy and tenant isolation?",
+    answer: "Every enterprise account maps to an organization (org) in OhWise. All data — sessions, missions, agents, knowledge graphs, artifacts, audit logs — is scoped to an org_id at the MongoDB document level. There is no cross-tenant data access by design: queries are always filtered by org_id, and namespacing is enforced at the API and database layers. Each user within an org gets isolated workspaces: their Lab sessions, Studio agents, and file diffs are private to them unless explicitly shared. Studio coordinator agents are scoped to a group_id, which maps to an org or team within an org. Switching between sessions or users never bleeds state."
+  },
+  {
+    id: 10,
+    question: "What does the role-based access control (RBAC) system cover?",
+    answer: "OhWise supports three built-in roles per organization: Admin, Member, and Viewer. Admins can manage users, set org-wide agent quotas, approve or deny tool calls platform-wide, rotate API keys, and view full audit logs. Members can create and run Lab sessions and Studio workflows within their workspace. Viewers have read-only access to artifacts and session logs. In addition to org-level roles, a granular permission system lets admins require human-in-the-loop approval for specific tool categories (e.g., file writes, shell commands, external API calls) — either org-wide or on a per-session basis. API keys are scoped per org and can be revoked individually without affecting other keys."
+  },
+  {
+    id: 11,
+    question: "What security and compliance features are available for enterprise deployments?",
+    answer: "OhWise is built with enterprise security as a first-class concern: JWT-based authentication per user with short-lived tokens; API keys scoped to an org and individually revocable; full audit logs capturing every agent action, tool call, file diff, and approval decision with user ID and timestamp; SSO/OAuth2 support (OAuth2 flows already implemented for Claude and Gemini); isolated Docker containers per user session for workspace data residency; and no cross-tenant data paths at the database layer (org_id scoping on every query). For self-hosted deployments, all LLM traffic stays within your infrastructure — agent reasoning and file contents never leave your network. Multi-region deployment is supported via stateless FastAPI workers and Redis pub/sub for event fanout."
   }
 ];
 

@@ -85,6 +85,9 @@ const Hero: React.FC = () => {
                 {stat}
               </span>
             ))}
+            <span className="px-3 py-1 rounded-full border border-indigo-500/40 bg-indigo-500/10 text-xs text-indigo-300 font-medium">
+              Enterprise · Multi-tenant · RBAC
+            </span>
           </div>
         </div>
 
