@@ -3,21 +3,21 @@ import React from "react";
 const steps = [
   {
     number: "01",
-    title: "Connect your data sources",
+    title: "Connect data sources",
     description:
-      "Point OhWise at your databases, document stores, or APIs. No data pipeline setup required — agents discover structure automatically.",
+      "Point OhWise at databases, document stores, or APIs. No data pipeline setup required — agents discover structure automatically.",
   },
   {
     number: "02",
     title: "Agents coordinate in parallel",
     description:
-      "A coordinator agent breaks your request into subtasks and dispatches specialized agents — one for SQL generation, one for document search, one for synthesis. They run in parallel and share context.",
+      "A coordinator agent decomposes the request into subtasks and dispatches specialized agents — one for SQL generation, one for document search, one for synthesis. They run in parallel and share context.",
   },
   {
     number: "03",
-    title: "Get a complete, accurate answer",
+    title: "A complete, verified answer",
     description:
-      "Results are assembled, verified, and returned in structured form — SQL queries, summaries, reports, or actions. No hallucinations, no stitching together multiple tools yourself.",
+      "Results are assembled, scored by an evaluator agent, and returned in structured form — SQL queries, summaries, reports, or actions. No hallucinations, no manual stitching of tool outputs.",
   },
 ];
 

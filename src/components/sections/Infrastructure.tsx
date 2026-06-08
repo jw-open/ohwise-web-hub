@@ -8,7 +8,7 @@ const deployTargets = [
     title: "Bare Metal",
     subtitle: "Full control, zero overhead",
     description:
-      "Run OhWise directly on your own hardware. Docker Compose or Kubernetes — deploy in minutes, keep all compute on-prem. Ideal for air-gapped environments or data-sovereignty requirements.",
+      "Run OhWise directly on bare-metal hardware. Docker Compose or Kubernetes — deploy in minutes, keep all compute on-prem. Ideal for air-gapped environments or data-sovereignty requirements.",
     tags: ["Docker Compose", "K8s", "On-prem", "Air-gapped"],
     border: "border-emerald-500/30",
     bg: "bg-emerald-500/5",
@@ -41,7 +41,7 @@ const deployTargets = [
     title: "OhWise Cloud",
     subtitle: "Managed, zero-ops",
     description:
-      "Fully managed SaaS on cloud.ohwise.com. We handle infrastructure, scaling, upgrades, and observability. Start in seconds — migrate to self-hosted any time, data is always yours.",
+      "Fully managed SaaS on cloud.ohwise.com. Infrastructure, scaling, upgrades, and observability are handled by OhWise. Start in seconds — migrate to self-hosted any time, data is always exportable.",
     tags: ["SaaS", "Managed", "Zero-ops", "Data portability"],
     border: "border-purple-500/30",
     bg: "bg-purple-500/5",
@@ -52,9 +52,9 @@ const deployTargets = [
 const principles = [
   { label: "Cloud-native from day one", desc: "Stateless agents, container-first design, 12-factor app principles throughout." },
   { label: "No vendor lock-in", desc: "Open standards (WebSocket, REST, OpenAPI). Runs on any cloud or bare metal equally." },
-  { label: "Bring your own LLM", desc: "Works with any model endpoint — Anthropic, OpenAI, Gemini, self-hosted Llama, or your private endpoint." },
+  { label: "Bring your own LLM", desc: "Works with any model endpoint — Anthropic, OpenAI, Gemini, self-hosted Llama, or a private endpoint." },
   { label: "Horizontal scale by design", desc: "Every agent, session, and Lambda node scales independently. No shared state bottlenecks." },
-  { label: "Secrets never leave your perimeter", desc: "API keys, DB credentials, and model tokens stay in your infra — never transited through OhWise servers in self-hosted mode." },
+  { label: "Secrets stay within the deployment perimeter", desc: "API keys, DB credentials, and model tokens stay in the operator's infra — never transited through OhWise servers in self-hosted mode." },
   { label: "Observability built in", desc: "Structured logs, distributed traces, and metrics exported to CloudWatch, Datadog, Prometheus, or any OTLP sink." },
 ];
 
@@ -73,13 +73,13 @@ const Infrastructure: React.FC = () => {
             Deploy anywhere.
             <br />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-indigo-400">
-              Your infra, your rules.
+              Any infra. Full control.
             </span>
           </h2>
           <p className="text-lg text-gray-400 leading-relaxed">
             OhWise was designed cloud-native from day one — stateless agents, container-first,
-            no vendor lock-in. Run it on bare metal, on AWS with EKS or Lambda, or let us
-            manage it for you.
+            no vendor lock-in. Run it on bare metal, on AWS with EKS or Lambda, or use the
+            fully managed cloud offering.
           </p>
         </div>
 

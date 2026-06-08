@@ -22,17 +22,17 @@ const faqItems: FAQItem[] = [
   {
     id: 3,
     question: "How does the graph-based context retrieval work?",
-    answer: "OhWise uses Personalized PageRank on typed knowledge graphs instead of flat vector similarity search. The open-source packages — graph2sql (schema graphs), docs2graph (document graphs), and codebase2graph (code call/entity graphs) — extract structured graphs from your data sources. For any query, PageRank traverses the graph starting from query-relevant seed nodes and ranks the most structurally connected nodes as context. This surfaces relationship-aware context that vector retrieval misses — foreign keys, call chains, entity co-occurrences."
+    answer: "OhWise uses Personalized PageRank on typed knowledge graphs instead of flat vector similarity search. The open-source packages — graph2sql (schema graphs), docs2graph (document graphs), and codebase2graph (code call/entity graphs) — extract structured graphs from connected data sources. For any query, PageRank traverses the graph starting from query-relevant seed nodes and ranks the most structurally connected nodes as context. This surfaces relationship-aware context that vector retrieval misses — foreign keys, call chains, entity co-occurrences."
   },
   {
     id: 4,
     question: "What open-source packages does OhWise publish?",
-    answer: "OhWise maintains 5 active PyPI packages: ai-relay (v0.4.32) — WebSocket relay for AI coding agent CLIs; graph2sql (v0.2.0) — schema graph for text-to-SQL; docs2graph (v0.3.2) — document-to-knowledge-graph extraction; codebase2graph (v0.1.0) — code repository knowledge graph; ohwise-mcp (v0.2.0) — MCP server exposing graph context and agent tools to Claude Code, Cursor, Windsurf, and any MCP client. All packages are pure Python with no LLM dependency — bring your own model."
+    answer: "OhWise maintains 5 active PyPI packages: ai-relay (v0.4.32) — WebSocket relay for AI coding agent CLIs; graph2sql (v0.2.0) — schema graph for text-to-SQL; docs2graph (v0.3.2) — document-to-knowledge-graph extraction; codebase2graph (v0.1.0) — code repository knowledge graph; ohwise-mcp (v0.2.0) — MCP server exposing graph context and agent tools to Claude Code, Cursor, Windsurf, and any MCP client. All packages are pure Python with no LLM dependency — model-agnostic by design."
   },
   {
     id: 5,
     question: "What AI models and agents are supported?",
-    answer: "OhWise is model-agnostic. Lab supports 5 AI coding agent CLIs: Claude Code (Anthropic), Codex CLI (OpenAI), Gemini CLI (Google), and Snowflake Cortex. The DAG orchestration layer works with any API-compatible LLM — you can assign different models to different agent nodes within the same pipeline. This means you can use Claude for reasoning, a smaller model for classification, and a code-specific model for generation — all in one workflow."
+    answer: "OhWise is model-agnostic. Lab supports 5 AI coding agent CLIs: Claude Code (Anthropic), Codex CLI (OpenAI), Gemini CLI (Google), and Snowflake Cortex. The DAG orchestration layer works with any API-compatible LLM — different models can be assigned to different agent nodes within the same pipeline. For example: Claude for reasoning, a smaller model for classification, and a code-specific model for generation — all in one workflow."
   },
   {
     id: 6,
@@ -47,7 +47,7 @@ const faqItems: FAQItem[] = [
   {
     id: 8,
     question: "Can I self-host OhWise?",
-    answer: "Yes. OhWise is designed for self-hosting on bare-metal or cloud VMs. The full stack runs via Docker Compose. MongoDB and Redis are shared infrastructure. Only outbound traffic is to your chosen LLM endpoints — no agent reasoning or data leaves your infrastructure. The open-source PyPI packages (graph2sql, docs2graph, codebase2graph, ai-relay, ohwise-mcp) can also be used standalone without the OhWise platform."
+    answer: "Yes. OhWise is designed for self-hosting on bare-metal or cloud VMs. The full stack runs via Docker Compose. MongoDB and Redis are shared infrastructure. Only outbound traffic is to the chosen LLM endpoints — no agent reasoning or data leaves the deployment infrastructure. The open-source PyPI packages (graph2sql, docs2graph, codebase2graph, ai-relay, ohwise-mcp) can also be used standalone without the OhWise platform."
   },
   {
     id: 9,
@@ -62,7 +62,7 @@ const faqItems: FAQItem[] = [
   {
     id: 11,
     question: "What security and compliance features are available for enterprise deployments?",
-    answer: "OhWise is built with enterprise security as a first-class concern: JWT-based authentication per user with short-lived tokens; API keys scoped to an org and individually revocable; full audit logs capturing every agent action, tool call, file diff, and approval decision with user ID and timestamp; SSO/OAuth2 support (OAuth2 flows already implemented for Claude and Gemini); isolated Docker containers per user session for workspace data residency; and no cross-tenant data paths at the database layer (org_id scoping on every query). For self-hosted deployments, all LLM traffic stays within your infrastructure — agent reasoning and file contents never leave your network. Multi-region deployment is supported via stateless FastAPI workers and Redis pub/sub for event fanout."
+    answer: "OhWise is built with enterprise security as a first-class concern: JWT-based authentication per user with short-lived tokens; API keys scoped to an org and individually revocable; full audit logs capturing every agent action, tool call, file diff, and approval decision with user ID and timestamp; SSO/OAuth2 support (OAuth2 flows already implemented for Claude and Gemini); isolated Docker containers per user session for workspace data residency; and no cross-tenant data paths at the database layer (org_id scoping on every query). For self-hosted deployments, all LLM traffic stays within the deployment infrastructure — agent reasoning and file contents never leave the network perimeter. Multi-region deployment is supported via stateless FastAPI workers and Redis pub/sub for event fanout."
   }
 ];
 

@@ -10,8 +10,8 @@ interface CTASectionProps {
 }
 
 const CTASection: React.FC<CTASectionProps> = ({
-  title = "Ready to put your data to work?",
-  subtitle = "Let OhWise's agents handle the complexity. You focus on the decisions.",
+  title = "A production-grade multi-agent platform.",
+  subtitle = "OhWise handles orchestration, context retrieval, and agent coordination — engineers focus on the decisions.",
   primaryButtonText = "Get started",
   primaryButtonLink = "https://cloud.ohwise.com/",
 }) => {

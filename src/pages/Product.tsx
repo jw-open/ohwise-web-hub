@@ -381,7 +381,7 @@ const Product = () => {
                 Built on production-grade infrastructure
               </h2>
               <p className="text-gray-600 dark:text-gray-400">
-                No magic abstractions. Every layer is a battle-tested component you can reason about.
+                No magic abstractions. Every layer is a battle-tested component with a well-defined interface.
               </p>
             </div>
 

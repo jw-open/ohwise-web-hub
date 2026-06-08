@@ -11,7 +11,7 @@ const BLOG_POSTS = [
   {
     id: 1,
     title: "Introducing OhWise 2.0: The Next Generation of AI Operations",
-    excerpt: "Today, we're thrilled to announce the release of OhWise 2.0 — enhanced multi-agent capabilities, improved knowledge graph integration, and a completely redesigned user interface.",
+    excerpt: "OhWise 2.0 is now available — enhanced multi-agent capabilities, improved knowledge graph integration, and a completely redesigned user interface.",
     author: "Sarah Johnson",
     date: "August 15, 2023",
     readTime: "5 min",
@@ -61,7 +61,7 @@ const BLOG_POSTS = [
   {
     id: 6,
     title: "OhWise Product Roadmap: What's Coming in Q4 2023",
-    excerpt: "Our product team shares the vision for the upcoming quarter: enhanced ML capabilities, new integration options, and expanded analytics.",
+    excerpt: "The OhWise roadmap for the upcoming quarter: enhanced ML capabilities, new integration options, and expanded analytics.",
     author: "David Thompson",
     date: "July 15, 2023",
     readTime: "4 min",
@@ -81,7 +81,7 @@ const BLOG_POSTS = [
   {
     id: 8,
     title: "ohwise-mcp 0.2.0: Graph-Native Context for Claude Code and Any MCP Client",
-    excerpt: "We just released ohwise-mcp 0.2.0 on PyPI — a single MCP server that gives Claude Code, Cursor, and any MCP-compatible tool direct access to OhWise knowledge graphs, agent pipelines, and code context tools. One pip install. One config block. Full graph-native context in your AI coding environment.",
+    excerpt: "ohwise-mcp 0.2.0 is now on PyPI — a single MCP server that gives Claude Code, Cursor, and any MCP-compatible tool direct access to OhWise knowledge graphs, agent pipelines, and code context tools. One pip install. One config block. Full graph-native context in any AI coding environment.",
     author: "OhWise Engineering",
     date: "June 8, 2026",
     readTime: "5 min",
@@ -91,7 +91,7 @@ const BLOG_POSTS = [
   {
     id: 9,
     title: "Personalized PageRank vs Vector Similarity: Why Graph Algorithms Win for Structured Context",
-    excerpt: "Vector similarity search is the default for retrieval in AI systems — but for structured data (database schemas, code repositories, document hierarchies), it systematically misses the most important relationships. We built three open-source packages using Personalized PageRank to fix this, and the results are significantly better context with smaller token budgets.",
+    excerpt: "Vector similarity search is the default for retrieval in AI systems — but for structured data (database schemas, code repositories, document hierarchies), it systematically misses the most important relationships. Three open-source packages built on Personalized PageRank address this gap, delivering significantly better context with smaller token budgets.",
     author: "OhWise Engineering",
     date: "June 8, 2026",
     readTime: "12 min",
@@ -171,7 +171,7 @@ const Blog = () => {
               Ideas worth building on.
             </h1>
             <p className="text-xl text-gray-500 dark:text-gray-400 max-w-2xl mx-auto mb-10">
-              Engineering insights, product thinking, and research from the team building the future of multi-agent AI.
+              Engineering insights, product thinking, and research on multi-agent AI systems.
             </p>
             <div className="relative max-w-sm mx-auto">
               <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400" size={16} />
@@ -306,7 +306,7 @@ const Blog = () => {
               Stay in the loop.
             </h2>
             <p className="text-gray-500 dark:text-gray-400 mb-8">
-              Get new articles in your inbox. No spam, unsubscribe any time.
+              New articles delivered by email. No spam, unsubscribe any time.
             </p>
             <SubscribeForm />
           </div>

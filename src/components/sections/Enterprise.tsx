@@ -175,8 +175,8 @@ const Enterprise: React.FC = () => {
         {/* CTA strip */}
         <div className="max-w-3xl mx-auto rounded-xl border border-indigo-500/30 bg-indigo-600/10 p-8 flex flex-col sm:flex-row items-center justify-between gap-6">
           <div>
-            <p className="text-base font-semibold text-white mb-1">Ready to deploy for your team?</p>
-            <p className="text-sm text-gray-400">Self-host on your own infrastructure or contact us for a managed enterprise deployment.</p>
+            <p className="text-base font-semibold text-white mb-1">Ready to deploy for a team?</p>
+            <p className="text-sm text-gray-400">Self-host on any infrastructure or reach out for a managed enterprise deployment.</p>
           </div>
           <div className="flex gap-3 flex-shrink-0">
             <a

@@ -41,7 +41,7 @@ const features = [
     id: 6,
     title: "Self-host, fully private",
     description:
-      "Deploy on your own infrastructure. All orchestration, context management, and agent coordination runs locally. Only outbound traffic is to your chosen LLM endpoint.",
+      "Deploy on any infrastructure. All orchestration, context management, and agent coordination runs locally. Only outbound traffic is to the chosen LLM endpoint.",
     icon: <Shield className="w-5 h-5" />,
   },
 ];

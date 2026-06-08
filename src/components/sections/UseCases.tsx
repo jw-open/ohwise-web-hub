@@ -88,7 +88,7 @@ const UseCases: React.FC = () => {
             Built for every team
           </h2>
           <p className="text-lg text-gray-400 leading-relaxed">
-            One platform, infinite use cases across your entire organization.
+            One platform, applicable across an entire organization.
           </p>
         </div>
 
@@ -116,10 +116,10 @@ const UseCases: React.FC = () => {
         <div className="max-w-3xl mx-auto rounded-xl border border-white/10 bg-white/5 p-8 flex flex-col sm:flex-row items-center justify-between gap-6">
           <div>
             <p className="text-base font-semibold text-white mb-1">
-              Your use case not listed?
+              Use case not listed?
             </p>
             <p className="text-sm text-gray-400">
-              OhWise is a general multi-agent platform. If your workflow involves steps, tools, and decisions, it can be automated.
+              OhWise is a general multi-agent platform. Any workflow involving steps, tools, and decisions can be automated.
             </p>
           </div>
           <a
