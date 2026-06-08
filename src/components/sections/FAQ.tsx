@@ -32,7 +32,7 @@ const faqItems: FAQItem[] = [
   {
     id: 5,
     question: "What AI models and agents are supported?",
-    answer: "OhWise is model-agnostic. Lab supports 5 AI coding agent CLIs: Claude Code (Anthropic), Codex CLI (OpenAI), Gemini CLI (Google), and Snowflake Cortex. The DAG orchestration layer works with any API-compatible LLM — different models can be assigned to different agent nodes within the same pipeline. For example: Claude for reasoning, a smaller model for classification, and a code-specific model for generation — all in one workflow."
+    answer: "OhWise is model-agnostic and supports 20+ AI vendors. Lab integrates AI coding agent CLIs including Claude Code (Anthropic), Codex CLI (OpenAI), Gemini CLI (Google), and Snowflake Cortex. The DAG orchestration layer works with any API-compatible LLM endpoint: Anthropic, OpenAI, Google, Mistral, Cohere, Meta Llama via Groq or Ollama, AWS Bedrock, Azure OpenAI, DeepSeek, xAI, Perplexity, and more. Different nodes in the same pipeline can use different models and vendors."
   },
   {
     id: 6,

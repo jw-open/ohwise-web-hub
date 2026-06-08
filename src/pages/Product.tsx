@@ -49,11 +49,11 @@ const Product = () => {
                 The architecture behind
                 <br />
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-purple-400">
-                  production multi-agent AI
+                  enterprise multi-agent AI
                 </span>
               </h1>
               <p className="text-lg md:text-xl text-gray-400 mb-10 max-w-2xl mx-auto leading-relaxed">
-                OhWise ships every layer a production AI system needs: DAG orchestration, structured agent coordination, real-time streaming, graph-native context retrieval, and a browser-based AI coding agent terminal.
+                OhWise ships every layer a serious AI system needs: DAG orchestration, structured agent coordination, real-time streaming, graph-native context retrieval, and a browser-based AI coding agent terminal.
               </p>
               <div className="flex flex-col sm:flex-row justify-center gap-3">
                 <a
@@ -78,7 +78,7 @@ const Product = () => {
           <div className="container mx-auto px-4 sm:px-6 lg:px-8 mt-16">
             <div className="max-w-4xl mx-auto grid grid-cols-2 sm:grid-cols-4 gap-6 text-center">
               {[
-                { value: "5", label: "AI agents supported" },
+                { value: "20+", label: "AI vendors supported" },
                 { value: "5", label: "Open-source PyPI packages" },
                 { value: "DAG", label: "Execution model" },
                 { value: "WebSocket", label: "Real-time streaming" },
@@ -183,7 +183,7 @@ const Product = () => {
                 </p>
                 <ul className="space-y-3 mb-6">
                   {[
-                    "5 AI coding agents: Claude Code, Codex, Gemini CLI, Cortex, and more",
+                    "AI coding agents: Claude Code, Codex CLI, Gemini CLI, Snowflake Cortex, and more",
                     "Real-time WebSocket streaming of agent reasoning and tool calls",
                     "File diff viewer with inline before/after display",
                     "Permission system: allow / deny / allow-for-session",
@@ -378,7 +378,7 @@ const Product = () => {
                 <Cpu className="w-8 h-8 text-gray-600 dark:text-gray-300" />
               </div>
               <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-4">
-                Built on production-grade infrastructure
+                Battle-tested infrastructure
               </h2>
               <p className="text-gray-600 dark:text-gray-400">
                 No magic abstractions. Every layer is a battle-tested component with a well-defined interface.
