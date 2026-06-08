@@ -170,7 +170,7 @@ const OpenSource = () => {
                 Open Source
               </div>
               <h1 className="font-display font-bold text-4xl sm:text-5xl text-gray-900 dark:text-white mb-6 leading-tight">
-                Built in public
+                Open Source Libraries
               </h1>
               <p className="text-lg text-gray-600 dark:text-gray-300">
                 Standalone Python libraries extracted from the OhWise platform.

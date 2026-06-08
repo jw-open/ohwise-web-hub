@@ -16,7 +16,7 @@ const About = () => {
             <div className="max-w-3xl mx-auto text-center">
               <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-white/10 bg-white/5 text-sm text-gray-400 mb-8">
                 <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
-                Built in public
+                Open Source
               </div>
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 tracking-tight">
                 About <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-purple-400">OhWise</span>
