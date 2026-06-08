@@ -3,6 +3,7 @@ import React, { useEffect } from "react";
 import Navbar from "../components/layout/Navbar";
 import Footer from "../components/layout/Footer";
 import CTASection from "../components/sections/CTASection";
+import Infrastructure from "../components/sections/Infrastructure";
 import { CheckCircle, Zap, Database, Users, Brain, GitBranch, Code2, Terminal, Layers, Network, FlaskConical, Shield, ArrowRight, Cpu, Globe, Lock, Key, BarChart2 } from "lucide-react";
 
 const Product = () => {
@@ -656,6 +657,9 @@ const Product = () => {
 
           </div>
         </section>
+
+        {/* Infrastructure / Deployment */}
+        <Infrastructure />
 
         {/* CTA */}
         <CTASection
