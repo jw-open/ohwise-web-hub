@@ -550,7 +550,7 @@ const BlogPost = () => {
       <main className="flex-grow pt-20">
         <article>
           {/* ── Hero image ──────────────────────────────────────────────── */}
-          <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 pt-12 pb-8">
+          <div className="max-w-[780px] mx-auto px-6 sm:px-10 pt-12 pb-8">
             {/* Back link */}
             <Link to="/blog" className="inline-flex items-center gap-1 text-sm text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 transition-colors mb-8">
               <ChevronLeft size={15} /> All articles
@@ -580,39 +580,158 @@ const BlogPost = () => {
           </div>
 
           {/* ── Body ────────────────────────────────────────────────────── */}
-          <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 pb-16">
+          <div className="max-w-[780px] mx-auto px-6 sm:px-10 pb-24">
+            <style>{`
+              .blog-body p.lead {
+                font-size: 1.25rem;
+                line-height: 1.75;
+                color: #374151;
+                margin-bottom: 2rem;
+                font-weight: 400;
+                letter-spacing: -0.01em;
+              }
+              .dark .blog-body p.lead { color: #d1d5db; }
+
+              .blog-body p {
+                font-size: 1.1rem;
+                line-height: 1.85;
+                color: #374151;
+                margin-bottom: 1.6rem;
+                letter-spacing: -0.003em;
+              }
+              .dark .blog-body p { color: #d1d5db; }
+
+              .blog-body h2 {
+                font-size: 1.75rem;
+                font-weight: 700;
+                letter-spacing: -0.03em;
+                color: #111827;
+                margin-top: 3.5rem;
+                margin-bottom: 1rem;
+                line-height: 1.25;
+              }
+              .dark .blog-body h2 { color: #f9fafb; }
+
+              .blog-body h3 {
+                font-size: 1.3rem;
+                font-weight: 600;
+                letter-spacing: -0.02em;
+                color: #1f2937;
+                margin-top: 2.5rem;
+                margin-bottom: 0.75rem;
+                line-height: 1.35;
+              }
+              .dark .blog-body h3 { color: #f3f4f6; }
+
+              .blog-body ul, .blog-body ol {
+                padding-left: 1.5rem;
+                margin-bottom: 1.6rem;
+              }
+              .blog-body li {
+                font-size: 1.05rem;
+                line-height: 1.8;
+                color: #374151;
+                margin-bottom: 0.5rem;
+              }
+              .dark .blog-body li { color: #d1d5db; }
+
+              .blog-body blockquote {
+                border-left: 3px solid #6366f1;
+                padding: 1rem 1.5rem;
+                margin: 2.5rem 0;
+                background: #f8f9ff;
+                border-radius: 0 12px 12px 0;
+                font-size: 1.15rem;
+                font-style: italic;
+                color: #4b5563;
+                line-height: 1.7;
+              }
+              .dark .blog-body blockquote {
+                background: rgba(99,102,241,0.07);
+                color: #9ca3af;
+              }
+              .blog-body blockquote cite {
+                display: block;
+                margin-top: 0.75rem;
+                font-size: 0.875rem;
+                font-style: normal;
+                font-weight: 500;
+                color: #6b7280;
+              }
+
+              .blog-body strong { color: #111827; font-weight: 600; }
+              .dark .blog-body strong { color: #f9fafb; }
+
+              .blog-body code {
+                font-size: 0.9rem;
+                color: #4f46e5;
+                background: #eef2ff;
+                border-radius: 5px;
+                padding: 0.15em 0.45em;
+                font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+              }
+              .dark .blog-body code {
+                color: #818cf8;
+                background: rgba(99,102,241,0.1);
+              }
+
+              .blog-body pre {
+                background: #0f172a;
+                color: #e2e8f0;
+                border-radius: 14px;
+                padding: 1.5rem 1.75rem;
+                overflow-x: auto;
+                margin: 2rem 0;
+                font-size: 0.9rem;
+                line-height: 1.65;
+              }
+              .blog-body pre code {
+                background: none;
+                color: inherit;
+                padding: 0;
+                font-size: inherit;
+              }
+
+              .blog-body hr {
+                border: none;
+                border-top: 1px solid #e5e7eb;
+                margin: 3rem 0;
+              }
+              .dark .blog-body hr { border-color: #374151; }
+
+              .blog-body a {
+                color: #4f46e5;
+                text-decoration: underline;
+                text-underline-offset: 3px;
+                text-decoration-thickness: 1px;
+              }
+              .dark .blog-body a { color: #818cf8; }
+            `}</style>
+
             <div
-              className="prose prose-lg prose-gray dark:prose-invert max-w-none
-                prose-headings:font-semibold prose-headings:tracking-tight
-                prose-h2:text-2xl prose-h2:mt-12 prose-h2:mb-4
-                prose-h3:text-xl prose-h3:mt-8 prose-h3:mb-3
-                prose-p:leading-relaxed prose-p:text-gray-700 dark:prose-p:text-gray-300
-                prose-li:text-gray-700 dark:prose-li:text-gray-300
-                prose-strong:text-gray-900 dark:prose-strong:text-white
-                prose-blockquote:border-blue-500 prose-blockquote:text-gray-600 dark:prose-blockquote:text-gray-400
-                prose-code:text-blue-600 dark:prose-code:text-blue-400 prose-code:bg-gray-50 dark:prose-code:bg-gray-900 prose-code:rounded prose-code:px-1"
+              className="blog-body"
               dangerouslySetInnerHTML={{ __html: post.content }}
             />
 
             {/* Tags */}
-            <div className="flex flex-wrap gap-2 mt-12 pt-8 border-t border-gray-100 dark:border-gray-800">
+            <div className="flex flex-wrap gap-2 mt-16 pt-8 border-t border-gray-100 dark:border-gray-800">
               {post.tags.map((tag, i) => (
-                <span key={i} className="px-3 py-1 rounded-full text-xs font-medium bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400">
+                <span key={i} className="px-3 py-1 rounded-full text-xs font-medium bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 tracking-wide">
                   {tag}
                 </span>
               ))}
             </div>
 
             {/* Author card */}
-            <div className="mt-10 flex items-center gap-4 p-6 rounded-2xl bg-gray-50 dark:bg-gray-900">
+            <div className="mt-10 flex items-center gap-5 p-6 rounded-2xl bg-gray-50 dark:bg-gray-900 border border-gray-100 dark:border-gray-800">
               <img
                 src={post.authorAvatar}
                 alt={post.author}
-                className="w-14 h-14 rounded-full object-cover flex-shrink-0"
+                className="w-14 h-14 rounded-full object-cover flex-shrink-0 ring-2 ring-white dark:ring-gray-800"
               />
               <div>
                 <p className="font-semibold text-gray-900 dark:text-white">{post.author}</p>
-                <p className="text-sm text-gray-500 dark:text-gray-400">{post.authorTitle}</p>
+                <p className="text-sm text-gray-500 dark:text-gray-400 mt-0.5">{post.authorTitle}</p>
               </div>
             </div>
           </div>
