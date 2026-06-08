@@ -1,175 +1,137 @@
-import React, { useState } from "react";
-import { GitBranch, BookOpen, Code2, FlaskConical, Database, ArrowRight } from "lucide-react";
 
-const useCases = [
+import React from "react";
+import { ArrowRight } from "lucide-react";
+
+const USE_CASES = [
   {
-    id: "pipelines",
-    icon: <GitBranch className="w-5 h-5" />,
-    industry: "Pipeline Orchestration",
-    problem: "ML pipelines are brittle, unobservable, and hard to debug.",
+    emoji: "💰",
+    title: "Sales Copilot",
     description:
-      "OhWise executes ML workflows as typed DAGs — preprocessing, inference, evaluation, and post-processing run as coordinated agent nodes. Parallel branches execute concurrently. Every step is logged with inputs, outputs, latency, and token usage.",
-    outcomes: ["DAG-based execution with typed state", "Parallel branches run concurrently", "Full step-level observability and replay"],
-    color: "indigo",
+      "Compensation analysis, pipeline forecasting, revenue dashboards, and sales ops automation — all without a dedicated data team.",
+    color: "border-emerald-500/30 bg-emerald-500/5",
+    badge: "text-emerald-400",
   },
   {
-    id: "context",
-    icon: <BookOpen className="w-5 h-5" />,
-    industry: "Context Engineering",
-    problem: "LLMs get poor context — flat file chunks miss relationships.",
+    emoji: "📣",
+    title: "Marketing Copilot",
     description:
-      "OhWise uses graph-structured retrieval via its open source layer (codebase2graph, docs2graph, graph2sql). Code, documents, and schemas become knowledge graphs. Personalized PageRank ranks the most relevant nodes for any query — so agents get precise, relationship-aware context.",
-    outcomes: ["Graph nodes ranked by Personalized PageRank", "Call graphs, entity graphs, schema graphs", "Context size reduced without losing signal"],
-    color: "purple",
+      "Email campaigns, social media management, funnel analytics, and lead generation workflows — orchestrated end-to-end.",
+    color: "border-blue-500/30 bg-blue-500/5",
+    badge: "text-blue-400",
   },
   {
-    id: "lab",
-    icon: <Code2 className="w-5 h-5" />,
-    industry: "AI Coding Agent Lab",
-    problem: "AI coding CLIs run in terminals, invisible to your team.",
+    emoji: "👥",
+    title: "People & HR",
     description:
-      "Lab connects Claude Code, Codex, and Gemini CLI to a live web interface via ai-relay. Every reasoning step, tool call, file diff, and quota warning streams in real time. Run long coding sessions from any device, share agent outputs with your team, and inspect exactly what the agent did.",
-    outcomes: ["Claude Code, Codex, Gemini CLI supported", "Streaming reasoning + tool call trace", "File diff viewer and session history"],
-    color: "emerald",
+      "Resume screening, onboarding automation, email drafting, and hiring workflows — so HR focuses on people, not paperwork.",
+    color: "border-purple-500/30 bg-purple-500/5",
+    badge: "text-purple-400",
   },
   {
-    id: "evaluation",
-    icon: <FlaskConical className="w-5 h-5" />,
-    industry: "Model Evaluation",
-    problem: "Eval loops are manual, inconsistent, and slow to iterate.",
+    emoji: "🔬",
+    title: "Research Assistant",
     description:
-      "Define evaluation criteria as DAG nodes. OhWise runs structured eval loops across your dataset — each sample routed through your pipeline, scored by judge agents, and aggregated into metrics. Iterate on prompts and compare runs side by side.",
-    outcomes: ["Structured eval DAGs with judge agents", "Per-sample traces and failure analysis", "Run comparison and metric tracking"],
-    color: "rose",
+      "Literature review, paper editing, experiment tracking, and code-assisted research — from first search to final draft.",
+    color: "border-indigo-500/30 bg-indigo-500/5",
+    badge: "text-indigo-400",
   },
   {
-    id: "sql",
-    icon: <Database className="w-5 h-5" />,
-    industry: "Graph-to-SQL",
-    problem: "Text-to-SQL fails on large, complex schemas.",
+    emoji: "✨",
+    title: "Personal Assistant",
     description:
-      "OhWise uses graph2sql to build a schema graph from your database — tables and columns as nodes, foreign keys as edges. Personalized PageRank extracts a relevant subgraph for each query. The LLM sees only what it needs to generate accurate SQL — even across hundreds of tables.",
-    outcomes: ["Schema graph built from DDL or ORM models", "Relevant subgraph ranked per query", "Bring your own LLM — no lock-in"],
-    color: "sky",
+      "Content management across Twitter, LinkedIn, and blogs; job search; interview prep; and travel planning — all in one place.",
+    color: "border-yellow-500/30 bg-yellow-500/5",
+    badge: "text-yellow-400",
+  },
+  {
+    emoji: "🤖",
+    title: "AI/ML Ops",
+    description:
+      "Pipeline orchestration, model monitoring, experiment management, and deployment automation — built for AI-native teams.",
+    color: "border-rose-500/30 bg-rose-500/5",
+    badge: "text-rose-400",
+  },
+  {
+    emoji: "🏥",
+    title: "Healthcare Ops",
+    description:
+      "Insurance processing, clinical workflow automation, and patient data analysis — under strict data isolation and audit controls.",
+    color: "border-teal-500/30 bg-teal-500/5",
+    badge: "text-teal-400",
+  },
+  {
+    emoji: "⚙️",
+    title: "DevOps & Observability",
+    description:
+      "Alert triage, incident response, root-cause analysis, and infrastructure automation — fewer pages, faster resolution.",
+    color: "border-sky-500/30 bg-sky-500/5",
+    badge: "text-sky-400",
+  },
+  {
+    emoji: "📈",
+    title: "Investment & Risk",
+    description:
+      "Portfolio analysis, risk modeling, and market research automation — structured data meets multi-agent intelligence.",
+    color: "border-orange-500/30 bg-orange-500/5",
+    badge: "text-orange-400",
   },
 ];
 
-const colorMap: Record<string, { bg: string; border: string; icon: string; badge: string; dot: string }> = {
-  indigo: {
-    bg: "bg-indigo-50 dark:bg-indigo-950/20",
-    border: "border-indigo-200 dark:border-indigo-800",
-    icon: "bg-indigo-100 dark:bg-indigo-900/40 text-indigo-600 dark:text-indigo-400",
-    badge: "bg-indigo-100 text-indigo-700 dark:bg-indigo-900/40 dark:text-indigo-300",
-    dot: "bg-indigo-500",
-  },
-  purple: {
-    bg: "bg-purple-50 dark:bg-purple-950/20",
-    border: "border-purple-200 dark:border-purple-800",
-    icon: "bg-purple-100 dark:bg-purple-900/40 text-purple-600 dark:text-purple-400",
-    badge: "bg-purple-100 text-purple-700 dark:bg-purple-900/40 dark:text-purple-300",
-    dot: "bg-purple-500",
-  },
-  emerald: {
-    bg: "bg-emerald-50 dark:bg-emerald-950/20",
-    border: "border-emerald-200 dark:border-emerald-800",
-    icon: "bg-emerald-100 dark:bg-emerald-900/40 text-emerald-600 dark:text-emerald-400",
-    badge: "bg-emerald-100 text-emerald-700 dark:bg-emerald-900/40 dark:text-emerald-300",
-    dot: "bg-emerald-500",
-  },
-  rose: {
-    bg: "bg-rose-50 dark:bg-rose-950/20",
-    border: "border-rose-200 dark:border-rose-800",
-    icon: "bg-rose-100 dark:bg-rose-900/40 text-rose-600 dark:text-rose-400",
-    badge: "bg-rose-100 text-rose-700 dark:bg-rose-900/40 dark:text-rose-300",
-    dot: "bg-rose-500",
-  },
-  sky: {
-    bg: "bg-sky-50 dark:bg-sky-950/20",
-    border: "border-sky-200 dark:border-sky-800",
-    icon: "bg-sky-100 dark:bg-sky-900/40 text-sky-600 dark:text-sky-400",
-    badge: "bg-sky-100 text-sky-700 dark:bg-sky-900/40 dark:text-sky-300",
-    dot: "bg-sky-500",
-  },
-};
-
-const UseCases = () => {
-  const [active, setActive] = useState("pipelines");
-  const current = useCases.find((u) => u.id === active)!;
-  const colors = colorMap[current.color];
-
+const UseCases: React.FC = () => {
   return (
-    <section className="py-24 bg-gray-50 dark:bg-gray-950">
+    <section className="py-24 bg-gray-950 text-white">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="max-w-2xl mx-auto text-center mb-12">
-          <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-4 tracking-tight">
-            Built for AI/ML engineers
+
+        {/* Header */}
+        <div className="max-w-2xl mx-auto text-center mb-16">
+          <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4 tracking-tight">
+            Built for every team
           </h2>
-          <p className="text-lg text-gray-500 dark:text-gray-400">
-            OhWise handles orchestration, context, and observability — so you focus on the model.
+          <p className="text-lg text-gray-400 leading-relaxed">
+            One platform, infinite use cases across your entire organization.
           </p>
         </div>
 
-        {/* Tab selector */}
-        <div className="flex flex-wrap justify-center gap-2 mb-10">
-          {useCases.map((u) => {
-            const c = colorMap[u.color];
-            return (
-              <button
-                key={u.id}
-                onClick={() => setActive(u.id)}
-                className={`flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium border transition-all duration-150 ${
-                  active === u.id
-                    ? `${c.badge} ${c.border}`
-                    : "border-gray-200 dark:border-gray-700 text-gray-500 dark:text-gray-400 hover:border-gray-300 dark:hover:border-gray-600"
-                }`}
-              >
-                {u.industry}
-              </button>
-            );
-          })}
-        </div>
-
-        {/* Active use case card */}
-        <div className="max-w-3xl mx-auto">
-          <div className={`rounded-2xl border p-8 transition-all duration-200 ${colors.bg} ${colors.border}`}>
-            <div className="flex items-start gap-4 mb-6">
-              <div className={`w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0 ${colors.icon}`}>
-                {current.icon}
-              </div>
-              <div>
-                <p className="text-xs font-semibold uppercase tracking-widest text-gray-400 mb-1">
-                  {current.industry}
-                </p>
-                <h3 className="text-xl font-bold text-gray-900 dark:text-white">
-                  {current.problem}
+        {/* 3-column card grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 max-w-6xl mx-auto mb-16">
+          {USE_CASES.map((uc, i) => (
+            <div
+              key={i}
+              className={`rounded-xl border ${uc.color} p-6 flex flex-col gap-3 hover:brightness-110 transition-all duration-200`}
+            >
+              <div className="flex items-center gap-3">
+                <span className="text-2xl leading-none">{uc.emoji}</span>
+                <h3 className={`text-sm font-semibold leading-tight ${uc.badge}`}>
+                  {uc.title}
                 </h3>
               </div>
+              <p className="text-sm text-gray-400 leading-relaxed flex-grow">
+                {uc.description}
+              </p>
             </div>
-
-            <p className="text-gray-600 dark:text-gray-300 leading-relaxed mb-8">
-              {current.description}
-            </p>
-
-            <div className="space-y-2 mb-8">
-              {current.outcomes.map((outcome) => (
-                <div key={outcome} className="flex items-center gap-3">
-                  <div className={`w-1.5 h-1.5 rounded-full flex-shrink-0 ${colors.dot}`} />
-                  <span className="text-sm text-gray-700 dark:text-gray-300">{outcome}</span>
-                </div>
-              ))}
-            </div>
-
-            <a
-              href="https://cloud.ohwise.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 text-sm font-semibold text-gray-900 dark:text-white hover:underline"
-            >
-              Get started
-              <ArrowRight size={14} />
-            </a>
-          </div>
+          ))}
         </div>
+
+        {/* CTA strip */}
+        <div className="max-w-3xl mx-auto rounded-xl border border-white/10 bg-white/5 p-8 flex flex-col sm:flex-row items-center justify-between gap-6">
+          <div>
+            <p className="text-base font-semibold text-white mb-1">
+              Your use case not listed?
+            </p>
+            <p className="text-sm text-gray-400">
+              OhWise is a general multi-agent platform. If your workflow involves steps, tools, and decisions, it can be automated.
+            </p>
+          </div>
+          <a
+            href="https://cloud.ohwise.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 px-5 py-2.5 bg-white text-gray-900 hover:bg-gray-100 text-sm font-medium rounded-lg transition-colors flex-shrink-0"
+          >
+            Get started <ArrowRight size={14} />
+          </a>
+        </div>
+
       </div>
     </section>
   );

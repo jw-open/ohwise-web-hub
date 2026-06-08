@@ -98,9 +98,39 @@ const BLOG_POSTS = [
     category: "Technical",
     image: "https://images.unsplash.com/photo-1639322537228-f710d846310a?q=80&w=2832&auto=format&fit=crop&ixlib=rb-4.0.3"
   },
+  {
+    id: 10,
+    title: "How OhWise Turns Your Sales Data Into Decisions — Automatically",
+    excerpt: "Multi-agent pipelines that analyze compensation data, build dashboards, and surface revenue insights without a data team.",
+    author: "OhWise Team",
+    date: "June 2025",
+    readTime: "6 min",
+    category: "Use Cases",
+    image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3"
+  },
+  {
+    id: 11,
+    title: "From Literature Review to Publication: How Researchers Use OhWise",
+    excerpt: "AI-assisted research workflows — paper discovery, summarization, experiment tracking, and code generation — all in one platform.",
+    author: "OhWise Team",
+    date: "June 2025",
+    readTime: "7 min",
+    category: "Use Cases",
+    image: "https://images.unsplash.com/photo-1532094349884-543559be2c9f?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3"
+  },
+  {
+    id: 12,
+    title: "Why AI Teams Are Replacing Scattered Toolchains with OhWise",
+    excerpt: "Orchestrate model training pipelines, monitor deployments, and manage experiments through a unified multi-agent platform built for AI teams.",
+    author: "OhWise Team",
+    date: "June 2025",
+    readTime: "5 min",
+    category: "Use Cases",
+    image: "https://images.unsplash.com/photo-1677442135703-1787eea5ce01?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3"
+  },
 ];
 
-const CATEGORIES = ["All", "Announcements", "Technical", "Best Practices", "Case Studies"];
+const CATEGORIES = ["All", "Announcements", "Technical", "Best Practices", "Case Studies", "Use Cases"];
 
 const Blog = () => {
   const [searchQuery, setSearchQuery] = useState("");

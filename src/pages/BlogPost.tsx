@@ -269,6 +269,201 @@ ranked = graph.rank("total revenue by customer last 30 days excluding cancelled"
     tags: ["Graph Algorithms", "PageRank", "Context Retrieval", "RAG", "Text-to-SQL", "Open Source"],
     image: "https://images.unsplash.com/photo-1639322537228-f710d846310a?q=80&w=2832&auto=format&fit=crop&ixlib=rb-4.0.3"
   },
+  {
+    id: 10,
+    title: "How OhWise Turns Your Sales Data Into Decisions — Automatically",
+    content: `
+      <p class="lead">Sales operations teams are drowning. Not in leads — in spreadsheets. Quota attainment by rep, attainment by territory, variable compensation reconciliation, pipeline coverage ratios, forecast accuracy tracking. The data lives in Salesforce, in comp tools, in Excel files emailed on Friday afternoons. Turning it into insight requires hours of manual work. By the time the analysis lands on the sales leader's desk, the quarter is already over.</p>
+
+      <p>This is the sales ops problem. It's not a data problem — the data exists. It's an automation problem: the steps between raw CRM data and a useful decision are repetitive, well-defined, and currently done by hand.</p>
+
+      <h2>Why sales ops is a natural fit for multi-agent automation</h2>
+
+      <p>Every sales analysis follows a recognizable pattern: pull data from one or more sources, apply a transformation (sum, rank, delta, ratio), format the result, and route it to the right person. That pattern is a workflow. And workflows are exactly what OhWise was built to automate.</p>
+
+      <p>Sales compensation analysis, for example, is a DAG: pull quota data from the comp tool → pull closed-won data from Salesforce → join on rep ID → compute attainment percentage → flag reps above/below threshold → generate the compensation summary → send to finance. Each of those steps is a node. The platform handles execution order, error handling, and retry logic automatically.</p>
+
+      <p>With OhWise, a sales ops lead defines the workflow once. After that, it runs on schedule — or on demand — without manual intervention.</p>
+
+      <h2>What a Sales Copilot looks like in OhWise</h2>
+
+      <h3>Lab: your AI coding agent for ad-hoc analysis</h3>
+
+      <p>Lab is OhWise's interface for running AI coding agent CLI sessions — Claude Code, Codex, Gemini CLI — in a live web UI. For sales ops, Lab is the ad-hoc analysis layer. Need to write a Python script that joins three Salesforce exports and generates a compensation summary? Open a Lab session, describe what you need, and let the agent write and run the code while you watch every reasoning step and file diff in real time.</p>
+
+      <p>Lab sessions are persistent. You can close the browser, come back tomorrow, and resume exactly where you left off. Every tool call, every file the agent touches, every output is captured in the session history. No lost work, no re-explaining context.</p>
+
+      <h3>Studio: multi-step missions that run autonomously</h3>
+
+      <p>Studio is OhWise's multi-agent orchestration layer. Where Lab is interactive, Studio is autonomous. You define a mission — "Generate the weekly pipeline coverage report and post it to #sales-ops on Slack" — and a coordinator agent breaks it into subtasks, routes them to specialized agents, and synthesizes the result.</p>
+
+      <p>For recurring sales analysis workflows, Studio is the right layer. Configure it once: pull the data, run the analysis, format the output, deliver it. The platform handles the orchestration. Your team gets the output without touching a spreadsheet.</p>
+
+      <h3>Specific capabilities</h3>
+
+      <ul>
+        <li><strong>Compensation analysis</strong> — Automate variable comp reconciliation. Pull attainment data, apply comp plan rules, flag exceptions, generate the summary. What used to take a day takes minutes.</li>
+        <li><strong>Pipeline forecasting</strong> — Run weighted pipeline models on your CRM data. Surface deals at risk, identify coverage gaps by segment, and generate the forecast package automatically.</li>
+        <li><strong>Dashboard generation</strong> — Produce HTML or Markdown summaries of key metrics, ready to paste into a Notion doc or email. No Tableau license required.</li>
+        <li><strong>Revenue optimization insights</strong> — Identify which product lines, territories, or rep segments are over- or under-performing. Surface the data behind the insight automatically.</li>
+      </ul>
+
+      <h2>The real value: consistent, on-demand analysis without a data team</h2>
+
+      <p>Most sales organizations at the 50–500 person stage don't have a dedicated data team. Analysis happens whenever someone has time. Reports are inconsistent. Decisions lag the data by weeks.</p>
+
+      <p>OhWise closes that gap. The workflows are defined once and run reliably. The analysis is consistent because the steps are deterministic. The output is always fresh because it runs on your schedule, not on someone's bandwidth.</p>
+
+      <p>Sales leaders get the data they need when they need it. Finance gets comp summaries on time. The ops team stops being the bottleneck.</p>
+
+      <h2>Getting started</h2>
+
+      <p>The fastest way to start is to open a Lab session and describe your most time-consuming recurring analysis. Let the agent write the first version of the script. Review the output. Refine it. Once it's working, move it to Studio as a scheduled mission.</p>
+
+      <p>You don't need to integrate your CRM on day one. A CSV export is enough to get started. Add integrations incrementally as you build confidence in the workflows.</p>
+
+      <p>If your sales team is making decisions from last week's data, that's a solvable problem. <a href="https://cloud.ohwise.com" target="_blank" rel="noopener noreferrer">Get started with OhWise</a> and run your first sales analysis today.</p>
+    `,
+    author: "OhWise Team",
+    authorTitle: "Product Team",
+    authorAvatar: "https://images.unsplash.com/photo-1677442135703-1787eea5ce01?w=150&h=150&fit=crop&crop=faces",
+    date: "June 2025",
+    readTime: "6 min read",
+    category: "Use Cases",
+    tags: ["Sales Ops", "Compensation Analysis", "Pipeline Forecasting", "Use Cases", "Studio"],
+    image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3"
+  },
+  {
+    id: 11,
+    title: "From Literature Review to Publication: How Researchers Use OhWise",
+    content: `
+      <p class="lead">Academic research has a context-switching problem. A literature review might span 200 papers. Experiment tracking lives in a spreadsheet. Code for analysis is in a Jupyter notebook. Citations are in Zotero. Draft text is in a Google Doc. None of these tools talk to each other. The researcher is the integration layer — spending hours per week on mechanical tasks that have nothing to do with the actual research.</p>
+
+      <p>OhWise addresses this not by replacing your existing tools, but by automating the transitions between them: finding papers, extracting key claims, connecting them to your research question, tracking what you've run, and generating draft text from your notes and results.</p>
+
+      <h2>The researcher pain points OhWise addresses</h2>
+
+      <h3>Manual literature review</h3>
+
+      <p>A thorough literature review on a non-trivial topic requires reading 50–200+ papers. Identifying which papers are relevant, extracting the key findings from each, and building a synthesis of the state of the field is weeks of work. Most of that work is mechanical: reading abstracts, deciding relevance, noting key claims, organizing by theme.</p>
+
+      <p>OhWise can automate the mechanical parts. Feed it a set of papers (PDFs, arXiv IDs, or URLs), define your research question, and let a multi-agent pipeline handle initial triage: reading each paper, extracting the central claims and methodology, flagging the most relevant ones, and generating a structured summary organized by theme. You focus on the papers that matter.</p>
+
+      <h3>Context switching between tools</h3>
+
+      <p>The average researcher switches between 6–10 tools in a single work session. Each switch costs 10–15 minutes of re-establishing context. OhWise doesn't eliminate your tools — it eliminates the manual transitions. You define the workflow once; the platform handles the routing.</p>
+
+      <h2>How OhWise supports research workflows</h2>
+
+      <h3>Lab: AI coding agent for analysis and experimentation</h3>
+
+      <p>Lab connects Claude Code, Codex, and Gemini CLI to a live web interface. For researchers, this means running long coding sessions — data analysis, statistical modeling, visualization — from any device, with a complete trace of every step the agent took.</p>
+
+      <p>This matters for research reproducibility. Every tool call, every file the agent touched, every code diff is logged. You can reconstruct exactly what the agent did to produce a result. When a reviewer asks "how did you generate Figure 3?", the answer is in the session history.</p>
+
+      <h3>Studio: multi-step research pipelines</h3>
+
+      <p>Studio is OhWise's multi-agent orchestration layer. A research pipeline might look like: retrieve the latest papers on topic X → extract key claims and methodologies → compare to your experimental results → identify gaps → draft a related work section. Each of those steps is a node in a Studio mission. The coordinator agent handles the sequencing and synthesizes the final output.</p>
+
+      <p>For experiment tracking, Studio can be configured to: run your experiment, log the parameters and results, compare against prior runs, flag any anomalies, and update the results table in your draft. The repetitive parts of the scientific process become automated.</p>
+
+      <h3>Knowledge graph integration: doc2graph and code2graph</h3>
+
+      <p>OhWise's open-source packages provide graph-structured context for research workflows. <strong>doc2graph</strong> takes a set of documents — papers, notes, reports — and builds a knowledge graph: sections, entities, claims, and citations as nodes; relationships as edges. When an agent needs to answer a question about the literature, it draws from this graph rather than re-reading the raw documents. Personalized PageRank surfaces the most relevant sections for any query.</p>
+
+      <p><strong>code2graph</strong> does the same for code repositories. For a research codebase with multiple experiments, it extracts the call graph, function dependencies, and data flow. An agent navigating your codebase for analysis tasks gets precise, relationship-aware context rather than a flat dump of files.</p>
+
+      <p>The result: agents that understand the structure of your research, not just its surface text.</p>
+
+      <h2>From first search to final draft</h2>
+
+      <p>A typical research workflow in OhWise looks like this:</p>
+
+      <ol>
+        <li><strong>Paper discovery</strong> — Define your research question. A Studio agent searches arXiv, Semantic Scholar, or a local paper collection, ranks by relevance using graph-based retrieval, and returns the top-k papers with structured summaries.</li>
+        <li><strong>Synthesis</strong> — A second agent reads the top papers and generates a structured synthesis: key claims by subfield, methodologies used, open questions, and how they connect to your work.</li>
+        <li><strong>Experiment tracking</strong> — Lab runs your analysis code, logs every run with parameters and results, and flags regressions or anomalies compared to prior runs.</li>
+        <li><strong>Draft generation</strong> — Studio combines your synthesis notes and experiment results into a draft related work section or results summary, ready for editing.</li>
+      </ol>
+
+      <p>Each of these steps used to require manual work across multiple tools. In OhWise, they're nodes in a pipeline that runs on demand.</p>
+
+      <h2>For PhD students and research teams</h2>
+
+      <p>The productivity gap between a researcher with good tooling and one without is large and growing. OhWise doesn't change what research is — it removes the friction that slows it down. Literature review that took two weeks takes two days. First drafts of related work sections appear in hours. Experiment results are tracked automatically.</p>
+
+      <p>The time you save is time you can spend on the parts of research that actually require your expertise: forming hypotheses, designing experiments, interpreting results.</p>
+
+      <p>If your research process involves any of these steps, OhWise can automate the mechanical parts. <a href="https://cloud.ohwise.com" target="_blank" rel="noopener noreferrer">Start a free session</a> and run your first research pipeline today.</p>
+    `,
+    author: "OhWise Team",
+    authorTitle: "Product Team",
+    authorAvatar: "https://images.unsplash.com/photo-1677442135703-1787eea5ce01?w=150&h=150&fit=crop&crop=faces",
+    date: "June 2025",
+    readTime: "7 min read",
+    category: "Use Cases",
+    tags: ["Research", "Literature Review", "Knowledge Graphs", "doc2graph", "Use Cases", "Lab"],
+    image: "https://images.unsplash.com/photo-1532094349884-543559be2c9f?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3"
+  },
+  {
+    id: 12,
+    title: "Why AI Teams Are Replacing Scattered Toolchains with OhWise",
+    content: `
+      <p class="lead">The average ML team runs experiments in notebooks, tracks them in MLflow, orchestrates pipelines in Airflow, monitors deployments in Prometheus, and communicates results in Slack. Each tool does its job. But the team is the integration layer — manually moving data between systems, re-establishing context at every handoff, and debugging failures across a stack with no unified view.</p>
+
+      <p>This is the MLOps toolchain fragmentation problem. It's not a missing-feature problem — every individual tool is excellent. It's a coordination problem: the workflows that matter to an AI team span multiple tools, and nothing orchestrates the whole thing end-to-end.</p>
+
+      <h2>The fragmented MLOps landscape</h2>
+
+      <p>A typical model development cycle looks like this: a researcher opens a notebook, runs experiments, logs some metrics to MLflow, realizes the training data pipeline is broken, files an issue, waits for an infra engineer to fix it, re-runs the experiment, gets a better result, packages the model, opens a PR, waits for CI, deploys to staging, monitors for regressions, promotes to production. If anything goes wrong at any step, the debugging process crosses tool boundaries: Airflow logs for pipeline failures, Kubernetes events for deployment issues, custom dashboards for model quality.</p>
+
+      <p>Each boundary costs time. More importantly, each boundary costs context. By the time a failure is diagnosed, the engineer has had to reconstruct the full picture from five different log sources.</p>
+
+      <h2>How Studio missions map to ML pipelines</h2>
+
+      <p>OhWise Studio models multi-step workflows as DAGs — directed acyclic graphs where each node is a task with a defined input/output contract. This maps directly to how ML pipelines work. A training pipeline has stages: data validation → feature engineering → model training → evaluation → artifact packaging → deployment. Each stage is a node. The platform handles execution order, parallelism where the stages are independent, and state persistence across the full run.</p>
+
+      <p>The practical benefit: when a pipeline fails, the failure is localized to a specific node. The platform captures the inputs, outputs, and error state for that node. Debugging is straightforward — you're not reconstructing context from five different log sources, you're looking at one structured execution trace.</p>
+
+      <p>Studio missions can also include human-in-the-loop steps. Before promoting a model to production, route the evaluation summary to a designated reviewer. They approve or reject from the OhWise UI. The workflow resumes or halts based on their decision. This kind of approval gate is a single configuration option in Studio — not custom code to write and maintain.</p>
+
+      <h2>Lab for iterative coding and debugging</h2>
+
+      <p>Lab is OhWise's interface for running AI coding agent sessions — Claude Code, Codex, Gemini CLI — in a live web UI. For ML teams, Lab is the iterative experimentation layer. Debugging a training run, writing a feature engineering script, investigating a data quality issue: these are tasks that benefit from an AI coding agent with full context of your codebase.</p>
+
+      <p>Lab sessions are persistent and fully traced. Every file the agent touches, every tool call it makes, every code change it proposes — all logged. When a colleague asks why a model's preprocessing pipeline changed, the Lab session history is the answer. When you need to reproduce a result from two weeks ago, the session state is there.</p>
+
+      <p>For long-running debugging sessions that span multiple days, Lab handles the context preservation automatically. You don't need to re-explain the codebase every time you open a new session.</p>
+
+      <h2>The open-source ecosystem</h2>
+
+      <p>OhWise is built on a set of open-source packages that AI teams can use independently:</p>
+
+      <ul>
+        <li><strong>ai-relay</strong> (<code>pip install ai-relay</code>) — the WebSocket relay that powers Lab. Spawn any AI coding agent CLI as a subprocess, capture its I/O, and stream structured events (reasoning, tool calls, file diffs, quota warnings) to any web frontend. Use it to build your own Lab interface, or connect to OhWise.</li>
+        <li><strong>graph2sql</strong> (<code>pip install graph2sql</code>) — schema graph analysis for text-to-SQL. Takes your database schema, builds a graph, and uses Personalized PageRank to extract the relevant subgraph for any SQL query. Useful for ML teams with complex feature stores or analytics databases.</li>
+        <li><strong>code2graph</strong> (<code>pip install code2graph</code>) — code repository knowledge graphs. Extracts call graphs, entity graphs, schema graphs, and infrastructure graphs from any codebase. Provides graph-structured context for code understanding tasks — useful for ML teams navigating large research codebases.</li>
+      </ul>
+
+      <p>All three are pure Python, no LLM dependency, MIT licensed. You bring your own model.</p>
+
+      <h2>What AI teams actually get</h2>
+
+      <p>The teams using OhWise aren't replacing their existing tools immediately. They're using OhWise as the orchestration layer on top of them. The notebooks stay. The MLflow experiments stay. The existing monitoring stays. OhWise coordinates the workflows that cross tool boundaries — and provides a unified view of what's happening across the entire pipeline.</p>
+
+      <p>Over time, the manual handoffs disappear. The debugging process gets faster because execution traces are structured and unified. New models go from experiment to production in less time because the steps between them are automated.</p>
+
+      <p>If your ML team is spending more time on toolchain coordination than on model development, that's the problem OhWise solves. <a href="https://cloud.ohwise.com" target="_blank" rel="noopener noreferrer">Get started</a> — connect your first pipeline and run it end-to-end in a single session.</p>
+    `,
+    author: "OhWise Team",
+    authorTitle: "Product Team",
+    authorAvatar: "https://images.unsplash.com/photo-1677442135703-1787eea5ce01?w=150&h=150&fit=crop&crop=faces",
+    date: "June 2025",
+    readTime: "5 min read",
+    category: "Use Cases",
+    tags: ["MLOps", "AI Teams", "Pipeline Orchestration", "ai-relay", "code2graph", "Use Cases"],
+    image: "https://images.unsplash.com/photo-1677442135703-1787eea5ce01?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3"
+  },
 ];
 
 // Mock related posts

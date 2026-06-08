@@ -19,9 +19,9 @@ const Index = () => {
 
       <main className="flex-grow pt-16">
         <Hero />
-        <UseCases />
         <Features />
         <Enterprise />
+        <UseCases />
         <FAQ />
         <CTASection
           primaryButtonLink="https://cloud.ohwise.com/"
