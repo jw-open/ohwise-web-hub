@@ -78,6 +78,16 @@ const BLOG_POSTS = [
     category: "Technical",
     image: "https://images.unsplash.com/photo-1518432031352-d6fc5c10da5a?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3"
   },
+  {
+    id: 8,
+    title: "ohwise-mcp 0.2.0: Graph-Native Context for Claude Code and Any MCP Client",
+    excerpt: "We just released ohwise-mcp 0.2.0 on PyPI — a single MCP server that gives Claude Code, Cursor, and any MCP-compatible tool direct access to OhWise knowledge graphs, agent pipelines, and code context tools. One pip install. One config block. Full graph-native context in your AI coding environment.",
+    author: "OhWise Engineering",
+    date: "June 8, 2026",
+    readTime: "5 min",
+    category: "Announcements",
+    image: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3"
+  },
 ];
 
 const CATEGORIES = ["All", "Announcements", "Technical", "Best Practices", "Case Studies"];

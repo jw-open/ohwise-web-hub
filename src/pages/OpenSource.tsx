@@ -61,7 +61,7 @@ ranked = rank_nodes(graph, "quarterly revenue", k=5)`,
   },
   {
     name: "ai-relay",
-    version: "0.4.1",
+    version: "0.4.31",
     tagline: "WebSocket relay that bridges AI coding agent CLIs to any web interface.",
     description:
       "Run ai-relay as a sidecar next to Claude Code, Codex, Gemini CLI, or Snowflake Cortex. It spawns the CLI as a subprocess, speaks the native stream-json protocol, and streams structured events — reasoning steps, tool calls, file diffs, permission requests, quota warnings — over WebSocket to any frontend in real time. Powers the Lab feature in OhWise.",
@@ -79,7 +79,7 @@ ranked = rank_nodes(graph, "quarterly revenue", k=5)`,
     snippet: `# Local dev (one-shot)
 ai-relay --port 8765
 
-# Container / daemon mode (v0.4.1+)
+# Container / daemon mode (v0.4.31+)
 ai-relay serve --port 9000
 
 # Connect and send handshake:
@@ -89,6 +89,39 @@ ai-relay serve --port 9000
 {"type": "tool_call", "tool": "Edit", "text": "src/app.py"}
 {"type": "context_warning", "context_pct": 82, "text": "..."}
 {"type": "session_end", "exit_code": 0}`,
+  },
+  {
+    name: "ohwise-mcp",
+    version: "0.2.0",
+    tagline: "MCP server exposing graph context, knowledge, and agent tools to any LLM.",
+    description:
+      "An MCP (Model Context Protocol) server that gives Claude Code, Cursor, Windsurf, and any MCP-compatible tool direct access to OhWise knowledge graphs, agent pipelines, code graph tools (codebase2graph), document retrieval (docs2graph), and schema ranking (graph2sql). One pip install, one config block, full graph-native context for your AI coding environment.",
+    status: "active",
+    language: "Python",
+    install: "pip install ohwise-mcp",
+    github: "https://github.com/jw-open/ohwise-mcp",
+    pypi: "https://pypi.org/project/ohwise-mcp/",
+    features: [
+      "Knowledge graph CRUD — list, get, query, add/delete nodes and edges",
+      "Agent pipeline — list agents, run, poll results",
+      "Code context: build graph, rank nodes, trace call path, find impact",
+      "Schema ranking via graph2sql for SQL generation context",
+    ],
+    snippet: `# claude_desktop_config.json (or any MCP client)
+{
+  "mcpServers": {
+    "ohwise": {
+      "command": "ohwise-mcp",
+      "env": {
+        "OHWISE_URL": "https://cloud.ohwise.com",
+        "OHWISE_TOKEN": "<your-token>"
+      }
+    }
+  }
+}
+
+# Or with all graph extras:
+pip install "ohwise-mcp[all]"`,
   },
   {
     name: "codebase2graph",
