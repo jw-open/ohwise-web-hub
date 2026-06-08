@@ -17,7 +17,7 @@ const Enterprise: React.FC = () => {
             Built for teams, designed for isolation
           </h2>
           <p className="text-lg text-gray-400 leading-relaxed">
-            Every organization is a fully isolated tenant. RBAC, audit logs, scoped API keys, SSO, and per-user workspace persistence — enterprise-grade from day one.
+            Every organization is a fully isolated tenant. RBAC, audit logs, scoped API keys, SSO, and per-user workspace persistence are enterprise-grade from day one.
           </p>
         </div>
 
@@ -65,7 +65,7 @@ const Enterprise: React.FC = () => {
               <div className="w-px h-4 bg-white/10" />
               <div className="flex items-center gap-2 text-xs text-gray-500">
                 <Lock size={12} className="text-gray-500" />
-                MongoDB queries always filtered by <code className="text-indigo-400 bg-white/5 px-1.5 py-0.5 rounded">org_id</code> — no cross-tenant data paths
+                MongoDB queries always filtered by <code className="text-indigo-400 bg-white/5 px-1.5 py-0.5 rounded">org_id</code> with no cross-tenant data paths
               </div>
             </div>
           </div>
@@ -80,9 +80,9 @@ const Enterprise: React.FC = () => {
               title: "Workspace & Tenant Isolation",
               items: [
                 "Each org is a fully isolated tenant (org_id scoping at DB layer)",
-                "Multiple users per org — Admin, Member, Viewer roles",
+                "Multiple users per org with Admin, Member, and Viewer roles",
                 "Per-user isolated workspaces: Lab sessions, Studio agents, artifacts",
-                "No cross-tenant data bleed — enforced at API + database level",
+                "No cross-tenant data bleed, enforced at API and database level",
                 "Session history and knowledge graphs persist per user",
                 "Switching sessions never leaks state between users",
               ],
@@ -92,12 +92,12 @@ const Enterprise: React.FC = () => {
               color: "border-emerald-500/30 bg-emerald-500/5",
               title: "Security & Compliance",
               items: [
-                "JWT-based authentication — short-lived tokens per user",
+                "JWT-based authentication with short-lived tokens per user",
                 "Scoped, revocable API keys per organization",
                 "Full audit logs: agent actions, tool calls, file diffs, approvals",
                 "Human-in-the-loop: designated reviewers approve/reject tool calls",
                 "SSO/OAuth2 ready (OAuth2 flows implemented for Claude & Gemini)",
-                "Isolated Docker containers — workspace data residency per user",
+                "Isolated Docker containers for workspace data residency per user",
               ],
             },
             {
@@ -107,10 +107,10 @@ const Enterprise: React.FC = () => {
               items: [
                 "Per-org agent quotas and resource limits configurable by admin",
                 "Studio coordinator agents scoped to group_id (org/team level)",
-                "Lab sessions isolated per user — no state bleed between sessions",
+                "Lab sessions isolated per user with no state bleed between sessions",
                 "Permission system: allow / deny / allow-for-session per tool category",
                 "Multi-region deployment: stateless FastAPI + Redis pub/sub fanout",
-                "Bring your own model: Claude, GPT-4, Gemini, Cortex — per org",
+                "Bring your own model: Claude, GPT-4, Gemini, Cortex, configurable per org",
               ],
             },
             {

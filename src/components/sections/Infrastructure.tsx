@@ -8,7 +8,7 @@ const deployTargets = [
     title: "Bare Metal",
     subtitle: "Full control, zero overhead",
     description:
-      "Run OhWise directly on bare-metal hardware. Docker Compose or Kubernetes — deploy in minutes, keep all compute on-prem. Ideal for air-gapped environments or data-sovereignty requirements.",
+      "Run OhWise directly on bare-metal hardware. Docker Compose or Kubernetes deploys in minutes, keeping all compute on-prem. Ideal for air-gapped environments or data-sovereignty requirements.",
     tags: ["Docker Compose", "K8s", "On-prem", "Air-gapped"],
     border: "border-emerald-500/30",
     bg: "bg-emerald-500/5",
@@ -16,7 +16,7 @@ const deployTargets = [
   },
   {
     icon: <Cloud size={22} className="text-indigo-400" />,
-    title: "AWS — EKS / EC2",
+    title: "AWS: EKS / EC2",
     subtitle: "Elastic, cloud-native scale",
     description:
       "Deploy on Amazon EKS for auto-scaling multi-agent workloads, or EC2 for predictable reserved capacity. Integrates natively with IAM, VPC, S3, CloudWatch, and Secrets Manager.",
@@ -30,7 +30,7 @@ const deployTargets = [
     title: "AWS Lambda / Durable Functions",
     subtitle: "Serverless, pay-per-use",
     description:
-      "Individual Lambda nodes execute in isolation — each agent step is a durable function invocation. Infinite horizontal scale with zero idle cost. Combine with SQS/EventBridge for event-driven pipelines.",
+      "Individual Lambda nodes execute in isolation. Each agent step is a durable function invocation with infinite horizontal scale and zero idle cost. Combine with SQS/EventBridge for event-driven pipelines.",
     tags: ["Lambda", "Durable Functions", "SQS", "EventBridge", "Serverless"],
     border: "border-amber-500/30",
     bg: "bg-amber-500/5",
@@ -41,7 +41,7 @@ const deployTargets = [
     title: "OhWise Cloud",
     subtitle: "Managed, zero-ops",
     description:
-      "Fully managed SaaS on cloud.ohwise.com. Infrastructure, scaling, upgrades, and observability are handled by OhWise. Start in seconds — migrate to self-hosted any time, data is always exportable.",
+      "Fully managed SaaS on cloud.ohwise.com. Infrastructure, scaling, upgrades, and observability are handled by OhWise. Start in seconds and migrate to self-hosted any time; your data is always exportable.",
     tags: ["SaaS", "Managed", "Zero-ops", "Data portability"],
     border: "border-purple-500/30",
     bg: "bg-purple-500/5",
@@ -52,9 +52,9 @@ const deployTargets = [
 const principles = [
   { label: "Cloud-native from day one", desc: "Stateless agents, container-first design, 12-factor app principles throughout." },
   { label: "No vendor lock-in", desc: "Open standards (WebSocket, REST, OpenAPI). Runs on any cloud or bare metal equally." },
-  { label: "Bring your own LLM", desc: "Works with any model endpoint — Anthropic, OpenAI, Gemini, self-hosted Llama, or a private endpoint." },
+  { label: "Bring your own LLM", desc: "Works with any model endpoint: Anthropic, OpenAI, Gemini, self-hosted Llama, or a private endpoint." },
   { label: "Horizontal scale by design", desc: "Every agent, session, and Lambda node scales independently. No shared state bottlenecks." },
-  { label: "Secrets stay within the deployment perimeter", desc: "API keys, DB credentials, and model tokens stay in the operator's infra — never transited through OhWise servers in self-hosted mode." },
+  { label: "Secrets stay within the deployment perimeter", desc: "API keys, DB credentials, and model tokens stay in the operator's infra and are never transited through OhWise servers in self-hosted mode." },
   { label: "Observability built in", desc: "Structured logs, distributed traces, and metrics exported to CloudWatch, Datadog, Prometheus, or any OTLP sink." },
 ];
 
@@ -77,7 +77,7 @@ const Infrastructure: React.FC = () => {
             </span>
           </h2>
           <p className="text-lg text-gray-400 leading-relaxed">
-            OhWise was designed cloud-native from day one — stateless agents, container-first,
+            OhWise was designed cloud-native from day one: stateless agents, container-first,
             no vendor lock-in. Run it on bare metal, on AWS with EKS or Lambda, or use the
             fully managed cloud offering.
           </p>
@@ -157,7 +157,7 @@ const Infrastructure: React.FC = () => {
               </div>
             </div>
             <p className="text-center text-xs text-gray-600 mt-6">
-              Same topology runs on bare metal, AWS EKS, or serverless Lambda — swap the runtime, keep the architecture.
+              Same topology runs on bare metal, AWS EKS, or serverless Lambda. Swap the runtime, keep the architecture.
             </p>
           </div>
         </div>

@@ -17,7 +17,7 @@ const projects = [
     github: "https://github.com/jw-open/graph2sql",
     pypi: "https://pypi.org/project/graph2sql/",
     features: [
-      "No LLM dependency — pure Python + numpy",
+      "No LLM dependency: pure Python + numpy",
       "Personalized PageRank for schema-aware ranking",
       "Alias matching via node attributes",
       "Pip installable, fully typed",
@@ -37,7 +37,7 @@ context = graph.rank("total revenue by customer", k=3)
     version: "0.3.2",
     tagline: "Turn documents into knowledge graphs. No LLM required.",
     description:
-      "Extract structured knowledge graphs from PDFs, Word docs, Markdown, HTML, CSV, and more. Build entity-relationship graphs for downstream retrieval and question answering — then rank relevant nodes with Personalized PageRank before passing context to your LLM.",
+      "Extract structured knowledge graphs from PDFs, Word docs, Markdown, HTML, CSV, and more. Build entity-relationship graphs for downstream retrieval and question answering, then rank relevant nodes with Personalized PageRank before passing context to your LLM.",
     status: "active",
     language: "Python",
     install: "pip install docs2graph",
@@ -47,7 +47,7 @@ context = graph.rank("total revenue by customer", k=3)
       "15+ file formats: PDF, DOCX, HTML, Markdown, CSV, JSON, PPTX",
       "Personalized PageRank for relevance ranking",
       "OCR support for scanned documents and images",
-      "No LLM dependency — bring your own model",
+      "No LLM dependency: bring your own model",
     ],
     snippet: `from docs2graph import build_graph
 
@@ -64,7 +64,7 @@ ranked = rank_nodes(graph, "quarterly revenue", k=5)`,
     version: "0.4.32",
     tagline: "WebSocket relay that bridges AI coding agent CLIs to any web interface.",
     description:
-      "Run ai-relay as a sidecar next to Claude Code, Codex, Gemini CLI, or Snowflake Cortex. It spawns the CLI as a subprocess, speaks the native stream-json protocol, and streams structured events — reasoning steps, tool calls, file diffs, permission requests, quota warnings — over WebSocket to any frontend in real time. Powers the Lab feature in OhWise.",
+      "Run ai-relay as a sidecar next to Claude Code, Codex, Gemini CLI, or Snowflake Cortex. It spawns the CLI as a subprocess, speaks the native stream-json protocol, and streams structured events (reasoning steps, tool calls, file diffs, permission requests, quota warnings) over WebSocket to any frontend in real time. Powers the Lab feature in OhWise.",
     status: "active",
     language: "Python",
     install: "pip install ai-relay",
@@ -72,7 +72,7 @@ ranked = rank_nodes(graph, "quarterly revenue", k=5)`,
     pypi: "https://pypi.org/project/ai-relay/",
     features: [
       "Claude Code, Codex, Gemini CLI, Cortex support",
-      "Server mode: ai-relay serve — one connection per agent session",
+      "Server mode: ai-relay serve with one connection per agent session",
       "PerTurnRuntime: multi-turn conversations with --resume support",
       "Structured events: reasoning, tool calls, file diffs, quota warnings",
     ],
@@ -102,8 +102,8 @@ ai-relay serve --port 9000
     github: "https://github.com/jw-open/ohwise-mcp",
     pypi: "https://pypi.org/project/ohwise-mcp/",
     features: [
-      "Knowledge graph CRUD — list, get, query, add/delete nodes and edges",
-      "Agent pipeline — list agents, run, poll results",
+      "Knowledge graph CRUD: list, get, query, add/delete nodes and edges",
+      "Agent pipeline: list agents, run, poll results",
       "Code context: build graph, rank nodes, trace call path, find impact",
       "Schema ranking via graph2sql for SQL generation context",
     ],
@@ -128,7 +128,7 @@ pip install "ohwise-mcp[all]"`,
     version: "0.1.0",
     tagline: "Turn a code repository into a queryable knowledge graph.",
     description:
-      "Statically extract the full structure of any codebase — files, modules, functions, classes, call graphs, schemas, infrastructure, CI/CD pipelines — as a typed graph of nodes and edges. Rank the most relevant nodes for any query with Personalized PageRank and pass focused context to any LLM.",
+      "Statically extract the full structure of any codebase (files, modules, functions, classes, call graphs, schemas, infrastructure, CI/CD pipelines) as a typed graph of nodes and edges. Rank the most relevant nodes for any query with Personalized PageRank and pass focused context to any LLM.",
     status: "active",
     language: "Python",
     install: "pip install codebase2graph",
@@ -138,7 +138,7 @@ pip install "ohwise-mcp[all]"`,
       "10 graph types: call, entity, schema, infra, security, web, and more",
       "Python AST + JS/TS call graph extraction",
       "Personalized PageRank for code context retrieval",
-      "No LLM dependency — pure Python, standard library only",
+      "No LLM dependency: pure Python, standard library only",
     ],
     snippet: `from code2graph import build_graph
 

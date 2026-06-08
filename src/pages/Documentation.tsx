@@ -20,7 +20,7 @@ const Documentation = () => {
       title: "Lab & AI Coding Agents",
       icon: <Terminal className="text-emerald-600" size={24} />,
       articles: [
-        { title: "Lab — AI Coding Agent Integration", slug: "lab-overview" },
+        { title: "Lab: AI Coding Agent Integration", slug: "lab-overview" },
         { title: "ai-relay: WebSocket Relay Protocol", slug: "ai-relay-protocol" },
         { title: "Connecting Claude Code to Lab", slug: "lab-claude-code" },
         { title: "OAuth Authentication in Lab", slug: "lab-oauth" },
@@ -40,10 +40,10 @@ const Documentation = () => {
       title: "Graph Packages (OSS)",
       icon: <Network className="text-sky-600" size={24} />,
       articles: [
-        { title: "graph2sql — Schema Graph for Text-to-SQL", slug: "graph2sql" },
-        { title: "docs2graph — Document Knowledge Graphs", slug: "docs2graph" },
-        { title: "codebase2graph — Code Repository Graphs", slug: "codebase2graph" },
-        { title: "ohwise-mcp — MCP Server", slug: "ohwise-mcp" },
+        { title: "graph2sql: Schema Graph for Text-to-SQL", slug: "graph2sql" },
+        { title: "docs2graph: Document Knowledge Graphs", slug: "docs2graph" },
+        { title: "codebase2graph: Code Repository Graphs", slug: "codebase2graph" },
+        { title: "ohwise-mcp: MCP Server", slug: "ohwise-mcp" },
       ]
     },
     {
@@ -76,9 +76,9 @@ const Documentation = () => {
           <strong>OhWise</strong> is a multi-agent AI platform built around three core capabilities:
         </p>
         <ol>
-          <li><strong>DAG-based orchestration</strong> — AI workflows modeled as directed acyclic graphs, with a planner → executor → evaluator coordinator loop, typed state propagation, and per-node observability.</li>
-          <li><strong>Graph-native context retrieval</strong> — Code, schemas, and documents converted to knowledge graphs. Personalized PageRank surfaces structurally relevant context instead of flat vector similarity.</li>
-          <li><strong>Lab and Studio interfaces</strong> — Lab provides a browser-based terminal for AI coding agents (Claude Code, Codex, Gemini CLI, Cortex). Studio orchestrates multi-agent collaboration with artifact generation and human-in-the-loop intervention.</li>
+          <li><strong>DAG-based orchestration</strong>: AI workflows modeled as directed acyclic graphs, with a planner → executor → evaluator coordinator loop, typed state propagation, and per-node observability.</li>
+          <li><strong>Graph-native context retrieval</strong>: code, schemas, and documents converted to knowledge graphs. Personalized PageRank surfaces structurally relevant context instead of flat vector similarity.</li>
+          <li><strong>Lab and Studio interfaces</strong>: Lab provides a browser-based terminal for AI coding agents (Claude Code, Codex, Gemini CLI, Cortex). Studio orchestrates multi-agent collaboration with artifact generation and human-in-the-loop intervention.</li>
         </ol>
         <h2>Key components</h2>
         <ul>
@@ -90,7 +90,7 @@ const Documentation = () => {
         </ul>
         <h2>Architecture overview</h2>
         <p>
-          The OhWise backend exposes a FastAPI REST API and WebSocket endpoints. Redis pub/sub fans out real-time agent events to connected clients. MongoDB stores agents, sessions, DAG definitions, and artifact outputs. All agent execution — whether Lab sessions or Studio coordinator loops — produces structured JSON events that stream over WebSocket in real time.
+          The OhWise backend exposes a FastAPI REST API and WebSocket endpoints. Redis pub/sub fans out real-time agent events to connected clients. MongoDB stores agents, sessions, DAG definitions, and artifact outputs. All agent execution, whether Lab sessions or Studio coordinator loops, produces structured JSON events that stream over WebSocket in real time.
         </p>
       </div>
     ),
@@ -99,71 +99,71 @@ const Documentation = () => {
         <h1>Core Concepts: DAGs, Agents, Lambdas</h1>
         <h2>DAG (Directed Acyclic Graph)</h2>
         <p>
-          An OhWise pipeline is a DAG where each node represents a unit of work — an agent call, a Lambda function, a tool invocation, or a sub-pipeline. Edges define execution dependencies. Nodes with no unresolved dependencies execute in parallel.
+          An OhWise pipeline is a DAG where each node represents a unit of work: an agent call, a Lambda function, a tool invocation, or a sub-pipeline. Edges define execution dependencies. Nodes with no unresolved dependencies execute in parallel.
         </p>
         <p>
           Each node has a typed input/output contract. The platform validates types at node boundaries, making pipelines debuggable: when a node fails, you know exactly what input it received.
         </p>
         <h2>Agents</h2>
         <p>
-          Agents are LLM-backed nodes in a DAG. They receive context — from the DAG state, from knowledge graphs, from tool outputs — and produce structured output. OhWise is model-agnostic: agents can use Claude, GPT-4, Llama, Mistral, or any API-compatible model. Different nodes in the same pipeline can use different models.
+          Agents are LLM-backed nodes in a DAG. They receive context (from the DAG state, from knowledge graphs, from tool outputs) and produce structured output. OhWise is model-agnostic: agents can use Claude, GPT-4, Llama, Mistral, or any API-compatible model. Different nodes in the same pipeline can use different models.
         </p>
         <h2>Lambda functions</h2>
         <p>
-          Lambdas are stateless function nodes — Python functions dispatched to AI agents for execution without maintaining session state. Lambda dispatch is the lightweight path for single-turn tasks that don't need a full agent session.
+          Lambdas are stateless function nodes: Python functions dispatched to AI agents for execution without maintaining session state. Lambda dispatch is the lightweight path for single-turn tasks that don't need a full agent session.
         </p>
         <h2>The coordinator loop</h2>
         <p>
           Studio's multi-agent coordinator runs a structured loop:
         </p>
         <ol>
-          <li><strong>Planner</strong> — receives the user request and decomposes it into a subtask DAG</li>
-          <li><strong>Executor</strong> — runs each subtask node, calling LLMs, tools, or Lambda functions</li>
-          <li><strong>Evaluator</strong> — scores executor output; decides pass, retry, or escalate</li>
-          <li><strong>Synthesizer</strong> — on pass, combines executor outputs into a final artifact</li>
+          <li><strong>Planner</strong>: receives the user request and decomposes it into a subtask DAG</li>
+          <li><strong>Executor</strong>: runs each subtask node, calling LLMs, tools, or Lambda functions</li>
+          <li><strong>Evaluator</strong>: scores executor output; decides pass, retry, or escalate</li>
+          <li><strong>Synthesizer</strong>: on pass, combines executor outputs into a final artifact</li>
         </ol>
         <p>Human-in-the-loop intervention can pause the loop at any node for review or redirection.</p>
       </div>
     ),
     "lab-overview": (
       <div className="prose dark:prose-invert prose-lg max-w-none">
-        <h1>Lab — AI Coding Agent Integration</h1>
+        <h1>Lab: AI Coding Agent Integration</h1>
         <p>
           <strong>Lab</strong> is OhWise's built-in terminal for running AI coding agent CLIs (Claude Code, Codex, Gemini CLI, Snowflake Cortex) directly from your browser. Sessions run on OhWise servers inside an isolated per-user workspace.
         </p>
         <h2>How It Works</h2>
         <ol>
           <li>Navigate to <strong>/lab</strong> in the OhWise app.</li>
-          <li>Click <strong>+</strong> to create a new session — choose a name and agent (Claude Code, Codex, Gemini CLI, or Cortex).</li>
+          <li>Click <strong>+</strong> to create a new session. Choose a name and agent (Claude Code, Codex, Gemini CLI, or Cortex).</li>
           <li>Click <strong>Connect</strong>. The server spawns the CLI via the <code>ai-relay</code> relay process in your isolated workspace.</li>
-          <li>If it's your first time, an OAuth link appears in the stream — click it, authenticate, paste the code back.</li>
+          <li>If it's your first time, an OAuth link appears in the stream. Click it, authenticate, and paste the code back.</li>
           <li>Start typing prompts. Use <code>/compact</code> or <code>/clear</code> buttons to manage context.</li>
         </ol>
         <h2>Features</h2>
         <ul>
-          <li><strong>Real-time streaming</strong> — reasoning steps, tool calls, file diffs, quota warnings, context compaction events</li>
-          <li><strong>File diff viewer</strong> — inline before/after display for every file edit</li>
-          <li><strong>Permission system</strong> — allow / deny / allow-for-session for each tool invocation</li>
-          <li><strong>Multi-panel split view</strong> — compare two agent sessions side by side</li>
-          <li><strong>Voice input</strong> — Whisper-backed speech-to-text</li>
-          <li><strong>TTS output</strong> — text-to-speech for agent responses</li>
-          <li><strong>MCP server integration</strong> — attach an MCP server per session for graph context tools</li>
-          <li><strong>Context management</strong> — streaming text coalescing, context compaction warnings at configurable thresholds</li>
-          <li><strong>Model switching</strong> — change model mid-session with <code>/model sonnet</code></li>
+          <li><strong>Real-time streaming</strong>: reasoning steps, tool calls, file diffs, quota warnings, context compaction events</li>
+          <li><strong>File diff viewer</strong>: inline before/after display for every file edit</li>
+          <li><strong>Permission system</strong>: allow / deny / allow-for-session for each tool invocation</li>
+          <li><strong>Multi-panel split view</strong>: compare two agent sessions side by side</li>
+          <li><strong>Voice input</strong>: Whisper-backed speech-to-text</li>
+          <li><strong>TTS output</strong>: text-to-speech for agent responses</li>
+          <li><strong>MCP server integration</strong>: attach an MCP server per session for graph context tools</li>
+          <li><strong>Context management</strong>: streaming text coalescing, context compaction warnings at configurable thresholds</li>
+          <li><strong>Model switching</strong>: change model mid-session with <code>/model sonnet</code></li>
         </ul>
         <h2>Security Model</h2>
         <ul>
           <li>JWT authentication required for every WebSocket connection</li>
           <li>Each user gets an isolated workspace at <code>/var/ohwise-lab-workspaces/&#123;user_id&#125;/</code></li>
-          <li>CLIs run as a non-root <code>labuser</code> — no root access to the host</li>
+          <li>CLIs run as a non-root <code>labuser</code> with no root access to the host</li>
           <li>Only whitelisted tools (claude, codex, gemini, cortex) can be spawned</li>
         </ul>
         <h2>Supported Agents</h2>
         <ul>
-          <li><strong>Claude Code</strong> — Anthropic's AI coding assistant</li>
-          <li><strong>Codex CLI</strong> — OpenAI's coding CLI</li>
-          <li><strong>Gemini CLI</strong> — Google's Gemini coding assistant</li>
-          <li><strong>Snowflake Cortex</strong> — enterprise LLM CLI</li>
+          <li><strong>Claude Code</strong>: Anthropic's AI coding assistant</li>
+          <li><strong>Codex CLI</strong>: OpenAI's coding CLI</li>
+          <li><strong>Gemini CLI</strong>: Google's Gemini coding assistant</li>
+          <li><strong>Snowflake Cortex</strong>: enterprise LLM CLI</li>
         </ul>
       </div>
     ),
@@ -217,14 +217,14 @@ ai-relay serve --port 9000`}</code></pre>
       <div className="prose dark:prose-invert prose-lg max-w-none">
         <h1>Connecting Claude Code to Lab</h1>
         <h2>On OhWise Cloud</h2>
-        <p>Claude Code is pre-installed on the OhWise server. Just select <strong>Claude Code</strong> when creating a session — no setup needed.</p>
+        <p>Claude Code is pre-installed on the OhWise server. Just select <strong>Claude Code</strong> when creating a session. No setup needed.</p>
         <h2>First Connection</h2>
         <ol>
           <li>Create a session with Tool = <strong>Claude Code</strong>.</li>
           <li>Click <strong>Connect</strong>.</li>
-          <li>Claude Code starts — the startup screen appears in the stream.</li>
+          <li>Claude Code starts. The startup screen appears in the stream.</li>
           <li>The theme wizard is auto-confirmed (dark mode selected).</li>
-          <li>An OAuth link appears — see <em>OAuth Authentication in Lab</em>.</li>
+          <li>An OAuth link appears. See <em>OAuth Authentication in Lab</em>.</li>
         </ol>
         <h2>Subsequent Sessions</h2>
         <p>After the first OAuth login, credentials are saved in your workspace (<code>.claude/</code> directory). Subsequent sessions start immediately without re-authentication.</p>
@@ -240,13 +240,13 @@ ai-relay serve --port 9000`}</code></pre>
       <div className="prose dark:prose-invert prose-lg max-w-none">
         <h1>OAuth Authentication in Lab</h1>
         <p>
-          Lab uses your existing Claude Pro/Max subscription via browser OAuth — no API key or per-token cost needed.
+          Lab uses your existing Claude Pro/Max subscription via browser OAuth. No API key or per-token cost needed.
         </p>
         <h2>First-Time Auth Flow</h2>
         <ol>
           <li>Connect a Claude Code session in Lab.</li>
-          <li>Claude Code outputs an authentication URL — it appears as a <strong>clickable blue link</strong> in the stream.</li>
-          <li>Click the link — your browser opens <code>claude.ai</code>.</li>
+          <li>Claude Code outputs an authentication URL. It appears as a <strong>clickable blue link</strong> in the stream.</li>
+          <li>Click the link. Your browser opens <code>claude.ai</code>.</li>
           <li>Log in with your Anthropic account.</li>
           <li>Copy the authorization code shown on the page.</li>
           <li>Paste the code into the Lab input field → click <strong>Send</strong>.</li>
@@ -254,7 +254,7 @@ ai-relay serve --port 9000`}</code></pre>
         </ol>
         <h2>Credential Persistence</h2>
         <p>
-          Credentials are stored in your isolated workspace (<code>/var/ohwise-lab-workspaces/&#123;user_id&#125;/.claude/</code>) on a Docker named volume. They persist across container restarts — you only authenticate once.
+          Credentials are stored in your isolated workspace (<code>/var/ohwise-lab-workspaces/&#123;user_id&#125;/.claude/</code>) on a Docker named volume. They persist across container restarts so you only authenticate once.
         </p>
       </div>
     ),
@@ -266,27 +266,27 @@ ai-relay serve --port 9000`}</code></pre>
         </p>
         <h2>Key Concepts</h2>
         <ul>
-          <li><strong>Group session</strong> — a Studio session is scoped to a <code>group_id</code>, isolating all agents, state, and artifacts for that session</li>
-          <li><strong>Coordinator loop</strong> — the platform runs planner, executor, and evaluator agents in sequence, with typed state passed between nodes</li>
-          <li><strong>Artifact panel</strong> — only content marked with <code>[ARTIFACT]</code> (the executor's final synthesis) appears here; planner/evaluator reasoning goes to the Chat log</li>
-          <li><strong>Human intervention</strong> — pause the loop at any node, redirect the task, or approve/reject agent decisions</li>
+          <li><strong>Group session</strong>: a Studio session is scoped to a <code>group_id</code>, isolating all agents, state, and artifacts for that session</li>
+          <li><strong>Coordinator loop</strong>: the platform runs planner, executor, and evaluator agents in sequence, with typed state passed between nodes</li>
+          <li><strong>Artifact panel</strong>: only content marked with <code>[ARTIFACT]</code> (the executor's final synthesis) appears here; planner/evaluator reasoning goes to the Chat log</li>
+          <li><strong>Human intervention</strong>: pause the loop at any node, redirect the task, or approve/reject agent decisions</li>
         </ul>
         <h2>UI Layout</h2>
         <ul>
-          <li><strong>Chat tab</strong> — real-time stream of all agent communications, reasoning traces, and coordinator messages</li>
-          <li><strong>Artifact tab</strong> — rendered output of the current artifact (HTML, Markdown, code)</li>
-          <li><strong>Session panel</strong> — list of active sessions with status indicators</li>
+          <li><strong>Chat tab</strong>: real-time stream of all agent communications, reasoning traces, and coordinator messages</li>
+          <li><strong>Artifact tab</strong>: rendered output of the current artifact (HTML, Markdown, code)</li>
+          <li><strong>Session panel</strong>: list of active sessions with status indicators</li>
         </ul>
         <h2>Supported Artifact Types</h2>
         <ul>
-          <li>HTML — rendered in an iframe with live preview</li>
-          <li>Markdown — rendered with full syntax support</li>
-          <li>Code — syntax-highlighted with language detection</li>
-          <li>JSON — formatted with collapsible tree view</li>
+          <li>HTML: rendered in an iframe with live preview</li>
+          <li>Markdown: rendered with full syntax support</li>
+          <li>Code: syntax-highlighted with language detection</li>
+          <li>JSON: formatted with collapsible tree view</li>
         </ul>
         <h2>Lab → Studio Event Forwarding</h2>
         <p>
-          Lab sessions can forward events into a Studio session. This means a Claude Code session running in Lab can contribute artifacts and tool call outputs to an active Studio coordinator loop — combining interactive coding agent sessions with structured multi-agent coordination.
+          Lab sessions can forward events into a Studio session. This means a Claude Code session running in Lab can contribute artifacts and tool call outputs to an active Studio coordinator loop, combining interactive coding agent sessions with structured multi-agent coordination.
         </p>
       </div>
     ),
@@ -298,7 +298,7 @@ ai-relay serve --port 9000`}</code></pre>
         </p>
         <h2>Planner</h2>
         <p>
-          Receives the user request and decomposes it into a subtask DAG. Each subtask is a node with a defined scope, input context, and expected output type. The planner's output is a structured plan — not free text — that the executor can traverse deterministically.
+          Receives the user request and decomposes it into a subtask DAG. Each subtask is a node with a defined scope, input context, and expected output type. The planner's output is a structured plan, not free text, that the executor can traverse deterministically.
         </p>
         <h2>Executor</h2>
         <p>
@@ -310,7 +310,7 @@ ai-relay serve --port 9000`}</code></pre>
         </p>
         <h2>State machine</h2>
         <p>
-          The coordinator loop is implemented as a state machine. Long-running tasks — those spanning multiple turns, waiting for external events, or requiring human approval — serialize their state to MongoDB when suspended and resume exactly where they left off when triggered.
+          The coordinator loop is implemented as a state machine. Long-running tasks that span multiple turns, wait for external events, or require human approval serialize their state to MongoDB when suspended and resume exactly where they left off when triggered.
         </p>
         <pre><code>{`// Example coordinator state transitions
 PLANNING → EXECUTING → EVALUATING → DONE
@@ -338,7 +338,7 @@ Based on the analysis of 847 data points...
 2. Highest churn rate in the enterprise tier (4.2%)
 [/ARTIFACT]`}</code></pre>
         <p>
-          Only this content appears in the Artifact panel. Planner reasoning, evaluator scores, and intermediate executor steps are logged to Chat only — keeping the artifact panel clean and focused on the deliverable.
+          Only this content appears in the Artifact panel. Planner reasoning, evaluator scores, and intermediate executor steps are logged to Chat only, keeping the artifact panel clean and focused on the deliverable.
         </p>
         <h2>Artifact rendering</h2>
         <p>
@@ -348,15 +348,15 @@ Based on the analysis of 847 data points...
     ),
     "graph2sql": (
       <div className="prose dark:prose-invert prose-lg max-w-none">
-        <h1>graph2sql — Schema Graph for Text-to-SQL</h1>
+        <h1>graph2sql: Schema Graph for Text-to-SQL</h1>
         <p>
-          <a href="https://pypi.org/project/graph2sql/" target="_blank" rel="noopener noreferrer"><strong>graph2sql</strong></a> (v0.2.0) builds a typed graph from your database schema — tables and columns as nodes, foreign keys and relationships as edges — and uses Personalized PageRank to rank the most relevant nodes for any natural language query.
+          <a href="https://pypi.org/project/graph2sql/" target="_blank" rel="noopener noreferrer"><strong>graph2sql</strong></a> (v0.2.0) builds a typed graph from your database schema (tables and columns as nodes, foreign keys and relationships as edges) and uses Personalized PageRank to rank the most relevant nodes for any natural language query.
         </p>
         <h2>Install</h2>
         <pre><code>pip install graph2sql</code></pre>
         <h2>Why graphs instead of embeddings?</h2>
         <p>
-          Vector similarity retrieves semantically close table names but misses structural relationships. If a query asks about "total revenue by customer", the relevant tables are <code>orders</code>, <code>customers</code>, and <code>payments</code> — connected by foreign keys, not just semantically similar. PageRank traverses these connections, surfacing the right subgraph every time.
+          Vector similarity retrieves semantically close table names but misses structural relationships. If a query asks about "total revenue by customer", the relevant tables are <code>orders</code>, <code>customers</code>, and <code>payments</code>, connected by foreign keys rather than just semantic similarity. PageRank traverses these connections, surfacing the right subgraph every time.
         </p>
         <h2>Usage</h2>
         <pre><code>{`from graph2sql import SchemaGraph
@@ -376,20 +376,20 @@ context = graph.rank("total revenue by customer last 30 days", k=3)
 sql = your_llm(f"Generate SQL given schema: {context}")`}</code></pre>
         <h2>Key features</h2>
         <ul>
-          <li>No LLM dependency — pure Python + numpy</li>
+          <li>No LLM dependency: pure Python + numpy</li>
           <li>Personalized PageRank seeded from query-matched nodes</li>
           <li>Alias matching via node attributes (handles column abbreviations)</li>
           <li>Fully typed, pip installable</li>
-          <li>Works with any LLM — bring your own model</li>
+          <li>Works with any LLM; bring your own model</li>
         </ul>
         <p>GitHub: <a href="https://github.com/jw-open/graph2sql" target="_blank" rel="noopener noreferrer">github.com/jw-open/graph2sql</a></p>
       </div>
     ),
     "docs2graph": (
       <div className="prose dark:prose-invert prose-lg max-w-none">
-        <h1>docs2graph — Document Knowledge Graphs</h1>
+        <h1>docs2graph: Document Knowledge Graphs</h1>
         <p>
-          <a href="https://pypi.org/project/docs2graph/" target="_blank" rel="noopener noreferrer"><strong>docs2graph</strong></a> (v0.3.2) extracts structured knowledge graphs from documents. Feed it PDFs, Word docs, Markdown, HTML, CSV, and 10+ other formats — get back a typed graph of entities, sections, and relationships.
+          <a href="https://pypi.org/project/docs2graph/" target="_blank" rel="noopener noreferrer"><strong>docs2graph</strong></a> (v0.3.2) extracts structured knowledge graphs from documents. Feed it PDFs, Word docs, Markdown, HTML, CSV, and 10+ other formats and get back a typed graph of entities, sections, and relationships.
         </p>
         <h2>Install</h2>
         <pre><code>pip install docs2graph</code></pre>
@@ -409,7 +409,7 @@ ranked = rank_nodes(graph, "quarterly revenue growth", k=5)
         <ul>
           <li>15+ file formats including OCR for scanned documents</li>
           <li>Personalized PageRank for relevance ranking</li>
-          <li>No LLM dependency — pure Python extraction</li>
+          <li>No LLM dependency: pure Python extraction</li>
           <li>Entity-relationship graph with typed edges</li>
         </ul>
         <p>GitHub: <a href="https://github.com/jw-open/doc2graph" target="_blank" rel="noopener noreferrer">github.com/jw-open/doc2graph</a></p>
@@ -417,9 +417,9 @@ ranked = rank_nodes(graph, "quarterly revenue growth", k=5)
     ),
     "codebase2graph": (
       <div className="prose dark:prose-invert prose-lg max-w-none">
-        <h1>codebase2graph — Code Repository Graphs</h1>
+        <h1>codebase2graph: Code Repository Graphs</h1>
         <p>
-          <a href="https://pypi.org/project/codebase2graph/" target="_blank" rel="noopener noreferrer"><strong>codebase2graph</strong></a> (v0.1.0) statically extracts the full structure of any codebase as a typed graph — files, modules, functions, classes, call chains, schemas, infrastructure, CI/CD — then ranks the most relevant nodes for any query.
+          <a href="https://pypi.org/project/codebase2graph/" target="_blank" rel="noopener noreferrer"><strong>codebase2graph</strong></a> (v0.1.0) statically extracts the full structure of any codebase as a typed graph (files, modules, functions, classes, call chains, schemas, infrastructure, CI/CD) and ranks the most relevant nodes for any query.
         </p>
         <h2>Install</h2>
         <pre><code>pip install codebase2graph</code></pre>
@@ -434,20 +434,20 @@ graph = build_graph("/path/to/repo", graph_type="all")
 codebase2graph /repo --graph call --output call_graph.json`}</code></pre>
         <h2>Graph types</h2>
         <ul>
-          <li><strong>call</strong> — function call graph (Python AST + JS/TS)</li>
-          <li><strong>entity</strong> — class/function/variable definitions</li>
-          <li><strong>schema</strong> — database models and migrations</li>
-          <li><strong>infra</strong> — Docker, nginx, env vars, cloud config</li>
-          <li><strong>security</strong> — auth decorators, secrets, permissions</li>
-          <li><strong>web</strong> — API routes and HTTP methods</li>
-          <li><strong>all</strong> — combined graph of all types</li>
+          <li><strong>call</strong>: function call graph (Python AST + JS/TS)</li>
+          <li><strong>entity</strong>: class/function/variable definitions</li>
+          <li><strong>schema</strong>: database models and migrations</li>
+          <li><strong>infra</strong>: Docker, nginx, env vars, cloud config</li>
+          <li><strong>security</strong>: auth decorators, secrets, permissions</li>
+          <li><strong>web</strong>: API routes and HTTP methods</li>
+          <li><strong>all</strong>: combined graph of all types</li>
         </ul>
         <p>GitHub: <a href="https://github.com/jw-open/code2graph" target="_blank" rel="noopener noreferrer">github.com/jw-open/code2graph</a></p>
       </div>
     ),
     "ohwise-mcp": (
       <div className="prose dark:prose-invert prose-lg max-w-none">
-        <h1>ohwise-mcp — MCP Server</h1>
+        <h1>ohwise-mcp: MCP Server</h1>
         <p>
           <a href="https://pypi.org/project/ohwise-mcp/" target="_blank" rel="noopener noreferrer"><strong>ohwise-mcp</strong></a> (v0.2.0) is an MCP (Model Context Protocol) server that gives Claude Code, Cursor, Windsurf, and any MCP-compatible tool direct access to OhWise knowledge graphs, agent pipelines, code graph tools, document retrieval, and schema ranking.
         </p>
@@ -470,11 +470,11 @@ pip install "ohwise-mcp[all]"`}</code></pre>
 }`}</code></pre>
         <h2>Available MCP tools</h2>
         <ul>
-          <li><strong>Knowledge graphs</strong> — list, get, query, add/delete nodes and edges</li>
-          <li><strong>Agent pipelines</strong> — list agents, run tasks, poll results</li>
-          <li><strong>Code context</strong> — build graph, rank nodes, trace call path, find impact</li>
-          <li><strong>Schema ranking</strong> — graph2sql for SQL generation context</li>
-          <li><strong>Document retrieval</strong> — docs2graph for document knowledge graphs</li>
+          <li><strong>Knowledge graphs</strong>: list, get, query, add/delete nodes and edges</li>
+          <li><strong>Agent pipelines</strong>: list agents, run tasks, poll results</li>
+          <li><strong>Code context</strong>: build graph, rank nodes, trace call path, find impact</li>
+          <li><strong>Schema ranking</strong>: graph2sql for SQL generation context</li>
+          <li><strong>Document retrieval</strong>: docs2graph for document knowledge graphs</li>
         </ul>
         <p>GitHub: <a href="https://github.com/jw-open/ohwise-mcp" target="_blank" rel="noopener noreferrer">github.com/jw-open/ohwise-mcp</a></p>
       </div>
@@ -633,21 +633,21 @@ pip install "ohwise-mcp[all]"`}</code></pre>
                 <div className="space-y-6">
                   {[
                     {
-                      title: "ai-relay v0.4.32 — server mode and PerTurnRuntime",
+                      title: "ai-relay v0.4.32: server mode and PerTurnRuntime",
                       tag: "Updated",
                       tagColor: "bg-blue-100 text-blue-800 dark:bg-blue-900/50 dark:text-blue-300",
                       desc: "ai-relay now ships a server mode (ai-relay serve) for persistent daemon deployments and a PerTurnRuntime for multi-turn conversations with --resume support. Structured events include reasoning, tool_call, file diffs, quota_warning, context_warning, and context_compacted.",
                       date: "June 2026",
                     },
                     {
-                      title: "ohwise-mcp v0.2.0 — all graph extras",
+                      title: "ohwise-mcp v0.2.0: all graph extras",
                       tag: "New",
                       tagColor: "bg-green-100 text-green-800 dark:bg-green-900/50 dark:text-green-300",
                       desc: "ohwise-mcp now exposes knowledge graph CRUD, agent pipeline management, code context tools (codebase2graph), document retrieval (docs2graph), and schema ranking (graph2sql) as MCP tools for Claude Code, Cursor, and any MCP client.",
                       date: "June 2026",
                     },
                     {
-                      title: "Studio artifact panel — [ARTIFACT] syntax",
+                      title: "Studio artifact panel: [ARTIFACT] syntax",
                       tag: "Updated",
                       tagColor: "bg-purple-100 text-purple-800 dark:bg-purple-900/50 dark:text-purple-300",
                       desc: "Only content wrapped in [ARTIFACT] blocks (executor final synthesis) appears in the artifact panel. Planner and evaluator output is now logged to the COMMS stream only, keeping the artifact panel clean.",

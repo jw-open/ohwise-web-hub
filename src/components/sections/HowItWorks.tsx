@@ -5,19 +5,19 @@ const steps = [
     number: "01",
     title: "Connect data sources",
     description:
-      "Point OhWise at databases, document stores, or APIs. No data pipeline setup required — agents discover structure automatically.",
+      "Point OhWise at databases, document stores, or APIs. No data pipeline setup required. Agents discover structure automatically.",
   },
   {
     number: "02",
     title: "Agents coordinate in parallel",
     description:
-      "A coordinator agent decomposes the request into subtasks and dispatches specialized agents — one for SQL generation, one for document search, one for synthesis. They run in parallel and share context.",
+      "A coordinator agent decomposes the request into subtasks and dispatches specialized agents: one for SQL generation, one for document search, one for synthesis. They run in parallel and share context.",
   },
   {
     number: "03",
     title: "A complete, verified answer",
     description:
-      "Results are assembled, scored by an evaluator agent, and returned in structured form — SQL queries, summaries, reports, or actions. No hallucinations, no manual stitching of tool outputs.",
+      "Results are assembled, scored by an evaluator agent, and returned in structured form: SQL queries, summaries, reports, or actions. No hallucinations, no manual stitching of tool outputs.",
   },
 ];
 
@@ -30,7 +30,7 @@ const HowItWorks = () => {
             How OhWise works
           </h2>
           <p className="text-lg text-gray-500 dark:text-gray-400">
-            From question to answer — without the manual overhead.
+            From question to answer, without the manual overhead.
           </p>
         </div>
 

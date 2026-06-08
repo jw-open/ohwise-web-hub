@@ -22,7 +22,7 @@ const About = () => {
                 About <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-purple-400">OhWise</span>
               </h1>
               <p className="text-xl md:text-2xl text-gray-400 mb-8 leading-relaxed">
-                A multi-agent AI platform built from first principles — DAG orchestration, graph-native context retrieval, and open-source tooling for AI engineers.
+                A multi-agent AI platform built from first principles: DAG orchestration, graph-native context retrieval, and open-source tooling for AI engineers.
               </p>
             </div>
           </div>
@@ -36,16 +36,16 @@ const About = () => {
               <h2 className="text-3xl font-bold mb-8">What we built and why</h2>
               <div className="prose dark:prose-invert prose-lg mx-auto text-gray-600 dark:text-gray-300 leading-relaxed space-y-5">
                 <p>
-                  OhWise started from a concrete problem: every serious AI team eventually builds the same scaffolding. Prompt chaining, retry logic, context injection, state management, tool-use orchestration, evaluation loops. The scaffolding grows faster than the product — and it is never generic enough to reuse across agents.
+                  OhWise started from a concrete problem: every serious AI team eventually builds the same scaffolding. Prompt chaining, retry logic, context injection, state management, tool-use orchestration, evaluation loops. The scaffolding grows faster than the product, and it is never generic enough to reuse across agents.
                 </p>
                 <p>
-                  We built OhWise to make the harness a platform primitive, not a per-team artifact. The core abstraction is a <strong>DAG</strong> — directed acyclic graph — where each node is an agent, Lambda function, or tool call with a typed input/output contract. The platform handles execution order, parallelism, retry, and state serialization. Engineers define what needs to happen and in what order; OhWise handles how.
+                  We built OhWise to make the harness a platform primitive, not a per-team artifact. The core abstraction is a <strong>DAG</strong> (directed acyclic graph) where each node is an agent, Lambda function, or tool call with a typed input/output contract. The platform handles execution order, parallelism, retry, and state serialization. Engineers define what needs to happen and in what order; OhWise handles how.
                 </p>
                 <p>
-                  The second insight was about context. Most teams use flat vector search to retrieve relevant chunks before an LLM call. But real-world data has structure — foreign keys between database tables, call chains between functions, entity co-occurrences in documents. Vector similarity misses these relationships. We built a graph-native retrieval layer using Personalized PageRank on typed knowledge graphs, and extracted it as three standalone open-source packages: <strong>graph2sql</strong>, <strong>docs2graph</strong>, and <strong>codebase2graph</strong>.
+                  The second insight was about context. Most teams use flat vector search to retrieve relevant chunks before an LLM call. But real-world data has structure: foreign keys between database tables, call chains between functions, entity co-occurrences in documents. Vector similarity misses these relationships. We built a graph-native retrieval layer using Personalized PageRank on typed knowledge graphs, and extracted it as three standalone open-source packages: <strong>graph2sql</strong>, <strong>docs2graph</strong>, and <strong>codebase2graph</strong>.
                 </p>
                 <p>
-                  The third piece was observability of AI coding agents. Developers run Claude Code, Codex, and Gemini CLI locally — powerful tools, but isolated to a terminal. <strong>Lab</strong> connects these agents to a web interface via the open-source <strong>ai-relay</strong> package, streaming every reasoning step, tool call, file diff, and quota warning in real time. Teams can run long coding sessions from any device, share agent outputs, and inspect exactly what the agent did.
+                  The third piece was observability of AI coding agents. Developers run Claude Code, Codex, and Gemini CLI locally, but these are isolated to a terminal. <strong>Lab</strong> connects these agents to a web interface via the open-source <strong>ai-relay</strong> package, streaming every reasoning step, tool call, file diff, and quota warning in real time. Teams can run long coding sessions from any device, share agent outputs, and inspect exactly what the agent did.
                 </p>
               </div>
             </div>
@@ -72,7 +72,7 @@ const About = () => {
                   {
                     icon: <Terminal className="w-5 h-5 text-emerald-600" />,
                     title: "Real-time WebSocket streaming",
-                    description: "Redis pub/sub fans out structured agent events — reasoning traces, tool calls, file diffs, quota warnings — to connected WebSocket clients. The ai-relay open-source package handles the CLI subprocess protocol and event parsing.",
+                    description: "Redis pub/sub fans out structured agent events (reasoning traces, tool calls, file diffs, quota warnings) to connected WebSocket clients. The ai-relay open-source package handles the CLI subprocess protocol and event parsing.",
                   },
                   {
                     icon: <Cpu className="w-5 h-5 text-purple-600" />,

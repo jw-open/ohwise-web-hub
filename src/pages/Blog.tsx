@@ -11,7 +11,7 @@ const BLOG_POSTS = [
   {
     id: 1,
     title: "Introducing OhWise 2.0: The Next Generation of AI Operations",
-    excerpt: "OhWise 2.0 is now available — enhanced multi-agent capabilities, improved knowledge graph integration, and a completely redesigned user interface.",
+    excerpt: "OhWise 2.0 is now available with enhanced multi-agent capabilities, improved knowledge graph integration, and a completely redesigned user interface.",
     author: "Sarah Johnson",
     date: "August 15, 2023",
     readTime: "5 min",
@@ -21,7 +21,7 @@ const BLOG_POSTS = [
   {
     id: 2,
     title: "How AI is Transforming DevOps: The OhWise Approach",
-    excerpt: "The integration of AI into DevOps processes is no longer a future trend — it's happening now. Here's how organizations are using OhWise to automate complex workflows.",
+    excerpt: "The integration of AI into DevOps processes is no longer a future trend. It's happening now. Here's how organizations are using OhWise to automate complex workflows.",
     author: "Michael Chen",
     date: "August 10, 2023",
     readTime: "7 min",
@@ -81,7 +81,7 @@ const BLOG_POSTS = [
   {
     id: 8,
     title: "ohwise-mcp 0.2.0: Graph-Native Context for Claude Code and Any MCP Client",
-    excerpt: "ohwise-mcp 0.2.0 is now on PyPI — a single MCP server that gives Claude Code, Cursor, and any MCP-compatible tool direct access to OhWise knowledge graphs, agent pipelines, and code context tools. One pip install. One config block. Full graph-native context in any AI coding environment.",
+    excerpt: "ohwise-mcp 0.2.0 is now on PyPI. It is a single MCP server that gives Claude Code, Cursor, and any MCP-compatible tool direct access to OhWise knowledge graphs, agent pipelines, and code context tools. One pip install. One config block. Full graph-native context in any AI coding environment.",
     author: "OhWise Engineering",
     date: "June 8, 2026",
     readTime: "5 min",
@@ -91,7 +91,7 @@ const BLOG_POSTS = [
   {
     id: 9,
     title: "Personalized PageRank vs Vector Similarity: Why Graph Algorithms Win for Structured Context",
-    excerpt: "Vector similarity search is the default for retrieval in AI systems — but for structured data (database schemas, code repositories, document hierarchies), it systematically misses the most important relationships. Three open-source packages built on Personalized PageRank address this gap, delivering significantly better context with smaller token budgets.",
+    excerpt: "Vector similarity search is the default for retrieval in AI systems, but for structured data (database schemas, code repositories, document hierarchies), it systematically misses the most important relationships. Three open-source packages built on Personalized PageRank address this gap, delivering significantly better context with smaller token budgets.",
     author: "OhWise Engineering",
     date: "June 8, 2026",
     readTime: "12 min",
@@ -100,7 +100,7 @@ const BLOG_POSTS = [
   },
   {
     id: 10,
-    title: "How OhWise Turns Your Sales Data Into Decisions — Automatically",
+    title: "How OhWise Turns Your Sales Data Into Decisions, Automatically",
     excerpt: "Multi-agent pipelines that analyze compensation data, build dashboards, and surface revenue insights without a data team.",
     author: "OhWise Team",
     date: "June 2025",
@@ -111,7 +111,7 @@ const BLOG_POSTS = [
   {
     id: 11,
     title: "From Literature Review to Publication: How Researchers Use OhWise",
-    excerpt: "AI-assisted research workflows — paper discovery, summarization, experiment tracking, and code generation — all in one platform.",
+    excerpt: "AI-assisted research workflows covering paper discovery, summarization, experiment tracking, and code generation, all in one platform.",
     author: "OhWise Team",
     date: "June 2025",
     readTime: "7 min",
@@ -153,7 +153,7 @@ const Blog = () => {
 
   useEffect(() => { window.scrollTo(0, 0); }, []);
 
-  const featured = BLOG_POSTS[BLOG_POSTS.length - 1]; // post id 9 — newest technical article
+  const featured = BLOG_POSTS[BLOG_POSTS.length - 1]; // post id 9, newest technical article
 
   return (
     <div className="flex flex-col min-h-screen bg-white dark:bg-gray-950">

@@ -36,7 +36,7 @@ const Hero: React.FC = () => {
 
           {/* Subheadline */}
           <p className="text-lg md:text-xl text-gray-400 mb-10 max-w-2xl mx-auto leading-relaxed">
-            OhWise is a DAG-based multi-agent execution engine — Lab for browser-based AI coding agent sessions, Studio for coordinated multi-agent workflows, and open-source graph packages for structured context retrieval.
+            OhWise is a DAG-based multi-agent execution engine: Lab for browser-based AI coding agent sessions, Studio for coordinated multi-agent workflows, and open-source graph packages for structured context retrieval.
           </p>
 
           {/* CTAs */}
@@ -141,7 +141,7 @@ const Hero: React.FC = () => {
                 <div>
                   <p className="text-sm font-semibold text-white mb-1">Full observability</p>
                   <p className="text-xs text-gray-500 leading-relaxed">
-                    Every step logged — reasoning traces, tool calls, token usage, latency
+                    Every step logged: reasoning traces, tool calls, token usage, latency
                   </p>
                 </div>
               </div>

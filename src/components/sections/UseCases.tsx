@@ -7,7 +7,7 @@ const USE_CASES = [
     emoji: "💰",
     title: "Sales Copilot",
     description:
-      "Compensation analysis, pipeline forecasting, revenue dashboards, and sales ops automation — all without a dedicated data team.",
+      "Compensation analysis, pipeline forecasting, revenue dashboards, and sales ops automation, all without a dedicated data team.",
     color: "border-emerald-500/30 bg-emerald-500/5",
     badge: "text-emerald-400",
   },
@@ -15,7 +15,7 @@ const USE_CASES = [
     emoji: "📣",
     title: "Marketing Copilot",
     description:
-      "Email campaigns, social media management, funnel analytics, and lead generation workflows — orchestrated end-to-end.",
+      "Email campaigns, social media management, funnel analytics, and lead generation workflows, orchestrated end-to-end.",
     color: "border-blue-500/30 bg-blue-500/5",
     badge: "text-blue-400",
   },
@@ -23,7 +23,7 @@ const USE_CASES = [
     emoji: "👥",
     title: "People & HR",
     description:
-      "Resume screening, onboarding automation, email drafting, and hiring workflows — so HR focuses on people, not paperwork.",
+      "Resume screening, onboarding automation, email drafting, and hiring workflows so HR can focus on people, not paperwork.",
     color: "border-purple-500/30 bg-purple-500/5",
     badge: "text-purple-400",
   },
@@ -31,7 +31,7 @@ const USE_CASES = [
     emoji: "🔬",
     title: "Research Assistant",
     description:
-      "Literature review, paper editing, experiment tracking, and code-assisted research — from first search to final draft.",
+      "Literature review, paper editing, experiment tracking, and code-assisted research, from first search to final draft.",
     color: "border-indigo-500/30 bg-indigo-500/5",
     badge: "text-indigo-400",
   },
@@ -39,7 +39,7 @@ const USE_CASES = [
     emoji: "✨",
     title: "Personal Assistant",
     description:
-      "Content management across Twitter, LinkedIn, and blogs; job search; interview prep; and travel planning — all in one place.",
+      "Content management across Twitter, LinkedIn, and blogs; job search; interview prep; and travel planning, all in one place.",
     color: "border-yellow-500/30 bg-yellow-500/5",
     badge: "text-yellow-400",
   },
@@ -47,7 +47,7 @@ const USE_CASES = [
     emoji: "🤖",
     title: "AI/ML Ops",
     description:
-      "Pipeline orchestration, model monitoring, experiment management, and deployment automation — built for AI-native teams.",
+      "Pipeline orchestration, model monitoring, experiment management, and deployment automation built for AI-native teams.",
     color: "border-rose-500/30 bg-rose-500/5",
     badge: "text-rose-400",
   },
@@ -55,7 +55,7 @@ const USE_CASES = [
     emoji: "🏥",
     title: "Healthcare Ops",
     description:
-      "Insurance processing, clinical workflow automation, and patient data analysis — under strict data isolation and audit controls.",
+      "Insurance processing, clinical workflow automation, and patient data analysis under strict data isolation and audit controls.",
     color: "border-teal-500/30 bg-teal-500/5",
     badge: "text-teal-400",
   },
@@ -63,7 +63,7 @@ const USE_CASES = [
     emoji: "⚙️",
     title: "DevOps & Observability",
     description:
-      "Alert triage, incident response, root-cause analysis, and infrastructure automation — fewer pages, faster resolution.",
+      "Alert triage, incident response, root-cause analysis, and infrastructure automation for fewer pages and faster resolution.",
     color: "border-sky-500/30 bg-sky-500/5",
     badge: "text-sky-400",
   },
@@ -71,7 +71,7 @@ const USE_CASES = [
     emoji: "📈",
     title: "Investment & Risk",
     description:
-      "Portfolio analysis, risk modeling, and market research automation — structured data meets multi-agent intelligence.",
+      "Portfolio analysis, risk modeling, and market research automation where structured data meets multi-agent intelligence.",
     color: "border-orange-500/30 bg-orange-500/5",
     badge: "text-orange-400",
   },

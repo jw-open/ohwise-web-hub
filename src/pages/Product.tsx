@@ -113,7 +113,7 @@ const Product = () => {
                     "Typed state propagation across nodes",
                     "Parallel branch execution where graph permits",
                     "Per-node observability: inputs, outputs, token usage, latency",
-                    "Resume from any checkpoint — no lost context on restart",
+                    "Resume from any checkpoint with no lost context on restart",
                   ].map((item, index) => (
                     <li key={index} className="flex items-start gap-2">
                       <CheckCircle className="w-5 h-5 text-indigo-600 flex-shrink-0 mt-0.5" />
@@ -155,7 +155,7 @@ const Product = () => {
                   <div className="w-3 h-3 rounded-full bg-red-500 opacity-80" />
                   <div className="w-3 h-3 rounded-full bg-yellow-500 opacity-80" />
                   <div className="w-3 h-3 rounded-full bg-green-500 opacity-80" />
-                  <span className="ml-2 text-xs text-gray-400">Lab — claude-code session</span>
+                  <span className="ml-2 text-xs text-gray-400">Lab · claude-code session</span>
                 </div>
                 <div className="p-5 font-mono text-xs space-y-2 text-gray-300">
                   <div className="text-emerald-400">● Connected · claude-sonnet-4-6 · /workspace/project</div>
@@ -222,7 +222,7 @@ const Product = () => {
                 </p>
                 <ul className="space-y-3 mb-6">
                   {[
-                    "Chat + Artifact tab UI — keep conversations and outputs separate",
+                    "Chat + Artifact tab UI: keep conversations and outputs separate",
                     "Only [ARTIFACT]-marked synthesized output shown in artifact panel",
                     "Group-scoped session isolation via group_id",
                     "Human intervention: pause, redirect, or approve agent decisions",
@@ -253,13 +253,13 @@ const Product = () => {
                   <div className="flex items-start gap-3">
                     <div className="w-6 h-6 rounded-full bg-indigo-500 flex items-center justify-center text-white text-xs font-bold flex-shrink-0 mt-0.5">P</div>
                     <div className="p-3 rounded-lg bg-indigo-50 dark:bg-indigo-900/20 text-xs text-gray-600 dark:text-gray-300 flex-1">
-                      Planner: Breaking down into 4 subtasks — data fetch, analysis, synthesis, validation.
+                      Planner: Breaking down into 4 subtasks: data fetch, analysis, synthesis, validation.
                     </div>
                   </div>
                   <div className="flex items-start gap-3">
                     <div className="w-6 h-6 rounded-full bg-emerald-500 flex items-center justify-center text-white text-xs font-bold flex-shrink-0 mt-0.5">E</div>
                     <div className="p-3 rounded-lg bg-emerald-50 dark:bg-emerald-900/20 text-xs text-gray-600 dark:text-gray-300 flex-1">
-                      Evaluator: Synthesis scored 0.91/1.0 — meets quality threshold. Approving artifact.
+                      Evaluator: Synthesis scored 0.91/1.0, meets quality threshold. Approving artifact.
                     </div>
                   </div>
                 </div>
@@ -312,16 +312,16 @@ const Product = () => {
                   Graph-native context retrieval
                 </h2>
                 <p className="text-gray-600 dark:text-gray-400 mb-6 leading-relaxed">
-                  OhWise replaces flat embedding retrieval with structured knowledge graphs. Code, schemas, and documents become typed graphs of nodes and edges. Personalized PageRank ranks the most structurally relevant nodes for each query — agents get precise, relationship-aware context.
+                  OhWise replaces flat embedding retrieval with structured knowledge graphs. Code, schemas, and documents become typed graphs of nodes and edges. Personalized PageRank ranks the most structurally relevant nodes for each query, giving agents precise, relationship-aware context.
                 </p>
                 <ul className="space-y-3 mb-6">
                   {[
                     "graph2sql: schema graph for accurate text-to-SQL across 100+ table databases",
                     "codebase2graph: call graphs, entity graphs, dependency graphs from any repo",
-                    "docs2graph: 15+ file formats — PDF, DOCX, HTML, Markdown, CSV, JSON",
-                    "Personalized PageRank for relevance ranking — no vector similarity",
+                    "docs2graph: 15+ file formats including PDF, DOCX, HTML, Markdown, CSV, JSON",
+                    "Personalized PageRank for relevance ranking, not vector similarity",
                     "Context size reduced without losing structural signal",
-                    "No LLM dependency — pure Python, bring your own model",
+                    "No LLM dependency: pure Python, bring your own model",
                   ].map((item, index) => (
                     <li key={index} className="flex items-start gap-2">
                       <CheckCircle className="w-5 h-5 text-sky-600 flex-shrink-0 mt-0.5" />
@@ -348,7 +348,7 @@ const Product = () => {
                 Real-time WebSocket streaming
               </h2>
               <p className="text-gray-600 dark:text-gray-400 leading-relaxed">
-                Every agent step — reasoning traces, tool calls, file diffs, quota warnings, context compaction events — streams over WebSocket to the frontend in structured JSON. No polling. No opaque black boxes.
+                Every agent step (reasoning traces, tool calls, file diffs, quota warnings, context compaction events) streams over WebSocket to the frontend in structured JSON. No polling. No opaque black boxes.
               </p>
             </div>
 
@@ -390,7 +390,7 @@ const Product = () => {
                 {
                   title: "Backend",
                   icon: <Database className="w-5 h-5 text-indigo-600" />,
-                  items: ["FastAPI — async Python API server", "MongoDB — document store for agents/sessions", "Redis — pub/sub event bus + caching layer", "Docker Compose — containerized services", "Nginx — TLS termination + routing"],
+                  items: ["FastAPI: async Python API server", "MongoDB: document store for agents/sessions", "Redis: pub/sub event bus + caching layer", "Docker Compose: containerized services", "Nginx: TLS termination + routing"],
                 },
                 {
                   title: "Frontend",
@@ -400,7 +400,7 @@ const Product = () => {
                 {
                   title: "AI & Agents",
                   icon: <Brain className="w-5 h-5 text-purple-600" />,
-                  items: ["Claude (Anthropic) — primary reasoning model", "OpenAI Codex CLI — code generation", "Gemini CLI — Google's coding assistant", "Snowflake Cortex — enterprise LLM", "Model-agnostic: swap per agent node"],
+                  items: ["Claude (Anthropic): primary reasoning model", "OpenAI Codex CLI: code generation", "Gemini CLI: Google's coding assistant", "Snowflake Cortex: enterprise LLM", "Model-agnostic: swap per agent node"],
                 },
               ].map((stack, i) => (
                 <div key={i} className="animate-on-scroll bg-white dark:bg-gray-700 rounded-xl border border-gray-100 dark:border-gray-600 p-6">
@@ -479,7 +479,7 @@ const Product = () => {
                 </span>
               </h2>
               <p className="text-lg text-gray-400 leading-relaxed">
-                Every organization is a fully isolated tenant. Users, roles, sessions, agents, and data are scoped at the MongoDB <code className="text-indigo-300 bg-white/5 px-1.5 py-0.5 rounded text-sm">org_id</code> level — no cross-tenant data paths exist by design.
+                Every organization is a fully isolated tenant. Users, roles, sessions, agents, and data are scoped at the MongoDB <code className="text-indigo-300 bg-white/5 px-1.5 py-0.5 rounded text-sm">org_id</code> level with no cross-tenant data paths by design.
               </p>
             </div>
 
@@ -515,7 +515,7 @@ const Product = () => {
                   <div className="w-px h-4 bg-white/10" />
                   <div className="flex items-center gap-2 text-xs text-gray-500">
                     <Lock size={12} />
-                    MongoDB queries always filtered by <code className="text-indigo-400 bg-white/5 px-1.5 py-0.5 rounded">org_id</code> — no cross-tenant data paths
+                    MongoDB queries always filtered by <code className="text-indigo-400 bg-white/5 px-1.5 py-0.5 rounded">org_id</code> with no cross-tenant data paths
                   </div>
                 </div>
               </div>
@@ -529,10 +529,10 @@ const Product = () => {
                   border: "border-purple-500/30 bg-purple-500/5",
                   title: "Workspace & Tenant Isolation",
                   items: [
-                    "Each org is a fully isolated tenant — org_id scoping at DB layer",
+                    "Each org is a fully isolated tenant with org_id scoping at the DB layer",
                     "Multiple users per org with Admin / Member / Viewer roles",
                     "Per-user isolated workspaces: Lab sessions, Studio agents, artifacts",
-                    "No cross-tenant data bleed — enforced at API and database level",
+                    "No cross-tenant data bleed, enforced at API and database level",
                     "Session history, knowledge graphs, and file diffs persist per user",
                     "Switching sessions or users never leaks state",
                   ],
@@ -542,12 +542,12 @@ const Product = () => {
                   border: "border-emerald-500/30 bg-emerald-500/5",
                   title: "Security & Compliance",
                   items: [
-                    "JWT-based authentication — short-lived tokens per user",
+                    "JWT-based authentication with short-lived tokens per user",
                     "Scoped, individually revocable API keys per organization",
                     "Full audit logs: agent actions, tool calls, file diffs, approval decisions",
                     "Human-in-the-loop: designated reviewers approve/reject tool calls",
                     "SSO/OAuth2 ready (OAuth2 already implemented for Claude & Gemini)",
-                    "Isolated Docker containers — workspace data residency per user",
+                    "Isolated Docker containers for workspace data residency per user",
                   ],
                 },
                 {
@@ -557,10 +557,10 @@ const Product = () => {
                   items: [
                     "Per-org agent quotas and resource limits configurable by admin",
                     "Studio coordinator agents scoped to group_id (org/team level)",
-                    "Lab sessions isolated per user — no state bleed between sessions",
+                    "Lab sessions isolated per user with no state bleed between sessions",
                     "Tool permission system: allow / deny / allow-for-session per category",
                     "Multi-region deployment: stateless FastAPI + Redis pub/sub fanout",
-                    "Bring your own model: Claude, GPT-4, Gemini, Cortex — per org",
+                    "Bring your own model: Claude, GPT-4, Gemini, Cortex, configurable per org",
                   ],
                 },
                 {

@@ -13,28 +13,28 @@ const features = [
     id: 2,
     title: "Graph-native context retrieval",
     description:
-      "Code, schema, and document knowledge graphs replace flat file embeddings. Personalized PageRank ranks the most structurally relevant nodes for each agent — call graphs, entity graphs, foreign-key graphs.",
+      "Code, schema, and document knowledge graphs replace flat file embeddings. Personalized PageRank ranks the most structurally relevant nodes for each agent: call graphs, entity graphs, foreign-key graphs.",
     icon: <Network className="w-5 h-5" />,
   },
   {
     id: 3,
     title: "AI coding agent integration",
     description:
-      "Lab streams Claude Code, Codex, and Gemini CLI sessions over WebSocket. Every reasoning step, tool call, and file diff is visible in real time — shareable, reviewable, and logged.",
+      "Lab streams Claude Code, Codex, and Gemini CLI sessions over WebSocket. Every reasoning step, tool call, and file diff is visible in real time, shareable, reviewable, and logged.",
     icon: <Code2 className="w-5 h-5" />,
   },
   {
     id: 4,
     title: "Structured evaluation loops",
     description:
-      "Run eval passes as DAG nodes with judge agents. Compare model versions, score per-sample traces, and aggregate metrics — without writing custom harness code for every experiment.",
+      "Run eval passes as DAG nodes with judge agents. Compare model versions, score per-sample traces, and aggregate metrics without writing custom harness code for every experiment.",
     icon: <FlaskConical className="w-5 h-5" />,
   },
   {
     id: 5,
     title: "Bring your own LLM",
     description:
-      "OhWise is model-agnostic. Use GPT-4, Claude, Llama, Mistral, or any API-compatible model. Swap models per agent node — different tasks, different models, same pipeline.",
+      "OhWise is model-agnostic. Use GPT-4, Claude, Llama, Mistral, or any API-compatible model. Swap models per agent node: different tasks, different models, same pipeline.",
     icon: <Plug className="w-5 h-5" />,
   },
   {
@@ -55,7 +55,7 @@ const Features = () => {
             Infrastructure for agentic AI systems
           </h2>
           <p className="text-lg text-gray-500 dark:text-gray-400">
-            Every layer an AI/ML engineer needs — orchestration, context, observability, and evaluation — in one platform.
+            Every layer an AI/ML engineer needs: orchestration, context, observability, and evaluation, in one platform.
           </p>
         </div>
 
