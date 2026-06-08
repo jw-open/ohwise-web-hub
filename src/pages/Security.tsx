@@ -1,10 +1,57 @@
 import React, { useEffect } from "react";
 import Navbar from "../components/layout/Navbar";
 import Footer from "../components/layout/Footer";
-import CTASection from "../components/sections/CTASection";
+import { Lock, Key, Shield, FileSearch, AlertTriangle, Fingerprint, Server, Database, Eye } from "lucide-react";
+
+const features = [
+  {
+    icon: <Lock size={20} className="text-indigo-400" />,
+    title: "Encryption in transit and at rest",
+    desc: "All traffic is served over TLS 1.2+. Data stored in MongoDB is encrypted at rest. WebSocket connections (used for agent event streaming) are TLS-terminated at the Nginx layer before reaching backend services.",
+  },
+  {
+    icon: <Key size={20} className="text-amber-400" />,
+    title: "Scoped API keys and JWT tokens",
+    desc: "API keys are scoped to an organization and can be revoked individually without affecting other keys. JWT tokens are short-lived. Auth state is never persisted client-side beyond the token lifetime.",
+  },
+  {
+    icon: <Shield size={20} className="text-emerald-400" />,
+    title: "Org-level data isolation",
+    desc: "Every MongoDB query is filtered by org_id at the application layer. There are no shared collections across tenants. A bug in one org's session cannot surface data from another org by design.",
+  },
+  {
+    icon: <Fingerprint size={20} className="text-purple-400" />,
+    title: "OAuth2 and SSO support",
+    desc: "OAuth2 flows are implemented for Anthropic and Google authentication. SSO integration is available for enterprise deployments. No passwords are stored — authentication is delegated to identity providers.",
+  },
+  {
+    icon: <Eye size={20} className="text-sky-400" />,
+    title: "Full audit logging",
+    desc: "Every agent action, tool call, file diff, permission decision, and API request is logged with user ID, timestamp, org ID, and outcome. Logs are append-only and accessible to org admins.",
+  },
+  {
+    icon: <Server size={20} className="text-rose-400" />,
+    title: "Isolated execution containers",
+    desc: "Each Lab session runs in an isolated Docker container as a non-root user. Containers have no access to other users' workspaces or the host filesystem outside the session directory.",
+  },
+  {
+    icon: <Database size={20} className="text-orange-400" />,
+    title: "Data stays within the deployment perimeter",
+    desc: "In self-hosted deployments, no agent reasoning, file contents, or session data leaves the network. Only outbound traffic is to the operator-configured LLM endpoints. OhWise servers never proxy model calls in self-hosted mode.",
+  },
+  {
+    icon: <AlertTriangle size={20} className="text-yellow-400" />,
+    title: "Human-in-the-loop tool approval",
+    desc: "Admins can require manual approval for sensitive tool categories: file writes, shell commands, external API calls. Approval gates are configurable per org or per session without code changes.",
+  },
+  {
+    icon: <FileSearch size={20} className="text-teal-400" />,
+    title: "Least-privilege agent permissions",
+    desc: "Lab agents run with a permission system that allows, denies, or requires approval for each tool invocation type. Agents cannot escalate their own permissions. Permission decisions are logged.",
+  },
+];
 
 const Security = () => {
-  // Scroll to top on page load
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
@@ -12,91 +59,61 @@ const Security = () => {
   return (
     <div className="flex flex-col min-h-screen">
       <Navbar />
-      
+
       <main className="flex-grow pt-16">
-        <section className="py-20 bg-gray-50 dark:bg-gray-900">
+
+        {/* Hero */}
+        <section className="py-20 bg-gray-950 text-white">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
             <div className="max-w-3xl mx-auto text-center">
-              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-gray-100 mb-4">
-                Enterprise-Grade Security
-              </h2>
-              <p className="text-lg text-gray-600 dark:text-gray-400 mb-8">
-                We employ industry-leading security measures to protect your data and ensure the highest level of confidentiality, integrity, and availability.
+              <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-indigo-500/30 bg-indigo-500/10 text-sm text-indigo-300 mb-6">
+                <Shield size={14} className="text-indigo-400" />
+                Security architecture
+              </div>
+              <h1 className="text-4xl md:text-5xl font-bold text-white mb-5 leading-tight tracking-tight">
+                Security by design,<br />not by checkbox
+              </h1>
+              <p className="text-lg text-gray-400 leading-relaxed">
+                Tenant isolation, scoped credentials, audit logging, and isolated execution containers are architectural properties of OhWise, not add-ons.
               </p>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {/* Security Feature 1 */}
-              <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6">
-                <h3 className="text-xl font-semibold text-gray-900 dark:text-gray-100 mb-2">
-                  Data Encryption
-                </h3>
-                <p className="text-gray-600 dark:text-gray-400">
-                  Your data is encrypted both in transit and at rest using advanced encryption algorithms.
-                </p>
-              </div>
-
-              {/* Security Feature 2 */}
-              <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6">
-                <h3 className="text-xl font-semibold text-gray-900 dark:text-gray-100 mb-2">
-                  Access Control
-                </h3>
-                <p className="text-gray-600 dark:text-gray-400">
-                  Strict access control policies ensure that only authorized personnel can access sensitive information.
-                </p>
-              </div>
-
-              {/* Security Feature 3 */}
-              <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6">
-                <h3 className="text-xl font-semibold text-gray-900 dark:text-gray-100 mb-2">
-                  Regular Audits
-                </h3>
-                <p className="text-gray-600 dark:text-gray-400">
-                  We conduct regular security audits and penetration testing to identify and address potential vulnerabilities.
-                </p>
-              </div>
-
-              {/* Security Feature 4 */}
-              <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6">
-                <h3 className="text-xl font-semibold text-gray-900 dark:text-gray-100 mb-2">
-                  Compliance
-                </h3>
-                <p className="text-gray-600 dark:text-gray-400">
-                  Our platform is compliant with industry standards and regulations, including GDPR and HIPAA.
-                </p>
-              </div>
-
-              {/* Security Feature 5 */}
-              <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6">
-                <h3 className="text-xl font-semibold text-gray-900 dark:text-gray-100 mb-2">
-                  Incident Response
-                </h3>
-                <p className="text-gray-600 dark:text-gray-400">
-                  We have a dedicated incident response team ready to address any security incidents promptly and effectively.
-                </p>
-              </div>
-
-              {/* Security Feature 6 */}
-              <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6">
-                <h3 className="text-xl font-semibold text-gray-900 dark:text-gray-100 mb-2">
-                  Multi-Factor Authentication
-                </h3>
-                <p className="text-gray-600 dark:text-gray-400">
-                  We enforce multi-factor authentication to add an extra layer of security to your accounts.
-                </p>
-              </div>
             </div>
           </div>
         </section>
-        
-        <CTASection 
-          title="Ready to experience enterprise-grade security?"
-          subtitle="Start using OhWise today with confidence in our robust security practices."
-          primaryButtonText="Get Started"
-          primaryButtonLink="https://cloud.ohwise.com/"
-        />
+
+        {/* Feature grid */}
+        <section className="py-20 bg-gray-900">
+          <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
+              {features.map((f) => (
+                <div key={f.title} className="bg-gray-800/60 border border-white/8 rounded-xl p-6 flex flex-col gap-3">
+                  <div className="w-9 h-9 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center flex-shrink-0">
+                    {f.icon}
+                  </div>
+                  <h3 className="text-white font-semibold text-sm leading-snug">{f.title}</h3>
+                  <p className="text-gray-400 text-sm leading-relaxed">{f.desc}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Self-hosted callout */}
+        <section className="py-16 bg-gray-950 border-t border-white/5">
+          <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="max-w-3xl mx-auto">
+              <h2 className="text-2xl font-bold text-white mb-4">Self-hosted deployments</h2>
+              <p className="text-gray-400 leading-relaxed mb-4">
+                The full OhWise stack runs on-premises via Docker Compose. MongoDB, Redis, and all agent containers stay within the operator's network. No telemetry is sent to external servers. LLM traffic goes only to the operator-configured model endpoints.
+              </p>
+              <p className="text-gray-400 leading-relaxed">
+                The open-source packages — graph2sql, docs2graph, codebase2graph, ai-relay, ohwise-mcp — can be used entirely standalone, with no dependency on the OhWise cloud or any external service.
+              </p>
+            </div>
+          </div>
+        </section>
+
       </main>
-      
+
       <Footer />
     </div>
   );
