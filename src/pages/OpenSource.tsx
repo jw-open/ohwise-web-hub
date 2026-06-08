@@ -61,7 +61,7 @@ ranked = rank_nodes(graph, "quarterly revenue", k=5)`,
   },
   {
     name: "ai-relay",
-    version: "0.4.31",
+    version: "0.4.32",
     tagline: "WebSocket relay that bridges AI coding agent CLIs to any web interface.",
     description:
       "Run ai-relay as a sidecar next to Claude Code, Codex, Gemini CLI, or Snowflake Cortex. It spawns the CLI as a subprocess, speaks the native stream-json protocol, and streams structured events — reasoning steps, tool calls, file diffs, permission requests, quota warnings — over WebSocket to any frontend in real time. Powers the Lab feature in OhWise.",
@@ -79,7 +79,7 @@ ranked = rank_nodes(graph, "quarterly revenue", k=5)`,
     snippet: `# Local dev (one-shot)
 ai-relay --port 8765
 
-# Container / daemon mode (v0.4.31+)
+# Container / daemon mode (v0.4.32+)
 ai-relay serve --port 9000
 
 # Connect and send handshake:
