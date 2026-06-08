@@ -1,5 +1,5 @@
 import React from "react";
-import { ArrowRight, GitBranch, Layers, BarChart2 } from "lucide-react";
+import { ArrowRight, GitBranch, Layers, BarChart2, Terminal, Package } from "lucide-react";
 import { Button } from "../ui/button";
 
 const Hero: React.FC = () => {
@@ -22,12 +22,12 @@ const Hero: React.FC = () => {
           {/* Eyebrow */}
           <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-white/10 bg-white/5 text-sm text-gray-400 mb-8">
             <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-            AI/ML infrastructure platform
+            Multi-agent AI platform — production-ready
           </div>
 
           {/* Headline */}
           <h1 className="font-bold text-4xl sm:text-5xl md:text-6xl leading-[1.1] tracking-tight mb-6">
-            Orchestrate AI pipelines
+            Orchestrate AI agents
             <br />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-purple-400">
               with graph-native context.
@@ -36,13 +36,11 @@ const Hero: React.FC = () => {
 
           {/* Subheadline */}
           <p className="text-lg md:text-xl text-gray-400 mb-10 max-w-2xl mx-auto leading-relaxed">
-            OhWise is a DAG-based multi-agent execution engine — built for AI/ML engineers
-            who need structured pipelines, observable agent coordination, and graph-retrieved
-            context without stitching together a dozen tools.
+            OhWise is a DAG-based multi-agent execution engine — Lab for browser-based AI coding agent sessions, Studio for coordinated multi-agent workflows, and open-source graph packages for structured context retrieval.
           </p>
 
           {/* CTAs */}
-          <div className="flex flex-col sm:flex-row justify-center gap-3">
+          <div className="flex flex-col sm:flex-row justify-center gap-3 mb-16">
             <a
               href="https://cloud.ohwise.com"
               target="_blank"
@@ -58,35 +56,53 @@ const Hero: React.FC = () => {
               </Button>
             </a>
             <a
-              href="/product"
+              href="/open-source"
               className="w-full sm:w-auto"
             >
               <Button
                 size="lg"
                 variant="outline"
-                className="bg-transparent border-white/50 text-gray-200 hover:bg-white/10 hover:text-white hover:border-white/80 flex items-center justify-center gap-2 w-full"
+                className="bg-transparent border-white/20 text-gray-300 hover:bg-white/10 hover:text-white hover:border-white/50 flex items-center justify-center gap-2 w-full"
               >
-                See the architecture
+                <Package size={16} />
+                5 PyPI packages
               </Button>
             </a>
+          </div>
+
+          {/* Stat pills */}
+          <div className="flex flex-wrap justify-center gap-3 mb-16">
+            {[
+              "Claude Code · Codex · Gemini CLI · Cortex",
+              "DAG + Lambda execution",
+              "Real-time WebSocket streaming",
+              "Personalized PageRank context",
+            ].map((stat, i) => (
+              <span
+                key={i}
+                className="px-3 py-1 rounded-full border border-white/10 bg-white/5 text-xs text-gray-400"
+              >
+                {stat}
+              </span>
+            ))}
           </div>
         </div>
 
         {/* Platform visual */}
-        <div className="mt-16 md:mt-20 max-w-3xl mx-auto">
+        <div className="mt-4 max-w-4xl mx-auto">
           <div className="rounded-xl border border-white/10 bg-gray-900/60 backdrop-blur p-8">
             <p className="text-xs text-gray-500 uppercase tracking-widest text-center mb-8">
-              How OhWise works
+              Platform capabilities
             </p>
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 text-center">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 text-center">
               <div className="flex flex-col items-center gap-3">
                 <div className="w-12 h-12 rounded-xl bg-indigo-600/20 border border-indigo-500/30 flex items-center justify-center">
                   <GitBranch className="w-5 h-5 text-indigo-400" />
                 </div>
                 <div>
-                  <p className="text-sm font-semibold text-white mb-1">DAG execution</p>
+                  <p className="text-sm font-semibold text-white mb-1">DAG orchestration</p>
                   <p className="text-xs text-gray-500 leading-relaxed">
-                    Define pipelines as directed acyclic graphs — parallel branches, conditional edges, typed state
+                    Parallel branches, typed state, planner → executor → evaluator loop
                   </p>
                 </div>
               </div>
@@ -98,19 +114,31 @@ const Hero: React.FC = () => {
                 <div>
                   <p className="text-sm font-semibold text-white mb-1">Graph context</p>
                   <p className="text-xs text-gray-500 leading-relaxed">
-                    Code, schema, and document graphs feed agents with ranked, structured context — not raw chunks
+                    Code, schema, and document graphs with Personalized PageRank ranking
                   </p>
                 </div>
               </div>
 
               <div className="flex flex-col items-center gap-3">
                 <div className="w-12 h-12 rounded-xl bg-emerald-600/20 border border-emerald-500/30 flex items-center justify-center">
-                  <BarChart2 className="w-5 h-5 text-emerald-400" />
+                  <Terminal className="w-5 h-5 text-emerald-400" />
+                </div>
+                <div>
+                  <p className="text-sm font-semibold text-white mb-1">Lab terminal</p>
+                  <p className="text-xs text-gray-500 leading-relaxed">
+                    Browser-based AI coding agent sessions with real-time diff streaming
+                  </p>
+                </div>
+              </div>
+
+              <div className="flex flex-col items-center gap-3">
+                <div className="w-12 h-12 rounded-xl bg-rose-600/20 border border-rose-500/30 flex items-center justify-center">
+                  <BarChart2 className="w-5 h-5 text-rose-400" />
                 </div>
                 <div>
                   <p className="text-sm font-semibold text-white mb-1">Full observability</p>
                   <p className="text-xs text-gray-500 leading-relaxed">
-                    Every agent step logged — reasoning traces, tool calls, token usage, latency per node
+                    Every step logged — reasoning traces, tool calls, token usage, latency
                   </p>
                 </div>
               </div>

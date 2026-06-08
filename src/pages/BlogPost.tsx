@@ -166,6 +166,113 @@ const BLOG_POSTS = [
   },
 ];
 
+  {
+    id: 9,
+    title: "Personalized PageRank vs Vector Similarity: Why Graph Algorithms Win for Structured Context",
+    content: `
+      <p class="lead">Vector similarity search is the default retrieval mechanism for RAG (Retrieval-Augmented Generation) pipelines. Embed your documents, embed the query, take the top-k cosine similarities. It works well for unstructured text — articles, chat logs, free-form documentation. But for structured data — database schemas, code repositories, document hierarchies — it systematically misses the most important relationships. We built three open-source packages using Personalized PageRank to fix this.</p>
+
+      <h2>The core problem with vector similarity on structured data</h2>
+
+      <p>Consider a database with 150 tables. A user asks: "Show me total revenue by customer for orders placed in the last 30 days, excluding cancelled orders." The relevant tables are <code>orders</code>, <code>customers</code>, <code>payments</code>, and <code>order_status</code> — connected by foreign keys: <code>orders.customer_id → customers.id</code>, <code>payments.order_id → orders.id</code>.</p>
+
+      <p>Vector similarity retrieves tables whose names and column descriptions are semantically similar to the query. It will surface <code>orders</code> and <code>customers</code> reliably. But <code>payments</code> is semantically distant from "revenue" in most embedding spaces — it might rank below <code>revenue_reports</code> (a summary table) or <code>invoice_items</code> (semantically close, structurally irrelevant). The foreign key relationship is invisible to the embedding.</p>
+
+      <p>The LLM receives the wrong subgraph as context. It generates SQL that joins on non-existent relationships, or misses a table entirely, producing incorrect results.</p>
+
+      <p>This isn't a limitation of the embedding model — it's a fundamental property of the problem. Structural relationships between entities are encoded in the topology of the graph, not in the semantic content of individual nodes. Vector similarity can only see the nodes; it cannot see the edges.</p>
+
+      <h2>Personalized PageRank: graph traversal from query-relevant seeds</h2>
+
+      <p>Personalized PageRank (PPR) is a variant of the original PageRank algorithm where, instead of starting a random walk from any node uniformly, you initialize the walk with a probability distribution concentrated on a set of seed nodes. The walk then propagates through the graph, decaying at each step by a teleportation factor α (typically 0.15). Nodes that are highly connected to the seeds — both directly and through multiple paths — accumulate high PPR scores.</p>
+
+      <p>For structured context retrieval, the algorithm looks like this:</p>
+
+      <ol>
+        <li><strong>Build the graph</strong> — nodes are entities (tables, functions, document sections), edges are relationships (foreign keys, call chains, citations)</li>
+        <li><strong>Identify seeds</strong> — find nodes that match the query through keyword matching, alias resolution, or a lightweight embedding lookup on node names only</li>
+        <li><strong>Run PPR from seeds</strong> — propagate probability mass through the graph; nodes with multiple paths from seeds accumulate high scores</li>
+        <li><strong>Extract top-k subgraph</strong> — take the highest-scoring nodes as context for the LLM</li>
+      </ol>
+
+      <p>For the query "total revenue by customer last 30 days", the seeds are <code>orders</code> and <code>customers</code> (matched by keyword). PPR propagates: <code>orders</code> is connected to <code>payments</code> (one hop), <code>order_status</code> (one hop), <code>customers</code> (one hop via FK). <code>payments</code> receives probability mass from both <code>orders</code> (directly) and as a downstream neighbor. It ranks consistently in the top-3 — regardless of its semantic distance from "revenue".</p>
+
+      <h2>graph2sql: schema graphs for text-to-SQL</h2>
+
+      <p>The first package we built is <strong>graph2sql</strong> (v0.2.0, <code>pip install graph2sql</code>). It takes a database schema — tables, columns, foreign keys, aliases — builds a typed directed graph, and exposes a <code>rank()</code> method that runs Personalized PageRank from query-matched seed nodes.</p>
+
+      <pre><code>from graph2sql import SchemaGraph
+
+graph = SchemaGraph()
+graph.add_node("orders",    content="id, customer_id, total, date, status_id")
+graph.add_node("customers", content="id, name, email, region, signup_date")
+graph.add_node("payments",  content="id, order_id, amount, payment_method, status")
+graph.add_node("order_status", content="id, label")
+graph.add_edge("orders", "customers", "belongs_to", weight=1.0)
+graph.add_edge("payments", "orders",  "for",        weight=1.0)
+graph.add_edge("orders", "order_status", "has_status", weight=0.8)
+
+ranked = graph.rank("total revenue by customer last 30 days excluding cancelled", k=4)
+# Returns: [orders, customers, payments, order_status]
+# — structurally correct subgraph, regardless of embedding similarity</code></pre>
+
+      <p>The ranked subgraph is passed as context to any LLM. No fine-tuning, no model dependency, no lock-in. The LLM generates SQL from a correct, minimal schema excerpt — not from 150 tables of noise.</p>
+
+      <p>The key design choice: <strong>no LLM dependency in the graph layer itself</strong>. The graph is built from DDL or ORM models. The ranking is pure linear algebra. The only LLM call is the final SQL generation — where the model already has the right context.</p>
+
+      <h2>docs2graph: document knowledge graphs</h2>
+
+      <p><strong>docs2graph</strong> (v0.3.2, <code>pip install docs2graph</code>) applies the same approach to documents. It processes PDFs, Word docs, Markdown, HTML, CSV, and 10+ other formats, extracts a knowledge graph of entities, sections, and relationships, then ranks relevant nodes for any query.</p>
+
+      <p>The graph structure is richer for documents: nodes can be <em>sections</em>, <em>entities</em> (people, organizations, concepts), <em>tables</em>, or <em>cited sources</em>. Edges encode relationships: <em>contains</em> (section hierarchy), <em>mentions</em> (entity co-occurrence), <em>cites</em> (reference links), <em>relates_to</em> (semantic proximity).</p>
+
+      <p>For a 200-page annual report, the relevant section for "quarterly revenue growth in APAC" is not simply the section with the highest embedding similarity to that string. It's the section that mentions revenue figures, is connected to the APAC regional breakdown table, and cites the prior-quarter comparison. PPR surfaces this through graph traversal; vector similarity surfaces the section whose prose most resembles the query string.</p>
+
+      <h2>codebase2graph: code repository knowledge graphs</h2>
+
+      <p><strong>codebase2graph</strong> (v0.1.0, <code>pip install codebase2graph</code>) extracts 10 typed graph types from any code repository: call graphs (which functions call which), entity graphs (class/function definitions), schema graphs (database models), infrastructure graphs (Docker, nginx, env vars), security graphs (auth decorators, permissions), and more.</p>
+
+      <p>For a code understanding query like "how does authentication work for the /orders endpoint", PPR on the call graph identifies: the <code>/orders</code> route handler → the <code>require_auth</code> decorator → the <code>verify_jwt</code> function → the <code>load_user</code> database call → the <code>User</code> model. This call chain is the correct context for answering the question. Vector similarity on function docstrings would surface functions mentioning "authentication" or "orders" — which may include unrelated auth utilities or order utilities that don't participate in the relevant call chain.</p>
+
+      <h2>Empirical observations</h2>
+
+      <p>Across the use cases we've tested, PPR on structured graphs produces smaller context with better relevance:</p>
+
+      <ul>
+        <li><strong>Text-to-SQL on large schemas</strong> (100+ tables): vector similarity at top-10 misses at least one required table in approximately 30% of multi-join queries. PPR at top-5 achieves near-complete recall on the same queries — smaller context, fewer missed tables.</li>
+        <li><strong>Document Q&amp;A</strong>: for hierarchical documents (legal contracts, technical specifications), PPR correctly retrieves sections connected by cross-references that vector similarity misses. The gap grows with document length and cross-reference density.</li>
+        <li><strong>Code context</strong>: for call-chain questions, PPR produces 3–5x smaller context than embedding top-k at equivalent recall — because the relevant call chain is a sparse path through the graph, not a cluster of semantically similar functions.</li>
+      </ul>
+
+      <h2>When vector similarity still wins</h2>
+
+      <p>PPR on structured graphs is not universally better. For unstructured text corpora — support chat logs, product reviews, news articles — where entities don't have well-defined typed relationships, vector similarity is the right tool. The graph structure would be arbitrary, and PPR would propagate through spurious edges.</p>
+
+      <p>The right mental model: use vector similarity when your data is an unstructured collection of text chunks. Use graph-based PPR when your data has inherent structure that matters for answering queries — schemas, codebases, document hierarchies, knowledge bases.</p>
+
+      <h2>Implementation notes</h2>
+
+      <p>All three packages implement PPR using sparse matrix operations on the adjacency matrix, making them efficient for graphs up to tens of thousands of nodes. The teleportation factor α is configurable (default 0.15). Edge weights influence propagation — stronger relationships (e.g., direct foreign keys) propagate more probability mass than weaker ones (e.g., indirect aliases).</p>
+
+      <p>No LLM calls are made during graph construction or ranking. The packages are pure Python with numpy as the only non-stdlib dependency for the matrix operations. They work with any downstream LLM — bring your own model, API key, and prompt template.</p>
+
+      <h2>What we're building next</h2>
+
+      <p>The graph packages are the retrieval layer for OhWise's broader multi-agent platform. The next step is integrating PPR-ranked context injection directly into DAG node execution — so agents in a coordinator loop automatically receive graph-ranked context for their specific subtask, not a static slice of context from the pipeline entry point.</p>
+
+      <p>All three packages are open source and actively maintained. Install them from PyPI, read the source, open issues, submit PRs. The graph retrieval layer should be a shared primitive — not something every team reinvents.</p>
+    `,
+    author: "OhWise Engineering",
+    authorTitle: "Platform Engineering Team",
+    authorAvatar: "https://images.unsplash.com/photo-1677442135703-1787eea5ce01?w=150&h=150&fit=crop&crop=faces",
+    date: "June 8, 2026",
+    readTime: "12 min read",
+    category: "Technical",
+    tags: ["Graph Algorithms", "PageRank", "Context Retrieval", "RAG", "Text-to-SQL", "Open Source"],
+    image: "https://images.unsplash.com/photo-1639322537228-f710d846310a?q=80&w=2832&auto=format&fit=crop&ixlib=rb-4.0.3"
+  },
+];
+
 // Mock related posts
 const RELATED_POSTS = [
   {

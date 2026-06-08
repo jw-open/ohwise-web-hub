@@ -88,6 +88,16 @@ const BLOG_POSTS = [
     category: "Announcements",
     image: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3"
   },
+  {
+    id: 9,
+    title: "Personalized PageRank vs Vector Similarity: Why Graph Algorithms Win for Structured Context",
+    excerpt: "Vector similarity search is the default for retrieval in AI systems — but for structured data (database schemas, code repositories, document hierarchies), it systematically misses the most important relationships. We built three open-source packages using Personalized PageRank to fix this, and the results are significantly better context with smaller token budgets.",
+    author: "OhWise Engineering",
+    date: "June 8, 2026",
+    readTime: "12 min",
+    category: "Technical",
+    image: "https://images.unsplash.com/photo-1639322537228-f710d846310a?q=80&w=2832&auto=format&fit=crop&ixlib=rb-4.0.3"
+  },
 ];
 
 const CATEGORIES = ["All", "Announcements", "Technical", "Best Practices", "Case Studies"];
@@ -113,7 +123,7 @@ const Blog = () => {
 
   useEffect(() => { window.scrollTo(0, 0); }, []);
 
-  const featured = BLOG_POSTS[BLOG_POSTS.length - 1]; // newest article as hero
+  const featured = BLOG_POSTS[BLOG_POSTS.length - 1]; // post id 9 — newest technical article
 
   return (
     <div className="flex flex-col min-h-screen bg-white dark:bg-gray-950">
