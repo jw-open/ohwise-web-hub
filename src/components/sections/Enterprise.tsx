@@ -4,68 +4,68 @@ import { Shield, Users, Lock, Key, BarChart2, Globe, CheckCircle, ArrowRight } f
 
 const Enterprise: React.FC = () => {
   return (
-    <section className="py-24 bg-gray-950 text-white">
+    <section className="py-24 bg-gray-50 text-gray-900 dark:bg-gray-950 dark:text-white">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
 
         {/* Header */}
         <div className="max-w-3xl mx-auto text-center mb-16">
-          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-indigo-500/30 bg-indigo-500/10 text-sm text-indigo-300 mb-6">
-            <Shield size={14} className="text-indigo-400" />
+          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-indigo-500/30 bg-indigo-500/10 text-sm text-indigo-600 dark:text-indigo-300 mb-6">
+            <Shield size={14} className="text-indigo-500 dark:text-indigo-400" />
             Enterprise &amp; Multi-tenant
           </div>
-          <h2 className="text-3xl sm:text-4xl font-bold text-white mb-5 leading-tight">
+          <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white mb-5 leading-tight">
             Built for teams, designed for isolation
           </h2>
-          <p className="text-lg text-gray-400 leading-relaxed">
+          <p className="text-lg text-gray-500 dark:text-gray-400 leading-relaxed">
             Every organization is a fully isolated tenant. RBAC, audit logs, scoped API keys, SSO, and per-user workspace persistence are enterprise-grade from day one.
           </p>
         </div>
 
         {/* Org hierarchy diagram */}
         <div className="max-w-3xl mx-auto mb-16">
-          <div className="rounded-xl border border-white/10 bg-white/5 p-8">
-            <p className="text-xs text-gray-500 uppercase tracking-widest mb-6 text-center">Organization hierarchy</p>
+          <div className="rounded-xl border border-gray-200 dark:border-white/10 bg-gray-100 dark:bg-white/5 p-8">
+            <p className="text-xs text-gray-400 dark:text-gray-500 uppercase tracking-widest mb-6 text-center">Organization hierarchy</p>
             <div className="flex flex-col items-center gap-3 font-mono text-sm">
               {/* Org */}
               <div className="w-full max-w-md bg-indigo-600/20 border border-indigo-500/40 rounded-lg px-5 py-3 text-center">
-                <span className="text-indigo-300 font-semibold">Organization</span>
-                <span className="text-gray-500 ml-2 text-xs">org_id: acme-corp</span>
+                <span className="text-indigo-600 dark:text-indigo-300 font-semibold">Organization</span>
+                <span className="text-gray-400 ml-2 text-xs">org_id: acme-corp</span>
               </div>
               {/* Connector */}
               <div className="flex gap-8 items-start">
                 <div className="flex flex-col items-center gap-1">
-                  <div className="w-px h-5 bg-white/20" />
+                  <div className="w-px h-5 bg-gray-300 dark:bg-white/20" />
                   <div className="bg-purple-600/20 border border-purple-500/40 rounded-lg px-4 py-2 text-center min-w-[130px]">
-                    <p className="text-purple-300 font-semibold text-xs">Admin</p>
-                    <p className="text-gray-500 text-xs mt-0.5">Manage users, keys, quotas</p>
+                    <p className="text-purple-600 dark:text-purple-300 font-semibold text-xs">Admin</p>
+                    <p className="text-gray-400 text-xs mt-0.5">Manage users, keys, quotas</p>
                   </div>
                 </div>
                 <div className="flex flex-col items-center gap-1">
-                  <div className="w-px h-5 bg-white/20" />
+                  <div className="w-px h-5 bg-gray-300 dark:bg-white/20" />
                   <div className="bg-emerald-600/20 border border-emerald-500/40 rounded-lg px-4 py-2 text-center min-w-[130px]">
-                    <p className="text-emerald-300 font-semibold text-xs">Member</p>
-                    <p className="text-gray-500 text-xs mt-0.5">Run sessions &amp; workflows</p>
+                    <p className="text-emerald-600 dark:text-emerald-300 font-semibold text-xs">Member</p>
+                    <p className="text-gray-400 text-xs mt-0.5">Run sessions &amp; workflows</p>
                   </div>
                 </div>
                 <div className="flex flex-col items-center gap-1">
-                  <div className="w-px h-5 bg-white/20" />
-                  <div className="bg-gray-700/50 border border-gray-600/40 rounded-lg px-4 py-2 text-center min-w-[130px]">
-                    <p className="text-gray-300 font-semibold text-xs">Viewer</p>
-                    <p className="text-gray-500 text-xs mt-0.5">Read-only artifacts &amp; logs</p>
+                  <div className="w-px h-5 bg-gray-300 dark:bg-white/20" />
+                  <div className="bg-gray-200 dark:bg-gray-700/50 border border-gray-300 dark:border-gray-600/40 rounded-lg px-4 py-2 text-center min-w-[130px]">
+                    <p className="text-gray-600 dark:text-gray-300 font-semibold text-xs">Viewer</p>
+                    <p className="text-gray-400 text-xs mt-0.5">Read-only artifacts &amp; logs</p>
                   </div>
                 </div>
               </div>
               {/* User workspace */}
-              <div className="w-px h-5 bg-white/20" />
-              <div className="w-full max-w-md bg-white/5 border border-white/10 rounded-lg px-5 py-3 text-center">
-                <span className="text-gray-300 font-semibold text-xs">Per-user isolated workspace</span>
-                <p className="text-gray-500 text-xs mt-1">Lab sessions · Studio agents · Knowledge graphs · Artifacts</p>
+              <div className="w-px h-5 bg-gray-300 dark:bg-white/20" />
+              <div className="w-full max-w-md bg-gray-200/50 dark:bg-white/5 border border-gray-300 dark:border-white/10 rounded-lg px-5 py-3 text-center">
+                <span className="text-gray-700 dark:text-gray-300 font-semibold text-xs">Per-user isolated workspace</span>
+                <p className="text-gray-400 text-xs mt-1">Lab sessions · Studio agents · Knowledge graphs · Artifacts</p>
               </div>
               {/* DB scoping note */}
-              <div className="w-px h-4 bg-white/10" />
-              <div className="flex items-center gap-2 text-xs text-gray-500">
-                <Lock size={12} className="text-gray-500" />
-                MongoDB queries always filtered by <code className="text-indigo-400 bg-white/5 px-1.5 py-0.5 rounded">org_id</code> with no cross-tenant data paths
+              <div className="w-px h-4 bg-gray-200 dark:bg-white/10" />
+              <div className="flex items-center gap-2 text-xs text-gray-400 dark:text-gray-500">
+                <Lock size={12} className="text-gray-400" />
+                MongoDB queries always filtered by <code className="text-indigo-500 dark:text-indigo-400 bg-gray-100 dark:bg-white/5 px-1.5 py-0.5 rounded">org_id</code> with no cross-tenant data paths
               </div>
             </div>
           </div>
@@ -75,7 +75,7 @@ const Enterprise: React.FC = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto mb-16">
           {[
             {
-              icon: <Users className="w-5 h-5 text-purple-400" />,
+              icon: <Users className="w-5 h-5 text-purple-500 dark:text-purple-400" />,
               color: "border-purple-500/30 bg-purple-500/5",
               title: "Workspace & Tenant Isolation",
               items: [
@@ -88,7 +88,7 @@ const Enterprise: React.FC = () => {
               ],
             },
             {
-              icon: <Shield className="w-5 h-5 text-emerald-400" />,
+              icon: <Shield className="w-5 h-5 text-emerald-500 dark:text-emerald-400" />,
               color: "border-emerald-500/30 bg-emerald-500/5",
               title: "Security & Compliance",
               items: [
@@ -101,7 +101,7 @@ const Enterprise: React.FC = () => {
               ],
             },
             {
-              icon: <Key className="w-5 h-5 text-yellow-400" />,
+              icon: <Key className="w-5 h-5 text-yellow-500 dark:text-yellow-400" />,
               color: "border-yellow-500/30 bg-yellow-500/5",
               title: "Agent & Resource Management",
               items: [
@@ -114,7 +114,7 @@ const Enterprise: React.FC = () => {
               ],
             },
             {
-              icon: <Globe className="w-5 h-5 text-sky-400" />,
+              icon: <Globe className="w-5 h-5 text-sky-500 dark:text-sky-400" />,
               color: "border-sky-500/30 bg-sky-500/5",
               title: "Enterprise Integrations",
               items: [
@@ -127,7 +127,7 @@ const Enterprise: React.FC = () => {
               ],
             },
             {
-              icon: <BarChart2 className="w-5 h-5 text-rose-400" />,
+              icon: <BarChart2 className="w-5 h-5 text-rose-500 dark:text-rose-400" />,
               color: "border-rose-500/30 bg-rose-500/5",
               title: "Admin Dashboard",
               items: [
@@ -140,7 +140,7 @@ const Enterprise: React.FC = () => {
               ],
             },
             {
-              icon: <Lock className="w-5 h-5 text-indigo-400" />,
+              icon: <Lock className="w-5 h-5 text-indigo-500 dark:text-indigo-400" />,
               color: "border-indigo-500/30 bg-indigo-500/5",
               title: "RBAC Permission System",
               items: [
@@ -155,16 +155,16 @@ const Enterprise: React.FC = () => {
           ].map((card, i) => (
             <div key={i} className={`rounded-xl border ${card.color} p-6`}>
               <div className="flex items-center gap-3 mb-5">
-                <div className="w-9 h-9 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center flex-shrink-0">
+                <div className="w-9 h-9 rounded-lg bg-gray-200/50 dark:bg-white/5 border border-gray-300 dark:border-white/10 flex items-center justify-center flex-shrink-0">
                   {card.icon}
                 </div>
-                <h3 className="text-sm font-semibold text-white leading-tight">{card.title}</h3>
+                <h3 className="text-sm font-semibold text-gray-800 dark:text-white leading-tight">{card.title}</h3>
               </div>
               <ul className="space-y-2.5">
                 {card.items.map((item, j) => (
                   <li key={j} className="flex items-start gap-2">
-                    <CheckCircle className="w-4 h-4 text-gray-500 flex-shrink-0 mt-0.5" />
-                    <span className="text-xs text-gray-400 leading-relaxed">{item}</span>
+                    <CheckCircle className="w-4 h-4 text-gray-400 dark:text-gray-500 flex-shrink-0 mt-0.5" />
+                    <span className="text-xs text-gray-500 dark:text-gray-400 leading-relaxed">{item}</span>
                   </li>
                 ))}
               </ul>
@@ -175,8 +175,8 @@ const Enterprise: React.FC = () => {
         {/* CTA strip */}
         <div className="max-w-3xl mx-auto rounded-xl border border-indigo-500/30 bg-indigo-600/10 p-8 flex flex-col sm:flex-row items-center justify-between gap-6">
           <div>
-            <p className="text-base font-semibold text-white mb-1">Ready to deploy for a team?</p>
-            <p className="text-sm text-gray-400">Self-host on any infrastructure or reach out for a managed enterprise deployment.</p>
+            <p className="text-base font-semibold text-gray-900 dark:text-white mb-1">Ready to deploy for a team?</p>
+            <p className="text-sm text-gray-500 dark:text-gray-400">Self-host on any infrastructure or reach out for a managed enterprise deployment.</p>
           </div>
           <div className="flex gap-3 flex-shrink-0">
             <a
@@ -189,9 +189,9 @@ const Enterprise: React.FC = () => {
             </a>
             <a
               href="/contact"
-              className="inline-flex items-center gap-2 px-5 py-2.5 border border-white/20 text-gray-300 hover:text-white hover:border-white/50 text-sm font-medium rounded-lg transition-colors"
+              className="inline-flex items-center gap-2 px-5 py-2.5 border border-gray-300 dark:border-white/20 text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white hover:border-gray-400 dark:hover:border-white/50 text-sm font-medium rounded-lg transition-colors"
             >
-              Contact us
+              Contact
             </a>
           </div>
         </div>

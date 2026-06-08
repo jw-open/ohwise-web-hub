@@ -5,6 +5,7 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { useEffect } from "react";
+import { ThemeProvider } from "./hooks/use-theme";
 
 // Pages
 import Index from "./pages/Index";
@@ -54,6 +55,7 @@ const App = () => {
   useScrollAnimationObserver();
   
   return (
+    <ThemeProvider>
     <QueryClientProvider client={queryClient}>
       <TooltipProvider>
         <Toaster />
@@ -84,6 +86,7 @@ const App = () => {
         </BrowserRouter>
       </TooltipProvider>
     </QueryClientProvider>
+    </ThemeProvider>
   );
 };
 

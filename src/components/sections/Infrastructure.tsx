@@ -4,7 +4,7 @@ import { Server, Cloud, Cpu, Globe, CheckCircle, ArrowRight, Layers, Zap } from 
 
 const deployTargets = [
   {
-    icon: <Server size={22} className="text-emerald-400" />,
+    icon: <Server size={22} className="text-emerald-500 dark:text-emerald-400" />,
     title: "Bare Metal",
     subtitle: "Full control, zero overhead",
     description:
@@ -12,10 +12,10 @@ const deployTargets = [
     tags: ["Docker Compose", "K8s", "On-prem", "Air-gapped"],
     border: "border-emerald-500/30",
     bg: "bg-emerald-500/5",
-    tagColor: "bg-emerald-500/10 text-emerald-300",
+    tagColor: "bg-emerald-500/10 text-emerald-600 dark:text-emerald-300",
   },
   {
-    icon: <Cloud size={22} className="text-indigo-400" />,
+    icon: <Cloud size={22} className="text-indigo-500 dark:text-indigo-400" />,
     title: "AWS: EKS / EC2",
     subtitle: "Elastic, cloud-native scale",
     description:
@@ -23,10 +23,10 @@ const deployTargets = [
     tags: ["EKS", "EC2", "IAM", "CloudWatch", "S3"],
     border: "border-indigo-500/30",
     bg: "bg-indigo-500/5",
-    tagColor: "bg-indigo-500/10 text-indigo-300",
+    tagColor: "bg-indigo-500/10 text-indigo-600 dark:text-indigo-300",
   },
   {
-    icon: <Zap size={22} className="text-amber-400" />,
+    icon: <Zap size={22} className="text-amber-500 dark:text-amber-400" />,
     title: "AWS Lambda / Durable Functions",
     subtitle: "Serverless, pay-per-use",
     description:
@@ -34,18 +34,18 @@ const deployTargets = [
     tags: ["Lambda", "Durable Functions", "SQS", "EventBridge", "Serverless"],
     border: "border-amber-500/30",
     bg: "bg-amber-500/5",
-    tagColor: "bg-amber-500/10 text-amber-300",
+    tagColor: "bg-amber-500/10 text-amber-600 dark:text-amber-300",
   },
   {
-    icon: <Globe size={22} className="text-purple-400" />,
+    icon: <Globe size={22} className="text-purple-500 dark:text-purple-400" />,
     title: "OhWise Cloud",
     subtitle: "Managed, zero-ops",
     description:
-      "Fully managed SaaS on cloud.ohwise.com. Infrastructure, scaling, upgrades, and observability are handled by OhWise. Start in seconds and migrate to self-hosted any time; your data is always exportable.",
+      "Fully managed SaaS on cloud.ohwise.com. Infrastructure, scaling, upgrades, and observability are handled by OhWise. Start in seconds and migrate to self-hosted any time; data is always exportable.",
     tags: ["SaaS", "Managed", "Zero-ops", "Data portability"],
     border: "border-purple-500/30",
     bg: "bg-purple-500/5",
-    tagColor: "bg-purple-500/10 text-purple-300",
+    tagColor: "bg-purple-500/10 text-purple-600 dark:text-purple-300",
   },
 ];
 
@@ -60,23 +60,23 @@ const principles = [
 
 const Infrastructure: React.FC = () => {
   return (
-    <section className="py-24 bg-gray-950 text-white border-t border-white/5">
+    <section className="py-24 bg-white text-gray-900 dark:bg-gray-950 dark:text-white border-t border-gray-100 dark:border-white/5">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
 
         {/* Header */}
         <div className="max-w-3xl mx-auto text-center mb-16">
-          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-emerald-500/30 bg-emerald-500/10 text-sm text-emerald-300 mb-6">
-            <Layers size={14} className="text-emerald-400" />
+          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-emerald-500/30 bg-emerald-500/10 text-sm text-emerald-600 dark:text-emerald-300 mb-6">
+            <Layers size={14} className="text-emerald-500 dark:text-emerald-400" />
             Cloud-native infrastructure
           </div>
-          <h2 className="text-3xl sm:text-4xl font-bold text-white mb-5 leading-tight">
+          <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white mb-5 leading-tight">
             Deploy anywhere.
             <br />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-indigo-400">
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-500 to-indigo-500 dark:from-emerald-400 dark:to-indigo-400">
               Any infra. Full control.
             </span>
           </h2>
-          <p className="text-lg text-gray-400 leading-relaxed">
+          <p className="text-lg text-gray-500 dark:text-gray-400 leading-relaxed">
             OhWise was designed cloud-native from day one: stateless agents, container-first,
             no vendor lock-in. Run it on bare metal, on AWS with EKS or Lambda, or use the
             fully managed cloud offering.
@@ -91,15 +91,15 @@ const Infrastructure: React.FC = () => {
               className={`rounded-xl border ${t.border} ${t.bg} p-6 flex flex-col gap-4`}
             >
               <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center flex-shrink-0">
+                <div className="w-10 h-10 rounded-lg bg-gray-100 dark:bg-white/5 border border-gray-200 dark:border-white/10 flex items-center justify-center flex-shrink-0">
                   {t.icon}
                 </div>
                 <div>
-                  <p className="font-semibold text-white text-sm">{t.title}</p>
-                  <p className="text-xs text-gray-500">{t.subtitle}</p>
+                  <p className="font-semibold text-gray-900 dark:text-white text-sm">{t.title}</p>
+                  <p className="text-xs text-gray-400">{t.subtitle}</p>
                 </div>
               </div>
-              <p className="text-gray-400 text-sm leading-relaxed">{t.description}</p>
+              <p className="text-gray-500 dark:text-gray-400 text-sm leading-relaxed">{t.description}</p>
               <div className="flex flex-wrap gap-2 mt-auto pt-2">
                 {t.tags.map((tag) => (
                   <span key={tag} className={`text-xs px-2 py-0.5 rounded-full ${t.tagColor}`}>
@@ -113,50 +113,50 @@ const Infrastructure: React.FC = () => {
 
         {/* Architecture diagram strip */}
         <div className="max-w-4xl mx-auto mb-20">
-          <div className="rounded-xl border border-white/10 bg-white/3 p-8">
-            <p className="text-xs text-gray-500 uppercase tracking-widest mb-8 text-center">Deployment architecture</p>
+          <div className="rounded-xl border border-gray-200 dark:border-white/10 bg-gray-50 dark:bg-white/3 p-8">
+            <p className="text-xs text-gray-400 dark:text-gray-500 uppercase tracking-widest mb-8 text-center">Deployment architecture</p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-3 font-mono text-xs">
               {/* Client */}
               <div className="flex flex-col items-center gap-1">
-                <div className="bg-white/5 border border-white/15 rounded-lg px-4 py-2.5 text-center min-w-[110px]">
-                  <p className="text-gray-300 font-semibold">Browser / API</p>
-                  <p className="text-gray-600 mt-0.5">WebSocket / REST</p>
+                <div className="bg-gray-100 dark:bg-white/5 border border-gray-200 dark:border-white/15 rounded-lg px-4 py-2.5 text-center min-w-[110px]">
+                  <p className="text-gray-700 dark:text-gray-300 font-semibold">Browser / API</p>
+                  <p className="text-gray-400 mt-0.5">WebSocket / REST</p>
                 </div>
               </div>
-              <ArrowRight size={14} className="text-gray-600 rotate-90 sm:rotate-0" />
+              <ArrowRight size={14} className="text-gray-400 rotate-90 sm:rotate-0" />
               {/* Gateway */}
               <div className="flex flex-col items-center gap-1">
                 <div className="bg-indigo-500/10 border border-indigo-500/30 rounded-lg px-4 py-2.5 text-center min-w-[110px]">
-                  <p className="text-indigo-300 font-semibold">Gateway</p>
-                  <p className="text-gray-600 mt-0.5">nginx / ALB</p>
+                  <p className="text-indigo-600 dark:text-indigo-300 font-semibold">Gateway</p>
+                  <p className="text-gray-400 mt-0.5">nginx / ALB</p>
                 </div>
               </div>
-              <ArrowRight size={14} className="text-gray-600 rotate-90 sm:rotate-0" />
+              <ArrowRight size={14} className="text-gray-400 rotate-90 sm:rotate-0" />
               {/* Coordinator */}
               <div className="flex flex-col items-center gap-1">
                 <div className="bg-purple-500/10 border border-purple-500/30 rounded-lg px-4 py-2.5 text-center min-w-[110px]">
-                  <p className="text-purple-300 font-semibold">Coordinator</p>
-                  <p className="text-gray-600 mt-0.5">FastAPI / ECS</p>
+                  <p className="text-purple-600 dark:text-purple-300 font-semibold">Coordinator</p>
+                  <p className="text-gray-400 mt-0.5">FastAPI / ECS</p>
                 </div>
               </div>
-              <ArrowRight size={14} className="text-gray-600 rotate-90 sm:rotate-0" />
+              <ArrowRight size={14} className="text-gray-400 rotate-90 sm:rotate-0" />
               {/* Lambdas */}
               <div className="flex flex-col items-center gap-1">
                 <div className="bg-amber-500/10 border border-amber-500/30 rounded-lg px-4 py-2.5 text-center min-w-[140px]">
-                  <p className="text-amber-300 font-semibold">Agent Lambdas</p>
-                  <p className="text-gray-600 mt-0.5">Lambda / K8s Jobs</p>
+                  <p className="text-amber-600 dark:text-amber-300 font-semibold">Agent Lambdas</p>
+                  <p className="text-gray-400 mt-0.5">Lambda / K8s Jobs</p>
                 </div>
               </div>
-              <ArrowRight size={14} className="text-gray-600 rotate-90 sm:rotate-0" />
+              <ArrowRight size={14} className="text-gray-400 rotate-90 sm:rotate-0" />
               {/* Storage */}
               <div className="flex flex-col items-center gap-1">
                 <div className="bg-emerald-500/10 border border-emerald-500/30 rounded-lg px-4 py-2.5 text-center min-w-[110px]">
-                  <p className="text-emerald-300 font-semibold">Storage</p>
-                  <p className="text-gray-600 mt-0.5">MongoDB / S3</p>
+                  <p className="text-emerald-600 dark:text-emerald-300 font-semibold">Storage</p>
+                  <p className="text-gray-400 mt-0.5">MongoDB / S3</p>
                 </div>
               </div>
             </div>
-            <p className="text-center text-xs text-gray-600 mt-6">
+            <p className="text-center text-xs text-gray-400 mt-6">
               Same topology runs on bare metal, AWS EKS, or serverless Lambda. Swap the runtime, keep the architecture.
             </p>
           </div>
@@ -164,13 +164,13 @@ const Infrastructure: React.FC = () => {
 
         {/* Design principles grid */}
         <div className="max-w-4xl mx-auto">
-          <p className="text-xs text-gray-500 uppercase tracking-widest text-center mb-8">Design principles</p>
+          <p className="text-xs text-gray-400 dark:text-gray-500 uppercase tracking-widest text-center mb-8">Design principles</p>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
             {principles.map((p) => (
               <div key={p.label} className="flex gap-3">
-                <CheckCircle size={16} className="text-emerald-400 flex-shrink-0 mt-0.5" />
+                <CheckCircle size={16} className="text-emerald-500 dark:text-emerald-400 flex-shrink-0 mt-0.5" />
                 <div>
-                  <p className="text-white text-sm font-medium mb-1">{p.label}</p>
+                  <p className="text-gray-900 dark:text-white text-sm font-medium mb-1">{p.label}</p>
                   <p className="text-gray-500 text-xs leading-relaxed">{p.desc}</p>
                 </div>
               </div>

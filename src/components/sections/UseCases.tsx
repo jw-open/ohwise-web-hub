@@ -9,7 +9,7 @@ const USE_CASES = [
     description:
       "Pipeline orchestration, model monitoring, experiment management, and deployment automation built for AI-native teams.",
     color: "border-rose-500/30 bg-rose-500/5",
-    badge: "text-rose-400",
+    badge: "text-rose-500 dark:text-rose-400",
   },
   {
     emoji: "⚙️",
@@ -17,7 +17,7 @@ const USE_CASES = [
     description:
       "Alert triage, incident response, root-cause analysis, and infrastructure automation for fewer pages and faster resolution.",
     color: "border-sky-500/30 bg-sky-500/5",
-    badge: "text-sky-400",
+    badge: "text-sky-500 dark:text-sky-400",
   },
   {
     emoji: "🔬",
@@ -25,7 +25,7 @@ const USE_CASES = [
     description:
       "Literature review, paper editing, experiment tracking, and code-assisted research, from first search to final draft.",
     color: "border-indigo-500/30 bg-indigo-500/5",
-    badge: "text-indigo-400",
+    badge: "text-indigo-500 dark:text-indigo-400",
   },
   {
     emoji: "💰",
@@ -33,7 +33,7 @@ const USE_CASES = [
     description:
       "Compensation analysis, pipeline forecasting, revenue dashboards, and sales ops automation, all without a dedicated data team.",
     color: "border-emerald-500/30 bg-emerald-500/5",
-    badge: "text-emerald-400",
+    badge: "text-emerald-500 dark:text-emerald-400",
   },
   {
     emoji: "📣",
@@ -41,7 +41,7 @@ const USE_CASES = [
     description:
       "Email campaigns, social media management, funnel analytics, and lead generation workflows, orchestrated end-to-end.",
     color: "border-blue-500/30 bg-blue-500/5",
-    badge: "text-blue-400",
+    badge: "text-blue-500 dark:text-blue-400",
   },
   {
     emoji: "👥",
@@ -49,7 +49,7 @@ const USE_CASES = [
     description:
       "Resume screening, onboarding automation, email drafting, and hiring workflows so HR can focus on people, not paperwork.",
     color: "border-purple-500/30 bg-purple-500/5",
-    badge: "text-purple-400",
+    badge: "text-purple-500 dark:text-purple-400",
   },
   {
     emoji: "✨",
@@ -57,7 +57,7 @@ const USE_CASES = [
     description:
       "Content management across Twitter, LinkedIn, and blogs; job search; interview prep; and travel planning, all in one place.",
     color: "border-yellow-500/30 bg-yellow-500/5",
-    badge: "text-yellow-400",
+    badge: "text-yellow-500 dark:text-yellow-400",
   },
   {
     emoji: "🏥",
@@ -65,7 +65,7 @@ const USE_CASES = [
     description:
       "Insurance processing, clinical workflow automation, and patient data analysis under strict data isolation and audit controls.",
     color: "border-teal-500/30 bg-teal-500/5",
-    badge: "text-teal-400",
+    badge: "text-teal-500 dark:text-teal-400",
   },
   {
     emoji: "📈",
@@ -73,21 +73,21 @@ const USE_CASES = [
     description:
       "Portfolio analysis, risk modeling, and market research automation where structured data meets multi-agent intelligence.",
     color: "border-orange-500/30 bg-orange-500/5",
-    badge: "text-orange-400",
+    badge: "text-orange-500 dark:text-orange-400",
   },
 ];
 
 const UseCases: React.FC = () => {
   return (
-    <section className="py-24 bg-gray-950 text-white">
+    <section className="py-24 bg-gray-50 text-gray-900 dark:bg-gray-950 dark:text-white">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
 
         {/* Header */}
         <div className="max-w-2xl mx-auto text-center mb-16">
-          <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4 tracking-tight">
+          <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white mb-4 tracking-tight">
             Built for every team
           </h2>
-          <p className="text-lg text-gray-400 leading-relaxed">
+          <p className="text-lg text-gray-500 dark:text-gray-400 leading-relaxed">
             One platform, applicable across an entire organization.
           </p>
         </div>
@@ -97,7 +97,7 @@ const UseCases: React.FC = () => {
           {USE_CASES.map((uc, i) => (
             <div
               key={i}
-              className={`rounded-xl border ${uc.color} p-6 flex flex-col gap-3 hover:brightness-110 transition-all duration-200`}
+              className={`rounded-xl border ${uc.color} p-6 flex flex-col gap-3 hover:brightness-105 dark:hover:brightness-110 transition-all duration-200`}
             >
               <div className="flex items-center gap-3">
                 <span className="text-2xl leading-none">{uc.emoji}</span>
@@ -105,7 +105,7 @@ const UseCases: React.FC = () => {
                   {uc.title}
                 </h3>
               </div>
-              <p className="text-sm text-gray-400 leading-relaxed flex-grow">
+              <p className="text-sm text-gray-500 dark:text-gray-400 leading-relaxed flex-grow">
                 {uc.description}
               </p>
             </div>
@@ -113,12 +113,12 @@ const UseCases: React.FC = () => {
         </div>
 
         {/* CTA strip */}
-        <div className="max-w-3xl mx-auto rounded-xl border border-white/10 bg-white/5 p-8 flex flex-col sm:flex-row items-center justify-between gap-6">
+        <div className="max-w-3xl mx-auto rounded-xl border border-gray-200 dark:border-white/10 bg-gray-100 dark:bg-white/5 p-8 flex flex-col sm:flex-row items-center justify-between gap-6">
           <div>
-            <p className="text-base font-semibold text-white mb-1">
+            <p className="text-base font-semibold text-gray-900 dark:text-white mb-1">
               Use case not listed?
             </p>
-            <p className="text-sm text-gray-400">
+            <p className="text-sm text-gray-500 dark:text-gray-400">
               OhWise is a general multi-agent platform. Any workflow involving steps, tools, and decisions can be automated.
             </p>
           </div>
@@ -126,7 +126,7 @@ const UseCases: React.FC = () => {
             href="https://cloud.ohwise.com"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 px-5 py-2.5 bg-white text-gray-900 hover:bg-gray-100 text-sm font-medium rounded-lg transition-colors flex-shrink-0"
+            className="inline-flex items-center gap-2 px-5 py-2.5 bg-gray-900 dark:bg-white text-white dark:text-gray-900 hover:bg-gray-700 dark:hover:bg-gray-100 text-sm font-medium rounded-lg transition-colors flex-shrink-0"
           >
             Get started <ArrowRight size={14} />
           </a>
