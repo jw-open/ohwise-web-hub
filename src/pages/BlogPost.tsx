@@ -164,8 +164,6 @@ const BLOG_POSTS = [
     tags: ["Harness Engineering", "Multi-agent", "Platform", "Multi-tenant", "LLM Infrastructure"],
     image: "https://images.unsplash.com/photo-1518432031352-d6fc5c10da5a?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3"
   },
-];
-
   {
     id: 9,
     title: "Personalized PageRank vs Vector Similarity: Why Graph Algorithms Win for Structured Context",
