@@ -45,7 +45,7 @@ const Navbar = () => {
           {/* Logo */}
           <Link to="/" className="flex items-center gap-2.5">
             <Logo size={32} />
-            <span className="font-display font-bold text-xl">OhWise</span>
+            <span className={cn("font-display font-bold text-xl", isScrolled ? "text-gray-900 dark:text-white" : "text-white")}>OhWise</span>
           </Link>
 
           {/* Desktop Navigation */}
@@ -126,8 +126,8 @@ const Navbar = () => {
           </div>
 
           {/* Mobile Menu Button */}
-          <button 
-            className="md:hidden rounded-md p-2 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+          <button
+            className={cn("md:hidden rounded-md p-2 transition-colors", isScrolled ? "text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800" : "text-white hover:bg-white/10")}
             onClick={toggleMenu}
             aria-label="Toggle menu"
           >
