@@ -481,12 +481,13 @@ pip install "ohwise-mcp[all]"`}</code></pre>
     ),
   };
 
-  const [selectedArticle, setSelectedArticle] = useState<null | { title: string; content: React.ReactNode }>(null);
+  const [selectedArticle, setSelectedArticle] = useState<null | { title: string; slug: string; content: React.ReactNode }>(null);
 
   const showArticle = (categoryTitle: string, article: { title: string; slug: string }) => {
     const content = articles[article.slug];
     setSelectedArticle({
       title: article.title,
+      slug: article.slug,
       content: content ?? (
         <div className="prose dark:prose-invert prose-lg max-w-none">
           <h1>{article.title}</h1>
@@ -533,36 +534,85 @@ pip install "ohwise-mcp[all]"`}</code></pre>
         </section>
 
         {/* Documentation Content */}
-        <section className="py-16">
+        <section className="py-10">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
             {selectedArticle ? (
-              <div className="max-w-4xl mx-auto">
-                <button
-                  onClick={() => setSelectedArticle(null)}
-                  className="flex items-center text-blue-600 hover:text-blue-800 mb-6"
-                >
-                  <ArrowLeft size={16} className="mr-2" />
-                  Back to Documentation
-                </button>
-                {selectedArticle.content}
+              /* ── Sidebar + Article layout ────────────────────────────── */
+              <div className="flex gap-8 items-start">
+                {/* Sticky sidebar */}
+                <aside className="hidden lg:block w-64 flex-shrink-0 sticky top-24 self-start max-h-[calc(100vh-7rem)] overflow-y-auto pb-8">
+                  <button
+                    onClick={() => setSelectedArticle(null)}
+                    className="flex items-center gap-1 text-xs text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors mb-6 font-medium"
+                  >
+                    <ArrowLeft size={13} /> All docs
+                  </button>
+                  <nav className="space-y-6">
+                    {categories.map((category, cidx) => (
+                      <div key={cidx}>
+                        <div className="flex items-center gap-2 mb-2 px-2">
+                          <span className="opacity-70">{category.icon}</span>
+                          <span className="text-xs font-semibold uppercase tracking-widest text-gray-500 dark:text-gray-400">
+                            {category.title}
+                          </span>
+                        </div>
+                        <ul className="space-y-0.5">
+                          {category.articles.map((article, aidx) => {
+                            const isActive = selectedArticle?.slug === article.slug;
+                            return (
+                              <li key={aidx}>
+                                <button
+                                  onClick={() => showArticle(category.title, article)}
+                                  className={`w-full text-left text-sm px-3 py-1.5 rounded-lg transition-colors ${
+                                    isActive
+                                      ? "bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 font-medium"
+                                      : "text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 hover:text-gray-900 dark:hover:text-white"
+                                  }`}
+                                >
+                                  {article.title}
+                                </button>
+                              </li>
+                            );
+                          })}
+                        </ul>
+                      </div>
+                    ))}
+                  </nav>
+                </aside>
+
+                {/* Article content */}
+                <div className="flex-1 min-w-0">
+                  {/* Mobile back button */}
+                  <button
+                    onClick={() => setSelectedArticle(null)}
+                    className="lg:hidden flex items-center text-blue-600 hover:text-blue-800 mb-6 text-sm font-medium"
+                  >
+                    <ArrowLeft size={15} className="mr-1" />
+                    Back to Documentation
+                  </button>
+                  <div className="bg-white dark:bg-gray-900 rounded-2xl border border-gray-100 dark:border-gray-800 shadow-sm p-8 lg:p-12 max-w-3xl">
+                    {selectedArticle.content}
+                  </div>
+                </div>
               </div>
             ) : (
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              /* ── Category card grid ──────────────────────────────────── */
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {categories.map((category, index) => (
-                  <div key={index} className="bg-white dark:bg-gray-800 rounded-xl border border-gray-100 dark:border-gray-700 shadow-sm p-6">
+                  <div key={index} className="bg-white dark:bg-gray-800 rounded-xl border border-gray-100 dark:border-gray-700 shadow-sm p-6 hover:shadow-md transition-shadow">
                     <div className="flex items-center mb-4 gap-2">
                       {category.icon}
-                      <h2 className="text-lg font-bold">{category.title}</h2>
+                      <h2 className="text-base font-bold text-gray-900 dark:text-white">{category.title}</h2>
                     </div>
-                    <ul className="space-y-3">
+                    <ul className="space-y-2">
                       {category.articles.map((article, idx) => (
                         <li key={idx}>
                           <button
                             onClick={() => showArticle(category.title, article)}
-                            className="flex items-center text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 w-full text-left text-sm"
+                            className="flex items-start gap-1 text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 w-full text-left text-sm py-0.5 transition-colors group"
                           >
-                            <ChevronRight size={14} className="mr-1 flex-shrink-0 text-gray-400" />
-                            <span>{article.title}</span>
+                            <ChevronRight size={14} className="mt-0.5 flex-shrink-0 text-gray-300 dark:text-gray-600 group-hover:text-blue-500 transition-colors" />
+                            <span className="leading-snug">{article.title}</span>
                           </button>
                         </li>
                       ))}

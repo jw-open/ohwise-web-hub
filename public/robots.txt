@@ -65,3 +65,5 @@ Allow: /
 
 User-agent: *
 Allow: /
+
+Sitemap: https://ohwise.com/sitemap.xml

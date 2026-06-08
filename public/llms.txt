@@ -1,0 +1,118 @@
+# OhWise
+
+> OhWise is a multi-agent AI platform for orchestrating, running, and coordinating AI agents and workflows. It combines a browser-based AI coding agent terminal (Lab), a structured multi-agent coordinator (Studio), DAG-based pipeline execution, and graph-native context retrieval — all built on an open-source ecosystem of Python packages.
+
+## What OhWise Does
+
+OhWise provides infrastructure for teams building production AI systems. Its core value is eliminating harness engineering: instead of writing bespoke orchestration code, retry logic, context management, and state machines for every agent, teams declare their pipelines as DAGs and OhWise handles execution, state, observability, and multi-tenancy.
+
+## Key Capabilities
+
+### Lab — Browser-Based AI Coding Agent Terminal
+- Runs AI coding agent CLIs (Claude Code, Codex, Gemini CLI, Snowflake Cortex) directly in the browser
+- Powered by the open-source `ai-relay` Python package, which bridges agent CLIs to WebSocket frontends
+- Streams structured real-time events: reasoning steps, tool calls, file diffs, OAuth links, quota warnings, context compaction
+- Features: file diff viewer, permission system (allow/deny/allow-for-session), multi-panel split view, voice input (Whisper), TTS output, MCP server integration per session
+- Authentication: Claude Pro/Max subscription via browser OAuth — no API key cost
+
+### Studio — Multi-Agent DAG Coordinator
+- Structured planner → executor → evaluator coordinator loop
+- Planner decomposes user requests into a subtask DAG
+- Executor runs each subtask: LLM calls, tool invocations, Lambda functions, knowledge graph queries
+- Evaluator scores output and decides pass / retry / escalate
+- Final synthesis step marks results with `[ARTIFACT]` for display in the Artifact panel
+- Human-in-the-loop: pause the loop at any node for review or redirection
+- Artifact types: HTML (live preview), Markdown, code (syntax-highlighted), JSON
+
+### DAG Orchestration
+- Workflows modeled as directed acyclic graphs (DAGs)
+- Typed input/output contracts at every node boundary
+- Parallel execution of independent nodes
+- State machine layer for long-running workflows: suspend/resume with full context restoration
+- Per-node observability: traces, token usage, latency, tool call logs
+
+### Lambda Execution
+- Stateless function nodes dispatched to AI agents for single-turn tasks
+- Lightweight path for tasks that don't need a full agent session
+
+### Graph-Native Context Retrieval
+- Three open-source packages use Personalized PageRank (PPR) on typed graphs to retrieve structurally relevant context
+- PPR propagates from query-matched seed nodes through the graph topology — capturing foreign key chains, call chains, and cross-references that vector similarity misses
+- Used internally in DAG nodes for automatic context injection
+
+## Open Source Packages
+
+All packages are pure Python, no LLM dependency, MIT-licensed, on PyPI.
+
+### ai-relay v0.4.32
+- PyPI: `pip install ai-relay`
+- GitHub: https://github.com/jw-open/ai-relay
+- Bridges AI coding agent CLIs (Claude Code, Codex, Gemini CLI, Cortex) to WebSocket frontends
+- Spawns the CLI as a subprocess, speaks native stream-json protocol, emits structured JSON events
+- Events: session_start, session_end, stdout, tool_call, reasoning, url, quota_warning, context_warning, context_compacted, error, input_ack
+- Modes: one-shot (`ai-relay --port 8765`) and server/daemon (`ai-relay serve --port 9000`)
+- Powers the Lab feature in OhWise
+
+### graph2sql v0.2.0
+- PyPI: `pip install graph2sql`
+- GitHub: https://github.com/jw-open/graph2sql
+- Takes a database schema (tables, columns, foreign keys) → builds a typed directed graph → ranks relevant subgraph for a natural language query using Personalized PageRank
+- No LLM calls in graph construction or ranking; only pure Python + numpy
+- Output: ranked list of table nodes for use as LLM context in text-to-SQL generation
+- Outperforms vector similarity on multi-join queries over large schemas (100+ tables)
+
+### docs2graph v0.3.2
+- PyPI: `pip install docs2graph`
+- GitHub: https://github.com/jw-open/docs2graph
+- Takes documents (PDF, Word, Markdown, HTML, CSV, 10+ formats) → extracts knowledge graph of entities, sections, tables, cited sources → ranks relevant nodes for any query via PPR
+- Graph node types: sections, entities (people, organizations, concepts), tables, cited sources
+- Edge types: contains, mentions, cites, relates_to
+- Use case: hierarchical document Q&A where cross-references matter (legal contracts, technical specs, annual reports)
+
+### codebase2graph v0.1.0
+- PyPI: `pip install codebase2graph`
+- GitHub: https://github.com/jw-open/codebase2graph
+- Takes a code repository → extracts 10 typed graph types: call graphs, entity graphs (class/function definitions), schema graphs, infrastructure graphs (Docker, nginx, env), security graphs (auth decorators, permissions), and more
+- PPR on call graphs produces 3–5x smaller context than embedding top-k at equivalent recall for call-chain questions
+- Use case: code understanding, impact analysis, architecture Q&A
+
+### ohwise-mcp v0.2.0
+- PyPI: `pip install ohwise-mcp`
+- GitHub: https://github.com/jw-open/ohwise-mcp
+- MCP server exposing OhWise capabilities to Claude Code, Cursor, and any MCP-compatible client
+- One pip install + one config block in .claude/mcp.json
+- Available MCP tools: knowledge graph CRUD (list/get/query/add/delete nodes and edges), agent pipeline management (list agents, run tasks, poll results), code context (build graph, rank nodes, trace call path, find impact), schema ranking (graph2sql for SQL context), document retrieval (docs2graph)
+- Config: `{"mcpServers": {"ohwise": {"command": "ohwise-mcp", "env": {"OHWISE_URL": "https://cloud.ohwise.com", "OHWISE_TOKEN": "<your-token>"}}}}`
+
+## Tech Stack
+
+- **Backend**: FastAPI (Python) + MongoDB + Redis (pub/sub + caching) + Docker
+- **Frontend**: Next.js 14 + TypeScript + Tailwind CSS + WebSocket client
+- **Realtime**: Redis pub/sub fans out structured agent events to connected WebSocket clients
+- **Auth**: JWT for API and WebSocket; OAuth for AI coding agent credentials
+- **Infra**: Bare-metal Ubuntu, Nginx reverse proxy, Docker Compose orchestration
+- **AI agents**: Claude (Anthropic), GPT-4/Codex (OpenAI), Gemini (Google), Cortex (Snowflake) — model-agnostic
+
+## Site Sections
+
+- [Home](https://ohwise.com/) — Platform overview and key capabilities
+- [Product](https://ohwise.com/product) — Lab, Studio, DAG orchestration feature details
+- [Documentation](https://ohwise.com/documentation) — Architecture guides, API reference, integration docs
+- [Open Source](https://ohwise.com/open-source) — All 5 PyPI packages with install guides and examples
+- [Blog](https://ohwise.com/blog) — Engineering articles on multi-agent systems, graph retrieval, platform architecture
+- [About](https://ohwise.com/about) — Team and company background
+- [Pricing](https://ohwise.com/pricing) — Plans and pricing
+
+## GitHub Repositories
+
+- https://github.com/jw-open/ai-relay — ai-relay WebSocket relay
+- https://github.com/jw-open/graph2sql — graph2sql schema ranking
+- https://github.com/jw-open/docs2graph — docs2graph document knowledge graphs
+- https://github.com/jw-open/codebase2graph — codebase2graph code repository graphs
+- https://github.com/jw-open/ohwise-mcp — ohwise-mcp MCP server
+
+## Selected Blog Posts
+
+- [Personalized PageRank vs Vector Similarity: Why Graph Algorithms Win for Structured Context](https://ohwise.com/blog/9) — Technical deep dive on PPR vs embeddings for schema, code, and document retrieval
+- [ohwise-mcp 0.2.0: Graph-Native Context for Claude Code and Any MCP Client](https://ohwise.com/blog/8) — Release announcement and setup guide
+- [Beyond Harness Engineering: How OhWise Automates the Scaffolding at Scale](https://ohwise.com/blog/7) — Architecture article on DAG orchestration and multi-tenant harness elimination

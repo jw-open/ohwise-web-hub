@@ -215,33 +215,43 @@ const Blog = () => {
           {filteredPosts.length > 0 ? (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {filteredPosts.map(post => (
-                <Link to={`/blog/${post.id}`} key={post.id} className="group flex flex-col">
+                <Link
+                  to={`/blog/${post.id}`}
+                  key={post.id}
+                  className="group flex flex-col rounded-2xl border border-gray-100 dark:border-gray-800 bg-white dark:bg-gray-900 overflow-hidden hover:border-blue-200 dark:hover:border-blue-800 hover:shadow-md transition-all duration-200"
+                >
                   {/* Thumbnail */}
-                  <div className="rounded-2xl overflow-hidden aspect-[16/9] mb-5 bg-gray-100 dark:bg-gray-800">
+                  <div className="overflow-hidden aspect-[16/9] bg-gray-100 dark:bg-gray-800">
                     <img
                       src={post.image}
                       alt={post.title}
                       className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                     />
                   </div>
-                  {/* Meta */}
-                  <div className="flex items-center gap-2 text-xs text-gray-400 dark:text-gray-500 mb-3">
-                    <span className="text-blue-600 dark:text-blue-400 font-medium">{post.category}</span>
-                    <span>·</span>
-                    <span className="flex items-center gap-1"><Clock size={11} />{post.readTime}</span>
-                  </div>
-                  {/* Title */}
-                  <h3 className="text-lg font-semibold text-gray-900 dark:text-white leading-snug mb-2 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
-                    {post.title}
-                  </h3>
-                  {/* Excerpt */}
-                  <p className="text-sm text-gray-500 dark:text-gray-400 line-clamp-2 mb-4 flex-grow">
-                    {post.excerpt}
-                  </p>
-                  {/* Author / date */}
-                  <div className="flex items-center justify-between text-xs text-gray-400 dark:text-gray-500 mt-auto pt-4 border-t border-gray-100 dark:border-gray-800">
-                    <span>{post.author}</span>
-                    <span>{post.date}</span>
+                  {/* Content */}
+                  <div className="flex flex-col flex-grow p-5">
+                    {/* Category + read time */}
+                    <div className="flex items-center justify-between mb-3">
+                      <span className="inline-block px-2.5 py-0.5 rounded-full text-xs font-semibold bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300">
+                        {post.category}
+                      </span>
+                      <span className="flex items-center gap-1 text-xs text-gray-400 dark:text-gray-500">
+                        <Clock size={11} />{post.readTime}
+                      </span>
+                    </div>
+                    {/* Title */}
+                    <h3 className="text-base font-semibold text-gray-900 dark:text-white leading-snug mb-2 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
+                      {post.title}
+                    </h3>
+                    {/* Excerpt */}
+                    <p className="text-sm text-gray-500 dark:text-gray-400 line-clamp-2 mb-4 flex-grow">
+                      {post.excerpt}
+                    </p>
+                    {/* Author / date */}
+                    <div className="flex items-center justify-between text-xs text-gray-400 dark:text-gray-500 pt-3 border-t border-gray-100 dark:border-gray-800">
+                      <span className="font-medium text-gray-600 dark:text-gray-400">{post.author}</span>
+                      <span>{post.date}</span>
+                    </div>
                   </div>
                 </Link>
               ))}
