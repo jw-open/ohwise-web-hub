@@ -6,60 +6,6 @@ import { GitBranch, ExternalLink, Terminal, Star, Package, Box } from "lucide-re
 
 const projects = [
   {
-    name: "graph2sql",
-    version: "0.2.0",
-    tagline: "Graph-based schema ranking for text-to-SQL. Bring your own LLM.",
-    description:
-      "Build a schema graph from your database (tables and columns as nodes, relationships as edges), then rank relevant nodes for any natural language question using Personalized PageRank. Feed the ranked subgraph as context to any LLM for accurate SQL generation.",
-    status: "active",
-    language: "Python",
-    install: "pip install graph2sql",
-    github: "https://github.com/jw-open/graph2sql",
-    pypi: "https://pypi.org/project/graph2sql/",
-    features: [
-      "No LLM dependency: pure Python + numpy",
-      "Personalized PageRank for schema-aware ranking",
-      "Alias matching via node attributes",
-      "Pip installable, fully typed",
-    ],
-    snippet: `from graph2sql import SchemaGraph
-
-graph = SchemaGraph()
-graph.add_node("orders",    "orders",    content="id, customer_id, total")
-graph.add_node("customers", "customers", content="id, name, email")
-graph.add_edge("orders", "customers", "belongs_to")
-
-context = graph.rank("total revenue by customer", k=3)
-# pass context to your LLM → SQL`,
-  },
-  {
-    name: "docs2graph",
-    version: "0.3.2",
-    tagline: "Turn documents into knowledge graphs. No LLM required.",
-    description:
-      "Extract structured knowledge graphs from PDFs, Word docs, Markdown, HTML, CSV, and more. Build entity-relationship graphs for downstream retrieval and question answering, then rank relevant nodes with Personalized PageRank before passing context to your LLM.",
-    status: "active",
-    language: "Python",
-    install: "pip install docs2graph",
-    github: "https://github.com/jw-open/doc2graph",
-    pypi: "https://pypi.org/project/docs2graph/",
-    features: [
-      "15+ file formats: PDF, DOCX, HTML, Markdown, CSV, JSON, PPTX",
-      "Personalized PageRank for relevance ranking",
-      "OCR support for scanned documents and images",
-      "No LLM dependency: bring your own model",
-    ],
-    snippet: `from docs2graph import build_graph
-
-graph = build_graph("report.pdf", graph_type="knowledge")
-# graph.nodes — entities, sections, concepts
-# graph.edges — relates_to, mentions, cites
-
-# Rank relevant nodes for a query
-from docs2graph import rank_nodes
-ranked = rank_nodes(graph, "quarterly revenue", k=5)`,
-  },
-  {
     name: "ai-relay",
     version: "0.4.32",
     tagline: "WebSocket relay that bridges AI coding agent CLIs to any web interface.",
@@ -122,6 +68,60 @@ ai-relay serve --port 9000
 
 # Or with all graph extras:
 pip install "ohwise-mcp[all]"`,
+  },
+  {
+    name: "graph2sql",
+    version: "0.2.0",
+    tagline: "Graph-based schema ranking for text-to-SQL. Bring your own LLM.",
+    description:
+      "Build a schema graph from your database (tables and columns as nodes, relationships as edges), then rank relevant nodes for any natural language question using Personalized PageRank. Feed the ranked subgraph as context to any LLM for accurate SQL generation.",
+    status: "active",
+    language: "Python",
+    install: "pip install graph2sql",
+    github: "https://github.com/jw-open/graph2sql",
+    pypi: "https://pypi.org/project/graph2sql/",
+    features: [
+      "No LLM dependency: pure Python + numpy",
+      "Personalized PageRank for schema-aware ranking",
+      "Alias matching via node attributes",
+      "Pip installable, fully typed",
+    ],
+    snippet: `from graph2sql import SchemaGraph
+
+graph = SchemaGraph()
+graph.add_node("orders",    "orders",    content="id, customer_id, total")
+graph.add_node("customers", "customers", content="id, name, email")
+graph.add_edge("orders", "customers", "belongs_to")
+
+context = graph.rank("total revenue by customer", k=3)
+# pass context to your LLM → SQL`,
+  },
+  {
+    name: "docs2graph",
+    version: "0.3.2",
+    tagline: "Turn documents into knowledge graphs. No LLM required.",
+    description:
+      "Extract structured knowledge graphs from PDFs, Word docs, Markdown, HTML, CSV, and more. Build entity-relationship graphs for downstream retrieval and question answering, then rank relevant nodes with Personalized PageRank before passing context to your LLM.",
+    status: "active",
+    language: "Python",
+    install: "pip install docs2graph",
+    github: "https://github.com/jw-open/doc2graph",
+    pypi: "https://pypi.org/project/docs2graph/",
+    features: [
+      "15+ file formats: PDF, DOCX, HTML, Markdown, CSV, JSON, PPTX",
+      "Personalized PageRank for relevance ranking",
+      "OCR support for scanned documents and images",
+      "No LLM dependency: bring your own model",
+    ],
+    snippet: `from docs2graph import build_graph
+
+graph = build_graph("report.pdf", graph_type="knowledge")
+# graph.nodes — entities, sections, concepts
+# graph.edges — relates_to, mentions, cites
+
+# Rank relevant nodes for a query
+from docs2graph import rank_nodes
+ranked = rank_nodes(graph, "quarterly revenue", k=5)`,
   },
   {
     name: "codebase2graph",
