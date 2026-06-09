@@ -38,21 +38,21 @@ const Product = () => {
       <main className="flex-grow pt-16">
 
         {/* Hero Section */}
-        <section className="py-20 bg-gradient-to-b from-gray-950 to-gray-900 text-white">
+        <section className="py-20 bg-gradient-to-b from-indigo-50 to-white dark:from-gray-950 dark:to-gray-900 text-gray-900 dark:text-white">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
             <div className="max-w-3xl mx-auto text-center">
-              <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-white/10 bg-white/5 text-sm text-gray-400 mb-8">
-                <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+              <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-indigo-200 bg-indigo-50 dark:border-white/10 dark:bg-white/5 text-sm text-indigo-600 dark:text-gray-400 mb-8">
+                <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 dark:bg-emerald-400 animate-pulse" />
                 Multi-agent AI platform
               </div>
-              <h1 className="font-bold text-4xl sm:text-5xl md:text-6xl leading-[1.1] tracking-tight mb-6">
+              <h1 className="font-bold text-4xl sm:text-5xl md:text-6xl leading-[1.1] tracking-tight mb-6 text-gray-900 dark:text-white">
                 The architecture behind
                 <br />
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-purple-400">
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-500 to-purple-500 dark:from-indigo-400 dark:to-purple-400">
                   enterprise multi-agent AI
                 </span>
               </h1>
-              <p className="text-lg md:text-xl text-gray-400 mb-10 max-w-2xl mx-auto leading-relaxed">
+              <p className="text-lg md:text-xl text-gray-500 dark:text-gray-400 mb-10 max-w-2xl mx-auto leading-relaxed">
                 OhWise ships every layer a multi-agent AI system needs: DAG orchestration, structured agent coordination, real-time streaming, graph-native context retrieval, and a browser-based AI coding agent terminal.
               </p>
               <div className="flex flex-col sm:flex-row justify-center gap-3">
@@ -66,7 +66,7 @@ const Product = () => {
                 </a>
                 <a
                   href="/open-source"
-                  className="inline-flex items-center justify-center gap-2 px-6 py-3 border border-white/20 text-gray-300 hover:text-white hover:border-white/50 rounded-lg font-medium transition-colors"
+                  className="inline-flex items-center justify-center gap-2 px-6 py-3 border border-gray-300 text-gray-700 hover:text-gray-900 hover:border-gray-400 dark:border-white/20 dark:text-gray-300 dark:hover:text-white dark:hover:border-white/50 rounded-lg font-medium transition-colors"
                 >
                   Open-source packages
                 </a>
@@ -83,9 +83,9 @@ const Product = () => {
                 { value: "DAG", label: "Execution model" },
                 { value: "Real-time", label: "Event streaming" },
               ].map((stat, i) => (
-                <div key={i} className="p-4 rounded-xl border border-white/10 bg-white/5">
-                  <p className="text-2xl font-bold text-white mb-1">{stat.value}</p>
-                  <p className="text-xs text-gray-400">{stat.label}</p>
+                <div key={i} className="p-4 rounded-xl border border-gray-200 bg-white dark:border-white/10 dark:bg-white/5">
+                  <p className="text-2xl font-bold text-gray-900 dark:text-white mb-1">{stat.value}</p>
+                  <p className="text-xs text-gray-500 dark:text-gray-400">{stat.label}</p>
                 </div>
               ))}
             </div>
@@ -410,23 +410,23 @@ const Product = () => {
         </section>
 
         {/* Enterprise & Multi-tenant */}
-        <section className="py-24 bg-gray-950 text-white">
+        <section className="py-24 bg-gray-50 dark:bg-gray-950 text-gray-900 dark:text-white">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
 
             {/* Header */}
             <div className="max-w-3xl mx-auto text-center mb-16">
-              <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-indigo-500/30 bg-indigo-500/10 text-sm text-indigo-300 mb-6">
-                <Shield size={14} className="text-indigo-400" />
+              <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-indigo-200 bg-indigo-50 text-sm text-indigo-600 dark:border-indigo-500/30 dark:bg-indigo-500/10 dark:text-indigo-300 mb-6">
+                <Shield size={14} className="text-indigo-500 dark:text-indigo-400" />
                 Enterprise &amp; Multi-tenant
               </div>
-              <h2 className="text-3xl sm:text-4xl font-bold text-white mb-5 leading-tight">
+              <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white mb-5 leading-tight">
                 Secure isolation,
                 <br />
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-purple-400">
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 to-purple-600 dark:from-indigo-400 dark:to-purple-400">
                   from day one.
                 </span>
               </h2>
-              <p className="text-lg text-gray-400 leading-relaxed">
+              <p className="text-lg text-gray-600 dark:text-gray-400 leading-relaxed">
                 Every organization is a fully isolated tenant. Sessions, agents, and data have no cross-tenant paths by design.
               </p>
             </div>
@@ -435,8 +435,8 @@ const Product = () => {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto mb-16">
               {[
                 {
-                  icon: <Shield className="w-5 h-5 text-emerald-400" />,
-                  border: "border-emerald-500/30 bg-emerald-500/5",
+                  icon: <Shield className="w-5 h-5 text-emerald-600 dark:text-emerald-400" />,
+                  border: "border-emerald-200 bg-emerald-50 dark:border-emerald-500/30 dark:bg-emerald-500/5",
                   title: "Security & Compliance",
                   items: [
                     "Short-lived authentication tokens, scoped and revocable API keys",
@@ -447,8 +447,8 @@ const Product = () => {
                   ],
                 },
                 {
-                  icon: <Key className="w-5 h-5 text-yellow-400" />,
-                  border: "border-yellow-500/30 bg-yellow-500/5",
+                  icon: <Key className="w-5 h-5 text-yellow-600 dark:text-yellow-400" />,
+                  border: "border-yellow-200 bg-yellow-50 dark:border-yellow-500/30 dark:bg-yellow-500/5",
                   title: "Multi-tenant Isolation",
                   items: [
                     "Per-organization isolated tenants with no data bleed between accounts",
@@ -461,16 +461,16 @@ const Product = () => {
               ].map((card, i) => (
                 <div key={i} className={`animate-on-scroll rounded-xl border ${card.border} p-6`}>
                   <div className="flex items-center gap-3 mb-5">
-                    <div className="w-9 h-9 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center flex-shrink-0">
+                    <div className="w-9 h-9 rounded-lg bg-gray-100 border border-gray-200 dark:bg-white/5 dark:border-white/10 flex items-center justify-center flex-shrink-0">
                       {card.icon}
                     </div>
-                    <h3 className="text-sm font-semibold text-white">{card.title}</h3>
+                    <h3 className="text-sm font-semibold text-gray-900 dark:text-white">{card.title}</h3>
                   </div>
                   <ul className="space-y-2.5">
                     {card.items.map((item, j) => (
                       <li key={j} className="flex items-start gap-2">
-                        <CheckCircle className="w-4 h-4 text-gray-600 flex-shrink-0 mt-0.5" />
-                        <span className="text-xs text-gray-400 leading-relaxed">{item}</span>
+                        <CheckCircle className="w-4 h-4 text-gray-400 dark:text-gray-600 flex-shrink-0 mt-0.5" />
+                        <span className="text-xs text-gray-600 dark:text-gray-400 leading-relaxed">{item}</span>
                       </li>
                     ))}
                   </ul>
@@ -480,7 +480,7 @@ const Product = () => {
 
             {/* Enterprise integrations strip */}
             <div className="max-w-5xl mx-auto animate-on-scroll">
-              <p className="text-xs text-gray-500 uppercase tracking-widest text-center mb-6">Enterprise integrations</p>
+              <p className="text-xs text-gray-400 dark:text-gray-500 uppercase tracking-widest text-center mb-6">Enterprise integrations</p>
               <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
                 {[
                   { label: "MCP Server", desc: "Per-session or org-wide context tools" },
@@ -488,8 +488,8 @@ const Product = () => {
                   { label: "OAuth2 / SSO", desc: "Claude, Gemini OAuth flows; SSO ready" },
                   { label: "REST API", desc: "All capabilities available for automation" },
                 ].map((intg, i) => (
-                  <div key={i} className="rounded-lg border border-white/10 bg-white/5 px-4 py-4 text-center">
-                    <p className="text-sm font-semibold text-white mb-1">{intg.label}</p>
+                  <div key={i} className="rounded-lg border border-gray-200 bg-white dark:border-white/10 dark:bg-white/5 px-4 py-4 text-center">
+                    <p className="text-sm font-semibold text-gray-900 dark:text-white mb-1">{intg.label}</p>
                     <p className="text-xs text-gray-500 leading-relaxed">{intg.desc}</p>
                   </div>
                 ))}
