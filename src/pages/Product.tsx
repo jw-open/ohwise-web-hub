@@ -4,7 +4,7 @@ import Navbar from "../components/layout/Navbar";
 import Footer from "../components/layout/Footer";
 import CTASection from "../components/sections/CTASection";
 import Infrastructure from "../components/sections/Infrastructure";
-import { CheckCircle, Zap, Users, Brain, GitBranch, Terminal, Layers, Network, Shield, ArrowRight } from "lucide-react";
+import { CheckCircle, Zap, Users, Brain, GitBranch, Terminal, Layers, Network, Shield, ArrowRight, Key } from "lucide-react";
 
 const Product = () => {
   useEffect(() => {
