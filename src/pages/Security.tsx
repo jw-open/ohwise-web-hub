@@ -103,7 +103,7 @@ const Security = () => {
             <div className="max-w-3xl mx-auto">
               <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">Self-hosted deployments</h2>
               <p className="text-gray-500 dark:text-gray-400 leading-relaxed mb-4">
-                The full OhWise stack runs on-premises via Docker Compose. MongoDB, Redis, and all agent containers stay within the operator's network. No telemetry is sent to external servers. LLM traffic goes only to the operator-configured model endpoints.
+                The full OhWise stack runs on-premises in a fully containerized deployment. All services and agent containers stay within the operator's network. No telemetry is sent to external servers. LLM traffic goes only to the operator-configured model endpoints.
               </p>
               <p className="text-gray-500 dark:text-gray-400 leading-relaxed">
                 The open-source packages — graph2sql, docs2graph, codebase2graph, ai-relay, ohwise-mcp — can be used entirely standalone, with no dependency on the OhWise cloud or any external service.

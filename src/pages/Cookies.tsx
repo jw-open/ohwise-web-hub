@@ -23,7 +23,7 @@ const Cookies = () => {
               </p>
               <div className="inline-block">
                 <div className="py-1 px-3 bg-blue-100 dark:bg-blue-900/30 text-blue-800 dark:text-blue-200 text-sm rounded-full">
-                  Last updated: May 15, 2023
+                  Last updated: April 3, 2026
                 </div>
               </div>
             </div>

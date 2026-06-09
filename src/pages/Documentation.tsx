@@ -4,6 +4,39 @@ import Footer from "../components/layout/Footer";
 import CTASection from "../components/sections/CTASection";
 import { ChevronRight, FileText, Book, Lightbulb, Code, ExternalLink, ArrowLeft, Terminal, Network, Layers, GitBranch, Package } from "lucide-react";
 
+const docStyles = `
+  .doc-content h1 { font-size: 2rem; font-weight: 800; letter-spacing: -0.03em; line-height: 1.2; margin-bottom: 1rem; color: inherit; }
+  .doc-content h2 { font-size: 1.35rem; font-weight: 700; letter-spacing: -0.02em; margin-top: 2.5rem; margin-bottom: 0.75rem; padding-bottom: 0.5rem; border-bottom: 1px solid #e5e7eb; color: inherit; }
+  .dark .doc-content h2 { border-bottom-color: #374151; }
+  .doc-content h3 { font-size: 1.1rem; font-weight: 600; margin-top: 1.75rem; margin-bottom: 0.5rem; color: inherit; }
+  .doc-content p { font-size: 0.9375rem; line-height: 1.8; color: #4b5563; margin-bottom: 1.1rem; }
+  .dark .doc-content p { color: #9ca3af; }
+  .doc-content a { color: #4f46e5; text-decoration: none; font-weight: 500; }
+  .doc-content a:hover { text-decoration: underline; }
+  .dark .doc-content a { color: #818cf8; }
+  .doc-content ul, .doc-content ol { margin: 0.75rem 0 1.25rem 1.25rem; display: flex; flex-direction: column; gap: 0.4rem; }
+  .doc-content li { font-size: 0.9375rem; line-height: 1.7; color: #4b5563; }
+  .dark .doc-content li { color: #9ca3af; }
+  .doc-content code { font-family: 'JetBrains Mono', 'Fira Code', 'Menlo', monospace; font-size: 0.8125rem; background: #f1f5f9; color: #4f46e5; padding: 0.15em 0.45em; border-radius: 4px; }
+  .dark .doc-content code { background: #1e293b; color: #a5b4fc; }
+  .doc-content pre { background: #0f172a; border-radius: 10px; padding: 1.25rem 1.5rem; overflow-x: auto; margin: 1.25rem 0; border: 1px solid #1e293b; }
+  .doc-content pre code { background: transparent; color: #e2e8f0; padding: 0; font-size: 0.8125rem; line-height: 1.75; }
+  .doc-content table { width: 100%; border-collapse: collapse; margin: 1.25rem 0; font-size: 0.875rem; }
+  .doc-content th { text-align: left; padding: 0.6rem 1rem; background: #f8fafc; border-bottom: 2px solid #e2e8f0; font-weight: 600; color: #374151; }
+  .dark .doc-content th { background: #1e293b; border-bottom-color: #334155; color: #e2e8f0; }
+  .doc-content td { padding: 0.55rem 1rem; border-bottom: 1px solid #f1f5f9; color: #4b5563; }
+  .dark .doc-content td { border-bottom-color: #1e293b; color: #94a3b8; }
+  .doc-content tr:last-child td { border-bottom: none; }
+  .doc-content blockquote { border-left: 3px solid #6366f1; background: #f5f3ff; padding: 0.75rem 1.25rem; border-radius: 0 8px 8px 0; margin: 1.25rem 0; }
+  .dark .doc-content blockquote { background: #1e1b4b; border-left-color: #818cf8; }
+  .doc-content blockquote p { margin: 0; color: #4338ca; }
+  .dark .doc-content blockquote p { color: #a5b4fc; }
+  .doc-callout { display: flex; gap: 0.75rem; align-items: flex-start; background: #f0fdf4; border: 1px solid #bbf7d0; border-radius: 8px; padding: 0.875rem 1rem; margin: 1.25rem 0; font-size: 0.875rem; color: #166534; }
+  .dark .doc-callout { background: #052e16; border-color: #14532d; color: #86efac; }
+  .doc-callout-tip { background: #eff6ff; border-color: #bfdbfe; color: #1e40af; }
+  .dark .doc-callout-tip { background: #0c1a3a; border-color: #1e3a8a; color: #93c5fd; }
+`;
+
 const Documentation = () => {
   const categories = [
     {
@@ -70,7 +103,7 @@ const Documentation = () => {
 
   const articles: Record<string, React.ReactNode> = {
     "introduction": (
-      <div className="prose dark:prose-invert prose-lg max-w-none">
+      <div>
         <h1>Introduction to OhWise</h1>
         <p>
           <strong>OhWise</strong> is a multi-agent AI platform built around three core capabilities:
@@ -82,20 +115,19 @@ const Documentation = () => {
         </ol>
         <h2>Key components</h2>
         <ul>
-          <li><strong>Backend</strong>: FastAPI + MongoDB + Redis (pub/sub + caching) + Docker</li>
-          <li><strong>Frontend</strong>: Next.js 14 + TypeScript + WebSocket client</li>
-          <li><strong>ai-relay</strong>: Open-source Python package (v0.4.32) that bridges AI coding agent CLIs to WebSocket frontends</li>
-          <li><strong>graph2sql / docs2graph / codebase2graph</strong>: Pure-Python graph packages for schema, document, and code context retrieval</li>
+          <li><strong>ai-relay</strong>: Open-source Python package (v0.4.32) that bridges AI coding agent CLIs to the OhWise web interface via real-time streaming</li>
+          <li><strong>graph2sql / docs2graph / codebase2graph</strong>: Pure-Python graph packages for schema, document, and code context retrieval. No LLM required.</li>
           <li><strong>ohwise-mcp</strong>: MCP server exposing OhWise graph tools to Claude Code, Cursor, and any MCP client</li>
         </ul>
-        <h2>Architecture overview</h2>
+        <h2>How agents communicate</h2>
         <p>
-          The OhWise backend exposes a FastAPI REST API and WebSocket endpoints. Redis pub/sub fans out real-time agent events to connected clients. MongoDB stores agents, sessions, DAG definitions, and artifact outputs. All agent execution, whether Lab sessions or Studio coordinator loops, produces structured JSON events that stream over WebSocket in real time.
+          All agent execution — whether Lab sessions or Studio coordinator loops — produces structured JSON events that stream to the browser in real time. Every reasoning step, tool call, file diff, and quota warning is visible as it happens.
         </p>
+        <div className="doc-callout doc-callout-tip">💡 <strong>New here?</strong> Start with the Quick Start Guide, then try connecting Claude Code to Lab.</div>
       </div>
     ),
     "core-concepts": (
-      <div className="prose dark:prose-invert prose-lg max-w-none">
+      <div>
         <h1>Core Concepts: DAGs, Agents, Lambdas</h1>
         <h2>DAG (Directed Acyclic Graph)</h2>
         <p>
@@ -126,7 +158,7 @@ const Documentation = () => {
       </div>
     ),
     "lab-overview": (
-      <div className="prose dark:prose-invert prose-lg max-w-none">
+      <div>
         <h1>Lab: AI Coding Agent Integration</h1>
         <p>
           <strong>Lab</strong> is OhWise's built-in terminal for running AI coding agent CLIs (Claude Code, Codex, Gemini CLI, Snowflake Cortex) directly from your browser. Sessions run on OhWise servers inside an isolated per-user workspace.
@@ -153,10 +185,10 @@ const Documentation = () => {
         </ul>
         <h2>Security Model</h2>
         <ul>
-          <li>JWT authentication required for every WebSocket connection</li>
-          <li>Each user gets an isolated workspace at <code>/var/ohwise-lab-workspaces/&#123;user_id&#125;/</code></li>
-          <li>CLIs run as a non-root <code>labuser</code> with no root access to the host</li>
-          <li>Only whitelisted tools (claude, codex, gemini, cortex) can be spawned</li>
+          <li>Authentication required for every session connection</li>
+          <li>Each user gets a fully isolated workspace — no access to other users' files</li>
+          <li>CLIs run as a non-root process with no host filesystem access outside the workspace</li>
+          <li>Only approved AI coding agent tools can be spawned per session</li>
         </ul>
         <h2>Supported Agents</h2>
         <ul>
@@ -168,7 +200,7 @@ const Documentation = () => {
       </div>
     ),
     "ai-relay-protocol": (
-      <div className="prose dark:prose-invert prose-lg max-w-none">
+      <div>
         <h1>ai-relay: WebSocket Relay Protocol</h1>
         <p>
           <a href="https://pypi.org/project/ai-relay/" target="_blank" rel="noopener noreferrer"><strong>ai-relay</strong></a> (v0.4.32) is an open-source Python package that bridges AI coding agent CLIs to any WebSocket-capable frontend. It spawns the CLI as a subprocess, speaks the native stream-json protocol, and emits structured events over WebSocket.
@@ -214,7 +246,7 @@ ai-relay serve --port 9000`}</code></pre>
       </div>
     ),
     "lab-claude-code": (
-      <div className="prose dark:prose-invert prose-lg max-w-none">
+      <div>
         <h1>Connecting Claude Code to Lab</h1>
         <h2>On OhWise Cloud</h2>
         <p>Claude Code is pre-installed on the OhWise server. Just select <strong>Claude Code</strong> when creating a session. No setup needed.</p>
@@ -237,7 +269,7 @@ ai-relay serve --port 9000`}</code></pre>
       </div>
     ),
     "lab-oauth": (
-      <div className="prose dark:prose-invert prose-lg max-w-none">
+      <div>
         <h1>OAuth Authentication in Lab</h1>
         <p>
           Lab uses your existing Claude Pro/Max subscription via browser OAuth. No API key or per-token cost needed.
@@ -259,7 +291,7 @@ ai-relay serve --port 9000`}</code></pre>
       </div>
     ),
     "studio-overview": (
-      <div className="prose dark:prose-invert prose-lg max-w-none">
+      <div>
         <h1>Studio Overview</h1>
         <p>
           <strong>Studio</strong> is OhWise's multi-agent coordination environment. It runs the planner → executor → evaluator coordinator loop inside a structured UI with a split Chat/Artifact panel layout.
@@ -291,7 +323,7 @@ ai-relay serve --port 9000`}</code></pre>
       </div>
     ),
     "coordinator-loop": (
-      <div className="prose dark:prose-invert prose-lg max-w-none">
+      <div>
         <h1>Coordinator Loop: Planner → Executor → Evaluator</h1>
         <p>
           The Studio coordinator loop is the execution model for multi-agent tasks. It runs as a DAG with three main agent roles and a synthesis step.
@@ -319,7 +351,7 @@ PLANNING → EXECUTING → EVALUATING → DONE
       </div>
     ),
     "artifact-panel": (
-      <div className="prose dark:prose-invert prose-lg max-w-none">
+      <div>
         <h1>Artifact Panel and [ARTIFACT] Syntax</h1>
         <p>
           Studio separates agent communication from final output. The Chat tab shows all agent reasoning, planner output, evaluator scores, and coordinator messages. The Artifact tab shows only the final synthesized result.
@@ -342,12 +374,12 @@ Based on the analysis of 847 data points...
         </p>
         <h2>Artifact rendering</h2>
         <p>
-          The platform auto-detects the artifact type from the content: HTML is rendered in a sandboxed iframe, Markdown is rendered with a full parser, code blocks are syntax-highlighted. The artifact is persisted to MongoDB and accessible after the session ends.
+          The platform auto-detects the artifact type from the content: HTML is rendered in a sandboxed iframe, Markdown is rendered with a full parser, code blocks are syntax-highlighted. Artifacts are persisted and accessible after the session ends.
         </p>
       </div>
     ),
     "graph2sql": (
-      <div className="prose dark:prose-invert prose-lg max-w-none">
+      <div>
         <h1>graph2sql: Schema Graph for Text-to-SQL</h1>
         <p>
           <a href="https://pypi.org/project/graph2sql/" target="_blank" rel="noopener noreferrer"><strong>graph2sql</strong></a> (v0.2.0) builds a typed graph from your database schema (tables and columns as nodes, foreign keys and relationships as edges) and uses Personalized PageRank to rank the most relevant nodes for any natural language query.
@@ -386,7 +418,7 @@ sql = your_llm(f"Generate SQL given schema: {context}")`}</code></pre>
       </div>
     ),
     "docs2graph": (
-      <div className="prose dark:prose-invert prose-lg max-w-none">
+      <div>
         <h1>docs2graph: Document Knowledge Graphs</h1>
         <p>
           <a href="https://pypi.org/project/docs2graph/" target="_blank" rel="noopener noreferrer"><strong>docs2graph</strong></a> (v0.3.2) extracts structured knowledge graphs from documents. Feed it PDFs, Word docs, Markdown, HTML, CSV, and 10+ other formats and get back a typed graph of entities, sections, and relationships.
@@ -416,7 +448,7 @@ ranked = rank_nodes(graph, "quarterly revenue growth", k=5)
       </div>
     ),
     "codebase2graph": (
-      <div className="prose dark:prose-invert prose-lg max-w-none">
+      <div>
         <h1>codebase2graph: Code Repository Graphs</h1>
         <p>
           <a href="https://pypi.org/project/codebase2graph/" target="_blank" rel="noopener noreferrer"><strong>codebase2graph</strong></a> (v0.1.0) statically extracts the full structure of any codebase as a typed graph (files, modules, functions, classes, call chains, schemas, infrastructure, CI/CD) and ranks the most relevant nodes for any query.
@@ -446,7 +478,7 @@ codebase2graph /repo --graph call --output call_graph.json`}</code></pre>
       </div>
     ),
     "ohwise-mcp": (
-      <div className="prose dark:prose-invert prose-lg max-w-none">
+      <div>
         <h1>ohwise-mcp: MCP Server</h1>
         <p>
           <a href="https://pypi.org/project/ohwise-mcp/" target="_blank" rel="noopener noreferrer"><strong>ohwise-mcp</strong></a> (v0.2.0) is an MCP (Model Context Protocol) server that gives Claude Code, Cursor, Windsurf, and any MCP-compatible tool direct access to OhWise knowledge graphs, agent pipelines, code graph tools, document retrieval, and schema ranking.
@@ -489,7 +521,7 @@ pip install "ohwise-mcp[all]"`}</code></pre>
       title: article.title,
       slug: article.slug,
       content: content ?? (
-        <div className="prose dark:prose-invert prose-lg max-w-none">
+        <div>
           <h1>{article.title}</h1>
           <p>Detailed documentation for <strong>{article.title}</strong> is coming soon.</p>
           <p>In the meantime, see the <a href="/open-source">Open Source</a> page for package documentation and code examples.</p>
@@ -591,34 +623,66 @@ pip install "ohwise-mcp[all]"`}</code></pre>
                     Back to Documentation
                   </button>
                   <div className="bg-white dark:bg-gray-900 rounded-2xl border border-gray-100 dark:border-gray-800 shadow-sm p-8 lg:p-12 max-w-3xl">
-                    {selectedArticle.content}
+                    <style>{docStyles}</style>
+                    <div className="doc-content">
+                      {selectedArticle.content}
+                    </div>
                   </div>
                 </div>
               </div>
             ) : (
               /* ── Category card grid ──────────────────────────────────── */
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {categories.map((category, index) => (
-                  <div key={index} className="bg-white dark:bg-gray-800 rounded-xl border border-gray-100 dark:border-gray-700 shadow-sm p-6 hover:shadow-md transition-shadow">
-                    <div className="flex items-center mb-4 gap-2">
-                      {category.icon}
-                      <h2 className="text-base font-bold text-gray-900 dark:text-white">{category.title}</h2>
-                    </div>
-                    <ul className="space-y-2">
-                      {category.articles.map((article, idx) => (
-                        <li key={idx}>
-                          <button
-                            onClick={() => showArticle(category.title, article)}
-                            className="flex items-start gap-1 text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 w-full text-left text-sm py-0.5 transition-colors group"
-                          >
-                            <ChevronRight size={14} className="mt-0.5 flex-shrink-0 text-gray-300 dark:text-gray-600 group-hover:text-blue-500 transition-colors" />
-                            <span className="leading-snug">{article.title}</span>
-                          </button>
-                        </li>
-                      ))}
-                    </ul>
+              <div className="max-w-5xl mx-auto">
+                {/* Beginner start path */}
+                <div className="mb-8 rounded-xl border border-emerald-200 dark:border-emerald-800 bg-emerald-50 dark:bg-emerald-950/40 p-5 flex flex-col sm:flex-row items-start sm:items-center gap-4">
+                  <div className="w-10 h-10 rounded-lg bg-emerald-100 dark:bg-emerald-900/50 flex items-center justify-center flex-shrink-0">
+                    <Book className="text-emerald-600 dark:text-emerald-400" size={20} />
                   </div>
-                ))}
+                  <div className="flex-1">
+                    <p className="text-sm font-semibold text-emerald-800 dark:text-emerald-300 mb-0.5">New to OhWise?</p>
+                    <p className="text-sm text-emerald-700 dark:text-emerald-400">Start with the introduction, then follow the Quick Start Guide to connect your first AI agent.</p>
+                  </div>
+                  <div className="flex gap-2 flex-shrink-0 flex-wrap">
+                    <button
+                      onClick={() => showArticle("Getting Started", { title: "Introduction to OhWise", slug: "introduction" })}
+                      className="px-3 py-1.5 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-medium transition-colors"
+                    >
+                      Introduction
+                    </button>
+                    <button
+                      onClick={() => showArticle("Getting Started", { title: "Quick Start Guide", slug: "quick-start" })}
+                      className="px-3 py-1.5 rounded-lg border border-emerald-300 dark:border-emerald-700 text-emerald-700 dark:text-emerald-300 hover:bg-emerald-100 dark:hover:bg-emerald-900/40 text-xs font-medium transition-colors"
+                    >
+                      Quick Start
+                    </button>
+                  </div>
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+                  {categories.map((category, index) => (
+                    <div key={index} className="bg-white dark:bg-gray-900 rounded-xl border border-gray-100 dark:border-gray-800 p-5 hover:border-gray-300 dark:hover:border-gray-600 transition-colors">
+                      <div className="flex items-center mb-4 gap-2.5">
+                        <div className="w-8 h-8 rounded-lg bg-gray-50 dark:bg-gray-800 border border-gray-100 dark:border-gray-700 flex items-center justify-center flex-shrink-0">
+                          {React.cloneElement(category.icon as React.ReactElement, { size: 16 })}
+                        </div>
+                        <h2 className="text-sm font-bold text-gray-900 dark:text-white">{category.title}</h2>
+                      </div>
+                      <ul className="space-y-1">
+                        {category.articles.map((article, idx) => (
+                          <li key={idx}>
+                            <button
+                              onClick={() => showArticle(category.title, article)}
+                              className="flex items-center gap-1.5 text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 w-full text-left text-sm py-1 px-2 rounded-md hover:bg-blue-50 dark:hover:bg-blue-950/30 transition-colors group"
+                            >
+                              <ChevronRight size={13} className="flex-shrink-0 text-gray-300 dark:text-gray-600 group-hover:text-blue-500 transition-colors" />
+                              <span className="leading-snug">{article.title}</span>
+                            </button>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  ))}
+                </div>
               </div>
             )}
           </div>
