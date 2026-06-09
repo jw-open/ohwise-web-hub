@@ -2,7 +2,7 @@
 
 Official website for [OhWise](https://ohwise.com) — the multi-agent AI platform.
 
-Landing page, documentation, blog, and open-source showcase.
+Landing page, product page, open-source showcase, documentation, and blog.
 
 **Stack:** Vite · React · TypeScript · Tailwind CSS · shadcn/ui
 
@@ -10,14 +10,7 @@ Landing page, documentation, blog, and open-source showcase.
 
 ## What OhWise is
 
-OhWise coordinates specialized AI agents across your data, documents, and workflows. Instead of stitching together a dozen tools, you ask a question and agents handle the analysis — in parallel, across your databases and knowledge bases.
-
-**Use cases featured on the landing page:**
-- Sales Copilot — churn risk, renewal prioritization
-- Marketing Copilot — segmentation, lead scoring, campaign automation
-- Customer Support — ticket resolution from knowledge base
-- Healthcare & Insurance — claims intake and policy validation
-- Research — knowledge graph synthesis across papers and reports
+OhWise is a multi-agent AI platform providing DAG-based orchestration, AI coding agent Lab, Studio coordinator pipelines, graph-native context retrieval, and enterprise multi-tenancy.
 
 ---
 
@@ -36,14 +29,13 @@ npm run build
 
 ## Deploy
 
-Rebuilt and deployed via Docker from `local-container-orchestration`:
+Rebuilt and deployed via Docker from `local-container-orchestration`. **Always rebuild — `restart` reuses the old image.**
 
 ```bash
 cd local-container-orchestration
-docker compose up -d --build ohwise-hub
+docker compose build ohwise-hub
+docker compose up -d ohwise-hub
 ```
-
-No remote image — container builds from local source on every deploy.
 
 ---
 
@@ -52,10 +44,10 @@ No remote image — container builds from local source on every deploy.
 | Route | Description |
 |---|---|
 | `/` | Landing page — hero, use cases, features, CTA |
-| `/product` | Product detail |
+| `/product` | Product detail — DAG architecture, Lab, Studio, Enterprise, Infrastructure |
+| `/open-source` | Open-source packages showcase (ai-relay first, then ohwise-mcp, graph2sql, docs2graph, codebase2graph) |
 | `/documentation` | Docs (with nested `/documentation/:id`) |
-| `/blog` | Blog (with nested `/blog/:id`, `/blog/post/:id`) |
-| `/open-source` | graph2sql + doc2graph showcase |
+| `/blog` | Blog (with `/blog/:id`, `/blog/post/:id`) |
 | `/about` | About |
 | `/contact` | Contact |
 | `/security` | Security policy |
@@ -64,26 +56,62 @@ No remote image — container builds from local source on every deploy.
 
 ---
 
+## Theme system
+
+Uses Tailwind's `class` dark mode strategy (`darkMode: ["class"]`). Light/dark toggled by adding/removing the `dark` class on `<html>`.
+
+**Rule:** Every section must use `dark:` variants for dark overrides. Never hardcode dark colors (e.g., `bg-gray-950`) without a light-mode equivalent.
+
+Pattern:
+```tsx
+// Section background
+className="bg-white dark:bg-gray-900"
+
+// Text
+className="text-gray-900 dark:text-white"
+
+// Borders / subtle fills
+className="border-gray-200 dark:border-white/10"
+```
+
+---
+
 ## Project structure
 
 ```
 src/
 ├── pages/               # Route-level components
+│   ├── Index.tsx        # Landing page
+│   ├── Product.tsx      # Product detail (hero + DAG + Lab + Studio + Enterprise + Infra + CTA)
+│   ├── OpenSource.tsx   # Open-source packages (projects array — order matters)
+│   └── ...
 ├── components/
 │   ├── layout/
-│   │   ├── Navbar.tsx   # Navigation + unified logo
+│   │   ├── Navbar.tsx
 │   │   ├── Footer.tsx
-│   │   └── Logo.tsx     # SVG logo — matches favicon exactly
-│   ├── sections/        # Landing page sections
+│   │   └── Logo.tsx
+│   ├── sections/
 │   │   ├── Hero.tsx
-│   │   ├── UseCases.tsx # Interactive industry tabs
+│   │   ├── UseCases.tsx
 │   │   ├── Features.tsx
 │   │   ├── FAQ.tsx
+│   │   ├── Infrastructure.tsx   # Deploy targets + design principles
 │   │   └── CTASection.tsx
 │   └── ui/              # shadcn/ui primitives
 ├── App.tsx              # Routes
-└── main.tsx             # Entry point
+└── main.tsx
 ```
+
+---
+
+## Open-source page order
+
+The `projects` array in `OpenSource.tsx` determines display order:
+1. `ai-relay` — WebSocket relay for AI coding agent CLIs
+2. `ohwise-mcp` — MCP server for graph tools + Studio pipelines
+3. `graph2sql` — schema graph + PPR for text-to-SQL
+4. `docs2graph` — document knowledge graph extraction
+5. `codebase2graph` — code repository knowledge graph extraction
 
 ---
 
@@ -91,6 +119,9 @@ src/
 
 | Repo | Description |
 |---|---|
-| [ohwise_backend](https://github.com/jw-open) | FastAPI backend — DAG execution, multi-agent orchestration |
+| [ohwise_frontend](https://github.com/jw-open) | Next.js app frontend — Lab, Studio, knowledge management |
+| [ai-relay](https://github.com/jw-open/ai-relay) | AI coding agent CLI relay — powers Lab |
+| [ohwise-mcp](https://github.com/jw-open/ohwise-mcp) | MCP server — graph tools + Studio pipelines |
 | [graph2sql](https://github.com/jw-open/graph2sql) | Open source — schema graph + PPR for text-to-SQL |
-| [doc2graph](https://github.com/jw-open/doc2graph) | Open source — knowledge graph extraction from documents |
+| [doc2graph](https://github.com/jw-open/doc2graph) | Open source — knowledge graph from documents |
+| [code2graph](https://github.com/jw-open/code2graph) | Open source — knowledge graph from code |
