@@ -1,6 +1,6 @@
 
 import React from "react";
-import { Shield, Users, Lock, Key, BarChart2, Globe, CheckCircle, ArrowRight } from "lucide-react";
+import { Shield, Users, Key, BarChart2, Globe, CheckCircle, ArrowRight } from "lucide-react";
 
 const Enterprise: React.FC = () => {
   return (
@@ -21,56 +21,6 @@ const Enterprise: React.FC = () => {
           </p>
         </div>
 
-        {/* Org hierarchy diagram */}
-        <div className="max-w-3xl mx-auto mb-16">
-          <div className="rounded-xl border border-gray-200 dark:border-white/10 bg-gray-100 dark:bg-white/5 p-8">
-            <p className="text-xs text-gray-400 dark:text-gray-500 uppercase tracking-widest mb-6 text-center">Organization hierarchy</p>
-            <div className="flex flex-col items-center gap-3 font-mono text-sm">
-              {/* Org */}
-              <div className="w-full max-w-md bg-indigo-600/20 border border-indigo-500/40 rounded-lg px-5 py-3 text-center">
-                <span className="text-indigo-600 dark:text-indigo-300 font-semibold">Organization</span>
-                <span className="text-gray-400 ml-2 text-xs">org_id: acme-corp</span>
-              </div>
-              {/* Connector */}
-              <div className="flex gap-8 items-start">
-                <div className="flex flex-col items-center gap-1">
-                  <div className="w-px h-5 bg-gray-300 dark:bg-white/20" />
-                  <div className="bg-purple-600/20 border border-purple-500/40 rounded-lg px-4 py-2 text-center min-w-[130px]">
-                    <p className="text-purple-600 dark:text-purple-300 font-semibold text-xs">Admin</p>
-                    <p className="text-gray-400 text-xs mt-0.5">Manage users, keys, quotas</p>
-                  </div>
-                </div>
-                <div className="flex flex-col items-center gap-1">
-                  <div className="w-px h-5 bg-gray-300 dark:bg-white/20" />
-                  <div className="bg-emerald-600/20 border border-emerald-500/40 rounded-lg px-4 py-2 text-center min-w-[130px]">
-                    <p className="text-emerald-600 dark:text-emerald-300 font-semibold text-xs">Member</p>
-                    <p className="text-gray-400 text-xs mt-0.5">Run sessions &amp; workflows</p>
-                  </div>
-                </div>
-                <div className="flex flex-col items-center gap-1">
-                  <div className="w-px h-5 bg-gray-300 dark:bg-white/20" />
-                  <div className="bg-gray-200 dark:bg-gray-700/50 border border-gray-300 dark:border-gray-600/40 rounded-lg px-4 py-2 text-center min-w-[130px]">
-                    <p className="text-gray-600 dark:text-gray-300 font-semibold text-xs">Viewer</p>
-                    <p className="text-gray-400 text-xs mt-0.5">Read-only artifacts &amp; logs</p>
-                  </div>
-                </div>
-              </div>
-              {/* User workspace */}
-              <div className="w-px h-5 bg-gray-300 dark:bg-white/20" />
-              <div className="w-full max-w-md bg-gray-200/50 dark:bg-white/5 border border-gray-300 dark:border-white/10 rounded-lg px-5 py-3 text-center">
-                <span className="text-gray-700 dark:text-gray-300 font-semibold text-xs">Per-user isolated workspace</span>
-                <p className="text-gray-400 text-xs mt-1">Lab sessions · Studio agents · Knowledge graphs · Artifacts</p>
-              </div>
-              {/* DB scoping note */}
-              <div className="w-px h-4 bg-gray-200 dark:bg-white/10" />
-              <div className="flex items-center gap-2 text-xs text-gray-400 dark:text-gray-500">
-                <Lock size={12} className="text-gray-400" />
-                MongoDB queries always filtered by <code className="text-indigo-500 dark:text-indigo-400 bg-gray-100 dark:bg-white/5 px-1.5 py-0.5 rounded">org_id</code> with no cross-tenant data paths
-              </div>
-            </div>
-          </div>
-        </div>
-
         {/* Feature grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto mb-16">
           {[
@@ -79,12 +29,11 @@ const Enterprise: React.FC = () => {
               color: "border-purple-500/30 bg-purple-500/5",
               title: "Workspace & Tenant Isolation",
               items: [
-                "Each org is a fully isolated tenant (org_id scoping at DB layer)",
-                "Multiple users per org with Admin, Member, and Viewer roles",
+                "Each organization is a fully isolated tenant with no data bleed",
                 "Per-user isolated workspaces: Lab sessions, Studio agents, artifacts",
-                "No cross-tenant data bleed, enforced at API and database level",
                 "Session history and knowledge graphs persist per user",
                 "Switching sessions never leaks state between users",
+                "Tenant isolation enforced at both API and data layers",
               ],
             },
             {
@@ -105,11 +54,11 @@ const Enterprise: React.FC = () => {
               color: "border-yellow-500/30 bg-yellow-500/5",
               title: "Agent & Resource Management",
               items: [
-                "Per-org agent quotas and resource limits configurable by admin",
-                "Studio coordinator agents scoped to group_id (org/team level)",
+                "Per-org agent quotas and resource limits configurable per deployment",
+                "Studio coordinator agents scoped to team or org level",
                 "Lab sessions isolated per user with no state bleed between sessions",
                 "Permission system: allow / deny / allow-for-session per tool category",
-                "Multi-region deployment: stateless FastAPI + Redis pub/sub fanout",
+                "Multi-region capable: stateless agents with distributed event bus",
                 "Bring your own model: Claude, GPT-4, Gemini, Cortex, configurable per org",
               ],
             },
@@ -121,7 +70,7 @@ const Enterprise: React.FC = () => {
                 "MCP server per session or org-wide for tool extensibility",
                 "Snowflake Cortex integration for enterprise data warehouse context",
                 "Model-agnostic: swap LLM per agent node within the same pipeline",
-                "API-first: all capabilities available via REST API for automation",
+                "API-first: all capabilities accessible programmatically",
                 "graph2sql for enterprise-scale text-to-SQL (100+ table schemas)",
                 "Webhook support for external approval workflows",
               ],
@@ -137,19 +86,6 @@ const Enterprise: React.FC = () => {
                 "Billing and quota management per org",
                 "Audit log export for compliance and security reviews",
                 "API key lifecycle: create, scope, rotate, revoke",
-              ],
-            },
-            {
-              icon: <Lock className="w-5 h-5 text-indigo-500 dark:text-indigo-400" />,
-              color: "border-indigo-500/30 bg-indigo-500/5",
-              title: "RBAC Permission System",
-              items: [
-                "Admin: full org management, key rotation, quota configuration",
-                "Member: create/run Lab sessions and Studio workflows",
-                "Viewer: read-only access to artifacts, logs, and session replays",
-                "Granular tool approval: require review for shell, file write, API calls",
-                "Approval scope: org-wide policy or per-session override",
-                "Permission audit trail: every approve/deny recorded with actor + timestamp",
               ],
             },
           ].map((card, i) => (

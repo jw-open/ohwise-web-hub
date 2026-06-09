@@ -4,7 +4,7 @@ import Navbar from "../components/layout/Navbar";
 import Footer from "../components/layout/Footer";
 import CTASection from "../components/sections/CTASection";
 import Infrastructure from "../components/sections/Infrastructure";
-import { CheckCircle, Zap, Database, Users, Brain, GitBranch, Code2, Terminal, Layers, Network, FlaskConical, Shield, ArrowRight, Cpu, Globe, Lock, Key, BarChart2 } from "lucide-react";
+import { CheckCircle, Zap, Users, Brain, GitBranch, Terminal, Layers, Network, Shield, ArrowRight } from "lucide-react";
 
 const Product = () => {
   useEffect(() => {
@@ -81,7 +81,7 @@ const Product = () => {
                 { value: "20+", label: "AI vendors supported" },
                 { value: "5", label: "Open-source PyPI packages" },
                 { value: "DAG", label: "Execution model" },
-                { value: "WebSocket", label: "Real-time streaming" },
+                { value: "Real-time", label: "Event streaming" },
               ].map((stat, i) => (
                 <div key={i} className="p-4 rounded-xl border border-white/10 bg-white/5">
                   <p className="text-2xl font-bold text-white mb-1">{stat.value}</p>
@@ -104,12 +104,12 @@ const Product = () => {
                   DAG-based multi-agent orchestration
                 </h2>
                 <p className="text-gray-600 dark:text-gray-400 mb-6 leading-relaxed">
-                  OhWise models AI workflows as directed acyclic graphs. Each node is an independent agent or Lambda function with typed input/output contracts. Parallel branches execute concurrently, conditional edges route based on agent output, and every step is independently replayable.
+                  OhWise models AI workflows as directed acyclic graphs. Each node is an independent agent with typed input/output contracts. Parallel branches execute concurrently, conditional edges route based on agent output, and every step is independently replayable.
                 </p>
                 <ul className="space-y-3 mb-6">
                   {[
                     "Planner → Executor → Evaluator coordinator loop",
-                    "Stateless Lambda dispatch to AI agents",
+                    "Stateless agent dispatch with typed contracts",
                     "Typed state propagation across nodes",
                     "Parallel branch execution where graph permits",
                     "Per-node observability: inputs, outputs, token usage, latency",
@@ -224,7 +224,7 @@ const Product = () => {
                   {[
                     "Chat + Artifact tab UI: keep conversations and outputs separate",
                     "Only [ARTIFACT]-marked synthesized output shown in artifact panel",
-                    "Group-scoped session isolation via group_id",
+                    "Group-scoped session isolation per team or org",
                     "Human intervention: pause, redirect, or approve agent decisions",
                     "Per-session file workspace with HTML, code, and Markdown rendering",
                     "Real-time event forwarding from Lab sessions into Studio",
@@ -345,10 +345,10 @@ const Product = () => {
                 <Zap className="w-8 h-8 text-rose-600" />
               </div>
               <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-6">
-                Real-time WebSocket streaming
+                Real-time event streaming
               </h2>
               <p className="text-gray-600 dark:text-gray-400 leading-relaxed">
-                Every agent step (reasoning traces, tool calls, file diffs, quota warnings, context compaction events) streams over WebSocket to the frontend in structured JSON. No polling. No opaque black boxes.
+                Every agent step streams to the frontend in structured JSON: reasoning traces, tool calls, file diffs, quota warnings, and context events. No polling. No opaque black boxes.
               </p>
             </div>
 
@@ -364,58 +364,6 @@ const Product = () => {
                   <p className="text-xs font-mono font-semibold text-gray-800 dark:text-gray-200 mb-1">{event.type}</p>
                   <p className="text-xs text-gray-500 dark:text-gray-400 mb-3">{event.desc}</p>
                   <pre className="text-xs bg-gray-900 text-gray-400 rounded p-2 overflow-x-auto leading-relaxed">{event.example}</pre>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* Tech stack */}
-        <section className="py-20 bg-gray-50 dark:bg-gray-800">
-          <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="max-w-3xl mx-auto text-center mb-16">
-              <div className="mb-4 inline-block p-3 bg-gray-200 dark:bg-gray-700 rounded-lg">
-                <Cpu className="w-8 h-8 text-gray-600 dark:text-gray-300" />
-              </div>
-              <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-4">
-                Battle-tested infrastructure
-              </h2>
-              <p className="text-gray-600 dark:text-gray-400">
-                No magic abstractions. Every layer is a battle-tested component with a well-defined interface.
-              </p>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
-              {[
-                {
-                  title: "Backend",
-                  icon: <Database className="w-5 h-5 text-indigo-600" />,
-                  items: ["FastAPI: async Python API server", "MongoDB: document store for agents/sessions", "Redis: pub/sub event bus + caching layer", "Docker Compose: containerized services", "Nginx: TLS termination + routing"],
-                },
-                {
-                  title: "Frontend",
-                  icon: <Globe className="w-5 h-5 text-blue-600" />,
-                  items: ["Next.js 14 + TypeScript", "SCSS + Tailwind CSS", "WebSocket client for agent streaming", "Split-panel session comparison view", "Voice input via Whisper API"],
-                },
-                {
-                  title: "AI & Agents",
-                  icon: <Brain className="w-5 h-5 text-purple-600" />,
-                  items: ["Claude (Anthropic): primary reasoning model", "OpenAI Codex CLI: code generation", "Gemini CLI: Google's coding assistant", "Snowflake Cortex: enterprise LLM", "Model-agnostic: swap per agent node"],
-                },
-              ].map((stack, i) => (
-                <div key={i} className="animate-on-scroll bg-white dark:bg-gray-700 rounded-xl border border-gray-100 dark:border-gray-600 p-6">
-                  <div className="flex items-center gap-2 mb-4">
-                    {stack.icon}
-                    <h3 className="text-base font-semibold text-gray-900 dark:text-white">{stack.title}</h3>
-                  </div>
-                  <ul className="space-y-2">
-                    {stack.items.map((item, j) => (
-                      <li key={j} className="text-sm text-gray-600 dark:text-gray-300 flex items-center gap-2">
-                        <span className="w-1 h-1 rounded-full bg-gray-400 flex-shrink-0" />
-                        {item}
-                      </li>
-                    ))}
-                  </ul>
                 </div>
               ))}
             </div>
@@ -663,8 +611,7 @@ const Product = () => {
 
         {/* CTA */}
         <CTASection
-          title="Built by engineers, for engineers"
-          subtitle="OhWise is open-source at the core. Start with the PyPI packages, or connect your AI coding agents to Lab today."
+          subtitle="Start with the open-source packages, or connect AI coding agents to Lab today."
           primaryButtonText="Get Started"
           primaryButtonLink="https://cloud.ohwise.com/"
         />

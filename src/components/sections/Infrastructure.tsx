@@ -1,6 +1,6 @@
 
 import React from "react";
-import { Server, Cloud, Cpu, Globe, CheckCircle, ArrowRight, Layers, Zap } from "lucide-react";
+import { Server, Cloud, Globe, CheckCircle, Layers, Zap } from "lucide-react";
 
 const deployTargets = [
   {
@@ -8,54 +8,46 @@ const deployTargets = [
     title: "Bare Metal",
     subtitle: "Full control, zero overhead",
     description:
-      "Run OhWise directly on bare-metal hardware. Docker Compose or Kubernetes deploys in minutes, keeping all compute on-prem. Ideal for air-gapped environments or data-sovereignty requirements.",
-    tags: ["Docker Compose", "K8s", "On-prem", "Air-gapped"],
+      "Run OhWise directly on bare-metal hardware with containerized services. Keeps all compute on-prem. Ideal for air-gapped environments or data-sovereignty requirements.",
     border: "border-emerald-500/30",
     bg: "bg-emerald-500/5",
-    tagColor: "bg-emerald-500/10 text-emerald-600 dark:text-emerald-300",
   },
   {
     icon: <Cloud size={22} className="text-indigo-500 dark:text-indigo-400" />,
-    title: "AWS: EKS / EC2",
+    title: "Public Cloud",
     subtitle: "Elastic, cloud-native scale",
     description:
-      "Deploy on Amazon EKS for auto-scaling multi-agent workloads, or EC2 for predictable reserved capacity. Integrates natively with IAM, VPC, S3, CloudWatch, and Secrets Manager.",
-    tags: ["EKS", "EC2", "IAM", "CloudWatch", "S3"],
+      "Deploy on any major cloud provider for auto-scaling multi-agent workloads. Integrates natively with cloud IAM, storage, logging, and secrets management.",
     border: "border-indigo-500/30",
     bg: "bg-indigo-500/5",
-    tagColor: "bg-indigo-500/10 text-indigo-600 dark:text-indigo-300",
   },
   {
     icon: <Zap size={22} className="text-amber-500 dark:text-amber-400" />,
-    title: "AWS Lambda / Durable Functions",
-    subtitle: "Serverless, pay-per-use",
+    title: "Serverless",
+    subtitle: "Pay-per-use, infinite scale",
     description:
-      "Individual Lambda nodes execute in isolation. Each agent step is a durable function invocation with infinite horizontal scale and zero idle cost. Combine with SQS/EventBridge for event-driven pipelines.",
-    tags: ["Lambda", "Durable Functions", "SQS", "EventBridge", "Serverless"],
+      "Individual agent nodes execute in isolation as serverless functions. Infinite horizontal scale, zero idle cost, and event-driven pipeline triggers.",
     border: "border-amber-500/30",
     bg: "bg-amber-500/5",
-    tagColor: "bg-amber-500/10 text-amber-600 dark:text-amber-300",
   },
   {
     icon: <Globe size={22} className="text-purple-500 dark:text-purple-400" />,
     title: "OhWise Cloud",
     subtitle: "Managed, zero-ops",
     description:
-      "Fully managed SaaS on cloud.ohwise.com. Infrastructure, scaling, upgrades, and observability are handled by OhWise. Start in seconds and migrate to self-hosted any time; data is always exportable.",
-    tags: ["SaaS", "Managed", "Zero-ops", "Data portability"],
+      "Fully managed SaaS on cloud.ohwise.com. Infrastructure, scaling, upgrades, and observability handled end-to-end. Migrate to self-hosted any time — data is always exportable.",
     border: "border-purple-500/30",
     bg: "bg-purple-500/5",
-    tagColor: "bg-purple-500/10 text-purple-600 dark:text-purple-300",
   },
 ];
 
 const principles = [
   { label: "Cloud-native from day one", desc: "Stateless agents, container-first design, 12-factor app principles throughout." },
-  { label: "No vendor lock-in", desc: "Open standards (WebSocket, REST, OpenAPI). Runs on any cloud or bare metal equally." },
-  { label: "Bring your own LLM", desc: "Works with any model endpoint: Anthropic, OpenAI, Gemini, self-hosted Llama, or a private endpoint." },
-  { label: "Horizontal scale by design", desc: "Every agent, session, and Lambda node scales independently. No shared state bottlenecks." },
-  { label: "Secrets stay within the deployment perimeter", desc: "API keys, DB credentials, and model tokens stay in the operator's infra and are never transited through OhWise servers in self-hosted mode." },
-  { label: "Observability built in", desc: "Structured logs, distributed traces, and metrics exported to CloudWatch, Datadog, Prometheus, or any OTLP sink." },
+  { label: "No vendor lock-in", desc: "Open standards throughout. Runs on any cloud or bare metal equally." },
+  { label: "Bring your own LLM", desc: "Works with any model endpoint: Anthropic, OpenAI, Gemini, self-hosted, or a private endpoint." },
+  { label: "Horizontal scale by design", desc: "Every agent and session scales independently. No shared state bottlenecks." },
+  { label: "Secrets stay on-prem", desc: "API keys, credentials, and model tokens stay in the operator's infra in self-hosted mode." },
+  { label: "Observability built in", desc: "Structured logs, distributed traces, and metrics exported to any standard observability sink." },
 ];
 
 const Infrastructure: React.FC = () => {
@@ -78,8 +70,8 @@ const Infrastructure: React.FC = () => {
           </h2>
           <p className="text-lg text-gray-500 dark:text-gray-400 leading-relaxed">
             OhWise was designed cloud-native from day one: stateless agents, container-first,
-            no vendor lock-in. Run it on bare metal, on AWS with EKS or Lambda, or use the
-            fully managed cloud offering.
+            no vendor lock-in. Run on bare metal, any cloud provider, serverless, or use the
+            fully managed offering.
           </p>
         </div>
 
@@ -100,66 +92,8 @@ const Infrastructure: React.FC = () => {
                 </div>
               </div>
               <p className="text-gray-500 dark:text-gray-400 text-sm leading-relaxed">{t.description}</p>
-              <div className="flex flex-wrap gap-2 mt-auto pt-2">
-                {t.tags.map((tag) => (
-                  <span key={tag} className={`text-xs px-2 py-0.5 rounded-full ${t.tagColor}`}>
-                    {tag}
-                  </span>
-                ))}
-              </div>
             </div>
           ))}
-        </div>
-
-        {/* Architecture diagram strip */}
-        <div className="max-w-4xl mx-auto mb-20">
-          <div className="rounded-xl border border-gray-200 dark:border-white/10 bg-gray-50 dark:bg-white/3 p-8">
-            <p className="text-xs text-gray-400 dark:text-gray-500 uppercase tracking-widest mb-8 text-center">Deployment architecture</p>
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-3 font-mono text-xs">
-              {/* Client */}
-              <div className="flex flex-col items-center gap-1">
-                <div className="bg-gray-100 dark:bg-white/5 border border-gray-200 dark:border-white/15 rounded-lg px-4 py-2.5 text-center min-w-[110px]">
-                  <p className="text-gray-700 dark:text-gray-300 font-semibold">Browser / API</p>
-                  <p className="text-gray-400 mt-0.5">WebSocket / REST</p>
-                </div>
-              </div>
-              <ArrowRight size={14} className="text-gray-400 rotate-90 sm:rotate-0" />
-              {/* Gateway */}
-              <div className="flex flex-col items-center gap-1">
-                <div className="bg-indigo-500/10 border border-indigo-500/30 rounded-lg px-4 py-2.5 text-center min-w-[110px]">
-                  <p className="text-indigo-600 dark:text-indigo-300 font-semibold">Gateway</p>
-                  <p className="text-gray-400 mt-0.5">nginx / ALB</p>
-                </div>
-              </div>
-              <ArrowRight size={14} className="text-gray-400 rotate-90 sm:rotate-0" />
-              {/* Coordinator */}
-              <div className="flex flex-col items-center gap-1">
-                <div className="bg-purple-500/10 border border-purple-500/30 rounded-lg px-4 py-2.5 text-center min-w-[110px]">
-                  <p className="text-purple-600 dark:text-purple-300 font-semibold">Coordinator</p>
-                  <p className="text-gray-400 mt-0.5">FastAPI / ECS</p>
-                </div>
-              </div>
-              <ArrowRight size={14} className="text-gray-400 rotate-90 sm:rotate-0" />
-              {/* Lambdas */}
-              <div className="flex flex-col items-center gap-1">
-                <div className="bg-amber-500/10 border border-amber-500/30 rounded-lg px-4 py-2.5 text-center min-w-[140px]">
-                  <p className="text-amber-600 dark:text-amber-300 font-semibold">Agent Lambdas</p>
-                  <p className="text-gray-400 mt-0.5">Lambda / K8s Jobs</p>
-                </div>
-              </div>
-              <ArrowRight size={14} className="text-gray-400 rotate-90 sm:rotate-0" />
-              {/* Storage */}
-              <div className="flex flex-col items-center gap-1">
-                <div className="bg-emerald-500/10 border border-emerald-500/30 rounded-lg px-4 py-2.5 text-center min-w-[110px]">
-                  <p className="text-emerald-600 dark:text-emerald-300 font-semibold">Storage</p>
-                  <p className="text-gray-400 mt-0.5">MongoDB / S3</p>
-                </div>
-              </div>
-            </div>
-            <p className="text-center text-xs text-gray-400 mt-6">
-              Same topology runs on bare metal, AWS EKS, or serverless Lambda. Swap the runtime, keep the architecture.
-            </p>
-          </div>
         </div>
 
         {/* Design principles grid */}
