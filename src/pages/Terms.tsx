@@ -23,7 +23,7 @@ const Terms = () => {
             
             <div className="prose prose-blue max-w-none dark:prose-invert text-gray-700 dark:text-gray-300">
               <p className="text-lg mb-6">
-                Last Updated: {new Date().toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}
+                Last Updated: February 27, 2026
               </p>
               
               <h2 className="text-xl font-semibold mt-8 mb-4 text-gray-900 dark:text-white">
@@ -158,8 +158,8 @@ const Terms = () => {
                 If you have any questions about these Terms, please contact us at:
               </p>
               <p className="mb-4">
-                Email: js@ohwise.com<br />
-                Website: ohwise.com
+                Email: jw@ohwise.com<br />
+                Website: https://ohwise.com
               </p>
               
               <h2 className="text-xl font-semibold mt-8 mb-4 text-gray-900 dark:text-white">
