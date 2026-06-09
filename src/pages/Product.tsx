@@ -53,7 +53,7 @@ const Product = () => {
                 </span>
               </h1>
               <p className="text-lg md:text-xl text-gray-400 mb-10 max-w-2xl mx-auto leading-relaxed">
-                OhWise ships every layer a serious AI system needs: DAG orchestration, structured agent coordination, real-time streaming, graph-native context retrieval, and a browser-based AI coding agent terminal.
+                OhWise ships every layer a multi-agent AI system needs: DAG orchestration, structured agent coordination, real-time streaming, graph-native context retrieval, and a browser-based AI coding agent terminal.
               </p>
               <div className="flex flex-col sm:flex-row justify-center gap-3">
                 <a
@@ -420,108 +420,42 @@ const Product = () => {
                 Enterprise &amp; Multi-tenant
               </div>
               <h2 className="text-3xl sm:text-4xl font-bold text-white mb-5 leading-tight">
-                Isolated tenants. RBAC. Audit logs.
+                Secure isolation,
                 <br />
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-purple-400">
-                  Enterprise-grade from day one.
+                  from day one.
                 </span>
               </h2>
               <p className="text-lg text-gray-400 leading-relaxed">
-                Every organization is a fully isolated tenant. Users, roles, sessions, agents, and data are scoped at the MongoDB <code className="text-indigo-300 bg-white/5 px-1.5 py-0.5 rounded text-sm">org_id</code> level with no cross-tenant data paths by design.
+                Every organization is a fully isolated tenant. Sessions, agents, and data have no cross-tenant paths by design.
               </p>
             </div>
 
-            {/* Org hierarchy */}
-            <div className="max-w-3xl mx-auto mb-16 animate-on-scroll">
-              <div className="rounded-xl border border-white/10 bg-white/5 p-8">
-                <p className="text-xs text-gray-500 uppercase tracking-widest mb-6 text-center">Organization hierarchy &amp; namespacing</p>
-                <div className="flex flex-col items-center gap-3 font-mono text-sm">
-                  <div className="w-full max-w-md bg-indigo-600/20 border border-indigo-500/40 rounded-lg px-5 py-3 text-center">
-                    <span className="text-indigo-300 font-semibold">Organization</span>
-                    <span className="text-gray-500 ml-2 text-xs">org_id: acme-corp</span>
-                  </div>
-                  <div className="flex gap-6 items-start flex-wrap justify-center">
-                    {[
-                      { label: "Admin", color: "text-purple-300 border-purple-500/40 bg-purple-600/20", desc: "Users · Keys · Quotas · Audit" },
-                      { label: "Member", color: "text-emerald-300 border-emerald-500/40 bg-emerald-600/20", desc: "Sessions · Workflows · Agents" },
-                      { label: "Viewer", color: "text-gray-300 border-gray-600/40 bg-gray-700/50", desc: "Read-only: artifacts · logs" },
-                    ].map((role) => (
-                      <div key={role.label} className="flex flex-col items-center gap-1">
-                        <div className="w-px h-5 bg-white/20" />
-                        <div className={`border rounded-lg px-4 py-2 text-center min-w-[130px] ${role.color}`}>
-                          <p className="font-semibold text-xs">{role.label}</p>
-                          <p className="text-gray-500 text-xs mt-0.5">{role.desc}</p>
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                  <div className="w-px h-5 bg-white/20" />
-                  <div className="w-full max-w-md bg-white/5 border border-white/10 rounded-lg px-5 py-3 text-center">
-                    <span className="text-gray-300 font-semibold text-xs">Per-user isolated workspace</span>
-                    <p className="text-gray-500 text-xs mt-1">Lab sessions · Studio agents · Knowledge graphs · Artifacts · File diffs</p>
-                  </div>
-                  <div className="w-px h-4 bg-white/10" />
-                  <div className="flex items-center gap-2 text-xs text-gray-500">
-                    <Lock size={12} />
-                    MongoDB queries always filtered by <code className="text-indigo-400 bg-white/5 px-1.5 py-0.5 rounded">org_id</code> with no cross-tenant data paths
-                  </div>
-                </div>
-              </div>
-            </div>
-
             {/* Feature cards */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-5xl mx-auto mb-16">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto mb-16">
               {[
-                {
-                  icon: <Users className="w-5 h-5 text-purple-400" />,
-                  border: "border-purple-500/30 bg-purple-500/5",
-                  title: "Workspace & Tenant Isolation",
-                  items: [
-                    "Each org is a fully isolated tenant with org_id scoping at the DB layer",
-                    "Multiple users per org with Admin / Member / Viewer roles",
-                    "Per-user isolated workspaces: Lab sessions, Studio agents, artifacts",
-                    "No cross-tenant data bleed, enforced at API and database level",
-                    "Session history, knowledge graphs, and file diffs persist per user",
-                    "Switching sessions or users never leaks state",
-                  ],
-                },
                 {
                   icon: <Shield className="w-5 h-5 text-emerald-400" />,
                   border: "border-emerald-500/30 bg-emerald-500/5",
                   title: "Security & Compliance",
                   items: [
-                    "JWT-based authentication with short-lived tokens per user",
-                    "Scoped, individually revocable API keys per organization",
-                    "Full audit logs: agent actions, tool calls, file diffs, approval decisions",
-                    "Human-in-the-loop: designated reviewers approve/reject tool calls",
-                    "SSO/OAuth2 ready (OAuth2 already implemented for Claude & Gemini)",
-                    "Isolated Docker containers for workspace data residency per user",
+                    "Short-lived authentication tokens, scoped and revocable API keys",
+                    "Full audit logs: agent actions, tool calls, file diffs, and approval decisions",
+                    "Human-in-the-loop: designated reviewers approve or reject agent tool calls",
+                    "SSO and OAuth2 supported for enterprise identity providers",
+                    "Isolated execution environments per user workspace",
                   ],
                 },
                 {
                   icon: <Key className="w-5 h-5 text-yellow-400" />,
                   border: "border-yellow-500/30 bg-yellow-500/5",
-                  title: "Agent & Resource Management",
+                  title: "Multi-tenant Isolation",
                   items: [
-                    "Per-org agent quotas and resource limits configurable by admin",
-                    "Studio coordinator agents scoped to group_id (org/team level)",
-                    "Lab sessions isolated per user with no state bleed between sessions",
+                    "Per-organization isolated tenants with no data bleed between accounts",
+                    "Per-user isolated workspaces: Lab sessions, Studio agents, artifacts",
+                    "Session history and knowledge graphs persist per user",
                     "Tool permission system: allow / deny / allow-for-session per category",
-                    "Multi-region deployment: stateless FastAPI + Redis pub/sub fanout",
                     "Bring your own model: Claude, GPT-4, Gemini, Cortex, configurable per org",
-                  ],
-                },
-                {
-                  icon: <BarChart2 className="w-5 h-5 text-rose-400" />,
-                  border: "border-rose-500/30 bg-rose-500/5",
-                  title: "Admin Dashboard",
-                  items: [
-                    "User management: invite, role assignment, deactivation within org",
-                    "Session and agent activity monitoring in real time",
-                    "Usage analytics: tokens consumed, tool calls, artifacts generated",
-                    "Billing and quota management per organization",
-                    "Audit log export for compliance and security review",
-                    "API key lifecycle: create, scope, rotate, revoke",
                   ],
                 },
               ].map((card, i) => (
@@ -542,47 +476,6 @@ const Product = () => {
                   </ul>
                 </div>
               ))}
-            </div>
-
-            {/* RBAC table */}
-            <div className="max-w-3xl mx-auto mb-16 animate-on-scroll">
-              <div className="rounded-xl border border-white/10 bg-white/5 overflow-hidden">
-                <div className="px-6 py-4 border-b border-white/10">
-                  <p className="text-sm font-semibold text-white">Role permissions at a glance</p>
-                </div>
-                <div className="overflow-x-auto">
-                  <table className="w-full text-xs">
-                    <thead>
-                      <tr className="border-b border-white/10">
-                        <th className="text-left px-6 py-3 text-gray-400 font-medium">Capability</th>
-                        <th className="text-center px-4 py-3 text-purple-300 font-medium">Admin</th>
-                        <th className="text-center px-4 py-3 text-emerald-300 font-medium">Member</th>
-                        <th className="text-center px-4 py-3 text-gray-400 font-medium">Viewer</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {[
-                        ["Manage users &amp; roles", true, false, false],
-                        ["Rotate &amp; revoke API keys", true, false, false],
-                        ["Configure agent quotas", true, false, false],
-                        ["Approve tool calls org-wide", true, false, false],
-                        ["Export audit logs", true, false, false],
-                        ["Create &amp; run Lab sessions", true, true, false],
-                        ["Run Studio workflows", true, true, false],
-                        ["View artifacts &amp; session logs", true, true, true],
-                        ["Read knowledge graphs", true, true, true],
-                      ].map(([cap, admin, member, viewer], i) => (
-                        <tr key={i} className={`border-b border-white/5 ${i % 2 === 0 ? "bg-white/[0.02]" : ""}`}>
-                          <td className="px-6 py-3 text-gray-300" dangerouslySetInnerHTML={{ __html: cap as string }} />
-                          <td className="text-center px-4 py-3">{admin ? <span className="text-emerald-400">✓</span> : <span className="text-gray-700">—</span>}</td>
-                          <td className="text-center px-4 py-3">{member ? <span className="text-emerald-400">✓</span> : <span className="text-gray-700">—</span>}</td>
-                          <td className="text-center px-4 py-3">{viewer ? <span className="text-emerald-400">✓</span> : <span className="text-gray-700">—</span>}</td>
-                        </tr>
-                      ))}
-                    </tbody>
-                  </table>
-                </div>
-              </div>
             </div>
 
             {/* Enterprise integrations strip */}
