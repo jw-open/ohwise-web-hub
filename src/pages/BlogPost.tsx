@@ -666,6 +666,98 @@ ranked = graph.rank("total revenue by customer last 30 days excluding cancelled"
     tags: ["MLOps", "AI Teams", "Pipeline Orchestration", "ai-relay", "code2graph", "Use Cases"],
     image: "https://images.unsplash.com/photo-1677442135703-1787eea5ce01?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3"
   },
+  {
+    id: 13,
+    title: "What Makes an AI Answer Trustworthy?",
+    content: `
+      <p class="lead">Every AI tool will give you an answer. The question worth asking is: how do you know whether to trust it?</p>
+
+      <p>This distinction matters more than it might seem. A confident-sounding wrong answer isn't just unhelpful — it can lead a team down the wrong path, with no obvious signal that something went wrong. In high-stakes decisions, that's a real cost.</p>
+
+      <h2>The grounding problem</h2>
+
+      <p>Most AI systems answer questions based on patterns learned during training. When you ask about something specific to your organization — your processes, your data, your past decisions — those systems don't know the answer. They produce something plausible based on what answers to similar questions tend to look like. That's not knowledge. That's pattern-matching dressed up as expertise.</p>
+
+      <p>The result is what the industry calls hallucination: answers that sound authoritative but aren't tied to anything real. It's a systemic problem that gets worse the more specific your question is.</p>
+
+      <h2>How OhWise grounds answers in your actual data</h2>
+
+      <p>OhWise takes a different approach. Before an agent produces an answer, it retrieves relevant context from your organization's knowledge base — structured graphs of documents, records, decisions, and relationships that your team has built up over time.</p>
+
+      <p>This means answers are tied to something real. When an agent says "based on your Q3 analysis, the pattern in the east region shows..." it's referencing actual content from your knowledge base, not generating a plausible-sounding claim. The difference is fundamental: one is synthesis, the other is fabrication.</p>
+
+      <h2>What grounded vs. ungrounded looks like in practice</h2>
+
+      <p>An ungrounded answer might say: "Organizations typically handle this by implementing a three-tier approval process." That could be true in general, but it tells you nothing about whether it's right for your situation.</p>
+
+      <p>A grounded answer says: "Your incident response policy (last updated April 2026) requires sign-off from the team lead and security reviewer before escalation. In the last six incidents, this step averaged four hours." That's actionable. You can verify it. You can act on it with confidence.</p>
+
+      <h2>Evaluation loops that catch low-quality outputs</h2>
+
+      <p>Even with grounded retrieval, not every agent output is worth acting on. OhWise includes an evaluation layer in its coordinator pipeline. Before a result is surfaced to a user or passed to the next step in a workflow, it's assessed against the original goal. Outputs that don't meet the bar are flagged for revision or escalated for human review — not surfaced as if they're final.</p>
+
+      <p>This is particularly important for multi-step workflows. A bad output in step two doesn't propagate invisibly through steps three, four, and five. It gets caught at the source.</p>
+
+      <h2>What trust means when using AI at work</h2>
+
+      <p>Trust, in this context, isn't about believing everything the system says. It's about knowing that when the system is wrong, you'll find out — before the mistake compounds. OhWise is designed so that every answer traces back to a source, every agent action is logged, and every high-stakes decision has a human sign-off.</p>
+
+      <p>That's the foundation of AI that serious teams can actually rely on. Not infallible — nothing is — but transparent, auditable, and designed to fail safely rather than silently.</p>
+    `,
+    author: "OhWise Team",
+    authorTitle: "OhWise",
+    authorAvatar: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=150&h=150&fit=crop&crop=faces",
+    date: "June 9, 2026",
+    readTime: "6 min read",
+    category: "Best Practices",
+    tags: ["Trust", "AI Reliability", "Knowledge Graphs", "Hallucination", "Audit"],
+    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3"
+  },
+  {
+    id: 14,
+    title: "The Intelligent Assistant Your Whole Team Can Use",
+    content: `
+      <p class="lead">The promise of AI in the workplace has always been bigger than what most teams have experienced. The tools that exist tend to work well for the people who built them and feel opaque to everyone else. OhWise was designed differently — for the whole team, not just the people who understand how it works under the hood.</p>
+
+      <h2>Plain language in, structured answers out</h2>
+
+      <p>A researcher, a sales analyst, a product manager, and an engineer all have different questions. What they share is the ability to ask them in plain language. In OhWise, that's exactly how you interact with agents: you ask, in whatever terms feel natural, and the agent retrieves context, reasons through the question, and delivers a structured answer.</p>
+
+      <p>You don't need to know which knowledge base to query, which workflow to trigger, or which model is best suited to the task. OhWise handles that. The interface is the conversation.</p>
+
+      <h2>Roles that protect without getting in the way</h2>
+
+      <p>One concern teams often have when deploying AI broadly is that less technical users might accidentally trigger something they shouldn't. OhWise's role system addresses this directly. Different team members have different levels of access: some can read and query, others can edit and configure, and administrators control the overall workspace.</p>
+
+      <p>This means you can open OhWise to the full team without worrying that someone will inadvertently change an agent's behavior or delete a shared knowledge base. The guardrails are built in.</p>
+
+      <h2>Group chat with agents as a natural extension of teamwork</h2>
+
+      <p>The most productive teams don't use AI in isolation — they use it together. In OhWise, team members share workspaces, collaborate in group sessions, and bring agents into conversations by mentioning them directly. A product manager can @mention the research agent mid-discussion and get a relevant summary injected into the conversation, visible to the whole team.</p>
+
+      <p>This changes the dynamic from "I'll go check the AI and come back with an answer" to "let's ask together and see what comes up." The AI becomes part of the team's conversation rather than a separate step in someone's solo workflow.</p>
+
+      <h2>The difference between a tool and a teammate</h2>
+
+      <p>A tool responds when you use it and does nothing otherwise. A teammate is available, pays attention to context, and contributes when relevant. OhWise agents are closer to the second description. They can monitor conditions, surface relevant information when the time is right, and take action when directed — without requiring the user to manage the mechanics.</p>
+
+      <p>For most team members, that distinction is what makes AI feel genuinely useful rather than just technically impressive. You stop managing the AI and start working alongside it.</p>
+
+      <h2>Productivity that scales across the team</h2>
+
+      <p>When every team member can delegate repetitive, information-heavy tasks to agents, the cumulative effect is significant. The analyst who used to spend Tuesday morning pulling a report now spends that time interpreting it. The researcher who spent afternoons on literature reviews now walks in with summaries already prepared.</p>
+
+      <p>Multiply that across a team of twenty, and you're not talking about marginal efficiency gains. You're talking about a fundamentally different way of working — one where the work that matters gets more time, and the work that doesn't gets handled automatically.</p>
+    `,
+    author: "OhWise Team",
+    authorTitle: "OhWise",
+    authorAvatar: "https://images.unsplash.com/photo-1553877522-43269d4ea984?w=150&h=150&fit=crop&crop=faces",
+    date: "June 7, 2026",
+    readTime: "5 min read",
+    category: "Use Cases",
+    tags: ["Team Collaboration", "Productivity", "Non-technical Users", "Group Chat"],
+    image: "https://images.unsplash.com/photo-1553877522-43269d4ea984?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3"
+  },
 ];
 
 // Mock related posts

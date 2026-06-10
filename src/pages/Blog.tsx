@@ -128,9 +128,29 @@ const BLOG_POSTS = [
     category: "Use Cases",
     image: "https://images.unsplash.com/photo-1677442135703-1787eea5ce01?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3"
   },
+  {
+    id: 13,
+    title: "What Makes an AI Answer Trustworthy?",
+    excerpt: "Not all AI answers are created equal. The difference between a useful answer and a dangerous one is whether it's grounded in what's actually true for your organization.",
+    author: "OhWise Team",
+    date: "June 9, 2026",
+    readTime: "6 min",
+    category: "Best Practices",
+    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3"
+  },
+  {
+    id: 14,
+    title: "The Intelligent Assistant Your Whole Team Can Use",
+    excerpt: "OhWise isn't just for AI engineers. Any team member can ask a question, start a workflow, or collaborate with agents — no technical background required.",
+    author: "OhWise Team",
+    date: "June 7, 2026",
+    readTime: "5 min",
+    category: "Use Cases",
+    image: "https://images.unsplash.com/photo-1553877522-43269d4ea984?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3"
+  },
 ];
 
-const CATEGORIES = ["All", "Announcements", "Technical", "Best Practices", "Case Studies", "Use Cases"];
+const CATEGORIES = ["All", "Announcements", "Technical", "Best Practices", "Case Studies", "Use Cases", "Security"];
 
 const Blog = () => {
   const [searchQuery, setSearchQuery] = useState("");
