@@ -1,5 +1,5 @@
 import React from "react";
-import { GitBranch, Network, Code2, FlaskConical, Plug, Shield } from "lucide-react";
+import { GitBranch, Network, Code2, FlaskConical, Plug, Shield, Users } from "lucide-react";
 
 const features = [
   {
@@ -43,6 +43,13 @@ const features = [
     description:
       "Deploy on any infrastructure. All orchestration, context management, and agent coordination runs locally. Only outbound traffic is to the chosen LLM endpoint.",
     icon: <Shield className="w-5 h-5" />,
+  },
+  {
+    id: 7,
+    title: "Team collaboration",
+    description:
+      "Invite teammates, assign roles, and share agents and knowledge across your account. Group chat lets multiple users work alongside agents in the same conversation — mention an agent to bring it in on demand.",
+    icon: <Users className="w-5 h-5" />,
   },
 ];
 
