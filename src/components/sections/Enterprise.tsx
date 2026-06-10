@@ -1,6 +1,6 @@
 
 import React from "react";
-import { Shield, Users, Key, BarChart2, Globe, CheckCircle, ArrowRight } from "lucide-react";
+import { Shield, Users, Key, BarChart2, Globe, CheckCircle, ArrowRight, MessageSquare } from "lucide-react";
 
 const Enterprise: React.FC = () => {
   return (
@@ -73,6 +73,19 @@ const Enterprise: React.FC = () => {
                 "API-first: all capabilities accessible programmatically",
                 "graph2sql for enterprise-scale text-to-SQL (100+ table schemas)",
                 "Webhook support for external approval workflows",
+              ],
+            },
+            {
+              icon: <MessageSquare className="w-5 h-5 text-teal-500 dark:text-teal-400" />,
+              color: "border-teal-500/30 bg-teal-500/5",
+              title: "Team Collaboration & Group Chat",
+              items: [
+                "Group chat with multiple users and agents in the same conversation",
+                "@mention an agent to trigger it on demand — silent otherwise",
+                "Role-based access: admin, member, viewer per organization",
+                "Shared agents, knowledge, and workspaces across team accounts",
+                "Plan-gated features: group chat and member invites unlock on Team plan",
+                "Per-plan quotas: agents, studios, lab sessions, and seats",
               ],
             },
             {
