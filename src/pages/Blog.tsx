@@ -10,63 +10,63 @@ import SubscribeForm from "../components/blog/SubscribeForm";
 const BLOG_POSTS = [
   {
     id: 1,
-    title: "Introducing OhWise 2.0: The Next Generation of AI Operations",
-    excerpt: "OhWise 2.0 is now available with enhanced multi-agent capabilities, improved knowledge graph integration, and a completely redesigned user interface.",
-    author: "Sarah Johnson",
-    date: "August 15, 2023",
-    readTime: "5 min",
-    category: "Announcements",
-    image: "https://images.unsplash.com/photo-1620712943543-bcc4688e7485?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3"
+    title: "When Your Team's Knowledge Becomes Your Competitive Advantage",
+    excerpt: "Organizations that connect institutional knowledge to their AI workflows consistently outperform teams that treat AI as a standalone tool. Here's why the knowledge layer is the real differentiator.",
+    author: "OhWise Team",
+    date: "June 2026",
+    readTime: "6 min",
+    category: "Use Cases",
+    image: "https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3"
   },
   {
     id: 2,
-    title: "How AI is Transforming DevOps: The OhWise Approach",
-    excerpt: "The integration of AI into DevOps processes is no longer a future trend. It's happening now. Here's how organizations are using OhWise to automate complex workflows.",
-    author: "Michael Chen",
-    date: "August 10, 2023",
-    readTime: "7 min",
-    category: "Technical",
-    image: "https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3"
-  },
-  {
-    id: 3,
-    title: "Building Responsible AI Systems with OhWise",
-    excerpt: "As AI systems become more prevalent, ensuring they operate ethically and responsibly is paramount. OhWise's governance features help organizations implement AI transparently.",
-    author: "Elena Patel",
-    date: "August 5, 2023",
-    readTime: "6 min",
-    category: "Best Practices",
-    image: "https://images.unsplash.com/photo-1531297484001-80022131f5a1?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3"
-  },
-  {
-    id: 4,
-    title: "Case Study: How FinTech Leader Reduced Incident Response Time by 75%",
-    excerpt: "A leading financial technology company was struggling with lengthy incident resolution times. Learn how OhWise's multi-agent system transformed their operations.",
-    author: "James Wilson",
-    date: "July 28, 2023",
-    readTime: "8 min",
-    category: "Case Studies",
+    title: "The Hidden Cost of Every Hour an Incident Goes Unresolved",
+    excerpt: "Downtime costs money. The real damage is compounding. Here's how AI-coordinated response changes the economics of reliability for operations teams.",
+    author: "OhWise Team",
+    date: "June 2026",
+    readTime: "5 min",
+    category: "Use Cases",
     image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3"
   },
   {
+    id: 3,
+    title: "Your Most Productive Team Member Doesn't Take Breaks",
+    excerpt: "AI agents that work through complex multi-step tasks around the clock — and hand off clearly to humans when judgment is required. A look at how teams are redesigning their workflows.",
+    author: "OhWise Team",
+    date: "June 2026",
+    readTime: "6 min",
+    category: "Use Cases",
+    image: "https://images.unsplash.com/photo-1600880292203-757bb62b4baf?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3"
+  },
+  {
+    id: 4,
+    title: "Why Security Teams Trust AI With More, Not Less",
+    excerpt: "Counterintuitive but true: organizations that deploy AI in security workflows surface more threats, faster, with less analyst burnout. Here's what that looks like in practice.",
+    author: "OhWise Team",
+    date: "June 2026",
+    readTime: "7 min",
+    category: "Use Cases",
+    image: "https://images.unsplash.com/photo-1614064641938-3bbee52942c7?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3"
+  },
+  {
     id: 5,
-    title: "Understanding Knowledge Graphs: The Foundation of Intelligent Operations",
-    excerpt: "Knowledge graphs are at the heart of OhWise's intelligent decision-making capabilities. A technical deep dive into how the platform builds and leverages them.",
-    author: "Rebecca Lee",
-    date: "July 20, 2023",
-    readTime: "10 min",
-    category: "Technical",
-    image: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3"
+    title: "What Happens When Every Decision Has the Right Context",
+    excerpt: "The difference between a good AI assistant and a great one is context. When AI understands your domain, your data, and your goals, answers stop being generic and start being useful.",
+    author: "OhWise Team",
+    date: "June 2026",
+    readTime: "5 min",
+    category: "Best Practices",
+    image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3"
   },
   {
     id: 6,
-    title: "OhWise Product Roadmap: What's Coming in Q4 2023",
-    excerpt: "The OhWise roadmap for the upcoming quarter: enhanced ML capabilities, new integration options, and expanded analytics.",
-    author: "David Thompson",
-    date: "July 15, 2023",
-    readTime: "4 min",
-    category: "Announcements",
-    image: "https://images.unsplash.com/photo-1504639725590-34d0984388bd?q=80&w=2774&auto=format&fit=crop&ixlib=rb-4.0.3"
+    title: "Collaboration at the Speed of Thought: Teams, Agents, and Shared Goals",
+    excerpt: "When your team can delegate to AI agents mid-conversation and pick up the results moments later, work stops waiting and starts flowing. A look at how group workspaces change team dynamics.",
+    author: "OhWise Team",
+    date: "June 2026",
+    readTime: "6 min",
+    category: "Use Cases",
+    image: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3"
   },
   {
     id: 7,

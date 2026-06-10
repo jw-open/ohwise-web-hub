@@ -10,55 +10,257 @@ import SubscribeForm from "../components/blog/SubscribeForm";
 const BLOG_POSTS = [
   {
     id: 1,
-    title: "Introducing OhWise 2.0: The Next Generation of AI Operations",
+    title: "When Your Team's Knowledge Becomes Your Competitive Advantage",
     content: `
-      <p class="lead">Today, we're thrilled to announce the release of OhWise 2.0, our most significant platform update yet. This new version brings enhanced multi-agent capabilities, improved knowledge graph integration, and a completely redesigned user interface.</p>
-      
-      <h2>Revolutionizing AI Operations</h2>
-      <p>Since launching OhWise, our mission has been clear: to make complex AI operations simple, efficient, and accessible to businesses of all sizes. With OhWise 2.0, we're taking a major step forward in realizing that vision.</p>
-      
-      <p>Our customers have been using OhWise to automate complex workflows, reduce operational overhead, and extract valuable insights from their data. Now, with version 2.0, we're introducing features that make these capabilities even more powerful and easier to implement.</p>
-      
-      <h2>Key Features in OhWise 2.0</h2>
-      
-      <h3>Enhanced Multi-Agent Orchestration</h3>
-      <p>OhWise 2.0 introduces a completely redesigned agent orchestration system that enables more complex interactions between specialized AI agents. This means your agents can collaborate more effectively, share context, and solve problems that would be impossible for a single agent to handle.</p>
-      
-      <h3>Advanced Knowledge Graph Integration</h3>
-      <p>Our knowledge graph capabilities have been significantly expanded, allowing for more nuanced relationships between data points and improved reasoning capabilities. This translates to better insights, more accurate predictions, and more effective automation.</p>
-      
-      <h3>Redesigned User Interface</h3>
-      <p>We've completely rebuilt our user interface from the ground up, focusing on simplicity, usability, and power. The new UI makes it easier than ever to design workflows, monitor agent performance, and analyze results.</p>
-      
-      <h3>Expanded Integration Ecosystem</h3>
-      <p>OhWise 2.0 now connects with over 50 popular tools and platforms out of the box, making it simpler to integrate into your existing technology stack. From CRMs to data warehouses, we've got you covered.</p>
-      
-      <h2>Customer Success Stories</h2>
-      <p>During our beta testing period, several customers have already experienced the benefits of OhWise 2.0:</p>
-      
-      <blockquote>
-        "OhWise 2.0 has transformed how we handle customer support incidents. What used to take hours now happens automatically in minutes, and with greater accuracy than ever before."
-        <cite>Sarah Johnson, CTO at TechSolutions Inc.</cite>
-      </blockquote>
-      
-      <h2>Getting Started with OhWise 2.0</h2>
-      <p>For existing customers, upgrading to OhWise 2.0 is simple and non-disruptive. Your current configurations will be automatically migrated, and our team is standing by to help with any questions.</p>
-      
-      <p>New to OhWise? There's never been a better time to start. Our onboarding process has been streamlined, and we offer comprehensive documentation and support to get you up and running quickly.</p>
-      
-      <h2>Looking Ahead</h2>
-      <p>OhWise 2.0 represents a major milestone in our journey, but we're just getting started. Our roadmap for the coming year includes even more exciting features, including enhanced natural language processing capabilities, deeper analytics, and expanded customization options.</p>
-      
-      <p>We're incredibly grateful to our customers and partners who have provided valuable feedback and support throughout this development process. Together, we're building the future of intelligent operations.</p>
+      <p class="lead">Most teams have good people, good intentions, and enough AI tools to feel like they're keeping up. But the gap between teams that get real leverage from AI and teams that don't usually comes down to one thing: knowledge.</p>
+
+      <p>Not knowledge as in expertise — your team already has that. Knowledge as in: can your AI systems actually access what your team knows, in a structured way, at the moment it's needed?</p>
+
+      <h2>The Problem With Isolated AI</h2>
+
+      <p>When AI is deployed as a standalone tool — a chat interface here, an automation script there — it operates on whatever context it's given in the moment. It doesn't know your product, your customers, your historical decisions, or the nuances of your domain. Every interaction starts from scratch.</p>
+
+      <p>The result is answers that are technically correct but operationally useless. Generic summaries when you needed specific comparisons. Plausible reasoning when you needed reasoning grounded in your actual data.</p>
+
+      <p>The teams that outperform don't have better AI. They have better context.</p>
+
+      <h2>What Structured Knowledge Changes</h2>
+
+      <p>When your institutional knowledge is organized into a structured graph — where concepts, relationships, and dependencies are explicit — AI stops guessing and starts reasoning. It can trace from a customer problem back to the relevant decision history. It can surface the right precedent from thousands of past cases. It can understand that two things that sound similar are actually different, and two things that sound different are actually the same.</p>
+
+      <p>This changes what AI can do for your team in a fundamental way. Instead of answering the question you typed, it answers the question you meant.</p>
+
+      <h2>Knowledge That Compounds</h2>
+
+      <p>The compounding effect is what makes this strategic rather than tactical. Every interaction that touches your knowledge graph either uses existing knowledge or can contribute new knowledge. Over time, your AI systems become progressively more useful without requiring progressively more effort to maintain.</p>
+
+      <p>Teams that invest in their knowledge layer early find that their AI capabilities improve continuously, while teams that skip this step find themselves rebuilding context from scratch every six months when they adopt a new tool.</p>
+
+      <h2>From Retrieval to Reasoning</h2>
+
+      <p>The shift from retrieval to reasoning is where the real productivity gains live. Retrieval answers "what do we know?" Reasoning answers "what should we do, given what we know?" The first is a search problem. The second is an intelligence problem.</p>
+
+      <p>OhWise is built around the second problem. Knowledge graphs are the foundation — they give AI the structure to reason rather than just retrieve. Agents built on top of that foundation can run complex multi-step tasks, adapt to new information mid-workflow, and hand off to humans with full context intact.</p>
+
+      <p>The teams that figure this out aren't just more productive. They're compounding an advantage that's genuinely hard to replicate.</p>
     `,
-    author: "Sarah Johnson",
-    authorTitle: "Chief Product Officer",
-    authorAvatar: "https://images.unsplash.com/photo-1580489944761-15a19d654956?w=150&h=150&fit=crop&crop=faces",
-    date: "August 15, 2023",
+    author: "OhWise Team",
+    authorTitle: "OhWise",
+    authorAvatar: "https://images.unsplash.com/photo-1552664730-d307ca884978?w=150&h=150&fit=crop&crop=faces",
+    date: "June 2026",
+    readTime: "6 min read",
+    category: "Use Cases",
+    tags: ["Knowledge Graphs", "AI Strategy", "Productivity"],
+    image: "https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3"
+  },
+  {
+    id: 2,
+    title: "The Hidden Cost of Every Hour an Incident Goes Unresolved",
+    content: `
+      <p class="lead">The visible cost of an incident is the downtime itself. Revenue stopped. Customers frustrated. SLAs breached. These numbers are real and they're usually the ones that end up in the post-mortem report.</p>
+
+      <p>The invisible cost is harder to see but often larger: the engineer hours spent in war rooms, the decisions made on incomplete information, the follow-on incidents caused by rushed fixes, and the institutional knowledge that evaporates when the team finally catches their breath.</p>
+
+      <h2>Why Response Feels Slower Than It Should</h2>
+
+      <p>Modern systems fail in complex ways. A single incident might span three teams, a dozen services, and hundreds of log lines from the last fifteen minutes. The information is all there — it's just not assembled into anything a human can reason from quickly.</p>
+
+      <p>So teams do what they've always done: they work the phones, they share dashboards, they make judgment calls under pressure. They're good at it. But they're also doing it manually, which means they're slow, inconsistent, and exhausted by the end.</p>
+
+      <h2>What Coordination Changes</h2>
+
+      <p>The bottleneck in most incident response isn't expertise — it's coordination and context assembly. Who knows what. Who's looking at which system. Who has the authority to make a change. Who needs to be notified.</p>
+
+      <p>When you have AI agents handling the coordination layer — pulling together signals, drafting summaries, routing the right information to the right people — your experts can focus on the part only they can do: making the actual call.</p>
+
+      <p>Response time compresses not because the humans got faster, but because they stopped doing work that didn't require them.</p>
+
+      <h2>Reliability as a Competitive Moat</h2>
+
+      <p>Customers don't remember the uptime. They remember the downtime. A single well-handled incident — fast acknowledgment, clear communication, quick resolution — can actually strengthen a customer relationship. A slow, opaque response erodes it permanently.</p>
+
+      <p>Teams that invest in AI-coordinated incident response aren't just cutting costs. They're building reliability into their culture in a way that's visible to customers and defensible to competitors.</p>
+
+      <h2>The Compounding Benefit</h2>
+
+      <p>Each incident an AI-coordinated system handles builds a richer record: what happened, what was tried, what worked. Future incidents that look similar don't start from zero. The system surfaces relevant history. The human starts with context instead of building it from scratch.</p>
+
+      <p>Over time, your team's collective response capability grows even when individuals turn over. The knowledge stays. The patterns persist. The hidden cost keeps shrinking.</p>
+    `,
+    author: "OhWise Team",
+    authorTitle: "OhWise",
+    authorAvatar: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=150&h=150&fit=crop&crop=faces",
+    date: "June 2026",
     readTime: "5 min read",
-    category: "Announcements",
-    tags: ["Product Update", "AI Operations", "Multi-agent Systems"],
-    image: "https://images.unsplash.com/photo-1620712943543-bcc4688e7485?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3"
+    category: "Use Cases",
+    tags: ["Reliability", "Incident Response", "Operations"],
+    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3"
+  },
+  {
+    id: 3,
+    title: "Your Most Productive Team Member Doesn't Take Breaks",
+    content: `
+      <p class="lead">If you could hire someone who never lost context between tasks, never forgot a detail from three months ago, could work on six things simultaneously, and handed off clearly documented work every single time — you would. That's what well-designed AI agents do for a team.</p>
+
+      <p>But the analogy breaks down in one important way: agents aren't replacements for people. They're a different kind of collaborator, one that works best when humans are clear about what they're delegating and why.</p>
+
+      <h2>What Gets Delegated Well</h2>
+
+      <p>The tasks that AI agents handle best share a common shape: they're multi-step, they require pulling together information from multiple sources, they have a clear success condition, and they don't require live human judgment at every step — only at specific decision points.</p>
+
+      <p>Research synthesis. First drafts with specific constraints. Data analysis across structured records. Monitoring for conditions and escalating when they're met. Running a workflow that requires coordination across three systems. These tasks take human hours. They take agent seconds.</p>
+
+      <h2>The Handoff That Actually Works</h2>
+
+      <p>The failure mode of AI-assisted work isn't usually the AI doing bad work. It's humans not knowing when to step back in. When should a human review? What does "done" look like? When is the agent's output a final answer versus a starting point?</p>
+
+      <p>Teams that get the most from AI workflows are explicit about this. They design their workflows with clear handoff points — stages where a human reviews before the next step proceeds. They treat AI output as input to human judgment, not a replacement for it.</p>
+
+      <p>OhWise supports this natively. Workflows can include designated review stages where a human must approve before execution continues. The agent does the work. The human makes the call.</p>
+
+      <h2>Around the Clock, Not Around the Team</h2>
+
+      <p>One of the underappreciated benefits of AI-coordinated workflows is that they're not bounded by business hours or time zones. A workflow kicked off at 5pm can run overnight, surface results at 8am, and hand off to a human with full context assembled. The person arriving in the morning doesn't catch up — they pick up exactly where things are.</p>
+
+      <p>For globally distributed teams, this changes the collaboration dynamic entirely. Work moves continuously, not in time-zone-gated batches.</p>
+
+      <h2>Productivity That Compounds</h2>
+
+      <p>The teams that build effective AI workflows don't just get faster. They get better at knowing what to delegate. They develop clearer specifications. They build shared patterns for how work moves through their systems. The productivity gain isn't just in the agent work — it's in the quality of human work that the agents make possible.</p>
+    `,
+    author: "OhWise Team",
+    authorTitle: "OhWise",
+    authorAvatar: "https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=150&h=150&fit=crop&crop=faces",
+    date: "June 2026",
+    readTime: "6 min read",
+    category: "Use Cases",
+    tags: ["Productivity", "AI Agents", "Workflow Automation"],
+    image: "https://images.unsplash.com/photo-1600880292203-757bb62b4baf?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3"
+  },
+  {
+    id: 4,
+    title: "Why Security Teams Trust AI With More, Not Less",
+    content: `
+      <p class="lead">The instinct to keep AI out of security workflows is understandable. Security is high-stakes. Mistakes are costly. Automation in the wrong place can create exactly the vulnerabilities it's supposed to prevent.</p>
+
+      <p>But the teams that have worked through this instinct have found something counterintuitive: AI doesn't just help security teams work faster. It helps them work more thoroughly — surfacing signals that would have been missed entirely under manual review.</p>
+
+      <h2>The Volume Problem</h2>
+
+      <p>Modern security environments generate more signals than any human team can review. Logs, alerts, access patterns, anomalies — the volume keeps growing while analyst headcount stays flat. Teams respond by tuning alerts aggressively to reduce noise, which inevitably means missing things. Or they triage by gut feel, which means what gets attention depends on who's on shift.</p>
+
+      <p>Neither approach is defensible at scale. And both get worse as systems get more complex.</p>
+
+      <h2>What AI Does Well in Security Contexts</h2>
+
+      <p>AI agents excel at the parts of security work that are exhausting for humans: continuous monitoring across large surfaces, pattern matching against historical baselines, correlating signals across disconnected systems, and escalating only when something genuinely warrants human attention.</p>
+
+      <p>This isn't replacing analysts — it's giving analysts a first pass that's already done. When a human looks at something, it's because the system has already determined it's worth a human's time. That changes how analysts spend their hours entirely.</p>
+
+      <h2>Human Judgment Where It Counts</h2>
+
+      <p>The key to trusting AI in security workflows is designing clear boundaries. AI handles detection and triage. Humans handle response decisions, especially ones with irreversible consequences. Every significant action — blocking access, isolating a system, notifying an external party — requires a human to confirm.</p>
+
+      <p>OhWise supports this through its permission and approval model. Agents can run continuously and surface findings, but designated actions require explicit human sign-off before proceeding. The audit log captures everything: what the agent found, what it recommended, who approved, and when.</p>
+
+      <h2>Security That Scales With Your Team</h2>
+
+      <p>The math of manual security doesn't scale. Doubling your attack surface doesn't mean you can double your analyst headcount. But an AI-coordinated security workflow can cover more surface with the same team — and improve over time as the system learns what's normal for your specific environment.</p>
+
+      <p>The teams that are winning on security right now aren't necessarily the ones with the biggest budgets. They're the ones that figured out how to make their analysts' judgment go further.</p>
+    `,
+    author: "OhWise Team",
+    authorTitle: "OhWise",
+    authorAvatar: "https://images.unsplash.com/photo-1614064641938-3bbee52942c7?w=150&h=150&fit=crop&crop=faces",
+    date: "June 2026",
+    readTime: "7 min read",
+    category: "Use Cases",
+    tags: ["Security", "AI Agents", "Reliability"],
+    image: "https://images.unsplash.com/photo-1614064641938-3bbee52942c7?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3"
+  },
+  {
+    id: 5,
+    title: "What Happens When Every Decision Has the Right Context",
+    content: `
+      <p class="lead">Ask a generic AI assistant a specific question and you'll usually get a generic answer. It's correct in the abstract. It just doesn't know your situation.</p>
+
+      <p>This is the gap that limits AI usefulness in most organizations: not capability, but context. The model is powerful. It just doesn't know what you know.</p>
+
+      <h2>Why Generic Answers Fall Short</h2>
+
+      <p>Decisions aren't made in the abstract. They're made against a backdrop of constraints, history, relationships, and domain knowledge that took years to accumulate. A recommendation that ignores that backdrop isn't just incomplete — it can actively mislead by suggesting paths that would have worked in other contexts but don't fit yours.</p>
+
+      <p>The teams that get the most from AI have solved this problem. They've built systems that give AI access to the right context before it answers — structured knowledge about their domain, their data, and their goals.</p>
+
+      <h2>Context Is a System Design Problem</h2>
+
+      <p>The reason most teams don't have good AI context isn't that they lack information. It's that their information isn't organized in a way that AI can use it. Documents in one system. Data in another. Decisions scattered across conversations, tickets, and email threads. The knowledge exists — it's just not accessible.</p>
+
+      <p>Solving this is a system design problem, not a prompting problem. You can't write a prompt that compensates for missing structure. You have to build the structure.</p>
+
+      <p>Knowledge graphs are the right structure for this. They make relationships explicit. They let the system trace from a question back through relevant history to find the most pertinent facts, not just the most recent ones.</p>
+
+      <h2>What Changes When Context Is Right</h2>
+
+      <p>The difference shows up in specificity. Instead of "here are five options to consider," you get "given your constraints and the decisions you've made before, here are two paths worth evaluating, and here's why the others don't apply." Instead of a literature review, you get an analysis against your specific situation.</p>
+
+      <p>For teams making dozens of decisions a day — technical, commercial, operational — this compounds quickly. Better context at each decision point means fewer revisits, fewer wrong turns, and less time spent re-establishing shared understanding before a conversation can even start.</p>
+
+      <h2>Intelligence That Reflects Your Work</h2>
+
+      <p>The goal isn't AI that's smart in general. It's AI that's smart about your specific domain, your specific data, and your specific situation. That intelligence doesn't come from a bigger model. It comes from a better-organized knowledge layer that the model can reason against.</p>
+
+      <p>When you build that layer, you stop asking AI for its opinion and start asking it for an informed perspective. That's a different kind of tool entirely.</p>
+    `,
+    author: "OhWise Team",
+    authorTitle: "OhWise",
+    authorAvatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=faces",
+    date: "June 2026",
+    readTime: "5 min read",
+    category: "Best Practices",
+    tags: ["Knowledge Graphs", "AI Context", "Decision Making"],
+    image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3"
+  },
+  {
+    id: 6,
+    title: "Collaboration at the Speed of Thought: Teams, Agents, and Shared Goals",
+    content: `
+      <p class="lead">The traditional model of AI-assisted work is sequential: you ask, it answers, you act. This is useful. It's also slow, because it requires you to formulate the question perfectly before any work begins, and it produces one answer at a time in a single conversation thread.</p>
+
+      <p>The teams that are pulling ahead have moved to something different: collaborative workspaces where humans and agents work alongside each other toward shared goals, in real time.</p>
+
+      <h2>What Shared Workspaces Change</h2>
+
+      <p>When a team can work in a shared space where both humans and agents participate, the bottleneck of "one conversation at a time" disappears. Multiple people can direct different agents toward different aspects of a problem simultaneously. Results get assembled in one place. Everyone sees the same context.</p>
+
+      <p>More importantly, the conversation becomes the artifact. Instead of switching between a chat tool, a document, and a task tracker to piece together what happened and why, the workspace contains the full history: what was asked, what the agents found, what decisions were made, and by whom.</p>
+
+      <h2>Agents as Active Participants</h2>
+
+      <p>In a well-designed collaborative workspace, agents don't just respond when called. They can be configured to monitor ongoing conversations and act when the right conditions are met — surfacing a relevant piece of knowledge when a particular topic comes up, or flagging when a proposed decision conflicts with a policy the team has established.</p>
+
+      <p>This is different from a chatbot. The agent is a participant with awareness of the ongoing context, not just the last message. It can be mentioned directly when you need it and stay quiet the rest of the time.</p>
+
+      <h2>Accountability at Every Step</h2>
+
+      <p>Collaboration at speed only works if accountability is clear. Who decided what. Which agent ran which task. What the output was. When a human reviewed it.</p>
+
+      <p>OhWise keeps a complete audit trail for every action taken in a shared workspace: human messages, agent tasks, approvals, and outputs. When something needs to be revisited — whether it's a compliance review or a post-incident analysis — the record is there, complete and navigable.</p>
+
+      <h2>The Org Chart Hasn't Changed. The Workflows Have.</h2>
+
+      <p>Adopting collaborative AI workspaces doesn't require restructuring teams or changing reporting lines. It requires changing how work flows between the people and systems that already exist. The people who make decisions still make them. The agents handle the work that supports those decisions — faster, more thoroughly, and with full traceability.</p>
+
+      <p>For teams that try it, the question quickly becomes: what were we doing with all that time before?</p>
+    `,
+    author: "OhWise Team",
+    authorTitle: "OhWise",
+    authorAvatar: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=150&h=150&fit=crop&crop=faces",
+    date: "June 2026",
+    readTime: "6 min read",
+    category: "Use Cases",
+    tags: ["Team Collaboration", "Group Chat", "AI Agents"],
+    image: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3"
   },
   {
     id: 7,
@@ -469,25 +671,25 @@ ranked = graph.rank("total revenue by customer last 30 days excluding cancelled"
 // Mock related posts
 const RELATED_POSTS = [
   {
-    id: 2,
-    title: "How AI is Transforming DevOps: The OhWise Approach",
-    excerpt: "The integration of AI into DevOps processes is no longer a future trend. It's happening now.",
-    date: "August 10, 2023",
-    image: "https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?q=80&w=400&auto=format&fit=crop&ixlib=rb-4.0.3"
+    id: 1,
+    title: "When Your Team's Knowledge Becomes Your Competitive Advantage",
+    excerpt: "Organizations that connect institutional knowledge to their AI workflows consistently outperform teams that treat AI as a standalone tool.",
+    date: "June 2026",
+    image: "https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=400&auto=format&fit=crop&ixlib=rb-4.0.3"
+  },
+  {
+    id: 5,
+    title: "What Happens When Every Decision Has the Right Context",
+    excerpt: "The difference between a good AI assistant and a great one is context. When AI understands your domain, answers stop being generic and start being useful.",
+    date: "June 2026",
+    image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=400&auto=format&fit=crop&ixlib=rb-4.0.3"
   },
   {
     id: 6,
-    title: "OhWise Product Roadmap: What's Coming in Q4 2023",
-    excerpt: "Our product team has been hard at work planning exciting new features for the OhWise platform.",
-    date: "July 15, 2023",
-    image: "https://images.unsplash.com/photo-1504639725590-34d0984388bd?q=80&w=400&auto=format&fit=crop&ixlib=rb-4.0.3"
-  },
-  {
-    id: 3,
-    title: "Building Responsible AI Systems with OhWise",
-    excerpt: "As AI systems become more prevalent, ensuring they operate ethically and responsibly is paramount.",
-    date: "August 5, 2023",
-    image: "https://images.unsplash.com/photo-1531297484001-80022131f5a1?q=80&w=400&auto=format&fit=crop&ixlib=rb-4.0.3"
+    title: "Collaboration at the Speed of Thought: Teams, Agents, and Shared Goals",
+    excerpt: "When your team can delegate to AI agents mid-conversation, work stops waiting and starts flowing.",
+    date: "June 2026",
+    image: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=400&auto=format&fit=crop&ixlib=rb-4.0.3"
   },
 ];
 

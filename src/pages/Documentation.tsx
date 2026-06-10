@@ -511,6 +511,418 @@ pip install "ohwise-mcp[all]"`}</code></pre>
         <p>GitHub: <a href="https://github.com/jw-open/ohwise-mcp" target="_blank" rel="noopener noreferrer">github.com/jw-open/ohwise-mcp</a></p>
       </div>
     ),
+    "quick-start": (
+      <div>
+        <h1>Quick Start Guide</h1>
+        <p>This guide walks you through connecting your first AI agent session and running your first multi-agent task in OhWise.</p>
+        <h2>Step 1: Create an Account</h2>
+        <p>Sign up at <a href="https://cloud.ohwise.com" target="_blank" rel="noopener noreferrer">cloud.ohwise.com</a>. Your account comes with an isolated workspace and a free-tier allocation for Lab sessions and agents.</p>
+        <h2>Step 2: Connect an AI Coding Agent (Lab)</h2>
+        <ol>
+          <li>Navigate to <strong>Lab</strong> in the sidebar.</li>
+          <li>Click <strong>+ New Session</strong>. Give it a name and select an agent (Claude Code is recommended to start).</li>
+          <li>Click <strong>Connect</strong>. The session starts inside your isolated workspace.</li>
+          <li>If prompted, follow the OAuth link in the stream to authenticate with your Anthropic account.</li>
+          <li>Type your first prompt — for example: <em>"Summarize the files in this workspace."</em></li>
+        </ol>
+        <h2>Step 3: Create Your First Agent (Studio)</h2>
+        <ol>
+          <li>Navigate to <strong>Agents</strong> in the sidebar.</li>
+          <li>Click <strong>Add Agent</strong>. Fill in a name, description, and a system prompt that defines the agent's role.</li>
+          <li>Save the agent. It's now available as a node in any Studio coordinator loop.</li>
+        </ol>
+        <h2>Step 4: Run a Multi-Agent Task (Studio)</h2>
+        <ol>
+          <li>Navigate to <strong>Studio</strong> and open or create a group session.</li>
+          <li>Type a task in the chat: for example, <em>"Research the top three competitors in the enterprise AI market and summarize their positioning."</em></li>
+          <li>The coordinator loop starts: Planner decomposes the task, Executor runs subtasks, Evaluator scores the output.</li>
+          <li>The final result appears in the <strong>Artifact</strong> tab.</li>
+        </ol>
+        <h2>Step 5: Build a Knowledge Graph</h2>
+        <ol>
+          <li>Navigate to <strong>Knowledge</strong> in the sidebar.</li>
+          <li>Click <strong>Add Knowledge</strong> and choose a type (graph, document, schema).</li>
+          <li>Upload your documents or connect a data source.</li>
+          <li>The graph is available immediately to agents as retrieval context.</li>
+        </ol>
+        <div className="doc-callout doc-callout-tip">💡 Once you have a knowledge graph, agents can use it to answer domain-specific questions accurately instead of relying on general training data.</div>
+      </div>
+    ),
+    "system-requirements": (
+      <div>
+        <h1>System Requirements</h1>
+        <p>OhWise is a fully managed cloud platform. For most users, there is nothing to install and no server to run.</p>
+        <h2>OhWise Cloud (Recommended)</h2>
+        <p>Access OhWise at <a href="https://cloud.ohwise.com" target="_blank" rel="noopener noreferrer">cloud.ohwise.com</a> from any modern browser. No local setup required. The platform handles compute, storage, and all AI agent runtime environments.</p>
+        <table>
+          <thead><tr><th>Requirement</th><th>Minimum</th></tr></thead>
+          <tbody>
+            <tr><td>Browser</td><td>Chrome 110+, Firefox 115+, Safari 16+, Edge 110+</td></tr>
+            <tr><td>Network</td><td>Stable broadband (WebSocket connections required for live streaming)</td></tr>
+            <tr><td>Account</td><td>OhWise account at cloud.ohwise.com</td></tr>
+            <tr><td>For Lab (Claude Code)</td><td>Anthropic account with Claude Pro or Max subscription</td></tr>
+          </tbody>
+        </table>
+        <h2>Open-Source Packages (Local Use)</h2>
+        <p>If you're using graph packages (<strong>graph2sql</strong>, <strong>docs2graph</strong>, <strong>codebase2graph</strong>) or <strong>ai-relay</strong> locally:</p>
+        <table>
+          <thead><tr><th>Requirement</th><th>Version</th></tr></thead>
+          <tbody>
+            <tr><td>Python</td><td>3.9 or higher</td></tr>
+            <tr><td>pip</td><td>Latest recommended</td></tr>
+            <tr><td>Disk space</td><td>200MB+ for dependencies</td></tr>
+          </tbody>
+        </table>
+        <h2>Self-Hosted Deployment</h2>
+        <p>For organizations deploying OhWise on private infrastructure, the recommended baseline is:</p>
+        <ul>
+          <li>Container orchestration environment (any modern container runtime)</li>
+          <li>A shared message broker for pub/sub between services</li>
+          <li>A document store (MongoDB-compatible) for agent state persistence</li>
+          <li>Reverse proxy for TLS termination</li>
+          <li>Minimum 4 vCPU / 8 GB RAM for a single-tenant deployment</li>
+        </ul>
+        <p>Contact us at <a href="mailto:hello@ohwise.com">hello@ohwise.com</a> for enterprise deployment sizing and support.</p>
+      </div>
+    ),
+    "human-intervention": (
+      <div>
+        <h1>Human-in-the-Loop Intervention</h1>
+        <p>OhWise is built around a principle: AI does the work, humans make the calls. The human-in-the-loop system gives you meaningful control over agent execution without slowing down the majority of tasks that proceed smoothly.</p>
+        <h2>When Intervention Triggers</h2>
+        <p>The coordinator loop surfaces a human review stage in three situations:</p>
+        <ul>
+          <li><strong>Evaluator escalation</strong>: the evaluator scores the executor's output below threshold and marks it as requiring human judgment before proceeding</li>
+          <li><strong>Sensitive tool calls</strong>: any agent action in a "require approval" category (configurable per workspace) pauses and waits for explicit sign-off</li>
+          <li><strong>Manual pause</strong>: a team member can pause the loop at any time from the Studio interface</li>
+        </ul>
+        <h2>The Review Interface</h2>
+        <p>When a task reaches a human review stage, the Studio chat displays:</p>
+        <ul>
+          <li>The current state of the task and what the agent has done so far</li>
+          <li>The specific action or output waiting for review</li>
+          <li>The agent's reasoning for the proposed next step</li>
+        </ul>
+        <p>From here, a reviewer can:</p>
+        <ul>
+          <li><strong>Approve</strong>: the loop continues from where it paused</li>
+          <li><strong>Reject with feedback</strong>: the executor re-runs with the reviewer's correction injected</li>
+          <li><strong>Redirect</strong>: change the task scope or goal mid-execution</li>
+          <li><strong>Terminate</strong>: end the loop and archive the partial result</li>
+        </ul>
+        <h2>Audit and Accountability</h2>
+        <p>Every intervention is logged: who reviewed, what decision was made, at what timestamp, and what the agent did next. This audit trail is permanent and accessible from the session history.</p>
+        <h2>Configuring Approval Requirements</h2>
+        <p>Workspace administrators can configure which categories of actions require human approval by default. Common categories include: external API calls, file writes, data exports, and communications (email, Slack, webhook). Actions below the threshold run without pausing.</p>
+        <div className="doc-callout">✅ The goal is to keep approval friction proportional to consequence — high for irreversible actions, low or zero for read-only operations.</div>
+      </div>
+    ),
+    "dag-pipelines": (
+      <div>
+        <h1>Defining Pipelines as DAGs</h1>
+        <p>In OhWise, every multi-step workflow is represented as a directed acyclic graph (DAG). Each node is a unit of work. Edges define the order of execution and the data flow between nodes.</p>
+        <h2>Why DAGs?</h2>
+        <p>DAGs make multi-step workflows explicit and debuggable. Instead of a sequence of calls buried in application code, you have a visible structure where:</p>
+        <ul>
+          <li>Every step has a defined input and output type</li>
+          <li>Dependencies are declared, not assumed</li>
+          <li>Independent nodes execute in parallel automatically</li>
+          <li>Failures are isolated — a failed node doesn't silently corrupt downstream state</li>
+          <li>The full execution trace is recorded and inspectable</li>
+        </ul>
+        <h2>Node Types</h2>
+        <table>
+          <thead><tr><th>Type</th><th>Description</th></tr></thead>
+          <tbody>
+            <tr><td>Agent</td><td>An LLM-backed node. Receives context, produces structured output.</td></tr>
+            <tr><td>Lambda</td><td>A stateless function node. Executes a discrete operation without maintaining session state.</td></tr>
+            <tr><td>Tool</td><td>An external service call (API, database query, file operation).</td></tr>
+            <tr><td>Sub-pipeline</td><td>A nested DAG, enabling reusable workflow components.</td></tr>
+            <tr><td>Human</td><td>A pause node requiring manual input or approval before proceeding.</td></tr>
+          </tbody>
+        </table>
+        <h2>Execution Model</h2>
+        <p>The platform resolves the DAG topologically. Nodes with no unresolved dependencies are eligible to run. When a node completes, its output is stored in the shared DAG state and any newly unblocked nodes become eligible. This means parallelism is automatic — you don't schedule it explicitly.</p>
+        <h2>Typed State</h2>
+        <p>Each node declares the fields it reads from and writes to the shared state. The platform validates these contracts at execution time. If a node receives unexpected input, it fails clearly at the boundary rather than producing silent garbage output downstream.</p>
+        <h2>Error Handling</h2>
+        <p>Failed nodes can be configured with retry policies (max attempts, backoff, timeout) per node. If a node exhausts its retries, the DAG moves it to a terminal error state and the coordinator can escalate to human review or halt cleanly.</p>
+      </div>
+    ),
+    "lambda-dispatch": (
+      <div>
+        <h1>Lambda Dispatch and Stateless Execution</h1>
+        <p>Lambda dispatch is the lightweight execution path in OhWise — designed for tasks that are discrete, well-defined, and don't require a full multi-turn agent session.</p>
+        <h2>What Is a Lambda?</h2>
+        <p>A Lambda is a stateless function node in the DAG. It receives a typed input, executes a specific operation, and returns a typed output — without maintaining any session context between calls. Lambdas are the right tool when:</p>
+        <ul>
+          <li>The task can be described completely in a single prompt or function call</li>
+          <li>No back-and-forth with the model is needed</li>
+          <li>The operation needs to run at high throughput or be easily parallelized</li>
+          <li>You want lightweight cost characteristics (no multi-turn context to maintain)</li>
+        </ul>
+        <h2>Dispatch Flow</h2>
+        <p>When a DAG node is marked as Lambda-type, the coordinator:</p>
+        <ol>
+          <li>Assembles the input context from DAG state</li>
+          <li>Dispatches the request to the target model or tool with the assembled context</li>
+          <li>Receives the structured response</li>
+          <li>Writes the typed output back to DAG state</li>
+          <li>Marks the node complete and unblocks downstream dependencies</li>
+        </ol>
+        <h2>When to Use Lambda vs Agent</h2>
+        <table>
+          <thead><tr><th>Use Lambda when…</th><th>Use Agent when…</th></tr></thead>
+          <tbody>
+            <tr><td>Task is single-turn</td><td>Task requires multi-turn reasoning</td></tr>
+            <tr><td>Input/output is well-defined</td><td>Task requires tool use or web browsing</td></tr>
+            <tr><td>High throughput needed</td><td>Task benefits from iterative refinement</td></tr>
+            <tr><td>Cost sensitivity is high</td><td>Full session context is valuable</td></tr>
+          </tbody>
+        </table>
+        <h2>Parallelism</h2>
+        <p>Lambda nodes are stateless, which means they're trivially parallelizable. A DAG with ten independent Lambda nodes executes all ten concurrently. This is the primary pattern for fan-out/fan-in workflows: spread the work across parallel Lambdas, then collect and synthesize results in a single downstream node.</p>
+      </div>
+    ),
+    "state-propagation": (
+      <div>
+        <h1>State Propagation and Typed Contracts</h1>
+        <p>OhWise pipelines maintain a shared state object that flows through the DAG. Each node reads from and writes to this shared state using declared, typed contracts.</p>
+        <h2>The Shared State Object</h2>
+        <p>When a DAG starts executing, an empty state object is created for that run. As nodes complete, they write their outputs into the state. Downstream nodes read from the state when they start executing. The state accumulates the full history of the run.</p>
+        <h2>Typed Contracts</h2>
+        <p>Every node declares:</p>
+        <ul>
+          <li><strong>Inputs</strong>: the fields from the shared state it will read, with their expected types</li>
+          <li><strong>Outputs</strong>: the fields it will write back to the shared state, with their declared types</li>
+        </ul>
+        <p>The platform validates these contracts at execution boundaries. If a node receives a field of the wrong type, or writes a field that wasn't declared, the failure is caught immediately and reported clearly — not buried in a downstream node's error log.</p>
+        <h2>Why Types Matter for Multi-Agent Systems</h2>
+        <p>In multi-agent pipelines, the handoff between nodes is where most bugs occur. Untyped handoffs — where one agent produces free text and the next agent tries to parse it — are fragile. Typed contracts make these handoffs explicit and verifiable, turning runtime surprises into configuration-time errors.</p>
+        <h2>State Persistence</h2>
+        <p>For long-running workflows that span multiple turns or pause for human review, the state object is serialized to persistent storage between steps. When the workflow resumes — whether seconds or hours later — it picks up exactly where it left off with full state intact. No state is lost on restarts or failures.</p>
+        <h2>Observability</h2>
+        <p>Every state write is logged with its node of origin, timestamp, and the full value written. The state history for any run is inspectable from the Studio interface, making it possible to trace exactly where a value came from and how it changed as it flowed through the pipeline.</p>
+      </div>
+    ),
+    "observability": (
+      <div>
+        <h1>Observability: Traces, Token Usage, Latency</h1>
+        <p>OhWise records a complete execution trace for every pipeline run. You can inspect what happened, when, and at what cost — for any run, any node, any agent call.</p>
+        <h2>What Gets Recorded</h2>
+        <p>For every DAG execution, the platform records:</p>
+        <ul>
+          <li><strong>Node traces</strong>: start time, end time, status (success / retry / failed / escalated), input state snapshot, output state snapshot</li>
+          <li><strong>Agent calls</strong>: model used, prompt tokens, completion tokens, latency, response</li>
+          <li><strong>Tool calls</strong>: tool name, arguments, response, duration</li>
+          <li><strong>Human interventions</strong>: reviewer, decision, timestamp, feedback provided</li>
+          <li><strong>Evaluator scores</strong>: score value, pass/retry/escalate decision, criteria evaluated against</li>
+        </ul>
+        <h2>Token Usage and Cost Visibility</h2>
+        <p>Every model call records prompt and completion token counts. The Studio interface shows cumulative token usage per run and per session, so you always know what a workflow is costing before you scale it. Usage aggregates are available per agent, per pipeline, per user, and per organization.</p>
+        <h2>Latency Breakdown</h2>
+        <p>The trace view shows a waterfall of node execution times, making it easy to identify which nodes are bottlenecks. For parallel DAGs, you can see which nodes ran concurrently and where the critical path fell.</p>
+        <h2>Audit Log</h2>
+        <p>Beyond performance observability, every action taken in OhWise — by agents or humans — is logged to a tamper-evident audit trail. This covers agent actions, tool calls, file writes, human approvals, and access events. The audit log is available for export and is the authoritative record for compliance and security reviews.</p>
+        <h2>Real-Time Streaming</h2>
+        <p>In Lab and Studio, all of this information streams to the browser in real time. You don't wait for a run to complete to see what's happening. Reasoning steps, tool calls, token consumption, and status changes appear as they occur.</p>
+      </div>
+    ),
+    "api-auth": (
+      <div>
+        <h1>Authentication</h1>
+        <p>All OhWise API requests are authenticated using short-lived JWT tokens issued at login. Tokens are scoped to an organization and carry the user's role and permissions.</p>
+        <h2>Getting a Token</h2>
+        <p>Authenticate via the login endpoint with your credentials. The response includes an access token and a refresh token.</p>
+        <pre><code>{`POST /api/auth/login
+Content-Type: application/json
+
+{
+  "email": "you@example.com",
+  "password": "your-password"
+}
+
+// Response
+{
+  "access_token": "eyJ...",
+  "refresh_token": "eyJ...",
+  "token_type": "bearer",
+  "expires_in": 3600
+}`}</code></pre>
+        <h2>Using the Token</h2>
+        <p>Include the access token as a Bearer token in the Authorization header for all API requests:</p>
+        <pre><code>{`GET /api/agent
+Authorization: Bearer eyJ...`}</code></pre>
+        <h2>Refreshing Tokens</h2>
+        <p>Access tokens expire after 1 hour. Use the refresh token to get a new access token without re-entering credentials:</p>
+        <pre><code>{`POST /api/auth/refresh
+Authorization: Bearer <refresh_token>
+
+// Response includes new access_token`}</code></pre>
+        <h2>API Keys</h2>
+        <p>For server-to-server integrations, organization administrators can issue scoped API keys from the Settings → API Keys panel. API keys do not expire automatically but can be revoked at any time. Use them the same way as JWT tokens in the Authorization header.</p>
+        <h2>Scopes</h2>
+        <p>API keys and JWT tokens carry permission scopes. Common scopes: <code>agent:read</code>, <code>agent:write</code>, <code>knowledge:read</code>, <code>knowledge:write</code>, <code>lab:session</code>, <code>studio:run</code>. Requests for a resource outside the token's scope return <code>403 Forbidden</code>.</p>
+      </div>
+    ),
+    "ws-events": (
+      <div>
+        <h1>WebSocket Event Types</h1>
+        <p>Lab sessions, Studio coordinator loops, and agent task execution all stream structured JSON events over WebSocket. Connect to the relevant WebSocket endpoint and handle events by <code>type</code>.</p>
+        <h2>Connection</h2>
+        <pre><code>{`// Lab session WebSocket
+wss://cloud.ohwise.com/ws/lab/{session_id}?token={access_token}
+
+// Studio coordinator WebSocket
+wss://cloud.ohwise.com/ws/studio/{group_id}?token={access_token}`}</code></pre>
+        <h2>Event Envelope</h2>
+        <p>All events share a common envelope:</p>
+        <pre><code>{`{
+  "type": "tool_call",
+  "ts": 1749600000.123,
+  "session_id": "sess_abc123",
+  "data": { ... }   // type-specific payload
+}`}</code></pre>
+        <h2>Lab Event Types</h2>
+        <table>
+          <thead><tr><th>type</th><th>Description</th><th>Key data fields</th></tr></thead>
+          <tbody>
+            <tr><td><code>session_start</code></td><td>Agent CLI process spawned</td><td><code>agent</code>, <code>folder</code></td></tr>
+            <tr><td><code>session_end</code></td><td>Process exited</td><td><code>exit_code</code></td></tr>
+            <tr><td><code>reasoning</code></td><td>Agent thinking/planning text</td><td><code>text</code></td></tr>
+            <tr><td><code>tool_call</code></td><td>Tool invocation detected</td><td><code>tool</code>, <code>input</code></td></tr>
+            <tr><td><code>tool_progress</code></td><td>Tool running update</td><td><code>tool</code>, <code>status</code></td></tr>
+            <tr><td><code>streaming_text</code></td><td>Partial assistant response</td><td><code>text</code></td></tr>
+            <tr><td><code>assistant_message</code></td><td>Complete assistant turn</td><td><code>text</code></td></tr>
+            <tr><td><code>input_ack</code></td><td>User input echoed back</td><td><code>text</code></td></tr>
+            <tr><td><code>url</code></td><td>URL in output (e.g. OAuth link)</td><td><code>url</code></td></tr>
+            <tr><td><code>quota_warning</code></td><td>Rate limit hit</td><td><code>message</code>, <code>retry_after</code></td></tr>
+            <tr><td><code>context_warning</code></td><td>Context window fill %</td><td><code>pct</code></td></tr>
+            <tr><td><code>context_compacted</code></td><td>Context was compacted</td><td><code>summary</code></td></tr>
+            <tr><td><code>error</code></td><td>Fatal error</td><td><code>message</code></td></tr>
+          </tbody>
+        </table>
+        <h2>Studio Event Types</h2>
+        <table>
+          <thead><tr><th>type</th><th>Description</th></tr></thead>
+          <tbody>
+            <tr><td><code>coordinator_start</code></td><td>Coordinator loop started for a task</td></tr>
+            <tr><td><code>planning</code></td><td>Planner output — task decomposition</td></tr>
+            <tr><td><code>executing</code></td><td>Executor working on a subtask</td></tr>
+            <tr><td><code>evaluating</code></td><td>Evaluator scoring output</td></tr>
+            <tr><td><code>artifact</code></td><td>Final synthesized artifact ready</td></tr>
+            <tr><td><code>human_review</code></td><td>Loop paused, waiting for human input</td></tr>
+            <tr><td><code>coordinator_end</code></td><td>Loop completed or terminated</td></tr>
+          </tbody>
+        </table>
+      </div>
+    ),
+    "endpoints": (
+      <div>
+        <h1>REST Endpoints</h1>
+        <p>Base URL: <code>https://cloud.ohwise.com/api</code> (or your self-hosted domain).</p>
+        <p>All requests require <code>Authorization: Bearer &lt;token&gt;</code>. All responses are JSON.</p>
+        <h2>Agents</h2>
+        <table>
+          <thead><tr><th>Method</th><th>Path</th><th>Description</th></tr></thead>
+          <tbody>
+            <tr><td>GET</td><td>/api/agent</td><td>List agents in your organization</td></tr>
+            <tr><td>POST</td><td>/api/agent</td><td>Create a new agent</td></tr>
+            <tr><td>GET</td><td>/api/agent/&#123;id&#125;</td><td>Get agent details</td></tr>
+            <tr><td>PUT</td><td>/api/agent/&#123;id&#125;</td><td>Update agent configuration</td></tr>
+            <tr><td>DELETE</td><td>/api/agent/&#123;id&#125;</td><td>Delete an agent</td></tr>
+          </tbody>
+        </table>
+        <h2>Knowledge Graphs</h2>
+        <table>
+          <thead><tr><th>Method</th><th>Path</th><th>Description</th></tr></thead>
+          <tbody>
+            <tr><td>GET</td><td>/api/knowledge</td><td>List knowledge bases</td></tr>
+            <tr><td>POST</td><td>/api/knowledge</td><td>Create a knowledge base</td></tr>
+            <tr><td>GET</td><td>/api/knowledge/&#123;id&#125;/graph</td><td>Get graph nodes and edges</td></tr>
+            <tr><td>POST</td><td>/api/knowledge/&#123;id&#125;/query</td><td>Query the knowledge graph</td></tr>
+          </tbody>
+        </table>
+        <h2>Lab Sessions</h2>
+        <table>
+          <thead><tr><th>Method</th><th>Path</th><th>Description</th></tr></thead>
+          <tbody>
+            <tr><td>GET</td><td>/api/lab/sessions</td><td>List Lab sessions</td></tr>
+            <tr><td>POST</td><td>/api/lab/sessions</td><td>Create a new Lab session</td></tr>
+            <tr><td>DELETE</td><td>/api/lab/sessions/&#123;id&#125;</td><td>Terminate a session</td></tr>
+          </tbody>
+        </table>
+        <h2>Studio / Group Chat</h2>
+        <table>
+          <thead><tr><th>Method</th><th>Path</th><th>Description</th></tr></thead>
+          <tbody>
+            <tr><td>GET</td><td>/api/chat/group</td><td>List group sessions</td></tr>
+            <tr><td>POST</td><td>/api/chat/group</td><td>Create a group session (Team plan)</td></tr>
+            <tr><td>POST</td><td>/api/chat/group/&#123;id&#125;/message</td><td>Send a message to the coordinator</td></tr>
+          </tbody>
+        </table>
+        <h2>Account &amp; Usage</h2>
+        <table>
+          <thead><tr><th>Method</th><th>Path</th><th>Description</th></tr></thead>
+          <tbody>
+            <tr><td>GET</td><td>/api/account/usage</td><td>Current plan, limits, and usage counts</td></tr>
+            <tr><td>GET</td><td>/api/account/members</td><td>List organization members</td></tr>
+            <tr><td>POST</td><td>/api/account/members/invite</td><td>Invite a member (Team plan)</td></tr>
+          </tbody>
+        </table>
+      </div>
+    ),
+    "errors": (
+      <div>
+        <h1>Rate Limits and Error Handling</h1>
+        <h2>HTTP Status Codes</h2>
+        <table>
+          <thead><tr><th>Status</th><th>Meaning</th></tr></thead>
+          <tbody>
+            <tr><td>200 OK</td><td>Request succeeded</td></tr>
+            <tr><td>201 Created</td><td>Resource created successfully</td></tr>
+            <tr><td>400 Bad Request</td><td>Invalid request body or parameters</td></tr>
+            <tr><td>401 Unauthorized</td><td>Missing or invalid token</td></tr>
+            <tr><td>403 Forbidden</td><td>Valid token but insufficient permissions or plan limit reached</td></tr>
+            <tr><td>404 Not Found</td><td>Resource does not exist or is not accessible to your account</td></tr>
+            <tr><td>429 Too Many Requests</td><td>Rate limit exceeded</td></tr>
+            <tr><td>500 Internal Server Error</td><td>Unexpected server error</td></tr>
+          </tbody>
+        </table>
+        <h2>Error Response Shape</h2>
+        <p>All error responses return a JSON body:</p>
+        <pre><code>{`{
+  "detail": "Human-readable error message",
+  "error": "machine_readable_error_code",   // for structured errors
+  "feature": "agents",                      // for plan limit errors
+  "current": 5,
+  "limit": 5
+}`}</code></pre>
+        <h2>Plan Limit Errors (403)</h2>
+        <p>When a request is blocked by a plan limit (e.g. agent count at maximum), the response includes:</p>
+        <pre><code>{`{
+  "detail": "Agent limit reached for your plan",
+  "error": "plan_limit",
+  "feature": "agents",
+  "current": 5,
+  "limit": 5
+}`}</code></pre>
+        <p>The OhWise frontend handles these automatically by showing an upgrade prompt. If you're integrating via API, check for <code>error === "plan_limit"</code> and prompt your users accordingly.</p>
+        <h2>Rate Limits</h2>
+        <p>API rate limits are applied per organization. When a limit is exceeded, the response is <code>429 Too Many Requests</code> with a <code>Retry-After</code> header indicating when to retry (in seconds).</p>
+        <table>
+          <thead><tr><th>Endpoint category</th><th>Default limit</th></tr></thead>
+          <tbody>
+            <tr><td>Authentication</td><td>20 requests / minute</td></tr>
+            <tr><td>Read endpoints (GET)</td><td>300 requests / minute</td></tr>
+            <tr><td>Write endpoints (POST/PUT/DELETE)</td><td>60 requests / minute</td></tr>
+            <tr><td>Agent task execution</td><td>Based on plan tier</td></tr>
+          </tbody>
+        </table>
+        <h2>Retrying Safely</h2>
+        <p>For <code>429</code> responses, wait for the <code>Retry-After</code> duration before retrying. For <code>500</code> responses, use exponential backoff with a maximum of 3 retries. Do not retry <code>400</code>, <code>401</code>, or <code>403</code> responses — these indicate client errors that won't resolve by retrying.</p>
+      </div>
+    ),
   };
 
   const [selectedArticle, setSelectedArticle] = useState<null | { title: string; slug: string; content: React.ReactNode }>(null);
