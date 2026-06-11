@@ -82,7 +82,7 @@ const About = () => {
                   {
                     icon: <Package className="w-5 h-5 text-rose-600" />,
                     title: "5 open-source PyPI packages",
-                    description: "The graph context layer is fully open source: ai-relay (v0.4.32), graph2sql (v0.2.0), docs2graph (v0.3.2), codebase2graph (v0.1.0), ohwise-mcp (v0.2.0). All pure Python with no LLM dependency.",
+                    description: "The graph context layer is fully open source: ai-relay (v0.4.33), graph2sql (v0.2.0), docs2graph (v0.3.2), codebase2graph (v0.2.0), ohwise-mcp (v0.2.0). All pure Python with no LLM dependency.",
                   },
                   {
                     icon: <Shield className="w-5 h-5 text-gray-600" />,
@@ -149,7 +149,7 @@ const About = () => {
 
         {/* CTA */}
         <CTASection
-          title="Built for engineers who care about correctness"
+          title="Built for people who care about correctness, and reliability"
           subtitle="Start with the open-source packages or try the full platform today."
           primaryButtonText="Get Started"
           primaryButtonLink="https://cloud.ohwise.com/"

@@ -384,10 +384,10 @@ const Product = () => {
 
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 max-w-5xl mx-auto">
               {[
-                { name: "ai-relay", version: "0.4.32", desc: "WebSocket relay for AI coding agent CLIs", install: "pip install ai-relay" },
+                { name: "ai-relay", version: "0.4.33", desc: "WebSocket relay for AI coding agent CLIs", install: "pip install ai-relay" },
                 { name: "graph2sql", version: "0.2.0", desc: "Graph-based schema ranking for text-to-SQL", install: "pip install graph2sql" },
                 { name: "docs2graph", version: "0.3.2", desc: "Document → knowledge graph extraction", install: "pip install docs2graph" },
-                { name: "codebase2graph", version: "0.1.0", desc: "Code repository → queryable knowledge graph", install: "pip install codebase2graph" },
+                { name: "codebase2graph", version: "0.2.0", desc: "Code repository → queryable knowledge graph", install: "pip install codebase2graph" },
                 { name: "ohwise-mcp", version: "0.2.0", desc: "MCP server for graph context + agent tools", install: "pip install ohwise-mcp" },
               ].map((pkg, i) => (
                 <div key={i} className="animate-on-scroll p-5 rounded-xl border border-indigo-100 dark:border-indigo-900/50 bg-indigo-50 dark:bg-indigo-900/10 hover:border-indigo-300 dark:hover:border-indigo-700 transition-colors">

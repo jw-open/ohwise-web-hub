@@ -7,7 +7,7 @@ import { GitBranch, ExternalLink, Terminal, Star, Package, Box } from "lucide-re
 const projects = [
   {
     name: "ai-relay",
-    version: "0.4.32",
+    version: "0.4.33",
     tagline: "WebSocket relay that bridges AI coding agent CLIs to any web interface.",
     description:
       "Run ai-relay as a sidecar next to Claude Code, Codex, Gemini CLI, or Snowflake Cortex. It spawns the CLI as a subprocess, speaks the native stream-json protocol, and streams structured events (reasoning steps, tool calls, file diffs, permission requests, quota warnings) over WebSocket to any frontend in real time. Powers the Lab feature in OhWise.",
@@ -25,7 +25,7 @@ const projects = [
     snippet: `# Local dev (one-shot)
 ai-relay --port 8765
 
-# Container / daemon mode (v0.4.32+)
+# Container / daemon mode (v0.4.33+)
 ai-relay serve --port 9000
 
 # Connect and send handshake:
@@ -125,7 +125,7 @@ ranked = rank_nodes(graph, "quarterly revenue", k=5)`,
   },
   {
     name: "codebase2graph",
-    version: "0.1.0",
+    version: "0.2.0",
     tagline: "Turn a code repository into a queryable knowledge graph.",
     description:
       "Statically extract the full structure of any codebase (files, modules, functions, classes, call graphs, schemas, infrastructure, CI/CD pipelines) as a typed graph of nodes and edges. Rank the most relevant nodes for any query with Personalized PageRank and pass focused context to any LLM.",

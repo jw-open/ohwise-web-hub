@@ -115,7 +115,7 @@ const Documentation = () => {
         </ol>
         <h2>Key components</h2>
         <ul>
-          <li><strong>ai-relay</strong>: Open-source Python package (v0.4.32) that bridges AI coding agent CLIs to the OhWise web interface via real-time streaming</li>
+          <li><strong>ai-relay</strong>: Open-source Python package (v0.4.33) that bridges AI coding agent CLIs to the OhWise web interface via real-time streaming</li>
           <li><strong>graph2sql / docs2graph / codebase2graph</strong>: Pure-Python graph packages for schema, document, and code context retrieval. No LLM required.</li>
           <li><strong>ohwise-mcp</strong>: MCP server exposing OhWise graph tools to Claude Code, Cursor, and any MCP client</li>
         </ul>
@@ -203,7 +203,7 @@ const Documentation = () => {
       <div>
         <h1>ai-relay: WebSocket Relay Protocol</h1>
         <p>
-          <a href="https://pypi.org/project/ai-relay/" target="_blank" rel="noopener noreferrer"><strong>ai-relay</strong></a> (v0.4.32) is an open-source Python package that bridges AI coding agent CLIs to any WebSocket-capable frontend. It spawns the CLI as a subprocess, speaks the native stream-json protocol, and emits structured events over WebSocket.
+          <a href="https://pypi.org/project/ai-relay/" target="_blank" rel="noopener noreferrer"><strong>ai-relay</strong></a> (v0.4.33) is an open-source Python package that bridges AI coding agent CLIs to any WebSocket-capable frontend. It spawns the CLI as a subprocess, speaks the native stream-json protocol, and emits structured events over WebSocket.
         </p>
         <h2>Install</h2>
         <pre><code>pip install ai-relay</code></pre>
@@ -211,7 +211,7 @@ const Documentation = () => {
         <pre><code>{`# One-shot mode
 ai-relay --port 8765
 
-# Server / daemon mode (v0.4.32+)
+# Server / daemon mode (v0.4.33+)
 ai-relay serve --port 9000`}</code></pre>
         <h2>Handshake</h2>
         <p>After connecting, send a JSON handshake:</p>
@@ -451,7 +451,7 @@ ranked = rank_nodes(graph, "quarterly revenue growth", k=5)
       <div>
         <h1>codebase2graph: Code Repository Graphs</h1>
         <p>
-          <a href="https://pypi.org/project/codebase2graph/" target="_blank" rel="noopener noreferrer"><strong>codebase2graph</strong></a> (v0.1.0) statically extracts the full structure of any codebase as a typed graph (files, modules, functions, classes, call chains, schemas, infrastructure, CI/CD) and ranks the most relevant nodes for any query.
+          <a href="https://pypi.org/project/codebase2graph/" target="_blank" rel="noopener noreferrer"><strong>codebase2graph</strong></a> (v0.2.0) statically extracts the full structure of any codebase as a typed graph (files, modules, functions, classes, call chains, schemas, infrastructure, CI/CD) and ranks the most relevant nodes for any query.
         </p>
         <h2>Install</h2>
         <pre><code>pip install codebase2graph</code></pre>
@@ -1109,7 +1109,7 @@ wss://cloud.ohwise.com/ws/studio/{group_id}?token={access_token}`}</code></pre>
                 <div className="space-y-6">
                   {[
                     {
-                      title: "ai-relay v0.4.32: server mode and PerTurnRuntime",
+                      title: "ai-relay v0.4.33: server mode and PerTurnRuntime",
                       tag: "Updated",
                       tagColor: "bg-blue-100 text-blue-800 dark:bg-blue-900/50 dark:text-blue-300",
                       desc: "ai-relay now ships a server mode (ai-relay serve) for persistent daemon deployments and a PerTurnRuntime for multi-turn conversations with --resume support. Structured events include reasoning, tool_call, file diffs, quota_warning, context_warning, and context_compacted.",

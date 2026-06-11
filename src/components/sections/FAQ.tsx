@@ -27,7 +27,7 @@ const faqItems: FAQItem[] = [
   {
     id: 4,
     question: "What open-source packages does OhWise publish?",
-    answer: "OhWise maintains 5 active PyPI packages: ai-relay (v0.4.32) is a WebSocket relay for AI coding agent CLIs; graph2sql (v0.2.0) is a schema graph for text-to-SQL; docs2graph (v0.3.2) handles document-to-knowledge-graph extraction; codebase2graph (v0.1.0) builds code repository knowledge graphs; ohwise-mcp (v0.2.0) is an MCP server exposing graph context and agent tools to Claude Code, Cursor, Windsurf, and any MCP client. All packages are pure Python with no LLM dependency and are model-agnostic by design."
+    answer: "OhWise maintains 5 active PyPI packages: ai-relay (v0.4.33) is a WebSocket relay for AI coding agent CLIs; graph2sql (v0.2.0) is a schema graph for text-to-SQL; docs2graph (v0.3.2) handles document-to-knowledge-graph extraction; codebase2graph (v0.2.0) builds code repository knowledge graphs; ohwise-mcp (v0.2.0) is an MCP server exposing graph context and agent tools to Claude Code, Cursor, Windsurf, and any MCP client. All packages are pure Python with no LLM dependency and are model-agnostic by design."
   },
   {
     id: 5,

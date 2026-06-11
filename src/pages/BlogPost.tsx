@@ -430,7 +430,7 @@ ranked = graph.rank("total revenue by customer last 30 days excluding cancelled"
 
       <h2>codebase2graph: code repository knowledge graphs</h2>
 
-      <p><strong>codebase2graph</strong> (v0.1.0, <code>pip install codebase2graph</code>) extracts 10 typed graph types from any code repository: call graphs (which functions call which), entity graphs (class/function definitions), schema graphs (database models), infrastructure graphs (Docker, nginx, env vars), security graphs (auth decorators, permissions), and more.</p>
+      <p><strong>codebase2graph</strong> (v0.2.0, <code>pip install codebase2graph</code>) extracts 10 typed graph types from any code repository: call graphs (which functions call which), entity graphs (class/function definitions), schema graphs (database models), infrastructure graphs (Docker, nginx, env vars), security graphs (auth decorators, permissions), and more.</p>
 
       <p>For a code understanding query like "how does authentication work for the /orders endpoint", PPR on the call graph identifies: the <code>/orders</code> route handler → the <code>require_auth</code> decorator → the <code>verify_jwt</code> function → the <code>load_user</code> database call → the <code>User</code> model. This call chain is the correct context for answering the question. Vector similarity on function docstrings would surface functions mentioning "authentication" or "orders", which may include unrelated auth utilities or order utilities that don't participate in the relevant call chain.</p>
 
