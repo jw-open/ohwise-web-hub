@@ -6,6 +6,36 @@ import { GitBranch, ExternalLink, Terminal, Star, Package, Box } from "lucide-re
 
 const projects = [
   {
+    name: "artifact-gateway",
+    version: "0.1.0",
+    tagline: "Secure API proxy for AI-generated artifact web apps.",
+    description:
+      "Issue short-lived RBAC-scoped tokens (JWT) to AI-generated artifact web apps running in iframes, then route their API calls through a controlled gateway: external HTTPS APIs, internal OhWise APIs (path + method allowlist), user-isolated DuckDB files, or session-scoped MongoDB collections. Works as a drop-in library for any FastAPI service. Used by ohwise-lab-ctrl (Lab artifacts) and ohwise-backend (Studio artifacts).",
+    status: "active",
+    language: "Python",
+    install: 'pip install "artifact-gateway[all]"',
+    github: "https://github.com/jw-open/artifact-gateway",
+    pypi: "https://pypi.org/project/artifact-gateway/",
+    features: [
+      "RBAC-scoped app tokens (JWT, 4 h TTL) with scope_from_role()",
+      "External proxy: HTTPS-only, 4 MB cap, scope guard",
+      "Internal proxy: path+method allowlist, read/write scope enforcement",
+      "User-isolated DuckDB (per-user files) and MongoDB (namespaced collections)",
+    ],
+    snippet: `from artifact_gateway import issue_app_token, ExternalProxy, InternalProxy
+
+# Issue a token scoped to the user's RBAC role
+token = issue_app_token(user_id="u1", session_id="s1", role="member", secret="…")
+
+# In your FastAPI route — proxy an external API call
+proxy = ExternalProxy()
+result = await proxy.call(token, url="https://api.example.com/data", method="GET")
+
+# Or proxy an internal OhWise API call (allowlist-enforced)
+internal = InternalProxy(backend_url="http://ohwise_backend:8000")
+result = await internal.call(token, path="/api/agent", method="GET")`,
+  },
+  {
     name: "ai-relay",
     version: "0.4.33",
     tagline: "WebSocket relay that bridges AI coding agent CLIs to any web interface.",
