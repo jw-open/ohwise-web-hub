@@ -80,6 +80,7 @@ const Navbar = () => {
             >
               Open Source
             </Link>
+            <Link to="/about" className={linkClass("/about")}>About</Link>
           </div>
 
           {/* Desktop right actions */}
@@ -163,6 +164,7 @@ const Navbar = () => {
           >
             Open Source
           </Link>
+          <Link to="/about" className={mobileLinkClass("/about")}>About</Link>
           <div className="py-4 flex flex-col gap-3 px-4">
             <a
               href="https://cloud.ohwise.com"
