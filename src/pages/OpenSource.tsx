@@ -7,20 +7,20 @@ import { GitBranch, ExternalLink, Terminal, Star, Package, Box } from "lucide-re
 const projects = [
   {
     name: "artifact-gateway",
-    version: "0.1.0",
+    version: "0.2.0",
     tagline: "Secure API proxy for AI-generated artifact web apps.",
     description:
-      "Issue short-lived RBAC-scoped tokens (JWT) to AI-generated artifact web apps running in iframes, then route their API calls through a controlled gateway: external HTTPS APIs, internal OhWise APIs (path + method allowlist), user-isolated DuckDB files, or session-scoped MongoDB collections. Works as a drop-in library for any FastAPI service. Used by ohwise-lab-ctrl (Lab artifacts) and ohwise-backend (Studio artifacts).",
+      "Issue short-lived RBAC-scoped tokens (JWT) to AI-generated artifact web apps running in iframes, then route their calls through a controlled gateway: external HTTPS APIs (with a credential vault so secrets are referenced by name, never embedded), internal OhWise APIs (path + method allowlist), user-isolated DuckDB files, session-scoped MongoDB collections, isolated file read/write, and streaming upstreams. Works as a drop-in library for any FastAPI service. Used by ohwise-lab-ctrl (Lab artifacts) and ohwise-backend (Studio artifacts).",
     status: "active",
     language: "Python",
     install: 'pip install "artifact-gateway[all]"',
     github: "https://github.com/jw-open/artifact-gateway",
     pypi: "https://pypi.org/project/artifact-gateway/",
     features: [
-      "RBAC-scoped app tokens (JWT, 4 h TTL) with scope_from_role()",
-      "External proxy: HTTPS-only, 4 MB cap, scope guard",
+      "RBAC-scoped app tokens (JWT) with scope_from_role() + token refresh",
+      "External proxy: HTTPS-only, scope guard, streaming, credential vault (AES-256-GCM)",
       "Internal proxy: path+method allowlist, read/write scope enforcement",
-      "User-isolated DuckDB (per-user files) and MongoDB (namespaced collections)",
+      "User/session-isolated DuckDB, MongoDB, and file read/write",
     ],
     snippet: `from artifact_gateway import issue_app_token, ExternalProxy, InternalProxy
 
@@ -37,7 +37,7 @@ result = await internal.call(token, path="/api/agent", method="GET")`,
   },
   {
     name: "ai-relay",
-    version: "0.4.33",
+    version: "0.4.39",
     tagline: "WebSocket relay that bridges AI coding agent CLIs to any web interface.",
     description:
       "Run ai-relay as a sidecar next to Claude Code, Codex, Gemini CLI, or Snowflake Cortex. It spawns the CLI as a subprocess, speaks the native stream-json protocol, and streams structured events (reasoning steps, tool calls, file diffs, permission requests, quota warnings) over WebSocket to any frontend in real time. Powers the Lab feature in OhWise.",
@@ -55,7 +55,7 @@ result = await internal.call(token, path="/api/agent", method="GET")`,
     snippet: `# Local dev (one-shot)
 ai-relay --port 8765
 
-# Container / daemon mode (v0.4.33+)
+# Container / daemon mode (v0.4.39+)
 ai-relay serve --port 9000
 
 # Connect and send handshake:
