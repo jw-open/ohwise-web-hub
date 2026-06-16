@@ -4,7 +4,22 @@ import Navbar from "../components/layout/Navbar";
 import Footer from "../components/layout/Footer";
 import { GitBranch, ExternalLink, Terminal, Star, Package, Box } from "lucide-react";
 
-const projects = [
+type OSSProject = {
+  name: string;
+  version: string;
+  tagline: string;
+  description: string;
+  status: string;
+  language: string;
+  install?: string;
+  github: string;
+  pypi?: string;
+  npm?: string;
+  features: string[];
+  snippet?: string;
+};
+
+const projects: OSSProject[] = [
   {
     name: "artifact-gateway",
     version: "0.2.0",
@@ -36,8 +51,36 @@ internal = InternalProxy(backend_url="http://ohwise_backend:8000")
 result = await internal.call(token, path="/api/agent", method="GET")`,
   },
   {
+    name: "artifact-sdk",
+    version: "0.1.0",
+    tagline: "Browser SDK for AI-generated artifact web apps — the client side of artifact-gateway.",
+    description:
+      "The JavaScript companion to artifact-gateway. Drop it into any AI-generated artifact (plain HTML or a bundled React/Vue/Vite app); it receives a short-lived app token from the host via postMessage and exposes a global window.ohwise (alias window.artifactGateway) for calling external APIs, internal OhWise APIs, user/session-isolated DuckDB + MongoDB, file read/write, streaming upstreams, and a code sandbox — all routed through the gateway with no plumbing to write and no secrets in the page. Auto-refreshes the token on 401.",
+    status: "active",
+    language: "JavaScript",
+    install: "npm install artifact-sdk",
+    github: "https://github.com/jw-open/artifact-gateway",
+    npm: "https://www.npmjs.com/package/artifact-sdk",
+    features: [
+      "Global window.ohwise / window.artifactGateway, token via postMessage",
+      "external / internal / stream / run + db.* + files.* methods",
+      "CDN (jsDelivr) for HTML, or npm install + autoInstall() for bundlers",
+      "Automatic app-token refresh on 401",
+    ],
+    snippet: `<!-- Plain HTML: pull from the CDN -->
+<script src="https://cdn.jsdelivr.net/npm/artifact-sdk@0/dist/artifact-sdk.js"></script>
+
+// Bundled app (React / Vue / Vite): npm install artifact-sdk
+import { autoInstall } from "artifact-sdk";
+const ohwise = autoInstall();           // waits for the host token
+
+// Then call through the gateway:
+await ohwise.external({ method: "GET", url: "https://api.example.com/data" });
+await ohwise.db.find("notes", { status: "active" });`,
+  },
+  {
     name: "ai-relay",
-    version: "0.4.39",
+    version: "0.4.41",
     tagline: "WebSocket relay that bridges AI coding agent CLIs to any web interface.",
     description:
       "Run ai-relay as a sidecar next to Claude Code, Codex, Gemini CLI, or Snowflake Cortex. It spawns the CLI as a subprocess, speaks the native stream-json protocol, and streams structured events (reasoning steps, tool calls, file diffs, permission requests, quota warnings) over WebSocket to any frontend in real time. Powers the Lab feature in OhWise.",
@@ -260,6 +303,18 @@ const OpenSource = () => {
                         >
                           <Box size={14} />
                           PyPI
+                          <ExternalLink size={12} />
+                        </a>
+                      )}
+                      {project.npm && (
+                        <a
+                          href={project.npm}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="flex items-center gap-1.5 text-sm text-gray-600 dark:text-gray-400 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors"
+                        >
+                          <Box size={14} />
+                          npm
                           <ExternalLink size={12} />
                         </a>
                       )}

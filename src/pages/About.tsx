@@ -81,8 +81,8 @@ const About = () => {
                   },
                   {
                     icon: <Package className="w-5 h-5 text-rose-600" />,
-                    title: "5 open-source PyPI packages",
-                    description: "The graph context layer is fully open source: ai-relay (v0.4.33), graph2sql (v0.2.0), docs2graph (v0.3.2), codebase2graph (v0.2.0), ohwise-mcp (v0.2.0). All pure Python with no LLM dependency.",
+                    title: "7 open-source packages",
+                    description: "The graph context and artifact layers are fully open source: ai-relay (v0.4.41), artifact-gateway (v0.2.0), artifact-sdk (v0.1.0, npm), graph2sql (v0.2.0), docs2graph (v0.3.2), codebase2graph (v0.2.0), ohwise-mcp (v0.2.0). Python packages have no LLM dependency.",
                   },
                   {
                     icon: <Shield className="w-5 h-5 text-gray-600" />,
@@ -111,11 +111,13 @@ const About = () => {
             <div className="max-w-3xl mx-auto text-center">
               <h2 className="text-3xl font-bold mb-6">Open source at the core</h2>
               <p className="text-gray-600 dark:text-gray-400 mb-10 leading-relaxed">
-                The graph context layer powering OhWise is extracted into standalone packages so any team can use graph-native retrieval without adopting the full platform. All packages ship to PyPI with zero LLM dependencies.
+                The graph context and artifact layers powering OhWise are extracted into standalone packages so any team can use them without adopting the full platform. Python packages ship to PyPI with zero LLM dependencies; the browser SDK ships to npm.
               </p>
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 text-left mb-10">
                 {[
                   { name: "ai-relay", link: "https://github.com/jw-open/ai-relay", desc: "WebSocket relay for AI coding agent CLIs" },
+                  { name: "artifact-gateway", link: "https://github.com/jw-open/artifact-gateway", desc: "Secure API proxy for AI-generated artifact apps" },
+                  { name: "artifact-sdk", link: "https://www.npmjs.com/package/artifact-sdk", desc: "Browser SDK for artifact apps (npm)" },
                   { name: "graph2sql", link: "https://github.com/jw-open/graph2sql", desc: "Schema graph ranking for text-to-SQL" },
                   { name: "docs2graph", link: "https://github.com/jw-open/doc2graph", desc: "Document → knowledge graph" },
                   { name: "codebase2graph", link: "https://github.com/jw-open/code2graph", desc: "Code repository → knowledge graph" },

@@ -115,7 +115,7 @@ const Documentation = () => {
         </ol>
         <h2>Key components</h2>
         <ul>
-          <li><strong>ai-relay</strong>: Open-source Python package (v0.4.33) that bridges AI coding agent CLIs to the OhWise web interface via real-time streaming</li>
+          <li><strong>ai-relay</strong>: Open-source Python package (v0.4.41) that bridges AI coding agent CLIs to the OhWise web interface via real-time streaming</li>
           <li><strong>graph2sql / docs2graph / codebase2graph</strong>: Pure-Python graph packages for schema, document, and code context retrieval. No LLM required.</li>
           <li><strong>ohwise-mcp</strong>: MCP server exposing OhWise graph tools to Claude Code, Cursor, and any MCP client</li>
         </ul>
@@ -203,7 +203,7 @@ const Documentation = () => {
       <div>
         <h1>ai-relay: WebSocket Relay Protocol</h1>
         <p>
-          <a href="https://pypi.org/project/ai-relay/" target="_blank" rel="noopener noreferrer"><strong>ai-relay</strong></a> (v0.4.33) is an open-source Python package that bridges AI coding agent CLIs to any WebSocket-capable frontend. It spawns the CLI as a subprocess, speaks the native stream-json protocol, and emits structured events over WebSocket.
+          <a href="https://pypi.org/project/ai-relay/" target="_blank" rel="noopener noreferrer"><strong>ai-relay</strong></a> (v0.4.41) is an open-source Python package that bridges AI coding agent CLIs to any WebSocket-capable frontend. It spawns the CLI as a subprocess, speaks the native stream-json protocol, and emits structured events over WebSocket.
         </p>
         <h2>Install</h2>
         <pre><code>pip install ai-relay</code></pre>
