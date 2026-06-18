@@ -80,6 +80,14 @@ const Documentation = () => {
       ]
     },
     {
+      title: "Artifacts & App SDK (OSS)",
+      icon: <Package className="text-rose-600" size={24} />,
+      articles: [
+        { title: "artifact-gateway: Secure API Proxy for Artifact Apps", slug: "artifact-gateway" },
+        { title: "artifact-sdk: Browser SDK for Artifact Apps", slug: "artifact-sdk" },
+      ]
+    },
+    {
       title: "DAG Orchestration",
       icon: <GitBranch className="text-indigo-600" size={24} />,
       articles: [
@@ -615,6 +623,56 @@ pip install "ohwise-mcp[all]"`}</code></pre>
         <h2>Configuring Approval Requirements</h2>
         <p>Workspace administrators can configure which categories of actions require human approval by default. Common categories include: external API calls, file writes, data exports, and communications (email, Slack, webhook). Actions below the threshold run without pausing.</p>
         <div className="doc-callout">✅ The goal is to keep approval friction proportional to consequence — high for irreversible actions, low or zero for read-only operations.</div>
+      </div>
+    ),
+    "artifact-gateway": (
+      <div>
+        <h1>artifact-gateway: Secure API Proxy for Artifact Apps</h1>
+        <p>
+          <a href="https://pypi.org/project/artifact-gateway/" target="_blank" rel="noopener noreferrer"><strong>artifact-gateway</strong></a> (v0.2.0, <a href="https://github.com/jw-open/artifact-gateway" target="_blank" rel="noopener noreferrer">GitHub</a>) is an open-source Python library that lets AI-generated web apps (artifacts) call APIs and read/write data safely — without ever embedding secrets or granting raw network access. It is the server side of the artifact system; the browser side is <a href="https://www.npmjs.com/package/artifact-sdk" target="_blank" rel="noopener noreferrer">artifact-sdk</a>.
+        </p>
+        <h2>Install</h2>
+        <pre><code>pip install "artifact-gateway[all]"</code></pre>
+        <h2>What it does</h2>
+        <p>You issue a short-lived, RBAC-scoped token to an artifact running in an iframe, then route every request the artifact makes through a controlled gateway:</p>
+        <ul>
+          <li><strong>External proxy</strong> — call third-party HTTPS APIs (CORS-free), with secrets referenced by name from a credential vault (AES-256-GCM) so they never appear in the generated code.</li>
+          <li><strong>Internal proxy</strong> — call your own backend APIs through a path + method allowlist.</li>
+          <li><strong>Isolated data</strong> — per-user / per-session DuckDB and MongoDB collections; the gateway injects the tenant key so one artifact can never read another tenant's data.</li>
+          <li><strong>Files, sandbox, streaming</strong> — scoped file read/write, a code-run sandbox, and streaming (SSE) upstreams.</li>
+        </ul>
+        <h2>Tokens and scopes</h2>
+        <p>Tokens are JWTs scoped from the caller's role, with a short TTL and a refresh endpoint. Every proxied call re-checks scope (e.g. read vs. write) before executing, so an artifact only ever gets the access you granted.</p>
+        <div className="doc-callout">✅ Drop-in for any FastAPI service. The artifact only ever sees a short logical name (e.g. <code>job_state</code>) — the gateway resolves it to the real isolated collection.</div>
+      </div>
+    ),
+    "artifact-sdk": (
+      <div>
+        <h1>artifact-sdk: Browser SDK for Artifact Apps</h1>
+        <p>
+          <a href="https://www.npmjs.com/package/artifact-sdk" target="_blank" rel="noopener noreferrer"><strong>artifact-sdk</strong></a> (v0.1.1, <a href="https://github.com/jw-open/artifact-gateway" target="_blank" rel="noopener noreferrer">GitHub</a>) is the JavaScript companion to <a href="https://pypi.org/project/artifact-gateway/" target="_blank" rel="noopener noreferrer">artifact-gateway</a>. Drop it into any AI-generated artifact — plain HTML or a bundled React/Vue/Vite app — and it exposes a single <code>window.ohwise</code> (alias <code>window.artifactGateway</code>) object for calling APIs and data through the gateway.
+        </p>
+        <h2>Load it</h2>
+        <p>Plain HTML — from the CDN:</p>
+        <pre><code>{`<script src="https://cdn.jsdelivr.net/npm/artifact-sdk@0/dist/artifact-sdk.js"></script>`}</code></pre>
+        <p>Bundled app — from npm:</p>
+        <pre><code>{`npm install artifact-sdk
+
+import { autoInstall } from "artifact-sdk";
+const ohwise = autoInstall(); // receives the host token, returns the client`}</code></pre>
+        <h2>How the token arrives</h2>
+        <p>The host posts the app token to the iframe via <code>postMessage</code>. The SDK also announces readiness back to the host on load and retries until the token arrives, so delivery never races the script load. Use <code>window.ohwise._onReady</code> to run code once the token is available.</p>
+        <h2>What you can call</h2>
+        <pre><code>{`ohwise.external({ method, url, body, credentialId })  // third-party API
+ohwise.internal({ method, path })                     // your backend
+ohwise.db.userQuery(db, sql, params)                  // analytical DuckDB
+ohwise.db.find / upsert / delete(collection, ...)     // live MongoDB
+ohwise.files.read / write(path, content)              // scoped files
+ohwise.stream(payload, onChunk)                        // streaming
+ohwise.run(language, code, stdin)                      // sandbox`}</code></pre>
+        <h2>Where to store data</h2>
+        <p>Persist through the SDK, never browser <code>localStorage</code> (it is private to one tab and invisible elsewhere). Use <strong>DuckDB</strong> (<code>db.userQuery/userExec</code>) for large, read-mostly analytical data, and <strong>MongoDB</strong> (<code>db.find/upsert/delete</code>) for small, live state that changes as users interact.</p>
+        <div className="doc-callout">✅ The token auto-refreshes on expiry, and lives in memory only — never persist it.</div>
       </div>
     ),
     "dag-pipelines": (

@@ -6,6 +6,7 @@ import UseCases from "../components/sections/UseCases";
 import Features from "../components/sections/Features";
 import Enterprise from "../components/sections/Enterprise";
 import Infrastructure from "../components/sections/Infrastructure";
+import OpenSourceStrip from "../components/sections/OpenSourceStrip";
 import FAQ from "../components/sections/FAQ";
 import CTASection from "../components/sections/CTASection";
 
@@ -24,6 +25,7 @@ const Index = () => {
         <Enterprise />
         <Infrastructure />
         <UseCases />
+        <OpenSourceStrip />
         <FAQ />
         <CTASection
           primaryButtonLink="https://cloud.ohwise.com/"

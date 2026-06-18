@@ -9,6 +9,56 @@ import SubscribeForm from "../components/blog/SubscribeForm";
 // Mock blog post data
 const BLOG_POSTS = [
   {
+    id: 15,
+    title: "artifact-gateway + artifact-sdk: Give AI-Generated Apps a Safe Backend",
+    content: `
+      <p class="lead">AI can generate a working web app in seconds. The hard part isn't the UI — it's the moment that app needs to do something real: call an API, store data, use a secret. A generated app running in a sandbox can't be trusted with raw network access or your credentials. So most "AI app builders" either stay toys, or quietly hand the app far too much power.</p>
+
+      <p>We hit this building Lab and Studio, where AI agents routinely produce dashboards, tools, and mini-apps. To make those apps genuinely useful without compromising safety, we built two open-source packages — and we're releasing both.</p>
+
+      <h2>Two packages, one boundary</h2>
+
+      <p><strong>artifact-gateway</strong> (Python, on PyPI) is the server side. <strong>artifact-sdk</strong> (JavaScript, on npm) is the browser side. Together they put a single controlled door between an AI-generated app and the real world: the app asks, the gateway decides.</p>
+
+      <h2>The app never holds power — it holds a token</h2>
+
+      <p>Instead of giving the generated app API keys or a database connection, the host issues it a short-lived, role-scoped token. Every request the app makes flows through the gateway, which re-checks what that token is allowed to do before doing it:</p>
+
+      <ul>
+        <li><strong>External APIs</strong> — the app can call third-party services, but secrets are referenced by name from a vault and injected by the gateway. The key never appears in the generated code.</li>
+        <li><strong>Your own APIs</strong> — reachable only through an explicit path-and-method allowlist.</li>
+        <li><strong>Isolated data</strong> — each user (or account) gets its own database space; the gateway stamps the tenant identity on every read and write, so one app can never see another's data.</li>
+      </ul>
+
+      <h2>For the app author, it's just one object</h2>
+
+      <p>On the browser side, artifact-sdk exposes a single <code>window.ohwise</code> object. Drop in one script tag (or <code>npm install artifact-sdk</code> for bundled apps) and the generated app gets <code>ohwise.external(...)</code>, <code>ohwise.db.*</code>, <code>ohwise.files.*</code>, streaming, and a code sandbox — with the token delivered automatically and refreshed on expiry.</p>
+
+      <pre><code>&lt;script src="https://cdn.jsdelivr.net/npm/artifact-sdk@0/dist/artifact-sdk.js"&gt;&lt;/script&gt;
+
+await ohwise.db.upsert("job_state", { job_id: 42 }, { status: "screening" });
+await ohwise.external({ method: "GET", url: "https://api.example.com/data" });</code></pre>
+
+      <h2>Right data store, right job</h2>
+
+      <p>A recurring mistake we designed against: generated apps reaching for browser <code>localStorage</code>, which is private to one tab and invisible to everything else. The SDK steers apps to persist properly — DuckDB for large, read-mostly analytical data, MongoDB for small, live state that changes as users click — so an app's data is real, shared, and durable.</p>
+
+      <h2>Use it without OhWise</h2>
+
+      <p>Both packages are standalone and Apache-2.0. artifact-gateway drops into any FastAPI service; artifact-sdk works in any iframe-embedded web app. If you're building anything that runs AI-generated or third-party front-end code and needs to give it controlled backend access, these are for you.</p>
+
+      <p><strong>Get started:</strong> <code>pip install "artifact-gateway[all]"</code> and <code>npm install artifact-sdk</code>. Source and docs are linked from our Open Source page.</p>
+    `,
+    author: "OhWise Engineering",
+    authorTitle: "OhWise",
+    authorAvatar: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=150&h=150&fit=crop&crop=faces",
+    date: "June 17, 2026",
+    readTime: "6 min read",
+    category: "Announcements",
+    tags: ["Open Source", "artifact-gateway", "artifact-sdk", "Security"],
+    image: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?q=80&w=2934&auto=format&fit=crop&ixlib=rb-4.0.3"
+  },
+  {
     id: 1,
     title: "When Your Team's Knowledge Becomes Your Competitive Advantage",
     content: `

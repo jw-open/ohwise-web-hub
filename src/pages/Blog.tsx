@@ -9,6 +9,16 @@ import SubscribeForm from "../components/blog/SubscribeForm";
 
 const BLOG_POSTS = [
   {
+    id: 15,
+    title: "artifact-gateway + artifact-sdk: Give AI-Generated Apps a Safe Backend",
+    excerpt: "AI can write a working web app in seconds — but the moment it needs to call an API, store data, or use a secret, you hit a wall: sandboxed apps can't be trusted with raw access. Our two new open-source packages, artifact-gateway (Python) and artifact-sdk (JavaScript), give generated apps a controlled door to real APIs and isolated data — no secrets in the code, no cross-tenant access.",
+    author: "OhWise Engineering",
+    date: "June 17, 2026",
+    readTime: "6 min",
+    category: "Announcements",
+    image: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?q=80&w=2934&auto=format&fit=crop&ixlib=rb-4.0.3"
+  },
+  {
     id: 1,
     title: "When Your Team's Knowledge Becomes Your Competitive Advantage",
     excerpt: "Organizations that connect institutional knowledge to their AI workflows consistently outperform teams that treat AI as a standalone tool. Here's why the knowledge layer is the real differentiator.",
