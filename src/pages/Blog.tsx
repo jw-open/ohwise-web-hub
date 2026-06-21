@@ -9,6 +9,16 @@ import SubscribeForm from "../components/blog/SubscribeForm";
 
 const BLOG_POSTS = [
   {
+    id: 16,
+    title: "FIFA Intelligence: Watch an AI Agent Predict the 2026 World Cup Champion — Live",
+    excerpt: "We gave an AI agent one prompt and watched it pull live FIFA data off the internet, score every team across 5 dimensions (Elo, attack, defense, form, fixtures), run a Monte Carlo simulation of the bracket, and render an interactive forecast dashboard in the browser — start to finish, no human in the loop. A fun, concrete look at what agentic workflows on OhWise can do.",
+    author: "OhWise Team",
+    date: "June 21, 2026",
+    readTime: "4 min",
+    category: "Use Cases",
+    image: "https://images.unsplash.com/photo-1517466787929-bc90951d0974?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3"
+  },
+  {
     id: 15,
     title: "artifact-gateway + artifact-sdk: Give AI-Generated Apps a Safe Backend",
     excerpt: "AI can write a working web app in seconds — but the moment it needs to call an API, store data, or use a secret, you hit a wall: sandboxed apps can't be trusted with raw access. Our two new open-source packages, artifact-gateway (Python) and artifact-sdk (JavaScript), give generated apps a controlled door to real APIs and isolated data — no secrets in the code, no cross-tenant access.",

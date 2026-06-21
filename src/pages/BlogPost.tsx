@@ -9,6 +9,40 @@ import SubscribeForm from "../components/blog/SubscribeForm";
 // Mock blog post data
 const BLOG_POSTS = [
   {
+    id: 16,
+    title: "FIFA Intelligence: Watch an AI Agent Predict the 2026 World Cup Champion — Live",
+    content: `
+      <p class="lead">We gave an AI agent a single prompt — "predict the 2026 World Cup champion" — and let it run. No notebooks, no pipeline wiring, no human in the loop. In a few minutes it pulled live FIFA data off the internet, scored every team across five dimensions, simulated the entire bracket, and rendered an interactive forecast dashboard in the browser. Here's the whole thing, start to finish:</p>
+
+      <p><a href="https://youtu.be/_F_IoHiLo6s" target="_blank" rel="noopener noreferrer"><img src="https://img.youtube.com/vi/_F_IoHiLo6s/hqdefault.jpg" alt="Watch: an AI agent builds a FIFA World Cup champion predictor live"></a><br/><em>▶ <a href="https://youtu.be/_F_IoHiLo6s" target="_blank" rel="noopener noreferrer">Watch the full walkthrough</a></em></p>
+
+      <h2>What it actually did</h2>
+      <p>From one instruction, the agent worked through the whole task on its own:</p>
+      <ol>
+        <li><strong>Fetched live data</strong> — pulled current FIFA results and standings from the open web.</li>
+        <li><strong>Scored 5 dimensions</strong> — Elo rating, attack, defense, recent form, and fixture difficulty for every team.</li>
+        <li><strong>Simulated the bracket</strong> — ran a Monte Carlo simulation across thousands of tournament runs to estimate each nation's championship probability.</li>
+        <li><strong>Built the dashboard</strong> — generated an interactive forecast app with adjustable indicator weights, live standings, and win-probability bars — running in the browser, no deploy step.</li>
+      </ol>
+
+      <h2>Why this matters for teams</h2>
+      <p>Swap "World Cup" for "next quarter's churn," "which deals will close," or "which experiments to prioritize," and the shape is identical: <strong>gather data → score it across the dimensions that matter → simulate outcomes → ship an interactive view your team can actually use.</strong> That's the work that normally takes a data scientist days of glue code. Here it came from one prompt.</p>
+
+      <p>The point of the FIFA demo isn't football — it's that an agentic workflow can own the full loop, from messy public data to a decision-ready dashboard, while you watch every step happen live. It's a fun way to see what the same engine does for the unglamorous problems your team actually cares about.</p>
+
+      <h2>Try it</h2>
+      <p>This was built on OhWise — the multi-agent platform for turning a goal into a working, data-backed result. Bring a question, point it at the data, and let the agent do the gathering, modeling, and building.</p>
+    `,
+    author: "OhWise Team",
+    authorTitle: "OhWise",
+    authorAvatar: "https://images.unsplash.com/photo-1517466787929-bc90951d0974?w=150&h=150&fit=crop",
+    date: "June 21, 2026",
+    readTime: "4 min read",
+    category: "Use Cases",
+    tags: ["Use Cases", "Agentic Workflows", "Monte Carlo", "Demo"],
+    image: "https://images.unsplash.com/photo-1517466787929-bc90951d0974?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3"
+  },
+  {
     id: 15,
     title: "artifact-gateway + artifact-sdk: Give AI-Generated Apps a Safe Backend",
     content: `
