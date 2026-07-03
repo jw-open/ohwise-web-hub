@@ -384,9 +384,9 @@ const Product = () => {
 
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 max-w-5xl mx-auto">
               {[
-                { name: "ai-relay", version: "0.4.41", desc: "WebSocket relay for AI coding agent CLIs", install: "pip install ai-relay" },
-                { name: "artifact-gateway", version: "0.2.0", desc: "Secure API proxy for AI-generated artifact apps", install: 'pip install "artifact-gateway[all]"' },
-                { name: "artifact-sdk", version: "0.1.0", desc: "Browser SDK for artifact apps", install: "npm install artifact-sdk" },
+                { name: "ai-relay", version: "0.4.45", desc: "WebSocket relay for AI coding agent CLIs", install: "pip install ai-relay" },
+                { name: "artifact-gateway", version: "0.3.1", desc: "Secure API proxy for AI-generated artifact apps", install: 'pip install "artifact-gateway[all]"' },
+                { name: "artifact-sdk", version: "0.2.0", desc: "Browser SDK for artifact apps", install: "npm install artifact-sdk" },
                 { name: "graph2sql", version: "0.2.0", desc: "Graph-based schema ranking for text-to-SQL", install: "pip install graph2sql" },
                 { name: "docs2graph", version: "0.3.2", desc: "Document → knowledge graph extraction", install: "pip install docs2graph" },
                 { name: "codebase2graph", version: "0.2.0", desc: "Code repository → queryable knowledge graph", install: "pip install codebase2graph" },

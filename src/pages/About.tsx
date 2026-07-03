@@ -82,7 +82,7 @@ const About = () => {
                   {
                     icon: <Package className="w-5 h-5 text-rose-600" />,
                     title: "7 open-source packages",
-                    description: "The graph context and artifact layers are fully open source: ai-relay (v0.4.41), artifact-gateway (v0.2.0), artifact-sdk (v0.1.0, npm), graph2sql (v0.2.0), docs2graph (v0.3.2), codebase2graph (v0.2.0), ohwise-mcp (v0.2.0). Python packages have no LLM dependency.",
+                    description: "The graph context and artifact layers are fully open source: ai-relay (v0.4.45), artifact-gateway (v0.3.1), artifact-sdk (v0.2.0, npm), graph2sql (v0.2.0), docs2graph (v0.3.2), codebase2graph (v0.2.0), ohwise-mcp (v0.2.0). Python packages have no LLM dependency.",
                   },
                   {
                     icon: <Shield className="w-5 h-5 text-gray-600" />,
