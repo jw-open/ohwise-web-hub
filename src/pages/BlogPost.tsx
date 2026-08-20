@@ -9,6 +9,41 @@ import SubscribeForm from "../components/blog/SubscribeForm";
 // Mock blog post data
 const BLOG_POSTS = [
   {
+    id: 17,
+    title: "DeepSeek Is Now Available on OhWise",
+    content: `
+      <p class="lead">OhWise is model-agnostic by design — you bring the models, we handle the orchestration. Today we're adding one of the most requested options: <strong>DeepSeek</strong>. You can now run <code>deepseek-chat</code> and <code>deepseek-reasoner</code> in your agents and workflows, right alongside OpenAI, Anthropic, and the rest.</p>
+
+      <h2>What's new</h2>
+      <p>DeepSeek is now a first-class model provider in OhWise. That means:</p>
+      <ul>
+        <li><strong>Bring your own key</strong> — add your DeepSeek API key in <em>Settings → Model Providers</em>, the same way you'd add OpenAI or Anthropic.</li>
+        <li><strong>Use it anywhere</strong> — pick <code>deepseek-chat</code> or <code>deepseek-reasoner</code> from the model dropdown on any agent or task.</li>
+        <li><strong>Mix providers freely</strong> — different nodes in the same workflow can use different vendors. Route the cheap, high-volume steps to DeepSeek and reserve a frontier model for the parts that need it.</li>
+      </ul>
+
+      <h2>Why DeepSeek</h2>
+      <p>DeepSeek's models are OpenAI-API-compatible and notably cost-efficient, which makes them a strong fit for high-volume, latency-tolerant work — summarization, rewriting, classification, extraction, and the many "glue" LLM calls inside a larger pipeline. Being able to assign the right model to the right step, per node, is exactly what model-agnostic orchestration is for.</p>
+
+      <h2>How to enable it</h2>
+      <ol>
+        <li>Go to <strong>Settings → Model Providers</strong> and open <strong>DeepSeek</strong>.</li>
+        <li>Paste your DeepSeek API key. OhWise validates it against DeepSeek and saves it <strong>encrypted and scoped to your account</strong> — never in plain text, never shared across tenants.</li>
+        <li>Open any agent or task, pick a DeepSeek model from the dropdown, and run.</li>
+      </ol>
+
+      <p>That's it. Your key stays under your control, your workflows stay portable across providers, and you get one more lever for balancing cost, speed, and quality — node by node.</p>
+    `,
+    author: "OhWise Team",
+    authorTitle: "OhWise",
+    authorAvatar: "https://images.unsplash.com/photo-1620712943543-bcc4688e7485?w=150&h=150&fit=crop",
+    date: "August 19, 2026",
+    readTime: "2 min read",
+    category: "Announcements",
+    tags: ["Announcements", "Models", "DeepSeek", "Model-Agnostic"],
+    image: "https://images.unsplash.com/photo-1620712943543-bcc4688e7485?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3"
+  },
+  {
     id: 16,
     title: "FIFA Intelligence: Watch an AI Agent Predict the 2026 World Cup Champion — Live",
     content: `

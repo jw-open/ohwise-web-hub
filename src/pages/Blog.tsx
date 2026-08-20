@@ -9,6 +9,16 @@ import SubscribeForm from "../components/blog/SubscribeForm";
 
 const BLOG_POSTS = [
   {
+    id: 17,
+    title: "DeepSeek Is Now Available on OhWise",
+    excerpt: "OhWise is model-agnostic — bring your models, we handle the orchestration. Now DeepSeek joins the lineup: run deepseek-chat and deepseek-reasoner in your agents and workflows alongside OpenAI, Anthropic, and the rest. Add your key in Settings in under a minute; it's stored encrypted and scoped to your account. Route the cheap, high-volume steps to DeepSeek and reserve a frontier model for the parts that need it — node by node.",
+    author: "OhWise Team",
+    date: "August 19, 2026",
+    readTime: "2 min",
+    category: "Announcements",
+    image: "https://images.unsplash.com/photo-1620712943543-bcc4688e7485?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3"
+  },
+  {
     id: 16,
     title: "FIFA Intelligence: Watch an AI Agent Predict the 2026 World Cup Champion — Live",
     excerpt: "We gave an AI agent one prompt and watched it pull live FIFA data off the internet, score every team across 5 dimensions (Elo, attack, defense, form, fixtures), run a Monte Carlo simulation of the bracket, and render an interactive forecast dashboard in the browser — start to finish, no human in the loop. A fun, concrete look at what agentic workflows on OhWise can do.",
